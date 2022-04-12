@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+    Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
+
+    Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+    Route::post('/login/verify', [LoginController::class, 'verify'])->name('login.verify');
 });
