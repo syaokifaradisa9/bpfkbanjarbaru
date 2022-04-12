@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
     public function index(){
-        
+        return view('auth.login',[
+            'title' => 'Halaman Login'
+        ]);
     }
 
     public function verify(LoginRequest $request){

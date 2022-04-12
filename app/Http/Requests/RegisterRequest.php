@@ -41,6 +41,7 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'Email Sudah Terdaftar!',
             'password.required' => 'Password Tidak Boleh Kosong!',
             'password.min' => 'Password Harus Memiliki Paling Tidak 7 Karakter!',
+            'confirmation_password.required' => 'Konfirmasi Password Tidak Boleh Kosong!',
             'confirmation_password.same' => 'Konfirmasi Password Harus Sama Dengan Password!'
         ];
     }
