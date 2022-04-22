@@ -12,6 +12,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('vendor/stisla/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/stisla/css/components.css') }}">
+  <link rel="icon" type="image/png" href="{{ asset('img/logo/logo.png') }}" />
 </head>
 
 <body>

@@ -1,12 +1,12 @@
 @extends('templates.auth')
 
 @section('form-content')
-<form method="POST" action="{{ route('register.store') }}" class="needs-validation" novalidate="">
+<form method="POST" action="{{ route('register.store') }}">
     @csrf
 
     <div class="form-group">
         <label for="fasyenkes_name">Nama Fasyenkes</label>
-        <input id="fasyenkes_name" type="text" class="form-control @error('fasyenkes_name') is-invalid @enderror" name="fasyenkes_name" tabindex="1">
+        <input id="fasyenkes_name" type="text" class="form-control @error('fasyenkes_name') is-invalid @enderror" name="fasyenkes_name" tabindex="1" value="{{ old('fasyenkes_name') }}">
         @error('fasyenkes_name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -16,7 +16,7 @@
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" tabindex="1">
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" tabindex="1" value="{{ old('email') }}">
         @error('email')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

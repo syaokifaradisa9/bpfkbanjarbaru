@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -17,7 +16,7 @@ class RegisterVerificationMail extends Mailable
      *
      * @return void
      */
-    public User $user;
+    public $user;
     public function __construct(User $user)
     {
         $this->user = $user;
@@ -30,6 +29,8 @@ class RegisterVerificationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->subject('Verifikasi Pendaftaran')
+                    ->view('mail.verification_mail')
+                    ->with(['user' => $this->user]);
     }
 }

@@ -1,12 +1,17 @@
 @extends('templates.auth')
 
 @section('form-content')
+@if (Session::has('success'))
+  <div class="alert alert-success">{{ Session::get('success') }}</div>
+@elseif(Session::has('error'))
+  <div class="alert alert-danger">{{ Session::get('error') }}</div>
+@endif
 <form method="POST" action="{{ route('login.verify') }}">
     @csrf
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" tabindex="1">
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" tabindex="1" value="{{ old('email') }}">
         @error('email')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

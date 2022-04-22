@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'Email Tidak Boleh Kosong!',
             'email.email' => 'Masukkan Email yang Valid!',
-            'email.exists' => 'Email Belum Terdaftar, SIlahkan Mendaftar Terlebih Dahulu!',
+            'email.exists' => 'Email Belum Terdaftar, Silahkan Mendaftar Terlebih Dahulu!',
             'password.required' => 'Password Tidak Boleh Kosong!'
         ];
     }
