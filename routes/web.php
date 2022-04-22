@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -32,5 +32,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware((['auth']))->group(function(){
-   Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 });
