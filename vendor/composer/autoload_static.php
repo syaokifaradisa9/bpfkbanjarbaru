@@ -539,6 +539,7 @@ class ComposerStaticInit563751b83e64b49f258800a2c3803bea
         'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
         'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
         'App\\Mail\\RegisterVerificationMail' => __DIR__ . '/../..' . '/app/Mail/RegisterVerificationMail.php',
+        'App\\Models\\AdminUser' => __DIR__ . '/../..' . '/app/Models/AdminUser.php',
         'App\\Models\\Alkes' => __DIR__ . '/../..' . '/app/Models/Alkes.php',
         'App\\Models\\AlkesCategory' => __DIR__ . '/../..' . '/app/Models/AlkesCategory.php',
         'App\\Models\\AlkesOrderDescription' => __DIR__ . '/../..' . '/app/Models/AlkesOrderDescription.php',

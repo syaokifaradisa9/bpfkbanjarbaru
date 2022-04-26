@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Requests\\LoginRequest' => $baseDir . '/app/Http/Requests/LoginRequest.php',
     'App\\Http\\Requests\\RegisterRequest' => $baseDir . '/app/Http/Requests/RegisterRequest.php',
     'App\\Mail\\RegisterVerificationMail' => $baseDir . '/app/Mail/RegisterVerificationMail.php',
+    'App\\Models\\AdminUser' => $baseDir . '/app/Models/AdminUser.php',
     'App\\Models\\Alkes' => $baseDir . '/app/Models/Alkes.php',
     'App\\Models\\AlkesCategory' => $baseDir . '/app/Models/AlkesCategory.php',
     'App\\Models\\AlkesOrderDescription' => $baseDir . '/app/Models/AlkesOrderDescription.php',
