@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\AlkesController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/category/{id}/alkes', [AlkesController::class, 'getAlkesByCategoryId']);
+Route::get('/alkes/{id}/price', [AlkesController::class, 'getPriceByAlkesId']);

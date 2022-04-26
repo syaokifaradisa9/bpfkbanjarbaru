@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Alkes extends Model
+class ExternalAlkesOrder extends Model
 {
     use HasFactory;
 
-    public $fillable = [
-        'id',
-        'name',
-        'price'
+    protected $fillable = [
+        'alkes_id',
+        'external_order_id',
+        'alkes_order_description_id'
     ];
 }
