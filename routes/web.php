@@ -1,13 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ExternalOrderController;
-use App\Http\Controllers\InternalOrderController;
-use Illuminate\Support\Facades\Auth;
+
+// Auth
+use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\LogoutController;
+use App\Http\Controllers\auth\RegisterController;
+
+// Fasyenkes
+use App\Http\Controllers\GeneralRoutesController;
+use App\Http\Controllers\fasyenkes\HomeController as FasyenkesHomeController;
+use App\Http\Controllers\fasyenkes\ExternalOrderController as FasyenkesExternalOrderController;
+use App\Http\Controllers\fasyenkes\InternalOrderController as FasyenkesInternalOrderController;
+
+// Yantek
+use App\Http\Controllers\yantek\HomeController as YantekHomeController;
+use App\Http\Controllers\yantek\ExternalOrderController as YantekExternalOrderController;
+use App\Http\Controllers\yantek\InternalOrderController as YantekInternalOrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,32 +30,71 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::middleware(['guest', 'guest:admin'])->group(function () {
+Route::get('/home-redirect', [GeneralRoutesController::class, 'home'])->name('home-redirect');
+Route::get('/order-internal-redirect', [GeneralRoutesController::class, 'internalOrder'])->name('order-internal-redirect');
+Route::get('/order-external-redirect', [GeneralRoutesController::class, 'externalOrder'])->name('order-external-redirect');
+
+Route::middleware(['guest'])->group(function () {
+    // Register
     Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
     Route::get('/register/notify/{token}', [RegisterController::class, 'notify'])->name('register.notify');
     Route::get('/register/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
     Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
 
+    // Login
     Route::get('/', [LoginController::class, 'index'])->name('login.index');
     Route::post('/login/verify', [LoginController::class, 'verify'])->name('login.verify');
 });
 
+// Logout
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 
-Route::middleware(['user'])->group(function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
+    Route::get('/home', [FasyenkesHomeController::class, 'index'])->name('home.index');
+    Route::name('order.')->prefix('order')->group(function(){
+        Route::name('internal.')->prefix('/internal')->group(function(){
+            Route::get('/', [FasyenkesInternalOrderController::class, 'index'])->name('index');
+            Route::get('/create', [FasyenkesInternalOrderController::class, 'create'])->name('create');
+            Route::post('/store', [FasyenkesInternalOrderController::class, 'store'])->name('store');
+        });
 
-    Route::get('/order/internal', [InternalOrderController::class, 'index'])->name('order.internal');
-    Route::get('/order/internal/create', [InternalOrderController::class, 'create'])->name('order.internal.create');
-    Route::post('/order/internal/store', [InternalOrderController::class, 'store'])->name('order.internal.store');
-
-    Route::get('/order/external', [ExternalOrderController::class, 'index'])->name('order.external');
-    Route::get('/order/external/create', [ExternalOrderController::class, 'create'])->name('order.external.create');
-    Route::post('/order/external/store', [ExternalOrderController::class, 'store'])->name('order.external.store');
+        Route::name('external.')->prefix('external')->group(function(){
+            Route::get('/', [FasyenkesExternalOrderController::class, 'index'])->name('index');
+            Route::get('/create', [FasyenkesExternalOrderController::class, 'create'])->name('create');
+            Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
+        });
+    });
 });
 
-Route::middleware(['admin'])->group(function(){
-    Route::get('/admin/home', function(){
-        dd("Asdasd");
-    })->name('admin.home');
+Route::middleware(['yantek'])->name('yantek.')->group(function(){
+    Route::get('/yantek/home', [YantekHomeController::class, 'index'])->name('home.index');
+    Route::name('order.')->prefix('order')->group(function(){
+        Route::name('internal.')->prefix('/internal')->group(function(){
+            Route::get('/', [YantekInternalOrderController::class, 'index'])->name('index');
+            Route::put('/accept', [YantekInternalOrderController::class, 'accept'])->name('accept');
+            Route::put('/reject', [YantekInternalOrderController::class, 'reject'])->name('reject');
+        });
+
+        Route::name('external.')->prefix('external')->group(function(){
+            Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
+        });
+    });
+});
+
+Route::middleware(['penyelia'])->name('penyelia.')->group(function(){
+    Route::get('/penyelia/home', function(){
+        dd("Penyelia");
+    })->name('penyelia.home');
+});
+
+Route::middleware(['petugas'])->name('petugas.')->group(function(){
+    Route::get('/petugas/home', function(){
+        dd("Petugas");
+    })->name('petugas.home');
+});
+
+Route::middleware(['bendahara'])->name('bendahara.')->group(function(){
+    Route::get('/petugas/home', function(){
+        dd("Petugas");
+    })->name('petugas.home');
 });

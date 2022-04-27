@@ -4,9 +4,6 @@
 <section class="section">
     <div class="section-header">
       <h1>Pengajuan Internal</h1>
-      <div class="section-header-breadcrumb">
-        <td><a href="{{ route('order.internal.create') }}" class="btn btn-primary">Tambah Order</a></td>
-      </div>
     </div>
 
     <div class="section-body">
@@ -44,7 +41,7 @@
                     <th class="text-center" style="width: 190px">Estimasi Pengiriman</th>
                     <th class="text-center" style="width: 160px">Estimasi Sampai</th>
                     <th style="width: 100px" class="text-center">Status</th>
-                    <th style="width: 260px" class="text-center">Aksi</th>
+                    <th style="width: 250px" class="text-center">Aksi</th>
                   </tr>
                   @foreach ($orders as $index => $data)
                     <tr>
@@ -54,12 +51,32 @@
                       <td class="text-center">{{ date('d-m-Y', strtotime($data->delivery_date_estimation)) }}</td>
                       <td class="text-center">{{ date('d-m-Y', strtotime($data->arrival_date_estimation)) }}</td>
                       <td class="text-center">
-                        <div class="badge badge-secondary">{{ $data->status }}</div>
+                        @if ($data->status == 'TERKIRIM')
+                          <div class="badge badge-secondary">{{ $data->status }}</div>
+                        @elseif ($data->status == 'DITOLAK')
+                          <div class="badge badge-danger">{{ $data->status }}</div>
+                        @elseif ($data->status == 'DITERIMA')
+                          <div class="badge badge-success">{{ $data->status }}</div>
+                        @endif
                       </td>
                       <td class="text-center">
                         <a href="#" class="btn btn-primary">Detail</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-danger">Batalkan</a>
+                        @if ($data->status == 'TERKIRIM')
+                          <form action="{{ route('yantek.order.internal.accept') }}" method="post" class="d-inline">
+                            @method('PUT')
+                            @csrf
+
+                            <input type="hidden" readonly value="{{ $data->id }}" name="order_id">
+                            <button class="btn btn-success" type="submit">Terima</button>
+                          </form>
+                          <form action="{{ route('yantek.order.internal.reject') }}" method="post" class="d-inline">
+                            @method('PUT')
+                            @csrf
+
+                            <input type="hidden" readonly value="{{ $data->id }}" name="order_id">
+                            <button class="btn btn-danger" type="submit">Tolak</button>
+                          </form>
+                        @endif
                       </td>
                     </tr>
                   @endforeach

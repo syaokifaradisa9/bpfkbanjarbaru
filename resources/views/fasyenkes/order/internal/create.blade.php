@@ -16,15 +16,15 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('order.internal.store') }}" method="POST">
+            <form action="{{ route('fasyenkes.order.internal.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
 
               <div class="card-body py-0 px-4">
                 <div class="form-group">
                   <label><b>Surat Pengantar</b></label>
                   <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
+                      <input type="file" class="custom-file-input" id="uploaded-file-form" name="covering_letter">
+                      <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
                   </div>
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
                 </div>
@@ -137,11 +137,11 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 @endsection
 
 @section('js-extends')
   <script src="{{ asset('js/alkes_order.js') }}"></script>
+  <script src="{{ asset('js/file_upload_form.js') }}"></script>
 @endsection

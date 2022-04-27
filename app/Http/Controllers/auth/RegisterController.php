@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
+
 use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RegisterRequest;
 use App\Mail\RegisterVerificationMail;
-use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {

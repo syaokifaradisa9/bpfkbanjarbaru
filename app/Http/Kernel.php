@@ -63,7 +63,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        'user' => \App\Http\Middleware\RedirectIfNotUser::class,
-        'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+        // Role
+        'fasyenkes' => \App\Http\Middleware\RedirectIfNotUser::class,
+        'yantek' => \App\Http\Middleware\RedirectIfNotYantek::class,
+        'penyelia' => \App\Http\Middleware\RedirectIfNotPenyelia::class,
+        'petugas' => \App\Http\Middleware\RedirectIfNotPetugas::class,
+        'bendahara' => \App\Http\Middleware\RedirectIfNotBendahara::class,
     ];
 }

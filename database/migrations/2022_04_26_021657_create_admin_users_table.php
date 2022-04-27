@@ -18,7 +18,7 @@ class CreateAdminUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('name');
-            $table->enum('role', ['YANTEK', 'PENYELIA', 'PETUGAS', 'DEVELOPER']);
+            $table->enum('role', ['YANTEK', 'PENYELIA', 'PETUGAS', 'BENDAHARA','DEVELOPER']);
             $table->rememberToken();
             $table->timestamps();
         });

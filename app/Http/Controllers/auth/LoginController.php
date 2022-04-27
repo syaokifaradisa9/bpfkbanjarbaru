@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -15,7 +16,7 @@ class LoginController extends Controller
     public function verify(Request $request){
         // Pengecekan akun admin
         if(Auth::guard('admin')->attempt($request->only('email', 'password'))){
-            return redirect(route('admin.home'));
+            return redirect(route('home-redirect'));
         }
 
         // Pengecekan akun user fasyenkes
@@ -27,6 +28,6 @@ class LoginController extends Controller
             return redirect(Route('login.index'))->with('error', 'Email atau password salah, Silahkan Coba Lagi!');
         }
 
-        return redirect(route('home.index'));
+        return redirect(route('home-redirect'));
     }
 }

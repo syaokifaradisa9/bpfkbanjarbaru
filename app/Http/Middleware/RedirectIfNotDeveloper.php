@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class RedirectIfNotAdmin
+class RedirectIfNotDeveloper
 {
     /**
      * Handle an incoming request.
@@ -16,7 +17,7 @@ class RedirectIfNotAdmin
      */
     public function handle(Request $request, Closure $next, $guard="admin")
     {
-        if(!auth()->guard($guard)->check()) {
+        if(!auth()->guard($guard)->check() && Auth::guard('admin')->user()->role == "DEVELOPER" ) {
             return redirect(route('login.index'));
         }
         return $next($request);

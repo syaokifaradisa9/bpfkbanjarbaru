@@ -63,7 +63,6 @@ function refreshTable(){
     for(var i=0; i<totalDataRow; i++){
         // Kalkulasi Sub total
         const rawPrice = document.getElementById(`price_${i}`).innerHTML.split(' ')[1];
-        console.log(rawPrice);
         const price = rawPrice.replaceAll('.', '');
         const ammount = document.getElementById(`ammount_${i}`).value;
         const subtotal = price * ammount;

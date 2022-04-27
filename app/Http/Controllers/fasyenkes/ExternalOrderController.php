@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\fasyenkes;
 
 use Illuminate\Http\Request;
 use App\Models\AlkesCategory;
 use App\Models\ExternalOrder;
+use App\Models\ExternalAlkesOrder;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
-use App\Models\ExternalAlkesOrder;
 
 class ExternalOrderController extends Controller
 {
     public function index(){
         $orders = ExternalOrder::all();
-        return view('order.external.index', [
+        return view('fasyenkes.order.external.index', [
             'title' => 'Pengajuan External',
             'menu' => 'external',
             'orders' => $orders,
@@ -23,7 +24,7 @@ class ExternalOrderController extends Controller
     public function create(){
         $category = AlkesCategory::all();
 
-        return view('order.external.create',[
+        return view('fasyenkes.order.external.create',[
             'title' => 'Tambah Pengajuan External',
             'menu' => 'external',
             'categories' => $category,
@@ -47,6 +48,6 @@ class ExternalOrderController extends Controller
             }
         }
 
-        return redirect(route('order.external'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
+        return redirect(route('fasyenkes.order.external'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
     }
 }

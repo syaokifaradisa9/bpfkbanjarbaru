@@ -93,7 +93,13 @@
         <ul class="navbar-nav navbar-right ml-auto">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset('img/logo/logo.png') }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->fasyenkes_name }}</div></a>
+            <div class="d-sm-none d-lg-inline-block">
+              @if (Auth::guard('web')->check())
+                {{ Auth::guard('web')->user()->fasyenkes_name }}
+              @else
+                {{ Auth::guard('admin')->user()->name }}
+              @endif  
+            </div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
@@ -111,16 +117,13 @@
           <div class="sidebar-brand mt-2">
             <a href="index.html"> <img src="{{ asset('img/logo/logo.png') }}" alt="" style="width: 30px; margin-right: 5px"> BPFK Banjarbaru</a>
           </div>
-          <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
-          </div>
           <ul class="sidebar-menu mt-4">
               <li class="menu-header">Beranda</li>
-              <li class="{{ $menu == 'home' ? 'active' : '' }}"><a class="nav-link" href="{{ route('home.index') }}"><i class="fas fa-home"></i> <span>Beranda</span></a></li>
+              <li class="{{ $menu == 'home' ? 'active' : '' }}"><a class="nav-link" href="{{ route('home-redirect') }}"><i class="fas fa-home"></i> <span>Beranda</span></a></li>
               
               <li class="menu-header">Pengajuan</li>
-              <li class="{{ $menu == 'internal' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order.internal') }}"><i class="fas fa-building"></i> <span>Internal</span></a></li>
-              <li class="{{ $menu == 'external' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order.external') }}"><i class="fas fa-hospital"></i> <span>Eksternal</span></a></li>
+              <li class="{{ $menu == 'internal' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order-internal-redirect') }}"><i class="fas fa-building"></i> <span>Internal</span></a></li>
+              <li class="{{ $menu == 'external' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order-external-redirect') }}"><i class="fas fa-hospital"></i> <span>Eksternal</span></a></li>
             </ul>
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
