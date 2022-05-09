@@ -38,16 +38,28 @@ class ExternalOrderController extends Controller
         ]);
 
         for($i = 0; $i < count($request->alkes); $i++){
-            $description = AlkesOrderDescription::create(['description' => $request->description[$i]]);
+            $description_id = 1;
+            if($request->description[$i] != null){
+                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]]);
+            }
+
+
             for($j = 0; $j < $request->ammount[$i]; $j++){
                 ExternalAlkesOrder::create([
                     'alkes_id' => $request->alkes[$i],
-                    'alkes_order_description_id' => $description->id,
+                    'alkes_order_description_id' => $description_id,
                     'external_order_id' => $order->id,
                 ]);
             }
         }
 
-        return redirect(route('fasyenkes.order.external'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
+        return redirect(route('fasyenkes.order.external.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
+    }
+
+    public function cancel(Request $request){
+        ExternalAlkesOrder::where('external_order_id', $request->id)->delete();
+        ExternalOrder::find($request->id)->delete();
+
+        return redirect(route('fasyenkes.order.external.index'))->with('success', 'Membatalkan Pengajuan Berhasil, Kami Tidak akan Memproses Pengajuan Anda!');
     }
 }

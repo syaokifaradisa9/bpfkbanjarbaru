@@ -16,14 +16,14 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('order.external.store') }}" method="POST">
+            <form action="{{ route('fasyenkes.order.external.store') }}" method="POST">
               @csrf
 
               <div class="card-body py-0 px-4">
                 <div class="form-group">
                   <label><b>Surat Permohonan</b></label>
                   <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile">
+                      <input type="file" class="custom-file-input" id="customFile" required>
                       <label class="custom-file-label" for="customFile">Choose file</label>
                   </div>
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>

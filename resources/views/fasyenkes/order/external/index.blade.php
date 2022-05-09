@@ -55,7 +55,13 @@
                       <td class="text-center">
                         <a href="#" class="btn btn-primary">Detail</a>
                         <a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-danger">Batalkan</a>
+                        @if (!$data->number)
+                          <form action="{{ route('fasyenkes.order.external.cancel') }}" method="post" class="d-inline">
+                            @csrf
+                            <input type="hidden" value="{{ $data->id }}" name="id" readonly>
+                            <button type="submit" class="btn btn-danger">Batalkan</button>
+                          </form>
+                        @endif
                       </td>
                     </tr>
                   @endforeach

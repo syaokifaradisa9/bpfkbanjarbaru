@@ -17,12 +17,12 @@ class RedirectIfNotDeveloper
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->guard('admin')->check()) {
+        if(Auth::guard('admin')->check()) {
             if(Auth::guard('admin')->user()->role == "DEVELOPER"){
                 return $next($request);
             }
         }
-        
+
         return redirect(route('login.index'));
     }
 }

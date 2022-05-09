@@ -64,6 +64,7 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
             Route::get('/', [FasyenkesExternalOrderController::class, 'index'])->name('index');
             Route::get('/create', [FasyenkesExternalOrderController::class, 'create'])->name('create');
             Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
+            Route::post('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
         });
     });
 });
@@ -78,6 +79,8 @@ Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function()
         });
         Route::name('external.')->prefix('external')->group(function(){
             Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
+            Route::put('/accept', [YantekExternalOrderController::class, 'accept'])->name('accept');
+            Route::put('/reject', [YantekExternalOrderController::class, 'reject'])->name('reject');
         });
     });
 });

@@ -17,12 +17,12 @@ class RedirectIfNotBendahara
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->guard('admin')->check()) {
+        if(Auth::guard('admin')->check()) {
             if(Auth::guard('admin')->user()->role == "BENDAHARA"){
                 return $next($request);
             }
         }
-        
+
         return redirect(route('login.index'));
     }
 }

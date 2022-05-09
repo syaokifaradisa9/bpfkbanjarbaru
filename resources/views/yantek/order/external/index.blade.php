@@ -51,8 +51,22 @@
                       </td>
                       <td class="text-center">
                         <a href="#" class="btn btn-primary">Detail</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-danger">Batalkan</a>
+                        @if (!$data->number)
+                          <form action="{{ route('yantek.order.external.accept') }}" method="post" class="d-inline">
+                            @csrf
+                            @method('PUT')
+
+                            <input type="hidden" value="{{ $data->id }}" name="id" readonly>
+                            <button class="btn btn-success">Konfirmasi</button>
+                          </form>
+                          <form action="{{ route('yantek.order.external.reject') }}" method="post" class="d-inline">
+                            @csrf
+                            @method('PUT')
+
+                            <input type="hidden" value="{{ $data->id }}" name="id" readonly>
+                            <button class="btn btn-danger">Tolak</button>
+                          </form>
+                        @endif
                       </td>
                     </tr>
                   @endforeach
