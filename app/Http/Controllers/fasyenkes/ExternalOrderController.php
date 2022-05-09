@@ -13,7 +13,7 @@ use App\Models\AlkesOrderDescription;
 class ExternalOrderController extends Controller
 {
     public function index(){
-        $orders = ExternalOrder::all();
+        $orders = ExternalOrder::where('user_id', Auth::guard('web')->user()->id)->get();
         return view('fasyenkes.order.external.index', [
             'title' => 'Pengajuan External',
             'menu' => 'external',

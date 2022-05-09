@@ -15,11 +15,14 @@ class RedirectIfNotDeveloper
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $guard="admin")
+    public function handle(Request $request, Closure $next)
     {
-        if(!auth()->guard($guard)->check() && Auth::guard('admin')->user()->role == "DEVELOPER" ) {
-            return redirect(route('login.index'));
+        if(auth()->guard('admin')->check()) {
+            if(Auth::guard('admin')->user()->role == "DEVELOPER"){
+                return $next($request);
+            }
         }
-        return $next($request);
+        
+        return redirect(route('login.index'));
     }
 }

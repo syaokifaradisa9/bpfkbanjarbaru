@@ -18,8 +18,8 @@ class AdminUserSeeder extends Seeder
             [
                 'name' => "Muhammad Syaoki Faradisa",
                 'email' => 'syaokifaradisa09@gmail.com',
-                'password' => bcrypt('1234567'),
-                'role' => 'DEVELOPER',
+                'password' => bcrypt('123'),
+                'role' => 'YANTEK',
             ]
         ];
 

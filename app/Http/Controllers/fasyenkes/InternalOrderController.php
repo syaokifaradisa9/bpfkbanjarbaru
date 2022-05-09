@@ -13,7 +13,7 @@ use App\Models\AlkesOrderDescription;
 class InternalOrderController extends Controller
 {
     public function index(){
-        $orders = InternalOrder::all();
+        $orders = InternalOrder::where('user_id', Auth::guard('web')->user()->id)->get();
         return view('fasyenkes.order.internal.index', [
             'title' => "Pengajuan Internal",
             'menu' => 'internal',

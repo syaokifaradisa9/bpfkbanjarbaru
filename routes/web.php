@@ -36,10 +36,12 @@ Route::get('/order-external-redirect', [GeneralRoutesController::class, 'externa
 
 Route::middleware(['guest'])->group(function () {
     // Register
-    Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
-    Route::get('/register/notify/{token}', [RegisterController::class, 'notify'])->name('register.notify');
-    Route::get('/register/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
-    Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
+    Route::prefix('register')->name('register.')->group(function(){
+        Route::get('/', [RegisterController::class, 'index'])->name('index');
+        Route::get('/notify/{token}', [RegisterController::class, 'notify'])->name('notify');
+        Route::get('/verify/{token}', [RegisterController::class, 'verify'])->name('verify');
+        Route::post('/store', [RegisterController::class, 'store'])->name('store');
+    });
 
     // Login
     Route::get('/', [LoginController::class, 'index'])->name('login.index');
@@ -50,7 +52,7 @@ Route::middleware(['guest'])->group(function () {
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 
 Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
-    Route::get('/home', [FasyenkesHomeController::class, 'index'])->name('home.index');
+    Route::get('/home', [FasyenkesHomeController::class, 'index'])->name('home');
     Route::name('order.')->prefix('order')->group(function(){
         Route::name('internal.')->prefix('/internal')->group(function(){
             Route::get('/', [FasyenkesInternalOrderController::class, 'index'])->name('index');
@@ -66,34 +68,33 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
     });
 });
 
-Route::middleware(['yantek'])->name('yantek.')->group(function(){
-    Route::get('/yantek/home', [YantekHomeController::class, 'index'])->name('home.index');
+Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
+    Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');
     Route::name('order.')->prefix('order')->group(function(){
         Route::name('internal.')->prefix('/internal')->group(function(){
             Route::get('/', [YantekInternalOrderController::class, 'index'])->name('index');
             Route::put('/accept', [YantekInternalOrderController::class, 'accept'])->name('accept');
             Route::put('/reject', [YantekInternalOrderController::class, 'reject'])->name('reject');
         });
-
         Route::name('external.')->prefix('external')->group(function(){
             Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
         });
     });
 });
 
-Route::middleware(['penyelia'])->name('penyelia.')->group(function(){
+Route::middleware(['penyelia'])->prefix('penyelia')->name('penyelia.')->group(function(){
     Route::get('/penyelia/home', function(){
         dd("Penyelia");
     })->name('penyelia.home');
 });
 
-Route::middleware(['petugas'])->name('petugas.')->group(function(){
+Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(function(){
     Route::get('/petugas/home', function(){
         dd("Petugas");
     })->name('petugas.home');
 });
 
-Route::middleware(['bendahara'])->name('bendahara.')->group(function(){
+Route::middleware(['bendahara'])->prefix('bendahara')->name('bendahara.')->group(function(){
     Route::get('/petugas/home', function(){
         dd("Petugas");
     })->name('petugas.home');

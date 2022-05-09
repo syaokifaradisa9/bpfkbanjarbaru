@@ -20,14 +20,14 @@ class LoginController extends Controller
         }
 
         // Pengecekan akun user fasyenkes
-        if(!(User::where('email', $request->email)->get()->first())->isVerified()){
-            return redirect(Route('login.index'))->with('error', 'Email Belum Terverifikasi, Silahkan Verifikasi Terlebih Dahulu!');
+        // if(!(User::where('email', $request->email)->get()->first())->isVerified()){
+        //     return redirect(Route('login.index'))->with('error', 'Email Belum Terverifikasi, Silahkan Verifikasi Terlebih Dahulu!');
+        // }
+
+        if(Auth::guard('web')->attempt($request->only('email', 'password'))){
+            return redirect(route('home-redirect'));
         }
 
-        if(!Auth::attempt($request->only('email', 'password'))){
-            return redirect(Route('login.index'))->with('error', 'Email atau password salah, Silahkan Coba Lagi!');
-        }
-
-        return redirect(route('home-redirect'));
+        return redirect(Route('login.index'))->with('error', 'Email atau password salah, Silahkan Coba Lagi!');
     }
 }

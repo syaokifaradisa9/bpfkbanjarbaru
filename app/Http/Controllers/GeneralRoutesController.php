@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Auth;
 
 class GeneralRoutesController extends Controller
 {
     public function home(){
         if(Auth::guard('web')->check()){
-            return redirect(route('fasyenkes.home.index'));
+            return redirect(route('fasyenkes.home'));
         }else if(Auth::guard('admin')->check()){
             $role = Auth::guard('admin')->user()->role;
             if($role == "YANTEK"){
