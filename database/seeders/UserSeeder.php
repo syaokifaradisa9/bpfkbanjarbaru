@@ -19,6 +19,8 @@ class UserSeeder extends Seeder
                 'email' => 'syaokifaradisa9@gmail.com',
                 'password' => bcrypt('123'),
                 'fasyenkes_name' => "RS BJB",
+                'city' => 'Banjarbaru',
+                'province' => 'Kalimantan Selatan',
                 'hash' => "12345"
             ]
         ];

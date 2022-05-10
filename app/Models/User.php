@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function isVerified(){
         return $this->email_verified_at != NULL;
     }
+
+    public function externalOrder(){
+        return $this->hasMany(ExternalOrder::class);
+    }
 }

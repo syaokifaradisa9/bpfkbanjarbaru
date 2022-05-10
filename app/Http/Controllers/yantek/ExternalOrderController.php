@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class ExternalOrderController extends Controller
 {
     public function index(){
-        $orders = ExternalOrder::all();
+        $orders = ExternalOrder::with('user')->get();
         return view('yantek.order.external.index', [
             'title' => "Order External",
             'menu' => 'external',

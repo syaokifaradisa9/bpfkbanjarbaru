@@ -33,43 +33,65 @@
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-striped">
-                  <tr>
-                    <th class="text-center" style="width: 30px">No.</th>
-                    <th>Nomor Order</th>
-                    <th class="text-center">Tanggal Pengajuan</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center">Aksi</th>
-                  </tr>
-                  @foreach ($orders as $index => $data)
+                <table class="table table-bordered" id="order-table">
+                  <thead>
                     <tr>
-                      <td class="text-center">{{ $index + 1 }}</td>
-                      <td>{{ $data->number }}</td>
-                      <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
-                      <td class="text-center">
-                        <div class="badge badge-secondary">{{ $data->status }}</div>
-                      </td>
-                      <td class="text-center">
-                        <a href="#" class="btn btn-primary">Detail</a>
-                        @if (!$data->number)
-                          <form action="{{ route('yantek.order.external.accept') }}" method="post" class="d-inline">
-                            @csrf
-                            @method('PUT')
-
-                            <input type="hidden" value="{{ $data->id }}" name="id" readonly>
-                            <button class="btn btn-success">Konfirmasi</button>
-                          </form>
-                          <form action="{{ route('yantek.order.external.reject') }}" method="post" class="d-inline">
-                            @csrf
-                            @method('PUT')
-
-                            <input type="hidden" value="{{ $data->id }}" name="id" readonly>
-                            <button class="btn btn-danger">Tolak</button>
-                          </form>
-                        @endif
-                      </td>
+                      <th class="text-center" style="width: 30px">No.</th>
+                      <th class="text-center" style="width: 180px">Fasyenkes</th>
+                      <th class="text-center" style="width: 150px">Tanggal</th>
+                      <th class="text-center">Nomor Order</th>
+                      <th class="text-center">Nomor Surat</th>
+                      <th class="text-center">Status</th>
+                      <th class="text-center">Aksi</th>
                     </tr>
-                  @endforeach
+                  </thead>
+                  <tbody>
+                    @foreach ($orders as $index => $data)
+                      <tr>
+                        <td class="text-center">
+                          <input id="id_{{ $index }}" class="order_id" type="hidden" value="{{ $data->id }}" readonly>
+                          {{ $index + 1 }}
+                        </td>
+                        <td>
+                          {{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}
+                        </td>
+                        <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                        <td class="pt-3">
+                          <div class="form-group">
+                            <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number ?? 'E - 0' }}">
+                          </div>
+                        </td>
+                        <td class="pt-3">
+                          <div class="form-group">
+                            <input type="text" id="letter_number_{{ $index }}" class="form-control letter_number_form" name="letter_number[]" value="{{ $data->number ?? 'E - 0' }}">
+                          </div>
+                        </td>
+                        
+                        <td class="text-center">
+                          <div class="badge badge-secondary">{{ $data->status }}</div>
+                        </td>
+                        <td class="text-center">
+                          <a href="#" class="btn btn-primary">Detail</a>
+                          {{-- @if (!$data->number)
+                            <form action="{{ route('yantek.order.external.accept') }}" method="post" class="d-inline">
+                              @csrf
+                              @method('PUT')
+
+                              <input type="hidden" value="{{ $data->id }}" name="id" readonly>
+                              <button class="btn btn-success">Konfirmasi</button>
+                            </form>
+                            <form action="{{ route('yantek.order.external.reject') }}" method="post" class="d-inline">
+                              @csrf
+                              @method('PUT')
+
+                              <input type="hidden" value="{{ $data->id }}" name="id" readonly>
+                              <button class="btn btn-danger">Tolak</button>
+                            </form>
+                          @endif --}}
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -79,4 +101,9 @@
 
     </div>
   </section>
+@endsection
+
+@section('js-extends')
+  <script src="{{ asset('js/yantek/order/number_form_event.js') }}"></script>
+  <script src="{{ asset('js/yantek/order/letter_form_event.js') }}"></script>
 @endsection

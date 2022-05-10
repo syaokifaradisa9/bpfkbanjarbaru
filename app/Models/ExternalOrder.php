@@ -14,4 +14,8 @@ class ExternalOrder extends Model
         'user_id',
         'covering_letter_path',
     ];
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
