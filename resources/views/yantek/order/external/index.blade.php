@@ -39,7 +39,7 @@
                       <th class="text-center" style="width: 30px">No.</th>
                       <th class="text-center" style="width: 180px">Fasyenkes</th>
                       <th class="text-center" style="width: 150px">Tanggal</th>
-                      <th class="text-center">Nomor Order</th>
+                      <th class="text-center" style="width: 185px">Nomor Order</th>
                       <th class="text-center">Nomor Surat</th>
                       <th class="text-center">Status</th>
                       <th class="text-center">Aksi</th>
@@ -58,7 +58,8 @@
                         <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
                         <td class="pt-3">
                           <div class="form-group">
-                            <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number ?? 'E -  DL' }}">
+                            <input type="hidden" value="{{ $data->number }}" class="default_order_number" readonly>
+                            <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number }}">
                           </div>
                         </td>
                         <td class="pt-3">
@@ -66,7 +67,6 @@
                             <input type="text" id="letter_number_{{ $index }}" class="form-control letter_number_form" name="letter_number[]" value="{{ $data->number ?? 'E -  DL' }}">
                           </div>
                         </td>
-                        
                         <td class="text-center">
                           <div class="badge badge-secondary">{{ $data->status }}</div>
                         </td>
@@ -89,5 +89,5 @@
 
 @section('js-extends')
   <script src="{{ asset('js/yantek/order/number_form_event.js') }}"></script>
-  <script src="{{ asset('js/yantek/order/letter_form_event.js') }}"></script>
+  {{-- <script src="{{ asset('js/yantek/order/letter_form_event.js') }}"></script> --}}
 @endsection

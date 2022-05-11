@@ -32,9 +32,18 @@ class ExternalOrderController extends Controller
     }
 
     public function store(Request $request){
+        $last_order_position = 15;
+        $last_order_position_in_db = ExternalOrder::all()->count();
+        
+        $new_order_pos = $last_order_position + $last_order_position_in_db;
+        if($new_order_pos < 100){
+            $new_order_pos = '0'. ($new_order_pos + 1);
+        }
+
         $order = ExternalOrder::create([
             'user_id' => Auth::user()->id,
-            'covering_letter_path' => ''
+            'covering_letter_path' => '',
+            'number' => 'E - ' . $new_order_pos . '.' . ' DL'
         ]);
 
         for($i = 0; $i < count($request->alkes); $i++){
@@ -42,7 +51,6 @@ class ExternalOrderController extends Controller
             if($request->description[$i] != null){
                 $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]]);
             }
-
 
             for($j = 0; $j < $request->ammount[$i]; $j++){
                 ExternalAlkesOrder::create([

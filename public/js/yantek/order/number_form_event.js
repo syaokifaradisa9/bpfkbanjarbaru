@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
     for(var i=0; i<totalDataRow; i++){
         var orderNumberForm = document.getElementById(`order_number_${i}`);
+
         orderNumberForm.addEventListener('click', setUpNumberForm);
+        orderNumberForm.addEventListener('input', changeFormNumber);
         orderNumberForm.addEventListener('keyup', keyUpNumberEvent);
         orderNumberForm.addEventListener('focusout', keyFocusOutNumberEvent);
     }
@@ -17,7 +19,27 @@ function setUpNumberForm(){
   element.setSelectionRange(element.value.length-3, element.value.length-3);
 }
 
-/* ==================== [2.b] Event Nomor Order Keyup ==================== */
+/* ==================== [2.a] Event Change Form Nomor Order ==================== */
+function changeFormNumber(event){
+  if(isNaN(event.data)){
+    // Default Value
+    var closest_td = this.closest('td');
+    var default_number = closest_td.getElementsByClassName('default_order_number')[0].value;
+
+    // Prefix dan Suffix
+    var defaultPrefix = default_number.split('.')[0] + '.';
+    var defaultSuffix = default_number.split('.')[1];
+
+    var element = this.closest('.order_number_form');
+    var suffix = element.value.split('.')[1];
+
+    // Update Form
+    element.value = `${defaultPrefix}${suffix.split(' ')[0].match(/\d+/) ?? ''}${defaultSuffix}`;
+    element.setSelectionRange(element.value.length-3, element.value.length-3);
+  }
+}
+
+/* ==================== [2.c] Event Nomor Order Keyup ==================== */
 async function keyUpNumberEvent(event){
     // Enter Key
     if(event.keyCode === 13){
@@ -31,25 +53,32 @@ async function keyUpNumberEvent(event){
     
     // Delete Key
     if(event.keyCode === 8){
+      // Default Value
+      var closest_td = this.closest('td');
+      var default_number = closest_td.getElementsByClassName('default_order_number')[0].value;
+
+      // Prefix dan Suffix
+      var defaultPrefix = default_number.split('.')[0];
+      var defaultSuffix = default_number.split('.')[1];
+      
       // Elemen Form Nomor Order
       var element = this.closest('.order_number_form');
+      var value = element.value;
+      var order_number = value.substring(defaultPrefix.length, value.length - 2);
 
-      // Validasi Prefix dan Suffix
-      var hasPrefix = element.value.includes('E - ');
-      var hasSuffix = element.value.includes(' DL');
+      // Status Prefix dan Suffix
+      var hasPrefix = value.includes(defaultPrefix + '.');
+      var hasSuffix = value.includes(defaultSuffix);
 
       // Jika Menghapus Prefix dan Suffix
       if(!(hasPrefix && hasSuffix)){
-        var formvalue = element.value;
-        var number_order = formvalue.includes('.') ? formvalue.match(/[0-9]*\.[0-9]*/) : formvalue.match(/\d+/);
-
-        element.value = `E - ${number_order ?? ''} DL`;
+        element.value = `${defaultPrefix}.${order_number.match(/\d+/) ?? ''}${defaultSuffix}`;
         element.setSelectionRange(element.value.length-3, element.value.length-3);
       }
     }
 }
 
-/* ==================== [2.b] Event Nomor Order focusout ==================== */
+/* ==================== [2.c] Event Nomor Order focusout ==================== */
 async function keyFocusOutNumberEvent(){
     var order_number = this.closest('.order_number_form').value;
     var firstColumnElement = this.closest('tr').cells[0];
@@ -59,7 +88,7 @@ async function keyFocusOutNumberEvent(){
     await updateOrderNumber(order_id, order_number);
 }
 
-/* ==================== [3.b] Update Nomor Order Berdasarkan ID ==================== */
+/* ==================== [3.c] Update Nomor Order Berdasarkan ID ==================== */
 async function updateOrderNumber(id, order_number){
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
