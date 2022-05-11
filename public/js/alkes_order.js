@@ -29,7 +29,7 @@ function getAllAlkesCategory(){
 }
 
 async function setAlkesSelectByCategoryId(rowId, selectedId){
-    const response = await fetch(`http://bpfkbanjarbaru.test/api/category/${selectedId}/alkes?api_key=bpfk_banj_alkes_select_service`);
+    const response = await fetch(`http://bpfkbanjarbaru.test/api/category/${selectedId}/alkes?api_key=MAq6gTq9gJacnrqJxmfBs1kZwC9VJDcwcHbI66ns687ZUqhcCfKWd76kyQTnZ7`);
     const json = await response.json();
     
     dropdownData = '';
@@ -42,7 +42,7 @@ async function setAlkesSelectByCategoryId(rowId, selectedId){
 }
 
 async function setAlkesPriceByAlkesId(rowId, selectedId){
-    const response = await fetch(`http://bpfkbanjarbaru.test/api/alkes/${selectedId}/price?api_key=bpfk_banj_alkes_price_service`);
+    const response = await fetch(`http://bpfkbanjarbaru.test/api/alkes/${selectedId}/price?api_key=7ZwiJpZaHEmSy7OMAAxq0GPmXIp6iU5l1ERBVNgw59ofNxvhw8egjvrsK058JJ`);
     const price = await response.json();
 
     document.getElementById(`price_${rowId}`).innerHTML = rupiahConverter(price, 'Rp. ');

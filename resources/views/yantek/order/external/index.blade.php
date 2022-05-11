@@ -58,12 +58,12 @@
                         <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
                         <td class="pt-3">
                           <div class="form-group">
-                            <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number ?? 'E - 0' }}">
+                            <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number ?? 'E -  DL' }}">
                           </div>
                         </td>
                         <td class="pt-3">
                           <div class="form-group">
-                            <input type="text" id="letter_number_{{ $index }}" class="form-control letter_number_form" name="letter_number[]" value="{{ $data->number ?? 'E - 0' }}">
+                            <input type="text" id="letter_number_{{ $index }}" class="form-control letter_number_form" name="letter_number[]" value="{{ $data->number ?? 'E -  DL' }}">
                           </div>
                         </td>
                         
@@ -72,22 +72,6 @@
                         </td>
                         <td class="text-center">
                           <a href="#" class="btn btn-primary">Detail</a>
-                          {{-- @if (!$data->number)
-                            <form action="{{ route('yantek.order.external.accept') }}" method="post" class="d-inline">
-                              @csrf
-                              @method('PUT')
-
-                              <input type="hidden" value="{{ $data->id }}" name="id" readonly>
-                              <button class="btn btn-success">Konfirmasi</button>
-                            </form>
-                            <form action="{{ route('yantek.order.external.reject') }}" method="post" class="d-inline">
-                              @csrf
-                              @method('PUT')
-
-                              <input type="hidden" value="{{ $data->id }}" name="id" readonly>
-                              <button class="btn btn-danger">Tolak</button>
-                            </form>
-                          @endif --}}
                         </td>
                       </tr>
                     @endforeach

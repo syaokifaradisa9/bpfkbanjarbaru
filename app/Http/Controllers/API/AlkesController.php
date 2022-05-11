@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AlkesController extends Controller
 {
     public function getAlkesByCategoryId(Request $request, $id){
-        if($request->api_key == "bpfk_banj_alkes_select_service"){
+        if($request->api_key == "MAq6gTq9gJacnrqJxmfBs1kZwC9VJDcwcHbI66ns687ZUqhcCfKWd76kyQTnZ7"){
             $alkes = Alkes::where('alkes_category_id', $id)->orderBy('name')->get();
             return response()->json($alkes);
         }
@@ -18,7 +18,7 @@ class AlkesController extends Controller
     }
 
     public function getPriceByAlkesId(Request $request, $id){
-        if($request->api_key == "bpfk_banj_alkes_price_service"){
+        if($request->api_key == "7ZwiJpZaHEmSy7OMAAxq0GPmXIp6iU5l1ERBVNgw59ofNxvhw8egjvrsK058JJ"){
             $price = Alkes::findOrFail($id)->price;
             return response()->json($price);
         }
