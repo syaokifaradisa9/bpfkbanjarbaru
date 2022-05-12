@@ -40,7 +40,7 @@
                       <th class="text-center" style="width: 180px">Fasyenkes</th>
                       <th class="text-center" style="width: 150px">Tanggal</th>
                       <th class="text-center" style="width: 185px">Nomor Order</th>
-                      <th class="text-center">Nomor Surat</th>
+                      <th class="text-center" style="width: 145px">Surat</th>
                       <th class="text-center">Status</th>
                       <th class="text-center">Aksi</th>
                     </tr>
@@ -62,13 +62,11 @@
                             <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number }}">
                           </div>
                         </td>
-                        <td class="pt-3">
-                          <div class="form-group">
-                            <input type="text" id="letter_number_{{ $index }}" class="form-control letter_number_form" name="letter_number[]" value="{{ $data->number ?? 'E -  DL' }}">
-                          </div>
+                        <td class="text-center">
+                          {{ 'No. ' . $data->letter_number }} | <a href="{{ asset('letter_files/1234_1.pdf') }}" target="_blank">File</a>
                         </td>
                         <td class="text-center">
-                          <div class="badge badge-secondary">{{ $data->status }}</div>
+                          <div class="badge badge-secondary" id="status_{{ $index }}">{{ $data->status }}</div>
                         </td>
                         <td class="text-center">
                           <a href="#" class="btn btn-primary">Detail</a>

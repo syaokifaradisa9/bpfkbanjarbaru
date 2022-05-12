@@ -14,6 +14,7 @@ class OrderController extends Controller
             try{
                 $order = ExternalOrder::findOrFail($id);
                 $order->number = $request->order_number;
+                $order->status = 'DITERIMA';
                 $order->save();
 
                 return response()->json([

@@ -43,12 +43,15 @@ function changeFormNumber(event){
 async function keyUpNumberEvent(event){
     // Enter Key
     if(event.keyCode === 13){
-        var order_number = this.closest('.order_number_form').value;
+        var numberForm = this.closest('.order_number_form');
+        
+        var order_number = numberForm.value;
         var firstColumnElement = this.closest('tr').cells[0];
+        var dataId = numberForm.id.split('_')[2];
         var order_id = firstColumnElement.getElementsByClassName('order_id')[0].value
 
         this.blur();
-        await updateOrderNumber(order_id, order_number);
+        await updateOrderNumber(order_id, order_number, dataId);
     }
     
     // Delete Key
@@ -59,7 +62,7 @@ async function keyUpNumberEvent(event){
 
       // Prefix dan Suffix
       var defaultPrefix = default_number.split('.')[0];
-      var defaultSuffix = default_number.split('.')[1];
+      var defaultSuffix = default_number.substring(default_number.length - 3, default_number.length);
       
       // Elemen Form Nomor Order
       var element = this.closest('.order_number_form');
@@ -80,16 +83,19 @@ async function keyUpNumberEvent(event){
 
 /* ==================== [2.c] Event Nomor Order focusout ==================== */
 async function keyFocusOutNumberEvent(){
-    var order_number = this.closest('.order_number_form').value;
+    var numberForm = this.closest('.order_number_form');
+
+    var order_number = numberForm.value;
     var firstColumnElement = this.closest('tr').cells[0];
+    var dataId = numberForm.id.split('_')[2];
     var order_id = firstColumnElement.getElementsByClassName('order_id')[0].value
 
     this.blur();
-    await updateOrderNumber(order_id, order_number);
+    await updateOrderNumber(order_id, order_number, dataId);
 }
 
 /* ==================== [3.c] Update Nomor Order Berdasarkan ID ==================== */
-async function updateOrderNumber(id, order_number){
+async function updateOrderNumber(id, order_number, dataId){
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: 'btn btn-success',
@@ -120,8 +126,22 @@ async function updateOrderNumber(id, order_number){
                 })
               }
           );
-        } else {
-          console.log("Gagal!");
+
+          var json = await response.json();
+          if(json['status'] == 'success'){
+            document.getElementById(`status_${dataId}`).innerHTML = "DITERIMA"
+            Swal.fire({
+              icon: 'success',
+              title: 'Sukses',
+              text: 'Penerimaan Order Sukses'
+            })
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal!',
+              text: 'Gagal menerima order, silahkan coba lagi!'
+            })
+          }
         }
     });
 }

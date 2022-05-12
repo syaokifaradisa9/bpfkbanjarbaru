@@ -32,6 +32,15 @@ class ExternalOrderController extends Controller
     }
 
     public function store(Request $request){
+        // Upload File
+        if($request->file('letter')){
+            $file = $request->file('letter');
+            $fileName = $request->letter_number . "_" . Auth::user()->id.".pdf";
+        
+            $file->move(public_path().'/letter_files', $fileName);
+        }
+
+        // Perhitungan Nomor Order Otomatis
         $last_order_position = 15;
         $last_order_position_in_db = ExternalOrder::all()->count();
         
@@ -40,12 +49,15 @@ class ExternalOrderController extends Controller
             $new_order_pos = '0'. ($new_order_pos + 1);
         }
 
+        // Store Data Order
         $order = ExternalOrder::create([
             'user_id' => Auth::user()->id,
-            'covering_letter_path' => '',
-            'number' => 'E - ' . $new_order_pos . '.' . ' DL'
+            'letter_name' => $fileName,
+            'number' => 'E - ' . $new_order_pos . '.' . ' DL',
+            'letter_number' => $request->letter_number,
         ]);
 
+        // Store Data Alkes Order
         for($i = 0; $i < count($request->alkes); $i++){
             $description_id = 1;
             if($request->description[$i] != null){

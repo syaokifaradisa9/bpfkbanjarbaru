@@ -17,8 +17,9 @@ class CreateExternalOrdersTable extends Migration
             $table->id();
             $table->string('number')->nullable();
             $table->foreignId('user_id')->constrained();
-            $table->string('covering_letter_path');
-            $table->enum('status', ['TERKIRIM', 'DITERIMA','DITOLAK', 'DIPROSES', 'SELESAI'])->default('TERKIRIM');
+            $table->string('letter_name');
+            $table->integer('letter_number');
+            $table->enum('status', ['MENUNGGU', 'DITERIMA','MENUNGGU PERSETUJUAN', 'DISETUJUI', 'DIPROSES', 'SELESAI'])->default('MENUNGGU');
             $table->timestamps();
         });
     }

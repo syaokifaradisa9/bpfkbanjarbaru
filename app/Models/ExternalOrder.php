@@ -12,7 +12,9 @@ class ExternalOrder extends Model
     protected $fillable = [
         'number',
         'user_id',
-        'covering_letter_path',
+        'letter_name',
+        'letter_number',
+        'status'
     ];
     
     public function user(){

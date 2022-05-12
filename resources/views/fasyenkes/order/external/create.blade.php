@@ -16,17 +16,22 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('fasyenkes.order.external.store') }}" method="POST">
+            <form action="{{ route('fasyenkes.order.external.store') }}" method="POST" enctype='multipart/form-data'>
               @csrf
 
               <div class="card-body py-0 px-4">
                 <div class="form-group">
                   <label><b>Surat Permohonan</b></label>
                   <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile" required>
-                      <label class="custom-file-label" for="customFile">Choose file</label>
+                      <input type="file" name="letter" class="custom-file-input" id="uploaded-file-form" required>
+                      <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
                   </div>
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
+                </div>
+                <div class="form-group">
+                  <label><b>Nomor Surat</b></label>
+                  <input type="number" class="form-control" name="letter_number" placeholder="Masukkan nomor surat yang telah diupload di atas">
+                  <small>Contoh input nomor surat bisa dilhat <a href="{{ asset('img/contoh_nomor_surat.jpg') }}" target="_blank">disini</a></small>
                 </div>
                 <div class="form-group">
                   <label class="mt-3"><b>Alat Kesehatan</b></label>
@@ -105,4 +110,5 @@
 
 @section('js-extends')
   <script src="{{ asset('js/alkes_order.js') }}"></script>
+  <script src="{{ asset('js/file_upload_form.js') }}"></script>
 @endsection

@@ -47,7 +47,13 @@
                   @foreach ($orders as $index => $data)
                     <tr>
                       <td class="text-center">{{ $index + 1 }}</td>
-                      <td>{{ $data->number }}</td>
+                      <td>
+                        @if ($data->status != 'MENUNGGU')
+                          {{ $data->number }}
+                        @else
+                          -
+                        @endif
+                      </td>
                       <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
                       <td class="text-center">
                         <div class="badge badge-secondary">{{ $data->status }}</div>
