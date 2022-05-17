@@ -128,19 +128,21 @@ async function updateOrderNumber(id, order_number, dataId){
           );
 
           var json = await response.json();
-          if(json['status'] == 'success'){
+          if(json.status == 'success'){
+            document.getElementById(`accommodation_${dataId}`).removeAttribute('readonly');
             document.getElementById(`status_${dataId}`).innerHTML = "DITERIMA"
+
             Swal.fire({
               icon: 'success',
               title: 'Sukses',
               text: 'Penerimaan Order Sukses'
-            })
+            });
           }else{
             Swal.fire({
               icon: 'error',
               title: 'Gagal!',
               text: 'Gagal menerima order, silahkan coba lagi!'
-            })
+            });
           }
         }
     });

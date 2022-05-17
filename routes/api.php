@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/category/{id}/alkes', [AlkesController::class, 'getAlkesByCategoryId']);
 Route::get('/alkes/{id}/price', [AlkesController::class, 'getPriceByAlkesId']);
 Route::put('/order/{id}/order_number', [OrderController::class, 'updateExternalOrderNumber']);
+Route::put('/order/{id}/accomodation', [OrderController::class, 'updateAccomodationExternalOrder']);

@@ -18,8 +18,8 @@ class OrderController extends Controller
                 $order->save();
 
                 return response()->json([
-                'status' => 'success',
-                'message' => 'Berhasil Menerima Order Fasyenkes'
+                    'status' => 'success',
+                    'message' => 'Berhasil Menerima Order Fasyenkes'
                 ]);
             }catch(Exception $error){
                 return response()->json([
@@ -29,6 +29,29 @@ class OrderController extends Controller
             }
         }
         
+        return response()->json(['message' => "Anda Tidak Memiliki Akses Pada Resource ini!"]);
+    }
+
+    public function updateAccomodationExternalOrder(Request $request, $id){
+        if($request->api_key == "KWEPIs9i3CuF7tZF8xFQGRzNrmkuOlcQ5TmRf4Ikoe9POuAUQsB5ujZGMu7Ks7YG"){
+            try{
+                $order = ExternalOrder::findOrFail($id);
+                $order->accommodation = $request->accommodation;
+                $order->status = 'MENUNGGU PERSETUJUAN';
+                $order->save();
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Berhasil Menetapkan Akomodasi Pada Order Fasyenkes'
+                ]);
+            }catch(Exception $error){
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Gagal Menetapkan Akomodasi Pada Order Fasyenkes, Silahkan Coba Lagi!'
+                ]);
+            }
+        }
+
         return response()->json(['message' => "Anda Tidak Memiliki Akses Pada Resource ini!"]);
     }
 }

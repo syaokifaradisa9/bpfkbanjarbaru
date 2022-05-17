@@ -44,33 +44,39 @@
                     <th class="text-center">Status</th>
                     <th class="text-center">Aksi</th>
                   </tr>
-                  @foreach ($orders as $index => $data)
+                  @if (count($orders) != 0)
+                    @foreach ($orders as $index => $data)
+                      <tr>
+                        <td class="text-center">{{ $index + 1 }}</td>
+                        <td>
+                          @if ($data->status != 'MENUNGGU')
+                            {{ $data->number }}
+                          @else
+                            -
+                          @endif
+                        </td>
+                        <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                        <td class="text-center">
+                          <div class="badge badge-secondary">{{ $data->status }}</div>
+                        </td>
+                        <td class="text-center">
+                          <a href="#" class="btn btn-primary">Detail</a>
+                          <a href="#" class="btn btn-warning">Edit</a>
+                          @if (!$data->number)
+                            <form action="{{ route('fasyenkes.order.external.cancel') }}" method="post" class="d-inline">
+                              @csrf
+                              <input type="hidden" value="{{ $data->id }}" name="id" readonly>
+                              <button type="submit" class="btn btn-danger">Batalkan</button>
+                            </form>
+                          @endif
+                        </td>
+                      </tr>
+                    @endforeach
+                  @else
                     <tr>
-                      <td class="text-center">{{ $index + 1 }}</td>
-                      <td>
-                        @if ($data->status != 'MENUNGGU')
-                          {{ $data->number }}
-                        @else
-                          -
-                        @endif
-                      </td>
-                      <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
-                      <td class="text-center">
-                        <div class="badge badge-secondary">{{ $data->status }}</div>
-                      </td>
-                      <td class="text-center">
-                        <a href="#" class="btn btn-primary">Detail</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        @if (!$data->number)
-                          <form action="{{ route('fasyenkes.order.external.cancel') }}" method="post" class="d-inline">
-                            @csrf
-                            <input type="hidden" value="{{ $data->id }}" name="id" readonly>
-                            <button type="submit" class="btn btn-danger">Batalkan</button>
-                          </form>
-                        @endif
-                      </td>
+                      <td colspan="5" class="text-center">Anda Belum Pernah Melakukan Order Apapun!</td>
                     </tr>
-                  @endforeach
+                  @endif
                 </table>
               </div>
             </div>

@@ -12,6 +12,7 @@ class Alkes extends Model
     public $fillable = [
         'id',
         'name',
-        'price'
+        'price',
+        'minute_estimation'
     ];
 }

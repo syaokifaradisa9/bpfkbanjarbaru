@@ -28,10 +28,16 @@
                   </div>
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
                 </div>
-                <div class="form-group">
-                  <label><b>Nomor Surat</b></label>
-                  <input type="number" class="form-control" name="letter_number" placeholder="Masukkan nomor surat yang telah diupload di atas">
-                  <small>Contoh input nomor surat bisa dilhat <a href="{{ asset('img/contoh_nomor_surat.jpg') }}" target="_blank">disini</a></small>
+                <div class="row">
+                  <div class="form-group col">
+                    <label><b>Nomor Surat</b></label>
+                    <input type="number" class="form-control" name="letter_number" placeholder="Masukkan nomor surat yang telah diupload di atas">
+                    <small>Contoh input nomor surat bisa dilhat <a href="{{ asset('img/contoh_nomor_surat.jpg') }}" target="_blank">disini</a></small>
+                  </div>
+                  <div class="form-group col">
+                    <label><b>Tanggal Surat</b></label>
+                    <input type="date" class="form-control" name="letter_date">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="mt-3"><b>Alat Kesehatan</b></label>

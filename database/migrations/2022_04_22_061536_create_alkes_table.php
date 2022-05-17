@@ -17,6 +17,7 @@ class CreateAlkesTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
+            $table->integer('minute_estimation')->nullable();
             $table->foreignId('alkes_category_id')->constrained();
             $table->timestamps();
         });

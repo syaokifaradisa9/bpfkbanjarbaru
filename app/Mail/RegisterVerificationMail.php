@@ -31,6 +31,9 @@ class RegisterVerificationMail extends Mailable
     {
         return $this->subject('Verifikasi Pendaftaran')
                     ->view('mail.verification_mail')
-                    ->with(['user' => $this->user]);
+                    ->with([
+                        'user' => $this->user,
+                        'expired' => strtotime(date("h:i:sa"))+900,
+                    ]);
     }
 }

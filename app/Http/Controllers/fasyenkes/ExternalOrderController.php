@@ -55,6 +55,7 @@ class ExternalOrderController extends Controller
             'letter_name' => $fileName,
             'number' => 'E - ' . $new_order_pos . '.' . ' DL',
             'letter_number' => $request->letter_number,
+            'letter_date' => $request->letter_date,
         ]);
 
         // Store Data Alkes Order

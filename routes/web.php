@@ -81,6 +81,8 @@ Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function()
             Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
             Route::put('/accept', [YantekExternalOrderController::class, 'accept'])->name('accept');
             Route::put('/reject', [YantekExternalOrderController::class, 'reject'])->name('reject');
+            Route::get('/edit/{id}/accommodation', [YantekExternalOrderController::class, 'editAccommodation'])->name('edit_accommodation');
+            Route::put('/update/{id}/accommodation', [YantekExternalOrderController::class, 'updateAccommodation'])->name('update_accommodation');
         });
     });
 });
