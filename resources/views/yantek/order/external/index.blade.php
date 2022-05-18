@@ -37,6 +37,7 @@
                   <thead>
                     <tr>
                       <th class="text-center" style="width: 20px">No.</th>
+                      <th class="text-center">Aksi</th>
                       <th class="text-center" style="width: 180px">Fasyenkes</th>
                       <th class="text-center" style="width: 135px">Waktu Pengajuan</th>
                       <th class="text-center" style="width: 135px">Surat</th>
@@ -44,7 +45,6 @@
                       <th class="text-center" style="width: 160px">Akomodasi</th>
                       <th class="text-center" style="width: 130px">No. Surat keluar</th>
                       <th class="text-center">Status</th>
-                      <th class="text-center">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -53,6 +53,18 @@
                         <td class="text-center">
                           <input id="id_{{ $index }}" class="order_id" type="hidden" value="{{ $data->id }}" readonly>
                           {{ $index + 1 }}
+                        </td>
+                        <td class="text-center">
+                          <div class="btn-group dropright">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu dropright">
+                              <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
+                              <a class="dropdown-item has-icon d-none" href="#" id="btn-show-offering-letter"><i class="fas fa-file-alt"></i> Cetak Penawaran</a>
+                              <a class="dropdown-item has-icon d-none" href="#" id="btn-send-offering-letter"><i class="fas fa-paper-plane"></i> Kirim Penawaran</a>
+                            </div>
+                          </div>
                         </td>
                         <td>
                           {{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}
@@ -88,9 +100,6 @@
                               {{$data->status}}
                             @endif
                           </div>
-                        </td>
-                        <td class="text-center">
-                          <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
                         </td>
                       </tr>
                     @endforeach

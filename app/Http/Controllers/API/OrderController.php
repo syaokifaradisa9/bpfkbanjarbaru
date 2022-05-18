@@ -54,4 +54,26 @@ class OrderController extends Controller
 
         return response()->json(['message' => "Anda Tidak Memiliki Akses Pada Resource ini!"]);
     }
+
+    public function updateOutLetterNumberExternalOrder(Request $request, $id){
+        if($request->api_key != "vohtTCCa8FboaF3hA15UiR0AVQ1tqlErYHhEgO4kXnPeTxBJKRDPrYRVLVgbXTdf"){
+            return response()->json(['message' => "Anda Tidak Memiliki Akses Pada Resource ini!"]);
+        }
+
+        try{
+            $order = ExternalOrder::findOrFail($id);
+            $order->out_letter_number = $request->out_letter_number;
+            $order->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Berhasil Menetapkan Nomor Surat Keluar Pada Order Fasyenkes'
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal Menetapkan Akomodasi Pada Order Fasyenkes, Silahkan Coba Lagi!'
+            ]);
+        }
+    }
 }

@@ -19,3 +19,4 @@ Route::get('/category/{id}/alkes', [AlkesController::class, 'getAlkesByCategoryI
 Route::get('/alkes/{id}/price', [AlkesController::class, 'getPriceByAlkesId']);
 Route::put('/order/{id}/order_number', [OrderController::class, 'updateExternalOrderNumber']);
 Route::put('/order/{id}/accomodation', [OrderController::class, 'updateAccomodationExternalOrder']);
+Route::put('/order/{id}/out_order_number', [OrderController::class, 'updateOutLetterNumberExternalOrder']);
