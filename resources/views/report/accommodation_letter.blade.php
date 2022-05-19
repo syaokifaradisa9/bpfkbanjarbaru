@@ -81,6 +81,5 @@
             <td class="text-right"><b>Rp. {{ FormatHelper::toIndonesianCurrencyFormat($order->total_accommodation) }}</b></td>
         </tr>
     </table>
-    {{ dd('ads') }}
 </body>
 </html>

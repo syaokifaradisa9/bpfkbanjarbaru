@@ -4,23 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\ExternalOrder;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 
 class ReportController extends Controller
 {
     public function printExternalOfferingLetter($id){
         $order = ExternalOrder::with('user')->findOrFail($id);
-        $offering_letter_pdf = Pdf::loadView('report.offering_letter', [
-            'order' => $order
-        ]);
 
-        $review_demand_pdf = Pdf::loadView('report.review_demand_letter', [
-            'order' => $order
-        ]);
+        $dataList = [
+            ['template_name' => 'offering_letter'],
+            ['template_name' => 'review_demand_letter'],
+            ['template_name' => 'accommodation_letter']
+        ];
 
-        $accommodation_pdf = Pdf::loadView('report.accommodation_letter', [
-            'order' => $order
-        ]);
+        $oMerger = PDFMerger::init();
+        foreach($dataList as $index => $data){
+            $filePath = 'temp_files/'.$order->id. $index.'.pdf';
+            file_put_contents(
+                $filePath,
+                Pdf::loadView('report.'.$data['template_name'], [
+                    'order' => $order
+                ])->output()
+            );
+            $oMerger->addPDF(public_path($filePath));
+        }
+        
+        $oMerger->merge();
 
-        return $offering_letter_pdf->stream('Surat Penawaran');
+        foreach($dataList as $index => $data){
+            $filePath = 'temp_files/'.$order->id. $index.'.pdf';
+            unlink(public_path($filePath));
+        }
+
+        return $oMerger->stream();
     }
 }

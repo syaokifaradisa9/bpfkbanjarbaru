@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\FormatServiceProvider::class,
+        Webklex\PDFMerger\Providers\PDFMergerServiceProvider::class
     ],
 
     /*
@@ -190,7 +191,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -232,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'FormatHelper' => App\Helpers\FormatHelper::class,
+        Webklex\PDFMerger\Providers\PDFMergerServiceProvider::class
     ],
 
 ];
