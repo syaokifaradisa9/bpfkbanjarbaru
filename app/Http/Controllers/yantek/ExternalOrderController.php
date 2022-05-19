@@ -5,7 +5,6 @@ namespace App\Http\Controllers\yantek;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\ExternalOrder;
-use App\Models\ExternalAlkesOrder;
 use App\Http\Controllers\Controller;
 
 class ExternalOrderController extends Controller

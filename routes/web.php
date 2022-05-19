@@ -12,7 +12,7 @@ use App\Http\Controllers\GeneralRoutesController;
 use App\Http\Controllers\fasyenkes\HomeController as FasyenkesHomeController;
 use App\Http\Controllers\fasyenkes\ExternalOrderController as FasyenkesExternalOrderController;
 use App\Http\Controllers\fasyenkes\InternalOrderController as FasyenkesInternalOrderController;
-
+use App\Http\Controllers\ReportController;
 // Yantek
 use App\Http\Controllers\yantek\HomeController as YantekHomeController;
 use App\Http\Controllers\yantek\ExternalOrderController as YantekExternalOrderController;
@@ -68,6 +68,8 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
         });
     });
 });
+
+Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExternalOfferingLetter'])->name('print-offering-letter');
 
 Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
     Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');

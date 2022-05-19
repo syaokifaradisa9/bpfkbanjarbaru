@@ -61,15 +61,18 @@
                             </button>
                             <div class="dropdown-menu dropright">
                               <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
-                              <a class="dropdown-item has-icon d-none" href="#" id="btn-show-offering-letter"><i class="fas fa-file-alt"></i> Cetak Penawaran</a>
-                              <a class="dropdown-item has-icon d-none" href="#" id="btn-send-offering-letter"><i class="fas fa-paper-plane"></i> Kirim Penawaran</a>
+                              <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter"><i class="fas fa-file-alt"></i> Cetak Penawaran</a>
+                              <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="#" id="btn-send-offering-letter"><i class="fas fa-paper-plane"></i> Kirim Penawaran</a>
                             </div>
                           </div>
                         </td>
                         <td>
                           {{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}
                         </td>
-                        <td class="text-center">{{ date('d-m-Y H:m', strtotime($data->created_at)) }}</td>
+                        <td class="text-center">
+                          {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }}
+                          {{ date('H:m', strtotime($data->created_at)) }}
+                        </td>
                         <td class="text-center">
                           <a href="{{ asset('letter_files/1234_1.pdf') }}" target="_blank">
                             {{ 'No.' . $data->letter_number }} <br>
@@ -84,7 +87,7 @@
                         </td>
                         <td class="text-center">
                           <a id="accommodation_{{ $index }}" href="{{ route('yantek.order.external.edit_accommodation', ['id' => $data->id]) }}">
-                            {{ 'Rp.'.$data->total_accommodation }}
+                            Rp. {{ FormatHelper::toIndonesianCurrencyFormat($data->total_accommodation) }}
                           </a>
                         </td>
                         <td class="pt-3">

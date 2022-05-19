@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\AlkesCategory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Alkes extends Model
 {
@@ -15,4 +16,8 @@ class Alkes extends Model
         'price',
         'minute_estimation'
     ];
+
+    public function alkes_category(){
+        return $this->belongsTo(AlkesCategory::class);
+    }
 }
