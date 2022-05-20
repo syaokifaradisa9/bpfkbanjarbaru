@@ -134,4 +134,26 @@ class OrderController extends Controller
             ]);
         }
     }  
+
+    public function updateStatusToAccepted(Request $request, $id){
+        if($request->api_key != "5IF7F16s9XRzvBH94LG9GqQIUYhMp5PJEBfdyCjWCjklcpveXNGmZbbSAqkjWqQF"){
+            return response()->json(['message' => "Anda Tidak Memiliki Akses Pada Resource ini!"]);
+        }
+
+        try{
+            $order = ExternalOrder::findOrFail($id);
+            $order->status = 'DISETUJUI';
+            $order->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Sukses Mengonfirmasi Order, Tunggu Penyelia Memilih Petugas yang Akan Berangkat!'
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal Mengonfirmasi Order, Silahkan Coba Lagi!'
+            ]);
+        }
+    }
 }

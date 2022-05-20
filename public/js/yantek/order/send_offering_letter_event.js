@@ -43,7 +43,9 @@ function sendExternalOfferingLetterViaEmail(event){
     
               var json = await response.json();
               if(json.status == 'success'){
-                document.getElementById(`status_${dataId}`).innerHTML = "MENUNGGU\nPERSETUJUAN";
+                document.getElementById(`status_${dataId}`).innerHTML = "MENUNGGU<br>PERSETUJUAN";
+                document.getElementById(`confirm-agreement-${dataId}`).classList.remove('d-none');
+
                 Swal.fire({
                   icon: 'success',
                   title: 'Sukses',

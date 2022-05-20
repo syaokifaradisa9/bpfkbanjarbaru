@@ -37,6 +37,6 @@ class ReportController extends Controller
         }
 
         $oMerger->setFileName('Surat Penawaran.pdf');
-        return $oMerger->output();
+        return $oMerger->stream();
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\AlkesSeeder;
 use Database\Seeders\AlkesCategorySeeder;
+use Database\Seeders\ExternalAlkesOrderSeeder;
 use Database\Seeders\AlkesOrderDescriptionSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +23,9 @@ class DatabaseSeeder extends Seeder
             AlkesCategorySeeder::class,
             AlkesSeeder::class,
             AdminUserSeeder::class,
-            AlkesOrderDescriptionSeeder::class
+            AlkesOrderDescriptionSeeder::class,
+            ExternalOrderSeeder::class,
+            ExternalAlkesOrderSeeder::class,
         ]);
     }
 }

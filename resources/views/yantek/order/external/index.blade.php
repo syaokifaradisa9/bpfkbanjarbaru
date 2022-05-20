@@ -62,8 +62,18 @@
                               </button>
                               <div class="dropdown-menu dropright">
                                 <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
-                                <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}"><i class="fas fa-file-alt"></i> Cetak Penawaran</a>
-                                <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="#" id="btn-send-offering-letter-{{ $index }}"><i class="fas fa-paper-plane"></i> Kirim Penawaran</a>
+                                <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
+                                  <i class="fas fa-file-alt"></i> 
+                                  Cetak Penawaran
+                                </a>
+                                <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="#" id="btn-send-offering-letter-{{ $index }}">
+                                  <i class="fas fa-paper-plane"></i> 
+                                  Kirim Penawaran
+                                </a>
+                                <a class="dropdown-item has-icon text-green @if($data->status != 'MENUNGGU PERSETUJUAN') d-none @endif" href="#" id="confirm-agreement-{{ $index }}">
+                                  <i class="fas fa-check-square"></i> 
+                                  Konfirmasi Persetujuan
+                                </a>
                               </div>
                             </div>
                           </td>
@@ -130,4 +140,5 @@
   <script src="{{ asset('js/yantek/order/out_letter_number_form.js') }}"></script>
   <script src="{{ asset('js/yantek/order/order-table.js') }}"></script>
   <script src="{{ asset('js/yantek/order/send_offering_letter_event.js') }}"></script>
+  <script src="{{ asset('js/yantek/order/update_status_event.js') }}"></script>
 @endsection

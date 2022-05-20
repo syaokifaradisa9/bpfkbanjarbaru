@@ -23,4 +23,5 @@ Route::prefix('order')->group(function(){
     Route::put('/{id}/accomodation', [OrderController::class, 'updateAccomodationExternalOrder']);
     Route::put('/{id}/out_order_number', [OrderController::class, 'updateOutLetterNumberExternalOrder']);
     Route::put('/{id}/sendOfferingLetter', [OrderController::class, 'sendOfferingLetterToFasyenkes']);
+    Route::put('/{id}/updateStatusToAccepted', [OrderController::class, 'updateStatusToAccepted']);
 });
