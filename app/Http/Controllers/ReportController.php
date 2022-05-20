@@ -28,7 +28,7 @@ class ReportController extends Controller
             );
             $oMerger->addPDF(public_path($filePath));
         }
-        
+
         $oMerger->merge();
 
         foreach($dataList as $index => $data){
@@ -36,6 +36,7 @@ class ReportController extends Controller
             unlink(public_path($filePath));
         }
 
-        return $oMerger->stream();
+        $oMerger->setFileName('Surat Penawaran.pdf');
+        return $oMerger->output();
     }
 }

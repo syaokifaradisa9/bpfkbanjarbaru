@@ -3,13 +3,26 @@ document.addEventListener("DOMContentLoaded", function(){
     const totalDataRow = orderTable.rows.length - 1;
 
     for(var i=0; i<totalDataRow; i++){
-        var orderNumberForm = document.getElementById(`out_letter_number_${i}`);
+        var outorderNumberForm = document.getElementById(`out_letter_number_${i}`);
 
-        orderNumberForm.addEventListener('input', changeOutFormNumber);
-        orderNumberForm.addEventListener('keyup', keyUpOutFormNumberEvent);
-        orderNumberForm.addEventListener('focusout', keyFocusOutFormOutNumberEvent);
+        outorderNumberForm.addEventListener('click', setUpOutFormNumber);
+        outorderNumberForm.addEventListener('input', changeOutFormNumber);
+        outorderNumberForm.addEventListener('keyup', keyUpOutFormNumberEvent);
+        outorderNumberForm.addEventListener('focusout', keyFocusOutFormOutNumberEvent);
     }
 });
+
+function setUpOutFormNumber(event){
+  var dataId = event.target.id.split('_')[3];
+  if(document.getElementById(`accommodation_${dataId}`).innerHTML.trim() === 'Rp. 0'){
+    event.target.blur();
+    Swal.fire({
+      icon: 'error',
+      title: 'Akses Ditolak!',
+      text: 'Mohon Isikan Akomodasi Terlebih Dahulu!'
+    });
+  }
+}
 
 function changeOutFormNumber(event){
     if(isNaN(event.data)){
@@ -23,7 +36,7 @@ function changeOutFormNumber(event){
 async function keyUpOutFormNumberEvent(event){
     if(event.keyCode === 13){
         var value = event.target.value;
-        var dataId = event.target.id.split('_')[2];
+        var dataId = event.target.id.split('_')[3];
         var order_id = this.closest('tr').cells[0].getElementsByClassName('order_id')[0].value;
 
         event.target.blur();
@@ -33,7 +46,7 @@ async function keyUpOutFormNumberEvent(event){
 
 async function keyFocusOutFormOutNumberEvent(event){
     var value = event.target.value;
-    var dataId = event.target.id.split('_')[2];
+    var dataId = event.target.id.split('_')[3];
     var order_id = this.closest('tr').cells[0].getElementsByClassName('order_id')[0].value;
 
     event.target.blur();
@@ -74,8 +87,8 @@ async function updateOutLetterNumber(orderId, dataId, value){
 
           var json = await response.json();
           if(json['status'] == 'success'){
-            document.getElementById('btn-show-offering-letter').classList.remove('d-none');
-            document.getElementById('btn-send-offering-letter').classList.remove('d-none');
+            document.getElementById(`btn-show-offering-letter-${dataId}`).classList.remove('d-none');
+            document.getElementById(`btn-send-offering-letter-${dataId}`).classList.remove('d-none');
 
             Swal.fire({
               icon: 'success',

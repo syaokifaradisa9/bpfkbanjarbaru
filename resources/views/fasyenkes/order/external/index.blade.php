@@ -55,7 +55,10 @@
                             -
                           @endif
                         </td>
-                        <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                        <td class="text-center">
+                            {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }} <br>
+                            {{ date('H:m', strtotime($data->created_at)) }}
+                        </td>
                         <td class="text-center">
                           <div class="badge badge-secondary">{{ $data->status }}</div>
                         </td>

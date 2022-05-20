@@ -266,7 +266,7 @@
         <tr>
             <td style="width: 25px; vertical-align: top">9.</td>
             <td>
-                9.	Untuk kelancaran kegiatan Pengujian dan atau Kalibrasi, diharapkan saat pelaksanaan kegiatan alat-alat yang akan diuji dan dikalibrasi sudah disiapkan beserta petugas yang akan mendampingi Tim kami selama pelaksanaan kegiatan tersebut, segala pembiayaan terkait petugas pendamping menjadi tanggung jawab pihak pelanggan.
+                Untuk kelancaran kegiatan Pengujian dan atau Kalibrasi, diharapkan saat pelaksanaan kegiatan alat-alat yang akan diuji dan dikalibrasi sudah disiapkan beserta petugas yang akan mendampingi Tim kami selama pelaksanaan kegiatan tersebut, segala pembiayaan terkait petugas pendamping menjadi tanggung jawab pihak pelanggan.
             </td>
         </tr>
     </table>

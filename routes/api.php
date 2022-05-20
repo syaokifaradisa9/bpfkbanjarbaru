@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/category/{id}/alkes', [AlkesController::class, 'getAlkesByCategoryId']);
 Route::get('/alkes/{id}/price', [AlkesController::class, 'getPriceByAlkesId']);
-Route::put('/order/{id}/order_number', [OrderController::class, 'updateExternalOrderNumber']);
-Route::put('/order/{id}/accomodation', [OrderController::class, 'updateAccomodationExternalOrder']);
-Route::put('/order/{id}/out_order_number', [OrderController::class, 'updateOutLetterNumberExternalOrder']);
+
+Route::prefix('order')->group(function(){
+    Route::put('/{id}/order_number', [OrderController::class, 'updateExternalOrderNumber']);
+    Route::put('/{id}/accomodation', [OrderController::class, 'updateAccomodationExternalOrder']);
+    Route::put('/{id}/out_order_number', [OrderController::class, 'updateOutLetterNumberExternalOrder']);
+    Route::put('/{id}/sendOfferingLetter', [OrderController::class, 'sendOfferingLetterToFasyenkes']);
+});

@@ -48,64 +48,72 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($orders as $index => $data)
-                      <tr>
-                        <td class="text-center">
-                          <input id="id_{{ $index }}" class="order_id" type="hidden" value="{{ $data->id }}" readonly>
-                          {{ $index + 1 }}
-                        </td>
-                        <td class="text-center">
-                          <div class="btn-group dropright">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-cog"></i>
-                            </button>
-                            <div class="dropdown-menu dropright">
-                              <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
-                              <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter"><i class="fas fa-file-alt"></i> Cetak Penawaran</a>
-                              <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="#" id="btn-send-offering-letter"><i class="fas fa-paper-plane"></i> Kirim Penawaran</a>
+                    @if(count($orders) > 0)
+                      @foreach ($orders as $index => $data)
+                        <tr>
+                          <td class="text-center">
+                            <input id="id_{{ $index }}" class="order_id" type="hidden" value="{{ $data->id }}" readonly>
+                            {{ $index + 1 }}
+                          </td>
+                          <td class="text-center">
+                            <div class="btn-group dropright">
+                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                              </button>
+                              <div class="dropdown-menu dropright">
+                                <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
+                                <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}"><i class="fas fa-file-alt"></i> Cetak Penawaran</a>
+                                <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="#" id="btn-send-offering-letter-{{ $index }}"><i class="fas fa-paper-plane"></i> Kirim Penawaran</a>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                        <td>
-                          {{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}
-                        </td>
-                        <td class="text-center">
-                          {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }}
-                          {{ date('H:m', strtotime($data->created_at)) }}
-                        </td>
-                        <td class="text-center">
-                          <a href="{{ asset('letter_files/1234_1.pdf') }}" target="_blank">
-                            {{ 'No.' . $data->letter_number }} <br>
-                            {{ date('d-m-Y', strtotime($data->letter_date)) }}
-                          </a>
-                        </td>
-                        <td class="pt-3">
-                          <div class="form-group">
-                            <input type="hidden" value="{{ $data->number }}" class="default_order_number" readonly>
-                            <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number }}">
-                          </div>
-                        </td>
-                        <td class="text-center">
-                          <a id="accommodation_{{ $index }}" href="{{ route('yantek.order.external.edit_accommodation', ['id' => $data->id]) }}">
-                            Rp. {{ FormatHelper::toIndonesianCurrencyFormat($data->total_accommodation) }}
-                          </a>
-                        </td>
-                        <td class="pt-3">
-                          <div class="form-group">
-                            <input type="text" id="out_letter_number_{{ $index }}" class="form-control" name="out_letter_number[]" value="{{ $data->out_letter_number }}">
-                          </div>
-                        </td>
-                        <td class="text-center">
-                          <div class="badge badge-secondary" id="status_{{ $index }}">
-                            @if ($data->status == 'MENUNGGU PERSETUJUAN')
-                              MENUNGGU<br>PERSETUJUAN
-                            @else
-                              {{$data->status}}
-                            @endif
-                          </div>
-                        </td>
-                      </tr>
-                    @endforeach
+                          </td>
+                          <td>
+                            {{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}
+                          </td>
+                          <td class="text-center">
+                            {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }}
+                            {{ date('H:m', strtotime($data->created_at)) }}
+                          </td>
+                          <td class="text-center">
+                            <a href="{{ asset('letter_files/'.$data->letter_number.'_'.$data->user->id.'.pdf') }}" target="_blank">
+                              {{ 'No.' . $data->letter_number }} <br>
+                              {{ date('d-m-Y', strtotime($data->letter_date)) }}
+                            </a>
+                          </td>
+                          <td class="pt-3">
+                            <div class="form-group">
+                              <input type="hidden" value="{{ $data->number }}" class="default_order_number" readonly>
+                              <input type="text" id="order_number_{{ $index }}" class="form-control order_number_form" name="order_number[]" value="{{ $data->number }}">
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <a id="accommodation_{{ $index }}" href="{{ route('yantek.order.external.edit_accommodation', ['id' => $data->id]) }}">
+                              Rp. {{ FormatHelper::toIndonesianCurrencyFormat($data->total_accommodation) }}
+                            </a>
+                          </td>
+                          <td class="pt-3">
+                            <div class="form-group">
+                              <input type="text" id="out_letter_number_{{ $index }}" class="form-control" name="out_letter_number[]" value="{{ $data->out_letter_number }}">
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="badge badge-secondary" id="status_{{ $index }}">
+                              @if ($data->status == 'MENUNGGU PERSETUJUAN')
+                                MENUNGGU<br>PERSETUJUAN
+                              @else
+                                {{$data->status}}
+                              @endif
+                            </div>
+                          </td>
+                        </tr>
+                      @endforeach
+                    @else
+                        <tr>
+                          <td colspan="9" class="text-center">
+                            Anda Belum Pernah Melakukan Order!
+                          </td>
+                        </tr>
+                    @endif
                   </tbody>
                 </table>
               </div>
@@ -121,4 +129,5 @@
   <script src="{{ asset('js/yantek/order/order_number_form.js') }}"></script>
   <script src="{{ asset('js/yantek/order/out_letter_number_form.js') }}"></script>
   <script src="{{ asset('js/yantek/order/order-table.js') }}"></script>
+  <script src="{{ asset('js/yantek/order/send_offering_letter_event.js') }}"></script>
 @endsection

@@ -17,7 +17,7 @@ class AdminUserSeeder extends Seeder
         $accounts = [
             [
                 'name' => "Muhammad Syaoki Faradisa",
-                'email' => 'syaokifaradisa09@gmail.com',
+                'email' => 'syaokifaradisa9@gmail.com',
                 'password' => bcrypt('123'),
                 'role' => 'YANTEK',
             ]
