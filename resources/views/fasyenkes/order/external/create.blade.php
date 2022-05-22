@@ -115,6 +115,6 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/alkes_order.js') }}"></script>
-  <script src="{{ asset('js/file_upload_form.js') }}"></script>
+  <script src="{{ asset('js/form-table/form-order-table-fasyenkes.js') }}"></script>
+  <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
 @endsection

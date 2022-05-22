@@ -44,6 +44,35 @@ class ExternalOrderController extends Controller
 
     public function editAccommodation($id){
         $order = ExternalOrder::with('external_alkes_order')->findOrFail($id);
+        return view('yantek.order.external.accommodation-edit',[
+            'title' => 'Edit Akomodasi',
+            'menu' => 'external',
+            'order' => $order,
+        ]);
+    }
+
+    public function updateAccommodation(Request $request, $id){
+        $order = ExternalOrder::findOrFail($id);
+
+        $order->lodging_accommodation = filter_var($request->lodging_cost,FILTER_SANITIZE_NUMBER_INT);
+        $order->lodging_description = $request->lodging_cost_description ?? '-';
+
+        $order->transportation_accommodation = filter_var($request->transportation_cost,FILTER_SANITIZE_NUMBER_INT);
+        $order->transportation_description = $request->transportation_cost_description ?? '-';
+
+        $order->daily_accommodation = filter_var($request->daily_cost,FILTER_SANITIZE_NUMBER_INT);
+        $order->daily_description = $request->daily_cost_description ?? '-';
+
+        $order->rapid_test_accommodation = filter_var($request->rapid_cost,FILTER_SANITIZE_NUMBER_INT);
+        $order->rapid_test_description = $request->rapid_cost_description ?? '-';
+
+        $order->save();
+
+        return redirect()->route('yantek.order.external.index')->with('success', 'Berhasil Menetapkan Akomodasi');
+    }
+
+    public function editEstimation($id){
+        $order = ExternalOrder::with('external_alkes_order')->findOrFail($id);
         
         $estimations = [];
         foreach($order->external_alkes_order as $alkes_order){
@@ -66,35 +95,24 @@ class ExternalOrderController extends Controller
             $estimations[$key]['total_minute'] = $estimations[$key]['total_minute'] % 60;
         }
 
-        return view('yantek.order.external.accommodation',[
-            'title' => 'Edit Akomodasi',
+
+        ksort($estimations, 2);
+        return view('yantek.order.external.estimation-edit',[
+            'title' => 'Edit Estimasi',
             'menu' => 'external',
             'estimations' => $estimations,
-            'order' => $order,
+            'order' => $order
         ]);
     }
 
-    public function updateAccommodation(Request $request, $id){
+    public function updateEstimation(Request $request, $id){
         $order = ExternalOrder::findOrFail($id);
 
         $order->pp_hour = filter_var($request->pp_hour,FILTER_SANITIZE_NUMBER_INT);
         $order->pp_minute = filter_var($request->pp_minute,FILTER_SANITIZE_NUMBER_INT);
         $order->total_officer = filter_var($request->officer,FILTER_SANITIZE_NUMBER_INT);
-
-        $order->lodging_accommodation = filter_var($request->lodging_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->lodging_description = $request->lodging_cost_description ?? '-';
-
-        $order->transportation_accommodation = filter_var($request->transportation_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->transportation_description = $request->transportation_cost_description ?? '-';
-
-        $order->daily_accommodation = filter_var($request->daily_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->daily_description = $request->daily_cost_description ?? '-';
-
-        $order->rapid_test_accommodation = filter_var($request->rapid_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->rapid_test_description = $request->rapid_cost_description ?? '-';
-
         $order->save();
 
-        return redirect()->route('yantek.order.external.index')->with('success', 'Berhasil Menetapkan Akomodasi');
+        return redirect()->route('yantek.order.external.index')->with('success', 'Berhasil Menetapkan Estimasi');
     }
 }

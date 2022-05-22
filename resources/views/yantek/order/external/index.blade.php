@@ -40,9 +40,9 @@
                       <th class="text-center">Aksi</th>
                       <th class="text-center" style="width: 180px">Fasyenkes</th>
                       <th class="text-center" style="width: 135px">Waktu Pengajuan</th>
-                      <th class="text-center" style="width: 135px">Surat</th>
                       <th class="text-center" style="width: 175px">Nomor Order</th>
                       <th class="text-center" style="width: 160px">Akomodasi</th>
+                      <th class="text-center" style="width: 135px">Estimasi</th>
                       <th class="text-center" style="width: 130px">No. Surat keluar</th>
                       <th class="text-center">Status</th>
                     </tr>
@@ -62,6 +62,9 @@
                               </button>
                               <div class="dropdown-menu dropright">
                                 <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
+                                <a class="dropdown-item has-icon" href="{{ asset('letter_files/'.$data->letter_number.'_'.$data->user->id.'.pdf') }}">
+                                  <i class="fas fa-envelope-open-text"></i> Surat Masuk
+                                </a>
                                 <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
                                   <i class="fas fa-file-alt"></i> 
                                   Cetak Penawaran
@@ -84,12 +87,6 @@
                             {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }}
                             {{ date('H:m', strtotime($data->created_at)) }}
                           </td>
-                          <td class="text-center">
-                            <a href="{{ asset('letter_files/'.$data->letter_number.'_'.$data->user->id.'.pdf') }}" target="_blank">
-                              {{ 'No.' . $data->letter_number }} <br>
-                              {{ date('d-m-Y', strtotime($data->letter_date)) }}
-                            </a>
-                          </td>
                           <td class="pt-3">
                             <div class="form-group">
                               <input type="hidden" value="{{ $data->number }}" class="default_order_number" readonly>
@@ -99,6 +96,11 @@
                           <td class="text-center">
                             <a id="accommodation_{{ $index }}" href="{{ route('yantek.order.external.edit_accommodation', ['id' => $data->id]) }}">
                               Rp. {{ FormatHelper::toIndonesianCurrencyFormat($data->total_accommodation) }}
+                            </a>
+                          </td>
+                          <td class="text-center">
+                            <a id="estimation_{{ $index }}" href="{{ route('yantek.order.external.edit_estimation', ['id' => $data->id]) }}">
+                              {{ $data->estimation_day }} Hari / {{ $data->total_officer ?? 0 }} Petugas
                             </a>
                           </td>
                           <td class="pt-3">
@@ -136,9 +138,14 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/yantek/order/order_number_form.js') }}"></script>
-  <script src="{{ asset('js/yantek/order/out_letter_number_form.js') }}"></script>
-  <script src="{{ asset('js/yantek/order/order-table.js') }}"></script>
-  <script src="{{ asset('js/yantek/order/send_offering_letter_event.js') }}"></script>
-  <script src="{{ asset('js/yantek/order/update_status_event.js') }}"></script>
+  {{-- Form dalam Tabel --}}
+  <script src="{{ asset('js/forms/order-number-form-yantek.js') }}"></script>
+  <script src="{{ asset('js/forms/order-out-number-form-yantek.js') }}"></script>
+
+  {{-- Tombol dalam tabel --}}
+  <script src="{{ asset('js/order-table/yantek-order-table.js') }}"></script>
+
+  {{-- Tombol Aksi dalam Tabel --}}
+  <script src="{{ asset('js/action_table/send_offering_letter.js') }}"></script>
+  <script src="{{ asset('js/action_table/update-status-order-yantek.js') }}"></script>
 @endsection

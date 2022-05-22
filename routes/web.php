@@ -13,10 +13,15 @@ use App\Http\Controllers\fasyenkes\HomeController as FasyenkesHomeController;
 use App\Http\Controllers\fasyenkes\ExternalOrderController as FasyenkesExternalOrderController;
 use App\Http\Controllers\fasyenkes\InternalOrderController as FasyenkesInternalOrderController;
 use App\Http\Controllers\ReportController;
+
 // Yantek
 use App\Http\Controllers\yantek\HomeController as YantekHomeController;
 use App\Http\Controllers\yantek\ExternalOrderController as YantekExternalOrderController;
 use App\Http\Controllers\yantek\InternalOrderController as YantekInternalOrderController;
+
+// Penyelia
+use App\Http\Controllers\penyelia\HomeController as PenyeliaHomeController;
+use App\Http\Controllers\penyelia\ExternalOrderController as PenyeliaOrderController;
 
 
 /*
@@ -74,7 +79,7 @@ Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExterna
 Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
     Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');
     Route::name('order.')->prefix('order')->group(function(){
-        Route::name('internal.')->prefix('/internal')->group(function(){
+        Route::name('internal.')->prefix('internal')->group(function(){
             Route::get('/', [YantekInternalOrderController::class, 'index'])->name('index');
             Route::put('/accept', [YantekInternalOrderController::class, 'accept'])->name('accept');
             Route::put('/reject', [YantekInternalOrderController::class, 'reject'])->name('reject');
@@ -83,16 +88,32 @@ Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function()
             Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
             Route::put('/accept', [YantekExternalOrderController::class, 'accept'])->name('accept');
             Route::put('/reject', [YantekExternalOrderController::class, 'reject'])->name('reject');
+
             Route::get('/edit/{id}/accommodation', [YantekExternalOrderController::class, 'editAccommodation'])->name('edit_accommodation');
             Route::put('/update/{id}/accommodation', [YantekExternalOrderController::class, 'updateAccommodation'])->name('update_accommodation');
+
+            Route::get('/edit/{id}/estimation', [YantekExternalOrderController::class, 'editEstimation'])->name('edit_estimation');
+            Route::put('/update/{id}/estimation', [YantekExternalOrderController::class, 'updateEstimation'])->name('update_estimation');
         });
     });
 });
 
 Route::middleware(['penyelia'])->prefix('penyelia')->name('penyelia.')->group(function(){
-    Route::get('/penyelia/home', function(){
-        dd("Penyelia");
-    })->name('penyelia.home');
+    Route::get('/home', [PenyeliaHomeController::class, 'index'])->name('home.index');
+    Route::prefix('order')->name('order.')->group(function(){
+        Route::prefix('internal')->name('internal.')->group(function(){
+
+        });
+
+        Route::prefix('external')->name('external.')->group(function(){
+            Route::get('/', [PenyeliaOrderController::class, 'index'])->name('index');
+            Route::get('/{id}/officer', [PenyeliaOrderController::class, 'officeEdit'])->name('officer-edit');
+            Route::post('/{id}/update', [PenyeliaOrderController::class, 'officeUpdate'])->name('officer-update');
+
+            Route::get('/edit/{id}/estimation', [PenyeliaOrderController::class, 'editEstimation'])->name('edit_estimation');
+            Route::put('/update/{id}/estimation', [PenyeliaOrderController::class, 'updateEstimation'])->name('update_estimation');
+        });
+    });
 });
 
 Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(function(){
