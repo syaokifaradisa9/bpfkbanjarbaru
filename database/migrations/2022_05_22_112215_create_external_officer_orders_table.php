@@ -2,11 +2,11 @@
 
 use App\Models\AdminUser;
 use App\Models\ExternalOrder;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateOfficerOrdersTable extends Migration
+class CreateExternalOfficerOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateOfficerOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('officer_orders', function (Blueprint $table) {
+        Schema::create('external_officer_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(AdminUser::class);
             $table->foreignIdFor(ExternalOrder::class);
@@ -30,6 +30,6 @@ class CreateOfficerOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('officer_orders');
+        Schema::dropIfExists('external_officer_orders');
     }
 }

@@ -41,17 +41,28 @@
                             <p class="col-8">: {{ $order->pp_hour }} Jam {{ $order->pp_minute }} Menit</p>
 
                             <label class="col-4">Estimasi Petugas</label>
-                            <p class="col-8">: {{ $order->total_officer }} Orang</p>
+                            <p class="col-8">: <span id="max-officer">{{ $order->total_officer }}</span> Orang</p>
                         </div>
                         <div class="col-6 row"></div>
                     </div>
 
-                    <label><b>Petugas Kalibrasi (Pilih {{ $order->total_officer }} Orang)</b></label>
+                    <label class="mt-3"><b>Petugas Kalibrasi (Pilih {{ $order->total_officer }} Orang)</b></label>
                     <div class="row px-3">
                         @foreach ($officers as $officer)
                             <div class="custom-control custom-checkbox col-lg-3 col-md-4 mb-1">
-                                <input type="checkbox" class="custom-control-input" id="{{ $officer->id }}" name="officer_{{ $officer->id }}">
-                                <label class="custom-control-label" for="{{ $officer->id }}" name="{{ $officer->id }}">{{ $officer->name }}</label>
+                                <input type="checkbox" 
+                                       class="custom-control-input" 
+                                       id="{{ $officer->id }}" 
+                                       name="officer_{{ $officer->id }}" 
+                                       class="officer-checkbox"
+                                       @if (in_array($officer->id, $officerExists)) checked @endif>
+                                <label class="custom-control-label" for="{{ $officer->id }}" name="{{ $officer->id }}">
+                                  @if (in_array($officer->id, $officerExists))
+                                    <strong>{{ $officer->name }} </strong>
+                                  @else
+                                    {{ $officer->name }}
+                                  @endif
+                                </label>
                             </div>
                         @endforeach
                     </div>
@@ -65,4 +76,8 @@
       </div>
     </div>
   </section>
+@endsection
+
+@section('js-extends')
+  <script src="{{ asset('js/forms/officer-form.js') }}"></script>
 @endsection

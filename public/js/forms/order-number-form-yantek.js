@@ -140,7 +140,7 @@ async function updateOrderNumber(id, order_number, dataId){
               icon: 'error',
               title: 'Gagal!',
               text: 'Gagal menerima order, silahkan coba lagi!'
-            })
+            });
           }
         }
     });

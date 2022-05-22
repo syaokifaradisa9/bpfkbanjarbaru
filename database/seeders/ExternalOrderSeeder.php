@@ -24,7 +24,7 @@ class ExternalOrderSeeder extends Seeder
             // 'status' => 'DISETUJUI',
             // 'pp_hour' => 24,
             // 'pp_minute' => 33,
-            // 'total_officer' => 3,
+            // 'total_officer' => 4,
             // 'lodging_accommodation' => 1000000,
             // 'lodging_description' => '-',
             // 'transportation_accommodation' => 2000000,

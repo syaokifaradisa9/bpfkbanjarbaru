@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\OfficerOrder;
+use App\Models\ExternalOfficerOrder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,10 +30,6 @@ class ExternalOrder extends Model
         'rapid_test_accommodation',
         'rapid_test_description',
     ];
-
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 
     // Atribut Tambahan
     protected $appends = [
@@ -120,15 +116,19 @@ class ExternalOrder extends Model
     }
 
     public function getTotalOfficerSelectedAttribute(){
-        return count($this->officerOrder) ?? 0;
+        return count($this->external_officer_order) ?? 0;
     }
 
     // Relasi Tabel
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function external_alkes_order(){
         return $this->hasMany(ExternalAlkesOrder::class);
     }
 
-    public function officerOrder(){
-        return $this->hasMany(OfficerOrder::class);
+    public function external_officer_order(){
+        return $this->hasMany(ExternalOfficerOrder::class);
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\penyelia;
 
 use App\Models\AdminUser;
+use App\Models\OfficerOrder;
 use Illuminate\Http\Request;
 use App\Models\ExternalOrder;
 use App\Http\Controllers\Controller;
+use App\Models\ExternalOfficerOrder;
 
 class ExternalOrderController extends Controller
 {
@@ -23,13 +25,20 @@ class ExternalOrderController extends Controller
 
     public function officeEdit($id){
         $officers = AdminUser::where('role', 'PETUGAS')->orderBy('name', 'asc')->get();
-        $order = ExternalOrder::with('officerorder')->findOrFail($id);
-        
+        $order = ExternalOrder::findOrFail($id);
+
+        $existOfficers = ExternalOfficerOrder::where('external_order_id', $id)->get();
+        $existOfficerIds = [];
+        foreach($existOfficers as $officer){
+            array_push($existOfficerIds, $officer->admin_user_id);
+        }
+
         return view('penyelia.order.external.officer-edit', [
             'title' => 'Halaman Edit Petugas',
             'menu' => 'external',
             'officers' => $officers,
-            'order' => $order
+            'order' => $order,
+            'officerExists' => $existOfficerIds,
         ]);
     }
 
@@ -80,13 +89,41 @@ class ExternalOrderController extends Controller
     }
 
     public function officeUpdate(Request $request, $id){
-        $officers = $request->all();
-        unset($officers['_token']);
+        // Mengambil Petugas yang dipilih
+        $officerSelected = $request->all();
+        unset($officerSelected['_token']);
 
         $order_id = $id;
-        foreach($officers as $key => $value){
-            $user_id = explode('_', $key)[1];
-            
+
+        // Pengambilan List Petugas dari Database
+        $officerIds = [];
+        $officers = ExternalOfficerOrder::select('admin_user_id')->where('external_order_id', $id)->get();
+        foreach($officers as $officer){
+            array_push($officerIds, $officer->admin_user_id);
         }
+
+        // Menambahkan database jika pada database blm ada id petugas
+        $clean_officer_selected = [];
+        foreach($officerSelected as $key => $value){
+            $user_id = explode('_', $key)[1];
+            array_push($clean_officer_selected, $user_id);
+            if(!in_array($user_id, $officerIds)){
+                ExternalOfficerOrder::create([
+                    'admin_user_id' => $user_id,
+                    'external_order_id' => $order_id,
+                ]);
+            }
+        }
+
+        // Menghapus data database jika data database tidak ada dalam data terbaru
+        foreach($officerIds as $id){
+            if(!in_array($id, $clean_officer_selected)){
+                ExternalOfficerOrder::where('admin_user_id', $id)
+                                    ->where('external_order_id', $order_id)
+                                    ->delete();
+            }
+        }
+        
+        return redirect(route('penyelia.order.external.index'))->with('success', 'Sukses Menetapkan Petugas');
     }
 }

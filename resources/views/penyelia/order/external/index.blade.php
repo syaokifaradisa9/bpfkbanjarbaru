@@ -55,11 +55,13 @@
                           <td>{{ $data->user->address }}</td>
                           <td class="text-center">
                             <a href="{{ route('penyelia.order.external.edit_estimation', ['id' => $data->id]) }}">
-                              {{ $data->estimation_day }} Hari / {{ $data->total_officer ?? '0' }} Petugas
+                              {{ $data->estimation_day }} Hari / {{ $data->total_officer_selected ?? '0' }} Petugas
                             </a>
                           </td>
                           <td class="text-center">
-                              <a id="officer-edit-{{ $index }}" href="{{ route('penyelia.order.external.officer-edit', ['id' => $data->id]) }}">0 Orang</a>
+                              <a id="officer-edit-{{ $index }}" href="{{ route('penyelia.order.external.officer-edit', ['id' => $data->id]) }}">
+                                {{ $data->total_officer_selected ?? '0' }} Orang
+                              </a>
                           </td>
                           <td id="status-order-{{ $index }}">{{ $data->status }}</td>
                         </tr>
