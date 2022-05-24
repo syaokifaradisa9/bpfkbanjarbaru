@@ -26,7 +26,9 @@ class CreateExternalOrdersTable extends Migration
                 'DITERIMA',
                 'MENUNGGU PERSETUJUAN', 
                 'DISETUJUI', 
-                'DIPROSES', 
+                'DALAM PERJALANAN', 
+                'PENGERJAAN', 
+                'MENUNGGU PEMBAYARAN', 
                 'SELESAI'
             ])->default('MENUNGGU');
 

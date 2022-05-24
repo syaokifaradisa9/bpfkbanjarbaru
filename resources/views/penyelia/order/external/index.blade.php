@@ -55,7 +55,7 @@
                           <td>{{ $data->user->address }}</td>
                           <td class="text-center">
                             <a href="{{ route('penyelia.order.external.edit_estimation', ['id' => $data->id]) }}">
-                              {{ $data->estimation_day }} Hari / {{ $data->total_officer_selected ?? '0' }} Petugas
+                              {{ $data->estimation_day }} Hari / {{ $data->total_officer ?? 0 }} Petugas
                             </a>
                           </td>
                           <td class="text-center">

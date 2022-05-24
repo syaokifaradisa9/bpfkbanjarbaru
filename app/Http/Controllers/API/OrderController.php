@@ -156,4 +156,26 @@ class OrderController extends Controller
             ]);
         }
     }
+
+    public function updateStatusTodeparture(Request $request, $id){
+        if($request->api_key != "Y4pOYCy0P2enpeKp7CCp8p0GVH51oufLdNZt22GZKTRtdVg732ethoJ43Q4XOuvF"){
+            return response()->json(['message' => "Anda Tidak Memiliki Akses Pada Resource ini!"]);
+        }
+
+        try{
+            $order = ExternalOrder::findOrFail($id);
+            $order->status = 'DALAM PERJALANAN';
+            $order->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Sukses Mengonfirmasi Keberangkatan'
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal Mengonfirmasi Keberangkatan, Silahkan Coba Lagi!'
+            ]);
+        }
+    }
 }

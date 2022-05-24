@@ -36,15 +36,15 @@
                 <table class="table table-bordered" id="order-table">
                   <thead>
                     <tr>
-                      <th class="text-center" style="width: 20px">No.</th>
-                      <th class="text-center">Aksi</th>
-                      <th class="text-center" style="width: 180px">Fasyenkes</th>
-                      <th class="text-center" style="width: 135px">Waktu Pengajuan</th>
-                      <th class="text-center" style="width: 175px">Nomor Order</th>
+                      <th class="text-center" style="width: 15px">No</th>
+                      <th class="text-center" style="width: 20px">Aksi</th>
+                      <th class="text-center" style="width: 190px">Fasyenkes</th>
+                      <th class="text-center" style="width: 140px">Waktu Pengajuan</th>
+                      <th class="text-center" style="width: 210px">Nomor Order</th>
                       <th class="text-center" style="width: 160px">Akomodasi</th>
                       <th class="text-center" style="width: 135px">Estimasi</th>
                       <th class="text-center" style="width: 130px">No. Surat keluar</th>
-                      <th class="text-center">Status</th>
+                      <th class="text-center" style="width: 50px">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -52,11 +52,11 @@
                       @foreach ($orders as $index => $data)
                         <tr>
                           <td class="text-center">
-                            <input id="id_{{ $index }}" class="order_id" type="hidden" value="{{ $data->id }}" readonly>
+                            <input id="id_{{ $index }}" class="order_id d-none" type="hidden" value="{{ $data->id }}" readonly>
                             {{ $index + 1 }}
                           </td>
                           <td class="text-center">
-                            <div class="btn-group dropright">
+                            <div class="btn-group dropright px-0">
                               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-cog"></i>
                               </button>
@@ -77,6 +77,10 @@
                                   <i class="fas fa-check-square"></i> 
                                   Konfirmasi Persetujuan
                                 </a>
+                                <a class="dropdown-item has-icon text-green @if($data->status != 'DISETUJUI') d-none @endif" href="#" id="confirm-departure-{{ $index }}">
+                                  <i class="fas fa-check-square"></i> 
+                                  Konfirmasi Keberangkatan
+                                </a>
                               </div>
                             </div>
                           </td>
@@ -84,7 +88,7 @@
                             {{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}
                           </td>
                           <td class="text-center">
-                            {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }}
+                            {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }} <br>
                             {{ date('H:m', strtotime($data->created_at)) }}
                           </td>
                           <td class="pt-3">
@@ -101,6 +105,7 @@
                           <td class="text-center">
                             <a id="estimation_{{ $index }}" href="{{ route('yantek.order.external.edit_estimation', ['id' => $data->id]) }}">
                               {{ $data->estimation_day }} Hari / {{ $data->total_officer ?? 0 }} Petugas
+                              <span id="selected-officer-{{ $index }}" class="d-none">{{ $data->total_officer_selected ?? 0 }}</span>
                             </a>
                           </td>
                           <td class="pt-3">
@@ -112,6 +117,8 @@
                             <div class="badge badge-secondary" id="status_{{ $index }}">
                               @if ($data->status == 'MENUNGGU PERSETUJUAN')
                                 MENUNGGU<br>PERSETUJUAN
+                              @elseif($data->status == 'DALAM PERJALANAN')
+                                DALAM<br>PERJALANAN
                               @else
                                 {{$data->status}}
                               @endif

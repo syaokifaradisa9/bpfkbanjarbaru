@@ -19,11 +19,6 @@ class LoginController extends Controller
             return redirect(route('home-redirect'));
         }
 
-        // Pengecekan akun user fasyenkes
-        // if(!(User::where('email', $request->email)->get()->first())->isVerified()){
-        //     return redirect(Route('login.index'))->with('error', 'Email Belum Terverifikasi, Silahkan Verifikasi Terlebih Dahulu!');
-        // }
-
         if(Auth::guard('web')->attempt($request->only('email', 'password'))){
             return redirect(route('home-redirect'));
         }
