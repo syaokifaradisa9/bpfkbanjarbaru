@@ -21,6 +21,7 @@ class AlkesSeeder extends Seeder
                 'price' => 192000, 
                 'alkes_category_id' => 1,
                 'minute_estimation' => 40,
+                'excel_name' => 'Flowmeter'
             ],
             [
                 'name' => 'Thermometer Klinik', 
@@ -49,6 +50,7 @@ class AlkesSeeder extends Seeder
                 'price' => 180000, 
                 'alkes_category_id' => 1,
                 'minute_estimation' => 60,
+                'excel_name' => 'Timbangan_Bayi'
             ],
             ['name' => 'Timbangan Dewasa', 'price' => 168000, 'alkes_category_id' => 1,],
             ['name' => 'Mikropipet Fix', 'price' => 288000, 'alkes_category_id' => 1,],
@@ -89,6 +91,7 @@ class AlkesSeeder extends Seeder
                 'price' => 228000, 
                 'alkes_category_id' => 2,
                 'minute_estimation' => 45,
+                'excel_name' => 'Nebulizer'
             ],
             [
                 'name' => 'O2 Concentrator', 
@@ -121,6 +124,7 @@ class AlkesSeeder extends Seeder
                 'price' => 144000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 55,
+                'excel_name' => 'Suction_Pump'
             ],
             [
                 'name' => 'Suction Wall', 
@@ -163,6 +167,7 @@ class AlkesSeeder extends Seeder
                 'price' => 588000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 75,
+                'excel_name' => 'Patient_Monitor'
             ],
             [
                 'name' => 'Blood Bank', 
@@ -175,6 +180,7 @@ class AlkesSeeder extends Seeder
                 'price' => 240000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 75,
+                'excel_name' => 'Centrifuge'
             ],
             [
                 'name' => 'CPAP', 
@@ -205,18 +211,21 @@ class AlkesSeeder extends Seeder
                 'price' => 168000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 90,
+                'excel_name' => 'Dental_unit'
             ],
             [
                 'name' => 'Doppler / Fetal Detector', 
                 'price' => 156000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 45,
+                'excel_name' => 'Doppler'
             ],
             [
                 'name' => 'ECG Recorder', 
                 'price' => 180000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 82,
+                'excel_name' => 'ECG_Recorder'
             ],
             [
                 'name' => 'Elektro Stimulator / EST', 
@@ -277,6 +286,7 @@ class AlkesSeeder extends Seeder
                 'price' => 288000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 75,
+                'excel_name' => 'Infusion_Pump'
             ],
             [
                 'name' => 'Laboratorium Incubator', 
@@ -289,6 +299,7 @@ class AlkesSeeder extends Seeder
                 'price' => 252000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 120,
+                'excel_name' => 'LAB_Refrigerator'
             ],
             [
                 'name' => 'Laboratorium Rotator', 
@@ -319,6 +330,7 @@ class AlkesSeeder extends Seeder
                 'price' => 180000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 40,
+                'excel_name' => 'Pulse_Oxymetry'
             ],
             [
                 'name' => 'Short Wave Diathermi', 
@@ -331,12 +343,14 @@ class AlkesSeeder extends Seeder
                 'price' => 84000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 55,
+                'Sphygmomanometer'
             ],
             [
                 'name' => 'Tensimeter Digital / Blood Pressure Monitor (BPM)', 
                 'price' => 162000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 50,
+                'excel_name' => 'BPM'
             ],
             [
                 'name' => 'Spirometer', 
@@ -361,6 +375,7 @@ class AlkesSeeder extends Seeder
                 'price' => 288000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 75,
+                'excel_name' => 'Syringe_Pump'
             ],
             [
                 'name' => 'Traksi', 
