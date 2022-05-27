@@ -41,10 +41,10 @@ class AlkesSeeder extends Seeder
                 'alkes_category_id' => 1,
                 'minute_estimation' => 33,
             ],
-            // ['name' => 'Vaporizer Dengan Gas Enflurane', 'price' => 2076000, 'alkes_category_id' => 1],
-            // ['name' => 'Vaporizer Dengan Gas Halothane', 'price' => 2076000, 'alkes_category_id' => 1],
-            // ['name' => 'Vaporizer Dengan Gas Isoflurane', 'price' => 2076000, 'alkes_category_id' => 1],
-            // ['name' => 'Vaporizer Dengan Gas Sevoflurane', 'price' => 2076000,'alkes_category_id' => 1],
+            ['name' => 'Vaporizer Dengan Gas Enflurane', 'price' => 2076000, 'alkes_category_id' => 1],
+            ['name' => 'Vaporizer Dengan Gas Halothane', 'price' => 2076000, 'alkes_category_id' => 1],
+            ['name' => 'Vaporizer Dengan Gas Isoflurane', 'price' => 2076000, 'alkes_category_id' => 1],
+            ['name' => 'Vaporizer Dengan Gas Sevoflurane', 'price' => 2076000,'alkes_category_id' => 1],
             [
                 'name' => 'Timbangan Bayi', 
                 'price' => 180000, 
@@ -343,7 +343,7 @@ class AlkesSeeder extends Seeder
                 'price' => 84000, 
                 'alkes_category_id' => 3,
                 'minute_estimation' => 55,
-                'Sphygmomanometer'
+                'excel_name' => 'Sphygmomanometer'
             ],
             [
                 'name' => 'Tensimeter Digital / Blood Pressure Monitor (BPM)', 

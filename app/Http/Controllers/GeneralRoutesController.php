@@ -46,6 +46,8 @@ class GeneralRoutesController extends Controller
                 return redirect(route('yantek.order.external.index'));
             }else if($role == 'PENYELIA'){
                 return redirect(route('penyelia.order.external.index'));
+            }else if($role == 'PETUGAS'){
+                return redirect(route('petugas.order.external.index'));
             }
         }
 

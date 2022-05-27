@@ -5,8 +5,13 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\AlkesSeeder;
+use Database\Seeders\AdminUserSeeder;
 use Database\Seeders\AlkesCategorySeeder;
+use Database\Seeders\ExternalOrderSeeder;
+use Database\Seeders\ExternalOfficerSeeder;
+use Database\Seeders\InstrumentGroupSeeder;
 use Database\Seeders\ExternalAlkesOrderSeeder;
+use Database\Seeders\MeasuringInstrumentSeeder;
 use Database\Seeders\AlkesOrderDescriptionSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +31,10 @@ class DatabaseSeeder extends Seeder
             AlkesOrderDescriptionSeeder::class,
             ExternalOrderSeeder::class,
             ExternalAlkesOrderSeeder::class,
+            ExternalOfficerSeeder::class,
+            MeasuringInstrumentSeeder::class,
+            InstrumentGroupSeeder::class,
+            InstrumentAlkesGroupSeeder::class,
         ]);
     }
 }

@@ -13,7 +13,11 @@ class ExternalOrderController extends Controller
 {
     public function index(){
         $orders = ExternalOrder::with('external_alkes_order')
-                                ->where('status', '!=','MENUNGGU')
+                                ->where('status','DISETUJUI')
+                                ->orWhere('status','DALAM PERJALANAN')
+                                ->orWhere('status','PENGERJAAN')
+                                ->orWhere('status','MENUNGGU PEMBAYARAN')
+                                ->orWhere('status','SELESAI')
                                 ->get();
 
         return view('penyelia.order.external.index', [

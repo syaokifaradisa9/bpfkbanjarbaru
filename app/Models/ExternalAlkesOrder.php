@@ -14,10 +14,24 @@ class ExternalAlkesOrder extends Model
         'alkes_id',
         'external_order_id',
         'alkes_order_description_id',
-        'minute_estimation'
+        'officer'
     ];
 
     public function alkes(){
         return $this->belongsTo(Alkes::class);
+    }
+
+    public function external_order(){
+        return $this->belongsTo(ExternalOrder::class);
+    }
+
+    protected $appends = [
+        'status', 
+    ];
+
+    public function getStatusAttribute()
+    {
+        $excel = ExternalOrderExcelValue::where('external_alkes_order_id', $this->id)->first();
+        return $excel != null ? 1 : 0;
     }
 }

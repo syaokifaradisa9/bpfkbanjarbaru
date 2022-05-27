@@ -21,8 +21,12 @@ use App\Http\Controllers\yantek\InternalOrderController as YantekInternalOrderCo
 
 // Penyelia
 use App\Http\Controllers\penyelia\HomeController as PenyeliaHomeController;
-use App\Http\Controllers\penyelia\ExternalOrderController as PenyeliaOrderController;
+use App\Http\Controllers\penyelia\ExternalOrderController as PenyeliaExternalOrderController;
 
+// Petugas
+use App\Http\Controllers\petugas\HomeController as PetugasHomeController;
+use App\Http\Controllers\petugas\ExternalOrderController as PetugasExternalOrderController;
+use App\Http\Controllers\petugas\ExternalWorksheetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,12 +63,15 @@ Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
     Route::get('/home', [FasyenkesHomeController::class, 'index'])->name('home');
     Route::name('order.')->prefix('order')->group(function(){
+
+        // Order Internal
         Route::name('internal.')->prefix('/internal')->group(function(){
             Route::get('/', [FasyenkesInternalOrderController::class, 'index'])->name('index');
             Route::get('/create', [FasyenkesInternalOrderController::class, 'create'])->name('create');
             Route::post('/store', [FasyenkesInternalOrderController::class, 'store'])->name('store');
         });
 
+        // Order Eksternal
         Route::name('external.')->prefix('external')->group(function(){
             Route::get('/', [FasyenkesExternalOrderController::class, 'index'])->name('index');
             Route::get('/create', [FasyenkesExternalOrderController::class, 'create'])->name('create');
@@ -79,11 +86,15 @@ Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExterna
 Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
     Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');
     Route::name('order.')->prefix('order')->group(function(){
+
+        // Order Internal
         Route::name('internal.')->prefix('internal')->group(function(){
             Route::get('/', [YantekInternalOrderController::class, 'index'])->name('index');
             Route::put('/accept', [YantekInternalOrderController::class, 'accept'])->name('accept');
             Route::put('/reject', [YantekInternalOrderController::class, 'reject'])->name('reject');
         });
+
+        // Order Eksternal
         Route::name('external.')->prefix('external')->group(function(){
             Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
             Route::put('/accept', [YantekExternalOrderController::class, 'accept'])->name('accept');
@@ -101,25 +112,42 @@ Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function()
 Route::middleware(['penyelia'])->prefix('penyelia')->name('penyelia.')->group(function(){
     Route::get('/home', [PenyeliaHomeController::class, 'index'])->name('home.index');
     Route::prefix('order')->name('order.')->group(function(){
+        
+        // Order Internal
         Route::prefix('internal')->name('internal.')->group(function(){
 
         });
 
+        // Order Eksternal
         Route::prefix('external')->name('external.')->group(function(){
-            Route::get('/', [PenyeliaOrderController::class, 'index'])->name('index');
-            Route::get('/{id}/officer', [PenyeliaOrderController::class, 'officeEdit'])->name('officer-edit');
-            Route::post('/{id}/update', [PenyeliaOrderController::class, 'officeUpdate'])->name('officer-update');
+            Route::get('/', [PenyeliaExternalOrderController::class, 'index'])->name('index');
+            Route::get('/{id}/officer', [PenyeliaExternalOrderController::class, 'officeEdit'])->name('officer-edit');
+            Route::post('/{id}/update', [PenyeliaExternalOrderController::class, 'officeUpdate'])->name('officer-update');
 
-            Route::get('/edit/{id}/estimation', [PenyeliaOrderController::class, 'editEstimation'])->name('edit_estimation');
-            Route::put('/update/{id}/estimation', [PenyeliaOrderController::class, 'updateEstimation'])->name('update_estimation');
+            Route::get('/edit/{id}/estimation', [PenyeliaExternalOrderController::class, 'editEstimation'])->name('edit_estimation');
+            Route::put('/update/{id}/estimation', [PenyeliaExternalOrderController::class, 'updateEstimation'])->name('update_estimation');
         });
     });
 });
 
 Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(function(){
-    Route::get('/petugas/home', function(){
-        dd("Petugas");
-    })->name('petugas.home');
+    Route::get('/petugas/home', [PetugasHomeController::class, 'index'])->name('home.index');
+    Route::prefix('order')->name('order.')->group(function(){
+
+        // Order Internal
+        Route::prefix('internal')->name('internal.')->group(function(){
+
+        });
+
+        // Order External
+        Route::prefix('external')->name('external.')->group(function(){
+            Route::get('/', [PetugasExternalOrderController::class, 'index'])->name('index');
+            Route::prefix('{order_id}/worksheet')->name('worksheet.')->group(function(){
+                Route::get('/', [ExternalWorksheetController::class, 'index'])->name('index');
+                Route::get('/{alkes_order_id}', [ExternalWorksheetController::class, 'excelWorksheet'])->name('excel');
+            });
+        });
+    });
 });
 
 Route::middleware(['bendahara'])->prefix('bendahara')->name('bendahara.')->group(function(){

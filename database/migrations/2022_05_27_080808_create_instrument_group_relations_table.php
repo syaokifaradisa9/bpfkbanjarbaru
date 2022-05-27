@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\AdminUser;
-use App\Models\ExternalOrder;
+use App\Models\InstrumentGroup;
+use App\Models\MeasuringInstrument;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExternalOfficerOrdersTable extends Migration
+class CreateInstrumentGroupRelationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,10 @@ class CreateExternalOfficerOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('external_officer_orders', function (Blueprint $table) {
+        Schema::create('instrument_group_relations', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(AdminUser::class)->constrained();
-            $table->foreignIdFor(ExternalOrder::class)->constrained();
+            $table->foreignIdFor(MeasuringInstrument::class)->constrained();
+            $table->foreignIdFor(InstrumentGroup::class)->constrained();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateExternalOfficerOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('external_officer_orders');
+        Schema::dropIfExists('instrument_group_relations');
     }
 }

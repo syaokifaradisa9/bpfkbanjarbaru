@@ -20,4 +20,8 @@ class AdminUser extends Authenticatable
     ];
 
     protected $hidden = ['password'];
+
+    public function external_officer_order(){
+        return $this->hasMany(ExternalOfficerOrder::class);
+    }
 }

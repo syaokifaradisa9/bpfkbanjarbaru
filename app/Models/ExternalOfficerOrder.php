@@ -13,4 +13,12 @@ class ExternalOfficerOrder extends Model
         'admin_user_id',
         'external_order_id'
     ];
+
+    public function admin_user(){
+        return $this->belongsTo(AdminUser::class);
+    }
+
+    public function external_order(){
+        return $this->belongsTo(ExternalOrder::class);
+    }
 }

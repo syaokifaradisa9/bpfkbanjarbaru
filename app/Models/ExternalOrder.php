@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\ExternalOfficerOrder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,7 +39,7 @@ class ExternalOrder extends Model
         'total_payment', 
         'alkes_order_with_category',
         'estimation_day',
-        'total_officer_selected'
+        'total_officer_selected',
     ];
 
     public function getTotalAccommodationAttribute()
@@ -123,6 +124,7 @@ class ExternalOrder extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    
 
     public function external_alkes_order(){
         return $this->hasMany(ExternalAlkesOrder::class);
