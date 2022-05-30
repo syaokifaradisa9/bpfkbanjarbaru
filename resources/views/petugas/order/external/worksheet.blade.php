@@ -41,7 +41,7 @@
                                         </button>
                                         <div class="dropdown-menu dropright">
                                           @if ($order->status == 0)
-                                            <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
+                                            <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.index', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
                                               <i class="fas fa-envelope-open-text"></i> Kerjakan
                                             </a>
                                           @else

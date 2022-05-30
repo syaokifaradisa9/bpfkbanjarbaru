@@ -20,4 +20,8 @@ class Alkes extends Model
     public function alkes_category(){
         return $this->belongsTo(AlkesCategory::class);
     }
+
+    public function instrument_alkes_group(){
+        return $this->hasMany(InstrumentAlkesGroup::class);
+    }
 }

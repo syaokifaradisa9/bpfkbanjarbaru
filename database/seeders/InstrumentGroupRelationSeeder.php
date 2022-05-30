@@ -14,7 +14,7 @@ class InstrumentGroupRelationSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 55; $i++){
+        for($i = 1; $i <= 54; $i++){
             $group_id = 0;
 
             if($i >= 1 && $i <= 7){
@@ -23,13 +23,13 @@ class InstrumentGroupRelationSeeder extends Seeder
                 $group_id = 2;
             }else if($i >= 24 && $i <= 34){
                 $group_id = 3;
-            }else if($i >= 35 && $i <= 55){
+            }else if($i >= 35 && $i <= 54){
                 $group_id = 4;
             }
 
             InstrumentGroupRelation::create([
                 'instrument_group_id' => $group_id, 
-                'measure_instrument_id' => $i
+                'measuring_instrument_id' => $i
             ]);
         }
     }

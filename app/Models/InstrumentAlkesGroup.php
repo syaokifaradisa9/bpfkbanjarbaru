@@ -12,4 +12,8 @@ class InstrumentAlkesGroup extends Model
         'alkes_id',
         'measuring_instrument_group_id'
     ];
+
+    public function instrument_group(){
+        return $this->belongsTo(InstrumentGroup::class);
+    }
 }

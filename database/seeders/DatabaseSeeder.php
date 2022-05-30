@@ -12,7 +12,9 @@ use Database\Seeders\ExternalOfficerSeeder;
 use Database\Seeders\InstrumentGroupSeeder;
 use Database\Seeders\ExternalAlkesOrderSeeder;
 use Database\Seeders\MeasuringInstrumentSeeder;
+use Database\Seeders\InstrumentAlkesGroupSeeder;
 use Database\Seeders\AlkesOrderDescriptionSeeder;
+use Database\Seeders\InstrumentGroupRelationSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,6 +37,7 @@ class DatabaseSeeder extends Seeder
             MeasuringInstrumentSeeder::class,
             InstrumentGroupSeeder::class,
             InstrumentAlkesGroupSeeder::class,
+            InstrumentGroupRelationSeeder::class,
         ]);
     }
 }

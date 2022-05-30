@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\MeasuringInstrument;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class InstrumentGroupRelation extends Model
 {
@@ -12,4 +13,8 @@ class InstrumentGroupRelation extends Model
         'measuring_instrument_id',
         'instrument_group_id'
     ];
+
+    public function measuring_instrument(){
+        return $this->belongsTo(MeasuringInstrument::class);
+    }
 }

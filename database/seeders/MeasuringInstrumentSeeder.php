@@ -232,23 +232,29 @@ class MeasuringInstrumentSeeder extends Seeder
                 'model' => 'KH-210-AO',
                 'serial_number' => '15062874'
             ],[
-                'id' => 38,
+                'id' => 37,
                 'name' => 'Thermohygrolight',
                 'merk' => 'KIMO',
                 'model' => 'KH-210-AO',
                 'serial_number' => '14082463'
             ],[
-                'id' => 39,
+                'id' => 38,
                 'name' => 'Thermohygrolight',
                 'merk' => 'KIMO',
                 'model' => 'KH-210-AO',
                 'serial_number' => '15062872'
             ],[
-                'id' => 40,
+                'id' => 39,
                 'name' => 'Thermohygrolight',
                 'merk' => 'KIMO',
                 'model' => 'KH-210-AO',
                 'serial_number' => '15062875'
+            ],[
+                'id' => 40,
+                'name' => 'Thermohygrolight',
+                'merk' => 'Greisinger',
+                'model' => 'GFBT 200',
+                'serial_number' => '34903046'
             ],[
                 'id' => 41,
                 'name' => 'Thermohygrolight',
@@ -260,81 +266,75 @@ class MeasuringInstrumentSeeder extends Seeder
                 'name' => 'Thermohygrolight',
                 'merk' => 'Greisinger',
                 'model' => 'GFBT 200',
-                'serial_number' => '34903046'
+                'serial_number' => '34903053'
             ],[
                 'id' => 43,
                 'name' => 'Thermohygrolight',
                 'merk' => 'Greisinger',
                 'model' => 'GFBT 200',
-                'serial_number' => '34903053'
+                'serial_number' => '34903051'
             ],[
                 'id' => 44,
                 'name' => 'Thermohygrolight',
                 'merk' => 'Greisinger',
                 'model' => 'GFBT 200',
-                'serial_number' => '34903051'
-            ],[
-                'id' => 45,
-                'name' => 'Thermohygrolight',
-                'merk' => 'Greisinger',
-                'model' => 'GFBT 200',
                 'serial_number' => '34904091'
             ],[
-                'id' => 46,
+                'id' => 45,
                 'name' => 'Thermohygrolight',
                 'merk' => 'Sekonic',
                 'model' => 'ST-50A',
                 'serial_number' => 'HE-21.000669'
             ],[
-                'id' => 47,
+                'id' => 46,
                 'name' => 'Thermohygrolight',
                 'merk' => 'Sekonic',
                 'model' => 'ST-50A',
                 'serial_number' => 'HE-21.000670'
             ],[
-                'id' => 48,
+                'id' => 47,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100586'
             ],[
-                'id' => 49,
+                'id' => 48,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100605'
             ],[
-                'id' => 50,
+                'id' => 49,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100609'
             ],[
-                'id' => 51,
+                'id' => 50,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100611'
             ],[
-                'id' => 52,
+                'id' => 51,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100616'
             ],[
-                'id' => 53,
+                'id' => 52,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100617'
             ],[
-                'id' => 54,
+                'id' => 53,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100618'
             ],[
-                'id' => 55,
+                'id' => 54,
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
