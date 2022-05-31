@@ -15,19 +15,20 @@ class InstrumentGroupSeeder extends Seeder
     public function run()
     {
         $groups = [
-            [
-                'id' => 1,
-                'name' => 'Digital Tachometer'
-            ],[
-                'id' => 2,
-                'name' => 'Stopwatch'
-            ],[
-                'id' => 3,
-                'name' => 'Electrical Safety Analyzer',
-            ],[
-                'id' => 4,
-                'name' => 'Thermohygrolight'
-            ]
+            ['id' => 1, 'name'  => 'Vital Signs Simulator-BPM'],
+            ['id' => 2, 'name'  => 'Digital Thermohygrometer-BPM'],
+            ['id' => 3, 'name'  => 'Electrical Safety Analyzer-BPM'],
+
+            ['id' => 4, 'name'  => 'Digital Tachometer-Centrifuge'],
+            ['id' => 5, 'name'  => 'Stopwatch-Centrifuge'],
+            ['id' => 6, 'name'  => 'Electrical Safety Analyzer-Centrifuge'],
+            ['id' => 7, 'name'  => 'Thermohygrolight-Centrifuge'],
+
+            ['id' => 8, 'name'  => 'Digital Tachometer-Dental Unit'],
+            ['id' => 9, 'name'  => 'Electrical Safety Analyzer-Dental Unit'],
+            ['id' => 10, 'name' => 'Digital Lux Meter-Dental Unit'],
+            ['id' => 11, 'name' => 'Digital Pressure Meter-Dental Unit'],
+            ['id' => 12, 'name' => 'Thermohygrolight-Dental Unit'],
         ];
 
         foreach($groups as $group){

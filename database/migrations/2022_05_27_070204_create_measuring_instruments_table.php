@@ -14,7 +14,7 @@ class CreateMeasuringInstrumentsTable extends Migration
     public function up()
     {
         Schema::create('measuring_instruments', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary()->index();
             $table->string('name');
             $table->string('merk');
             $table->string('model');

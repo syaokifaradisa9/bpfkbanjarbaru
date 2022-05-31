@@ -19,7 +19,6 @@ class CreateInstrumentGroupRelationsTable extends Migration
             $table->id();
             $table->foreignIdFor(MeasuringInstrument::class)->constrained();
             $table->foreignIdFor(InstrumentGroup::class)->constrained();
-            $table->timestamps();
         });
     }
 

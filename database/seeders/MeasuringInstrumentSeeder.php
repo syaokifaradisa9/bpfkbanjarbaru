@@ -14,334 +14,727 @@ class MeasuringInstrumentSeeder extends Seeder
      */
     public function run()
     {
-        $measuringInstrument = [
+        $digital_lux = [
             [
-                'id' => 1,
+                'id' => 'DLUX1',
+                'name' => 'Digital Lux Meter',
+                'merk' => 'EXTECH',
+                'model' => 'Easy View 30',
+                'serial_number' => '110705877'
+            ],[
+                'id' => 'DLUX2',
+                'name' => 'Digital Lux Meter',
+                'merk' => 'EXTECH',
+                'model' => 'Easy View 30',
+                'serial_number' => '110705875'
+            ],[
+                'id' => 'DLUX3',
+                'name' => 'Digital Lux Meter',
+                'merk' => 'EXTECH',
+                'model' => 'Easy View 30',
+                'serial_number' => '110705875'
+            ],[
+                'id' => 'DLUX4',
+                'name' => 'Digital Lux Meter',
+                'merk' => 'EXTECH',
+                'model' => 'Easy View 30',
+                'serial_number' => '190102372'
+            ],[
+                'id' => 'DLUX5',
+                'name' => 'Digital Lux Meter',
+                'merk' => 'EXTECH',
+                'model' => 'Easy View 30',
+                'serial_number' => '190412114'
+            ],[
+                'id' => 'DLUX6',
+                'name' => 'Digital Lux Meter',
+                'merk' => 'EXTECH',
+                'model' => 'Easy View 30',
+                'serial_number' => '190509514'
+            ],[
+                'id' => 'DLUX7',
+                'name' => 'Digital Lux Meter',
+                'merk' => 'KIMO',
+                'model' => 'LX200',
+                'serial_number' => '1300251'
+            ],
+        ];
+
+        $digital_pressure_meter = [
+            [
+                'id' => 'DPM1',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM 4 2G',
+                'serial_number' => '1831021'
+            ],[
+                'id' => 'DPM2',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '1831023'
+            ],[
+                'id' => 'DPM3',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2H',
+                'serial_number' => '3191005'
+            ],[
+                'id' => 'DPM4',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '4414016'
+            ],[
+                'id' => 'DPM5',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '4414018',
+            ],[
+                'id' => 'DPM6',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2H',
+                'serial_number' => '66111021',
+            ],[
+                'id' => 'DPM7',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '4821027',
+            ],[
+                'id' => 'DPM8',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '4600002',
+            ],[
+                'id' => 'DPM9',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '484821028',
+            ],[
+                'id' => 'DPM10',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '4819018',
+            ],[
+                'id' => 'DPM11',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke',
+                'model' => 'DPM4 2G',
+                'serial_number' => '4813009',
+            ],
+
+        ];
+
+        $digital_tachometer = [
+            [
+                'id' => 'DT1',
                 'name' => 'Digital Tachometer',
                 'merk' => 'Compact Instrument',
                 'model' => 'CT6/LSR/ERP',
                 'serial_number' => '631339'
             ],[
-                'id' => 2,
+                'id' => 'DT2',
                 'name' => 'Digital Tachometer',
                 'merk' => 'Compact Instrument',
                 'model' => 'CT6/LSR/ERP',
                 'serial_number' => '631340'
             ],[
-                'id' => 3,
+                'id' => 'DT3',
                 'name' => 'Digital Tachometer',
                 'merk' => 'Compact Instrument',
                 'model' => 'CT6/LSR/ERP',
                 'serial_number' => '631341'
             ],[
-                'id' => 4,
+                'id' => 'DT4',
                 'name' => 'Digital Tachometer',
                 'merk' => 'Compact Instrument',
                 'model' => 'CT6/LSR/ERP',
                 'serial_number' => '632334'
             ],[
-                'id' => 5,
+                'id' => 'DT5',
                 'name' => 'Digital Tachometer',
                 'merk' => 'Krisbow',
                 'model' => 'KW06-563',
                 'serial_number' => '180812179'
             ],[
-                'id' => 6,
+                'id' => 'DT6',
                 'name' => 'Digital Tachometer',
                 'merk' => 'Krisbow',
                 'model' => 'KW06-563',
                 'serial_number' => '180812200'
             ],[
-                'id' => 7,
+                'id' => 'DT7',
                 'name' => 'Digital Tachometer',
                 'merk' => 'Krisbow',
                 'model' => 'KW06-563',
                 'serial_number' => '180812206'
+            ],
+        ];
+
+        $digital_thermohygrometer = [
+            [
+                'id' => 'DTM1',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210',
+                'serial_number' => '14082463'
             ],[
-                'id' => 8,
-                'name' => 'Stopwatch',
-                'merk' => 'Casio',
-                'model' => 'HS - 3',
-                'serial_number' => '611Q02R'
+                'id' => 'DTM2',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210',
+                'serial_number' => '15062875'
             ],[
-                'id' => 9,
-                'name' => 'Stopwatch',
-                'merk' => 'Casio',
-                'model' => 'HS - 80TW',
-                'serial_number' => '510Q06R'
+                'id' => 'DTM3',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210',
+                'serial_number' => '15062874'
             ],[
-                'id' => 10,
-                'name' => 'Stopwatch',
-                'merk' => 'Casio',
-                'model' => 'HS - 80TW',
-                'serial_number' => '605Q11R'
+                'id' => 'DTM4',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062872'
             ],[
-                'id' => 11,
-                'name' => 'Stopwatch',
-                'merk' => 'Casio',
-                'model' => 'HS - 80TW',
-                'serial_number' => '510Q061R'
+                'id' => 'DTM5',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062873'
             ],[
-                'id' => 12,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001380'
+                'id' => 'DTM6',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'Sekonic',
+                'model' => 'ST - 50A',
+                'serial_number' => 'HE 21-000670'
             ],[
-                'id' => 13,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001381'
+                'id' => 'DTM7',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'Sekonic',
+                'model' => 'ST - 50A',
+                'serial_number' => 'HE 21-000669'
             ],[
-                'id' => 14,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001382'
+                'id' => 'DTM8',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'Sekonic',
+                'model' => 'ST-50',
+                'serial_number' => 'HE 01 - 203004'
+            ],
+        ];
+
+        $digital_thermohygrobarometer = [
+            [
+                'id' => 'DTBM1',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => '34903046'
             ],[
-                'id' => 15,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001383'
+                'id' => 'DTBM2',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => '34903051'
             ],[
-                'id' => 16,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001384'
+                'id' => 'DTBM3',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => '34903053'
             ],[
-                'id' => 17,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001385'
+                'id' => 'DTBM4',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => '34904091'
             ],[
-                'id' => 18,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001386'
+                'id' => 'DTBM5',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => '3490333'
             ],[
-                'id' => 19,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001387'
+                'id' => 'DTBM6',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => '34903050'
             ],[
-                'id' => 20,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001445'
+                'id' => 'DTBM7',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => 'A.100609'
             ],[
-                'id' => 21,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001449'
+                'id' => 'DTBM8',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => 'A.100611'
             ],[
-                'id' => 22,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '001452'
+                'id' => 'DTBM9',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => 'A.100586'
             ],[
-                'id' => 23,
-                'name' => 'Stopwatch',
-                'merk' => 'EXTECH',
-                'model' => '365535',
-                'serial_number' => '005018'
+                'id' => 'DTBM10',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => 'A.100616'
             ],[
-                'id' => 24,
-                'name' => 'Electrical Safety Analyzer',
-                'merk' => 'Fluke',
-                'model' => 'ESA 615',
-                'serial_number' => '3148907'
+                'id' => 'DTBM11',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => 'A.100618'
             ],[
-                'id' => 25,
+                'id' => 'DTBM12',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => 'A.100617'
+            ],[
+                'id' => 'DTBM13',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'Greisinger',
+                'model' => 'GFTB 200',
+                'serial_number' => 'A.100615'
+            ],
+        ];
+
+        $electrical_safety_analyzer = [
+            [
+                'id' => 'ESA1',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 620',
                 'serial_number' => '1837056'
             ],[
-                'id' => 26,
+                'id' => 'ESA2',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 620',
                 'serial_number' => '1834020'
             ],[
-                'id' => 27,
+                'id' => 'ESA3',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
                 'serial_number' => '2853077'
             ],[
-                'id' => 28,
+                'id' => 'ESA4',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
                 'serial_number' => '28533078'
             ],[
-                'id' => 29,
-                'name' => 'Electrical Safety Analyzer',
-                'merk' => 'Fluke',
-                'model' => 'ESA 615',
-                'serial_number' => '28533078'
-            ],[
-                'id' => 30,
+                'id' => 'ESA5',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
                 'serial_number' => '3148907'
             ],[
-                'id' => 31,
+                'id' => 'ESA6',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
                 'serial_number' => '3148908'
             ],[
-                'id' => 32,
+                'id' => 'ESA7',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
                 'serial_number' => '3699030'
             ],[
-                'id' => 33,
+                'id' => 'ESA8',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
                 'serial_number' => '4669058'
             ],[
-                'id' => 34,
+                'id' => 'ESA9',
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
                 'serial_number' => '4670010'
+            ],
+        ];
+
+        $handheld_nibp_simulator = [
+            [
+                'id' => 'HNIBP1',
+                'name' => 'Handheld NIBP Simulator',
+                'merk' => 'ACCUPULSE PLUS',
+                'model' => 'AH-2',
+                'serial_number' => 'HH12080309'
+            ]
+        ];
+
+        $lux_tester = [
+            [
+                'id' => 'LUX1',
+                'name' => 'Lux HI Tester',
+                'merk' => 'HIOKI',
+                'model' => '3421',
+                'serial_number' => '90130606'
+            ]
+        ];
+
+        $nibp_simulator = [
+            [
+                'id' => 'NIBP1',
+                'name' => 'NIBP Simulator',
+                'merk' => 'Rigel',
+                'model' => 'BP-SIM',
+                'serial_number' => '44L-1084'
             ],[
-                'id' => 35,
+                'id' => 'NIBP2',
+                'name' => 'NIBP Simulator',
+                'merk' => 'Rigel',
+                'model' => 'BP-SIM',
+                'serial_number' => '12L-0534'
+            ],
+        ];
+
+        $stopwatch = [
+            [
+                'id' => 'STOP1',
+                'name' => 'Stopwatch',
+                'merk' => 'Casio',
+                'model' => 'HS - 3',
+                'serial_number' => '611Q02R'
+            ],[
+                'id' => 'STOP2',
+                'name' => 'Stopwatch',
+                'merk' => 'Casio',
+                'model' => 'HS - 80TW',
+                'serial_number' => '510Q06R'
+            ],[
+                'id' => 'STOP3',
+                'name' => 'Stopwatch',
+                'merk' => 'Casio',
+                'model' => 'HS - 80TW',
+                'serial_number' => '605Q11R'
+            ],[
+                'id' => 'STOP4',
+                'name' => 'Stopwatch',
+                'merk' => 'Casio',
+                'model' => 'HS - 80TW',
+                'serial_number' => '510Q061R'
+            ],[
+                'id' => 'STOP5',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001380'
+            ],[
+                'id' => 'STOP6',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001381'
+            ],[
+                'id' => 'STOP7',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001382'
+            ],[
+                'id' => 'STOP8',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001383'
+            ],[
+                'id' => 'STOP9',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001384'
+            ],[
+                'id' => 'STOP10',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001385'
+            ],[
+                'id' => 'STOP11',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001386'
+            ],[
+                'id' => 'STOP12',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001387'
+            ],[
+                'id' => 'STOP13',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001445'
+            ],[
+                'id' => 'STOP14',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001449'
+            ],[
+                'id' => 'STOP15',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '001452'
+            ],[
+                'id' => 'STOP16',
+                'name' => 'Stopwatch',
+                'merk' => 'EXTECH',
+                'model' => '365535',
+                'serial_number' => '005018'
+            ],
+        ];
+
+        $thermohygrolight = [
+            [
+                'id' => 'TL1',
                 'name' => 'Thermohygrolight',
                 'merk' => 'KIMO',
-                'model' => 'KH-210-AO',
-                'serial_number' => '15062873'
-            ],[
-                'id' => 36,
-                'name' => 'Thermohygrolight',
-                'merk' => 'KIMO',
-                'model' => 'KH-210-AO',
-                'serial_number' => '15062874'
-            ],[
-                'id' => 37,
-                'name' => 'Thermohygrolight',
-                'merk' => 'KIMO',
-                'model' => 'KH-210-AO',
+                'model' => 'HS-210',
                 'serial_number' => '14082463'
             ],[
-                'id' => 38,
+                'id' => 'TL2',
                 'name' => 'Thermohygrolight',
                 'merk' => 'KIMO',
-                'model' => 'KH-210-AO',
+                'model' => 'HS-210',
                 'serial_number' => '15062872'
             ],[
-                'id' => 39,
+                'id' => 'TL3',
                 'name' => 'Thermohygrolight',
                 'merk' => 'KIMO',
-                'model' => 'KH-210-AO',
+                'model' => 'HS-210',
+                'serial_number' => '15062873'
+            ],[
+                'id' => 'TL4',
+                'name' => 'Thermohygrolight',
+                'merk' => 'KIMO',
+                'model' => 'HS-210',
+                'serial_number' => '15062874'
+            ],[
+                'id' => 'TL5',
+                'name' => 'Thermohygrolight',
+                'merk' => 'KIMO',
+                'model' => 'HS-210',
                 'serial_number' => '15062875'
             ],[
-                'id' => 40,
+                'id' => 'TL6',
                 'name' => 'Thermohygrolight',
                 'merk' => 'Greisinger',
-                'model' => 'GFBT 200',
+                'model' => 'GFTB 200',
                 'serial_number' => '34903046'
             ],[
-                'id' => 41,
+                'id' => 'TL7',
                 'name' => 'Thermohygrolight',
                 'merk' => 'Greisinger',
-                'model' => 'GFBT 200',
-                'serial_number' => '34903046'
-            ],[
-                'id' => 42,
-                'name' => 'Thermohygrolight',
-                'merk' => 'Greisinger',
-                'model' => 'GFBT 200',
+                'model' => 'GFTB 200',
                 'serial_number' => '34903053'
             ],[
-                'id' => 43,
+                'id' => 'TL8',
                 'name' => 'Thermohygrolight',
                 'merk' => 'Greisinger',
-                'model' => 'GFBT 200',
+                'model' => 'GFTB 200',
                 'serial_number' => '34903051'
             ],[
-                'id' => 44,
+                'id' => 'TL9',
                 'name' => 'Thermohygrolight',
                 'merk' => 'Greisinger',
-                'model' => 'GFBT 200',
+                'model' => 'GFTB 200',
                 'serial_number' => '34904091'
             ],[
-                'id' => 45,
+                'id' => 'TL10',
                 'name' => 'Thermohygrolight',
                 'merk' => 'Sekonic',
                 'model' => 'ST-50A',
                 'serial_number' => 'HE-21.000669'
             ],[
-                'id' => 46,
+                'id' => 'TL11',
                 'name' => 'Thermohygrolight',
                 'merk' => 'Sekonic',
                 'model' => 'ST-50A',
                 'serial_number' => 'HE-21.000670'
             ],[
-                'id' => 47,
+                'id' => 'TL12',
+                'name' => 'Thermohygrolight',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062873'
+            ],[
+                'id' => 'TL13',
+                'name' => 'Thermohygrolight',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062874'
+            ],[
+                'id' => 'TL14',
+                'name' => 'Thermohygrolight',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '14082463'
+            ],[
+                'id' => 'TL15',
+                'name' => 'Thermohygrolight',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062872'
+            ],[
+                'id' => 'TL16',
+                'name' => 'Thermohygrolight',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062875'
+            ],[
+                'id' => 'TL17',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100611'
+            ],[
+                'id' => 'TL18',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100609'
+            ],[
+                'id' => 'TL19',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100605'
+            ],[
+                'id' => 'TL20',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100617'
+            ],[
+                'id' => 'TL21',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100616'
+            ],[
+                'id' => 'TL22',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100618'
+            ],[
+                'id' => 'TL23',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100586'
+            ],
+        ];
+
+        $universal_biometer = [
+            [
+                'id' => 'UB1',
+                'name' => 'Universal Biometer',
+                'merk' => 'Biotek Instrument',
+                'model' => 'CPM III',
+                'serial_number' => '126143'
+            ],
+        ];
+
+        $thermohygrobarometer = [
+            [
+                'id' => 'TB1',
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100586'
             ],[
-                'id' => 48,
+                'id' => 'TB2',
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100605'
             ],[
-                'id' => 49,
+                'id' => 'TB3',
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100609'
             ],[
-                'id' => 50,
+                'id' => 'TB4',
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100611'
             ],[
-                'id' => 51,
+                'id' => 'TB5',
+                'name' => 'Thermohygrobarometer',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100615'
+            ],[
+                'id' => 'TB6',
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100616'
             ],[
-                'id' => 52,
+                'id' => 'TB7',
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100617'
             ],[
-                'id' => 53,
+                'id' => 'TB8',
                 'name' => 'Thermohygrobarometer',
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100618'
-            ],[
-                'id' => 54,
-                'name' => 'Thermohygrobarometer',
-                'merk' => 'EXTECH',
-                'model' => 'SD700',
-                'serial_number' => 'A.100615'
             ],
         ];
 
+        $vital_sign_simulator = [
+            [
+                'id' => 'VSS1',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'Rigel',
+                'model' => 'UNI-SIM',
+                'serial_number' => '05J-0804'
+            ]
+        ];
+
+        $measuringInstrument = [
+            ...$electrical_safety_analyzer,
+            ...$nibp_simulator,
+            ...$vital_sign_simulator,
+            ...$handheld_nibp_simulator,
+            ...$digital_thermohygrometer,
+            ...$digital_thermohygrobarometer,
+            ...$digital_tachometer,
+            ...$stopwatch,
+            ...$thermohygrolight,
+            ...$thermohygrobarometer,
+            ...$digital_lux,
+            ...$lux_tester,
+            ...$digital_pressure_meter,
+            ...$universal_biometer
+        ];
         foreach($measuringInstrument as $data){
             MeasuringInstrument::create($data);
         }

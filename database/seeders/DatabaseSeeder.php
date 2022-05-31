@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
             ExternalOfficerSeeder::class,
             MeasuringInstrumentSeeder::class,
             InstrumentGroupSeeder::class,
-            InstrumentAlkesGroupSeeder::class,
             InstrumentGroupRelationSeeder::class,
+            InstrumentAlkesGroupSeeder::class,
         ]);
     }
 }
