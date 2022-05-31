@@ -84,5 +84,18 @@ class InstrumentGroupRelationSeeder extends Seeder
                 ]);
             }
         }
+
+        // ECG Recorder
+        $group_ids = [16, 16, 17, 18, 19, 19];
+        $start     = [1,  1,  1,  1,  6,  1];
+        $length    = [7,  5,  9,  6,  16, 8];
+        foreach(['MSIM', 'VSS', 'ESA', 'DCP', 'TL', 'TB'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
     }
 }

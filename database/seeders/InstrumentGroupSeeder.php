@@ -33,6 +33,11 @@ class InstrumentGroupSeeder extends Seeder
             ['id' => 13, 'name' => 'Fetal Simulator-Fetal Doppler'],
             ['id' => 14, 'name' => 'Electrical Safety Analyzer-Fetal Doppler'],
             ['id' => 15, 'name' => 'Digital Thermohygrobarometer-Fetal Doppler'],
+            
+            ['id' => 16, 'name' => 'Multiparameter Simulator-ECG Recorder'],
+            ['id' => 17, 'name' => 'Electrical Safety Analyzer-ECG Recorder'],
+            ['id' => 18, 'name' => 'Digital Caliper-ECG Recorder'],
+            ['id' => 19, 'name' => 'Thermohygrolight-ECG Recorder'],
         ];
 
         foreach($groups as $group){

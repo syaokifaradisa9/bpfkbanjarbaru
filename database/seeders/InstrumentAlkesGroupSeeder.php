@@ -37,6 +37,12 @@ class InstrumentAlkesGroupSeeder extends Seeder
             ['alkes_id' => 42, 'instrument_group_id' => 13],
             ['alkes_id' => 42, 'instrument_group_id' => 14],
             ['alkes_id' => 42, 'instrument_group_id' => 15],
+
+            // ECG Recorder
+            ['alkes_id' => 43, 'instrument_group_id' => 16],
+            ['alkes_id' => 43, 'instrument_group_id' => 17],
+            ['alkes_id' => 43, 'instrument_group_id' => 18],
+            ['alkes_id' => 43, 'instrument_group_id' => 19],
         ];
 
         foreach($relations as $relation){

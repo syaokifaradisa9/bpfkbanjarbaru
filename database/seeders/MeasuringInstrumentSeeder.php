@@ -14,6 +14,46 @@ class MeasuringInstrumentSeeder extends Seeder
      */
     public function run()
     {
+        $digital_caliper = [
+            [
+                'id' => 'DCP1',
+                'name' => 'Digital Caliper',
+                'merk' => 'Mitutoyo',
+                'model' => 'CD-6"PSX',
+                'serial_number' => '11011858'
+            ],[
+                'id' => 'DCP2',
+                'name' => 'Digital Caliper',
+                'merk' => 'Mitutoyo',
+                'model' => 'CD-6"PSX',
+                'serial_number' => '11015608'
+            ],[
+                'id' => 'DCP3',
+                'name' => 'Digital Caliper',
+                'merk' => 'Mitutoyo',
+                'model' => 'CD-6"PSX',
+                'serial_number' => '07414369'
+            ],[
+                'id' => 'DCP4',
+                'name' => 'Digital Caliper',
+                'merk' => 'Mitutoyo',
+                'model' => 'CD-6"PSX',
+                'serial_number' => '07414785'
+            ],[
+                'id' => 'DCP5',
+                'name' => 'Digital Caliper',
+                'merk' => 'Mitutoyo',
+                'model' => 'CD-6"PSX',
+                'serial_number' => '07414362'
+            ],[
+                'id' => 'DCP6',
+                'name' => 'Digital Caliper',
+                'merk' => 'Mitutoyo',
+                'model' => 'CD-6"PSX',
+                'serial_number' => '07414353'
+            ],
+        ];
+
         $digital_lux = [
             [
                 'id' => 'DLUX1',
@@ -435,6 +475,52 @@ class MeasuringInstrumentSeeder extends Seeder
             ]
         ];
 
+        $multiparameter_simulator = [
+            [
+                'id' => 'MSIM1',
+                'name' => 'Multiparameter Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 410',
+                'serial_number' => '21033'
+            ],[
+                'id' => 'MSIM2',
+                'name' => 'Multiparameter Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 420',
+                'serial_number' => '1826055'
+            ],[
+                'id' => 'MSIM3',
+                'name' => 'Multiparameter Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 420',
+                'serial_number' => '1827060'
+            ],[
+                'id' => 'MSIM4',
+                'name' => 'Multiparameter Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'MPS 450',
+                'serial_number' => '184633'
+            ],[
+                'id' => 'MSIM5',
+                'name' => 'Multiparameter Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'MPS 450',
+                'serial_number' => '184635'
+            ],[
+                'id' => 'MSIM6',
+                'name' => 'Multiparameter Simulator',
+                'merk' => 'RIGEL',
+                'model' => 'PatSim200',
+                'serial_number' => '15L-0684'
+            ],[
+                'id' => 'MSIM7',
+                'name' => 'Multiparameter Simulator',
+                'merk' => 'RIGEL',
+                'model' => 'PatSim200',
+                'serial_number' => '11L-0293'
+            ],
+        ];
+
         $nibp_simulator = [
             [
                 'id' => 'NIBP1',
@@ -759,10 +845,34 @@ class MeasuringInstrumentSeeder extends Seeder
             [
                 'id' => 'VSS1',
                 'name' => 'Vital Signs Simulator',
-                'merk' => 'Rigel',
-                'model' => 'UNI-SIM',
+                'merk' => 'RIGEL',
+                'model' => 'UNI-SiM',
                 'serial_number' => '05J-0804'
-            ]
+            ],[
+                'id' => 'VSS2',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'Prosim 8',
+                'serial_number' => '3217028'
+            ],[
+                'id' => 'VSS3',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'Prosim 8',
+                'serial_number' => '3188428'
+            ],[
+                'id' => 'VSS4',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'RIGEL',
+                'model' => 'UNI-SiM',
+                'serial_number' => '45K-1036'
+            ],[
+                'id' => 'VSS5',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'RIGEL',
+                'model' => 'UNI-SiM',
+                'serial_number' => '45K-1059'
+            ],
         ];
 
         $measuringInstrument = [
@@ -780,7 +890,9 @@ class MeasuringInstrumentSeeder extends Seeder
             ...$lux_tester,
             ...$digital_pressure_meter,
             ...$universal_biometer,
-            ...$fetal_simulator
+            ...$fetal_simulator,
+            ...$multiparameter_simulator,
+            ...$digital_caliper
         ];
         foreach($measuringInstrument as $data){
             MeasuringInstrument::create($data);
