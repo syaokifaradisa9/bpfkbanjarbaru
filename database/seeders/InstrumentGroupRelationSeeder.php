@@ -62,5 +62,27 @@ class InstrumentGroupRelationSeeder extends Seeder
                 ]);
             }
         }
+
+        // Fetal Doppler
+        $group_ids = [13, 14, 15];
+        $start     = [1,  1,  1];
+        $length    = [7,  9,  11];
+        foreach(['FS', 'ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        for($i = 1; $i <= 8; $i++){
+            if($i != 5){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => 15, 
+                    'measuring_instrument_id' => 'TB'.$i
+                ]);
+            }
+        }
     }
 }

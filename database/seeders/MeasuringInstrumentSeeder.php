@@ -369,6 +369,52 @@ class MeasuringInstrumentSeeder extends Seeder
             ],
         ];
 
+        $fetal_simulator = [
+            [
+                'id' => 'FS1',
+                'name' => 'Fetal Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 320',
+                'serial_number' => '1828012'
+            ],[
+                'id' => 'FS2',
+                'name' => 'Fetal Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 320',
+                'serial_number' => '1828016'
+            ],[
+                'id' => 'FS3',
+                'name' => 'Fetal Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 320',
+                'serial_number' => '3204002'
+            ],[
+                'id' => 'FS4',
+                'name' => 'Fetal Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 320',
+                'serial_number' => '3204003'
+            ],[
+                'id' => 'FS5',
+                'name' => 'Fetal Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 320',
+                'serial_number' => '4312020'
+            ],[
+                'id' => 'FS6',
+                'name' => 'Fetal Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 320',
+                'serial_number' => '4662032'
+            ],[
+                'id' => 'FS7',
+                'name' => 'Fetal Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'PS 320',
+                'serial_number' => '4662033'
+            ],
+        ];
+
         $handheld_nibp_simulator = [
             [
                 'id' => 'HNIBP1',
@@ -647,16 +693,6 @@ class MeasuringInstrumentSeeder extends Seeder
             ],
         ];
 
-        $universal_biometer = [
-            [
-                'id' => 'UB1',
-                'name' => 'Universal Biometer',
-                'merk' => 'Biotek Instrument',
-                'model' => 'CPM III',
-                'serial_number' => '126143'
-            ],
-        ];
-
         $thermohygrobarometer = [
             [
                 'id' => 'TB1',
@@ -709,6 +745,16 @@ class MeasuringInstrumentSeeder extends Seeder
             ],
         ];
 
+        $universal_biometer = [
+            [
+                'id' => 'UB1',
+                'name' => 'Universal Biometer',
+                'merk' => 'Biotek Instrument',
+                'model' => 'CPM III',
+                'serial_number' => '126143'
+            ],
+        ];
+
         $vital_sign_simulator = [
             [
                 'id' => 'VSS1',
@@ -733,7 +779,8 @@ class MeasuringInstrumentSeeder extends Seeder
             ...$digital_lux,
             ...$lux_tester,
             ...$digital_pressure_meter,
-            ...$universal_biometer
+            ...$universal_biometer,
+            ...$fetal_simulator
         ];
         foreach($measuringInstrument as $data){
             MeasuringInstrument::create($data);
