@@ -38,6 +38,21 @@ class InstrumentGroupSeeder extends Seeder
             ['id' => 17, 'name' => 'Electrical Safety Analyzer-ECG Recorder'],
             ['id' => 18, 'name' => 'Digital Caliper-ECG Recorder'],
             ['id' => 19, 'name' => 'Thermohygrolight-ECG Recorder'],
+            
+            ['id' => 20, 'name' => 'Gas Flow Analyzer-Flowmeter'],
+            ['id' => 21, 'name' => 'Thermohygrolight-Flowmeter'],
+            
+            ['id' => 22, 'name' => 'Electrical Safety Analyzer-Infusion Pump'],
+            ['id' => 23, 'name' => 'Thermohygrolight-Infusion Pump'],
+
+            ['id' => 24, 'name' => 'Thermocouple Data Logger-Lab Refrigerator'],
+            ['id' => 25, 'name' => 'Temperature Recorder-Lab Refrigerator'],
+            ['id' => 26, 'name' => 'Electrical Safety Analyzer-Lab Refrigerator'],
+            ['id' => 27, 'name' => 'Thermohygrolight-Lab Refrigerator'],
+
+            ['id' => 28, 'name' => 'Gas Flow Analyzer-Nebulizer'],
+            ['id' => 29, 'name' => 'Electrical Safety Analyzer-Nebulizer'],
+            ['id' => 30, 'name' => 'Thermohygrolight-Nebulizer'],
         ];
 
         foreach($groups as $group){

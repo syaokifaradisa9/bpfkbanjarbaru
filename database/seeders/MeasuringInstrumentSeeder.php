@@ -455,6 +455,76 @@ class MeasuringInstrumentSeeder extends Seeder
             ],
         ];
 
+        $gas_flow_analyzer = [
+            [
+                'id' => 'GFA1',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Fluke',
+                'model' => 'VT305',
+                'serial_number' => 'BF100519'
+            ],[
+                'id' => 'GFA2',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Fluke',
+                'model' => 'VT Plus HF',
+                'serial_number' => '2847038'
+            ],[
+                'id' => 'GFA3',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'IMT Medical',
+                'model' => 'PF-300',
+                'serial_number' => 'BA101580'
+            ],[
+                'id' => 'GFA4',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'IMT Medical',
+                'model' => 'PF-300',
+                'serial_number' => 'BA120302'
+            ],[
+                'id' => 'GFA5',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Fluke',
+                'model' => 'VT305',
+                'serial_number' => 'BF102163'
+            ],[
+                'id' => 'GFA6',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Fluke',
+                'model' => 'VT305',
+                'serial_number' => 'BF102142'
+            ],[
+                'id' => 'GFA7',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Rigel',
+                'model' => 'Ventest 800',
+                'serial_number' => 'BA120986'
+            ],[
+                'id' => 'GFA8',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Rigel',
+                'model' => 'Ventest 800',
+                'serial_number' => 'BA120987'
+            ],[
+                'id' => 'GFA9',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Rigel',
+                'model' => 'Ventest 800',
+                'serial_number' => 'BA200651'
+            ],[
+                'id' => 'GFA10',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Fluke',
+                'model' => 'VT900A',
+                'serial_number' => '5101035-5102036'
+            ],[
+                'id' => 'GFA11',
+                'name' => 'Gas Flow Analyzer',
+                'merk' => 'Fluke',
+                'model' => 'VT900A',
+                'serial_number' => '5101752-5102038'
+            ],
+        ];
+
         $handheld_nibp_simulator = [
             [
                 'id' => 'HNIBP1',
@@ -472,6 +542,16 @@ class MeasuringInstrumentSeeder extends Seeder
                 'merk' => 'HIOKI',
                 'model' => '3421',
                 'serial_number' => '90130606'
+            ]
+        ];
+
+        $mobile_corder = [
+            [
+                'id' => 'MC1',
+                'name' => 'Mobile Corder',
+                'merk' => 'Yokogawa',
+                'model' => 'GP 10',
+                'serial_number' => 'S5T810599'
             ]
         ];
 
@@ -534,6 +614,28 @@ class MeasuringInstrumentSeeder extends Seeder
                 'merk' => 'Rigel',
                 'model' => 'BP-SIM',
                 'serial_number' => '12L-0534'
+            ],
+        ];
+
+        $reference_themometer = [
+            [
+                'id' => 'RT1',
+                'name' => 'Reference Thermometer',
+                'merk' => 'APPA',
+                'model' => 'APPA51',
+                'serial_number' => '03002948'
+            ],[
+                'id' => 'RT2',
+                'name' => 'Reference Thermometer',
+                'merk' => 'FLUKE',
+                'model' => '1524',
+                'serial_number' => '1803038'
+            ],[
+                'id' => 'RT3',
+                'name' => 'Reference Thermometer',
+                'merk' => 'FLUKE',
+                'model' => '1524',
+                'serial_number' => '1803037'
             ],
         ];
 
@@ -634,6 +736,56 @@ class MeasuringInstrumentSeeder extends Seeder
                 'merk' => 'EXTECH',
                 'model' => '365535',
                 'serial_number' => '005018'
+            ],
+        ];
+
+        $temperature_recorder = [
+            [
+                'id' => 'TREC1',
+                'name' => 'Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8410',
+                'serial_number' => '200812984'
+            ],[
+                'id' => 'TREC2',
+                'name' => 'Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8410',
+                'serial_number' => '200812985'
+            ],[
+                'id' => 'TREC3',
+                'name' => 'Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8410',
+                'serial_number' => '210368322'
+            ],[
+                'id' => 'TREC4',
+                'name' => 'Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8410',
+                'serial_number' => '210368323'
+            ],[
+                'id' => 'TREC5',
+                'name' => 'Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8410',
+                'serial_number' => '210368324'
+            ],
+        ];
+
+        $thermocouple_data_logger = [
+            [
+                'id' => 'TDL1',
+                'name' => 'Thermocouple Data Logger',
+                'merk' => 'MADGETECH',
+                'model' => 'OctTemp 2000',
+                'serial_number' => 'P40270'
+            ],[
+                'id' => 'TDL2',
+                'name' => 'Thermocouple Data Logger',
+                'merk' => 'MADGETECH',
+                'model' => 'OctTemp 2000',
+                'serial_number' => 'P41878'
             ],
         ];
 
@@ -776,6 +928,12 @@ class MeasuringInstrumentSeeder extends Seeder
                 'merk' => 'EXTECH',
                 'model' => 'SD700',
                 'serial_number' => 'A.100586'
+            ],[
+                'id' => 'TL24',
+                'name' => 'Thermohygrolight',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100615'
             ],
         ];
 
@@ -875,6 +1033,64 @@ class MeasuringInstrumentSeeder extends Seeder
             ],
         ];
 
+        $wireless_temperature_recorder = [
+            [
+                'id' => 'WTR1',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '200936000'
+            ],[
+                'id' => 'WTR2',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '200936001'
+            ],[
+                'id' => 'WTR3',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '200821397'
+            ],[
+                'id' => 'WTR4',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '210411983'
+            ],[
+                'id' => 'WTR5',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '210411984'
+            ],[
+                'id' => 'WTR6',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '210411985'
+            ],[
+                'id' => 'WTR7',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '210746054'
+            ],[
+                'id' => 'WTR8',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '210746055'
+            ],[
+                'id' => 'WTR9',
+                'name' => 'Wireless Temperature Recorder',
+                'merk' => 'HIOKI',
+                'model' => 'LR 8510',
+                'serial_number' => '210746056'
+            ],
+        ];
+
         $measuringInstrument = [
             ...$electrical_safety_analyzer,
             ...$nibp_simulator,
@@ -892,7 +1108,13 @@ class MeasuringInstrumentSeeder extends Seeder
             ...$universal_biometer,
             ...$fetal_simulator,
             ...$multiparameter_simulator,
-            ...$digital_caliper
+            ...$digital_caliper,
+            ...$gas_flow_analyzer,
+            ...$thermocouple_data_logger,
+            ...$mobile_corder,
+            ...$reference_themometer,
+            ...$wireless_temperature_recorder,
+            ...$temperature_recorder
         ];
         foreach($measuringInstrument as $data){
             MeasuringInstrument::create($data);

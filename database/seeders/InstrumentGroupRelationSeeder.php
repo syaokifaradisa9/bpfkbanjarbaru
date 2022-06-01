@@ -97,5 +97,57 @@ class InstrumentGroupRelationSeeder extends Seeder
                 ]);
             }
         }
+
+        // Flowmeter
+        $group_ids = [20, 21];
+        $start     = [1,  6];
+        $length    = [11,  24];
+        foreach(['GFA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        // Infusion Pump
+        $group_ids = [22, 23];
+        $start     = [1,  6];
+        $length    = [9,  24];
+        foreach(['ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        // Lab Refrigerator
+        $group_ids = [24, 24, 24, 24, 25, 26, 27];
+        $start     = [1,  1,  1,  1,  1,  1,  6];
+        $length    = [2,  1,  3,  9,  5,  9,  24];
+        foreach(['TDL', 'MC', 'RT', 'WTR', 'TREC', 'ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        // Nebulizer
+        $group_ids = [28, 29, 30];
+        $start     = [1,  2,  6];
+        $length    = [11, 9,  24];
+        foreach(['GFA', 'ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
     }
 }

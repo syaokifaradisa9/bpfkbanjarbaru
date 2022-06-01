@@ -43,6 +43,25 @@ class InstrumentAlkesGroupSeeder extends Seeder
             ['alkes_id' => 43, 'instrument_group_id' => 17],
             ['alkes_id' => 43, 'instrument_group_id' => 18],
             ['alkes_id' => 43, 'instrument_group_id' => 19],
+
+            // Flowmeter
+            ['alkes_id' => 1, 'instrument_group_id' => 20],
+            ['alkes_id' => 1, 'instrument_group_id' => 21],
+
+            // Infusion Pump
+            ['alkes_id' => 53, 'instrument_group_id' => 22],
+            ['alkes_id' => 53, 'instrument_group_id' => 23],
+
+            // Lab Refrigerator
+            ['alkes_id' => 55, 'instrument_group_id' => 24],
+            ['alkes_id' => 55, 'instrument_group_id' => 25],
+            ['alkes_id' => 55, 'instrument_group_id' => 26],
+            ['alkes_id' => 55, 'instrument_group_id' => 27],
+
+            // Nebulizer
+            ['alkes_id' => 22, 'instrument_group_id' => 28],
+            ['alkes_id' => 22, 'instrument_group_id' => 29],
+            ['alkes_id' => 22, 'instrument_group_id' => 30],
         ];
 
         foreach($relations as $relation){
