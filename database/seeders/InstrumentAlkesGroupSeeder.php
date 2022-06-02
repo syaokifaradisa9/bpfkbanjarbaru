@@ -62,6 +62,36 @@ class InstrumentAlkesGroupSeeder extends Seeder
             ['alkes_id' => 22, 'instrument_group_id' => 28],
             ['alkes_id' => 22, 'instrument_group_id' => 29],
             ['alkes_id' => 22, 'instrument_group_id' => 30],
+
+            // Patient Monitor
+            ['alkes_id' =>34, 'instrument_group_id' => 31],
+            ['alkes_id' =>34, 'instrument_group_id' => 32],
+            ['alkes_id' =>34, 'instrument_group_id' => 33],
+            ['alkes_id' =>34, 'instrument_group_id' => 34],
+            ['alkes_id' =>34, 'instrument_group_id' => 35],
+
+            // Pulse Oxymetri
+            ['alkes_id' =>60, 'instrument_group_id' => 36],
+            ['alkes_id' =>60, 'instrument_group_id' => 37],
+            ['alkes_id' =>60, 'instrument_group_id' => 38],
+
+            // Sphygmomanometer
+            ['alkes_id' =>62, 'instrument_group_id' => 39],
+            ['alkes_id' =>62, 'instrument_group_id' => 40],
+            ['alkes_id' =>62, 'instrument_group_id' => 41],
+
+            // Suction Pump
+            ['alkes_id' =>27, 'instrument_group_id' => 42],
+            ['alkes_id' =>27, 'instrument_group_id' => 43],
+            ['alkes_id' =>27, 'instrument_group_id' => 44],
+
+            // Syringe Pump
+            ['alkes_id' =>67, 'instrument_group_id' => 45],
+            ['alkes_id' =>67, 'instrument_group_id' => 46],
+
+            // Timbangan Bayi
+            ['alkes_id' =>9, 'instrument_group_id' => 47],
+            ['alkes_id' =>9, 'instrument_group_id' => 48],
         ];
 
         foreach($relations as $relation){

@@ -27,8 +27,8 @@ class InstrumentGroupRelationSeeder extends Seeder
         InstrumentGroupRelation::create(['instrument_group_id' => 1, 'measuring_instrument_id' => 'NIBP2']);
         InstrumentGroupRelation::create(['instrument_group_id' => 1, 'measuring_instrument_id' => 'HNIBP1']);
 
-        $group_ids = [2, 2, 3];
-        $length = [8, 13, 9];
+        $group_ids = [2, 1, 3];
+        $length = [8, 14, 9];
         foreach(['DTM', 'DTBM', 'ESA'] as $index => $code){
             for($i = 1; $i <= $length[$index]; $i++){
                 InstrumentGroupRelation::create([
@@ -142,6 +142,138 @@ class InstrumentGroupRelationSeeder extends Seeder
         $start     = [1,  2,  6];
         $length    = [11, 9,  24];
         foreach(['GFA', 'ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        // Patient Monitor
+        $group_ids = [31, 31, 32, 32, 33, 33, 33, 34, 35];
+        $start     = [1,  1,  1,  2,  1,  1,  1,  1,  6];
+        $length    = [7,  5,  7,  3,  8,  1,  5,  9,  24];
+        foreach(['MSIM', 'VSS', 'SPO', 'VSS', 'VSS', 'HNIBP', 'NIBP', 'ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        // Pulse Oxymetri
+        for($i = 1; $i <= 7; $i++){
+            if($i != 2){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => 36, 
+                    'measuring_instrument_id' => 'SPO'.$i
+                ]);
+            }
+        }
+
+        for($i = 7; $i <= 14; $i++){
+            if($i != 13){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => 38, 
+                    'measuring_instrument_id' => 'DTBM'.$i
+                ]);
+            }
+        }
+
+        $group_ids = [37, 38];
+        $start     = [1,  6];
+        $length    = [9,  11];
+        foreach(['ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        // Sphygmomanometer
+        $group_ids = [39, 41];
+        $start     = [12, 1];
+        $length    = [17, 16];
+        foreach(['DPM',] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        for($i = 4; $i <= 11; $i++){
+            if($i != 8){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => 40, 
+                    'measuring_instrument_id' => 'DTM'.$i
+                ]);
+            }
+        }
+
+        for($i = 1; $i <= 15; $i++){
+            if($i != 5){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => 40, 
+                    'measuring_instrument_id' => 'DTBM'.$i
+                ]);
+            }
+        }
+
+        // Suction Pump
+        for($i = 1; $i <= 11; $i++){
+            if($i != 3){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => 42, 
+                    'measuring_instrument_id' => 'DPM'.$i
+                ]);
+            }
+        }
+
+        $group_ids = [42, 43];
+        $start     = [1, 1];
+        $length    = [1, 9];
+        foreach(['UB', 'ESA'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        for($i = 1; $i <= 14; $i++){
+            if($i != 5 || $i != 6){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => 44, 
+                    'measuring_instrument_id' => 'DPM'.$i
+                ]);
+            }
+        }
+
+        // Syringe Pump
+        $group_ids = [45, 46];
+        $start     = [1, 6];
+        $length    = [9, 24];
+        foreach(['ESA', 'TL'] as $index => $code){
+            for($i = $start[$index]; $i <= $length[$index]; $i++){
+                InstrumentGroupRelation::create([
+                    'instrument_group_id' => $group_ids[$index], 
+                    'measuring_instrument_id' => $code.$i
+                ]);
+            }
+        }
+
+        // Timbangan Bayi
+        $group_ids = [47, 48];
+        $start     = [1, 6];
+        $length    = [7, 23];
+        foreach(['ESA', 'TL'] as $index => $code){
             for($i = $start[$index]; $i <= $length[$index]; $i++){
                 InstrumentGroupRelation::create([
                     'instrument_group_id' => $group_ids[$index], 

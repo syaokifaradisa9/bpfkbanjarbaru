@@ -14,6 +14,52 @@ class MeasuringInstrumentSeeder extends Seeder
      */
     public function run()
     {
+        $anak_timbangan_standar = [
+            [
+                'id' => 'ATS1',
+                'name' => 'Anak Timbangan Standar',
+                'merk' => 'HÄFNER',
+                'model' => '7.MEHM-210',
+                'serial_number' => '2790715'
+            ],[
+                'id' => 'ATS2',
+                'name' => 'Anak Timbangan Standar',
+                'merk' => 'HÄFNER',
+                'model' => '7.MEHM-210',
+                'serial_number' => '1060716'
+            ],[
+                'id' => 'ATS3',
+                'name' => 'Anak Timbangan Standar',
+                'merk' => 'HÄFNER',
+                'model' => '7.MEHM-210',
+                'serial_number' => '1840819'
+            ],[
+                'id' => 'ATS4',
+                'name' => 'Anak Timbangan Standar',
+                'merk' => 'HÄFNER',
+                'model' => '7.MEHM-210',
+                'serial_number' => '1850819'
+            ],[
+                'id' => 'ATS5',
+                'name' => 'Anak Timbangan Standar',
+                'merk' => 'HÄFNER',
+                'model' => '7.MEHM-210',
+                'serial_number' => '4490920'
+            ],[
+                'id' => 'ATS6',
+                'name' => 'Anak Timbangan Standar',
+                'merk' => 'HÄFNER',
+                'model' => '7.MEHM-210',
+                'serial_number' => '4470920'
+            ],[
+                'id' => 'ATS7',
+                'name' => 'Anak Timbangan Standar',
+                'merk' => 'HÄFNER',
+                'model' => '7.MEHM-210',
+                'serial_number' => '4480920'
+            ],
+        ];
+
         $digital_caliper = [
             [
                 'id' => 'DCP1',
@@ -105,68 +151,104 @@ class MeasuringInstrumentSeeder extends Seeder
                 'id' => 'DPM1',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM 4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '1831021'
             ],[
                 'id' => 'DPM2',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '1831023'
             ],[
                 'id' => 'DPM3',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2H',
+                'model' => 'DPM 4-2H',
                 'serial_number' => '3191005'
             ],[
                 'id' => 'DPM4',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '4414016'
             ],[
                 'id' => 'DPM5',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '4414018',
             ],[
                 'id' => 'DPM6',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2H',
+                'model' => 'DPM 4-2H',
                 'serial_number' => '66111021',
             ],[
                 'id' => 'DPM7',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '4821027',
             ],[
                 'id' => 'DPM8',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '4600002',
             ],[
                 'id' => 'DPM9',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '484821028',
             ],[
                 'id' => 'DPM10',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '4819018',
             ],[
                 'id' => 'DPM11',
                 'name' => 'Digital Pressure Meter',
                 'merk' => 'Fluke',
-                'model' => 'DPM4 2G',
+                'model' => 'DPM 4-2G',
                 'serial_number' => '4813009',
+            ],[
+                'id' => 'DPM12',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-1H',
+                'serial_number' => '3505042',
+            ],[
+                'id' => 'DPM13',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-1H',
+                'serial_number' => '3534043',
+            ],[
+                'id' => 'DPM14',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-1H',
+                'serial_number' => '3506049',
+            ],[
+                'id' => 'DPM15',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-1H',
+                'serial_number' => '3505041',
+            ],[
+                'id' => 'DPM16',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-1H',
+                'serial_number' => '3787040',
+            ],[
+                'id' => 'DPM17',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-1H',
+                'serial_number' => '3191005',
             ],
 
         ];
@@ -266,6 +348,24 @@ class MeasuringInstrumentSeeder extends Seeder
                 'merk' => 'Sekonic',
                 'model' => 'ST-50',
                 'serial_number' => 'HE 01 - 203004'
+            ],[
+                'id' => 'DTM9',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '14082463'
+            ],[
+                'id' => 'DTM10',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062875'
+            ],[
+                'id' => 'DTM11',
+                'name' => 'Digital Thermohygrometer',
+                'merk' => 'KIMO',
+                'model' => 'KH-210-AO',
+                'serial_number' => '15062874'
             ],
         ];
 
@@ -309,46 +409,58 @@ class MeasuringInstrumentSeeder extends Seeder
             ],[
                 'id' => 'DTBM7',
                 'name' => 'Digital Thermohygrobarometer',
-                'merk' => 'Greisinger',
-                'model' => 'GFTB 200',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
                 'serial_number' => 'A.100609'
             ],[
                 'id' => 'DTBM8',
                 'name' => 'Digital Thermohygrobarometer',
-                'merk' => 'Greisinger',
-                'model' => 'GFTB 200',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
                 'serial_number' => 'A.100611'
             ],[
                 'id' => 'DTBM9',
                 'name' => 'Digital Thermohygrobarometer',
-                'merk' => 'Greisinger',
-                'model' => 'GFTB 200',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
                 'serial_number' => 'A.100586'
             ],[
                 'id' => 'DTBM10',
                 'name' => 'Digital Thermohygrobarometer',
-                'merk' => 'Greisinger',
-                'model' => 'GFTB 200',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
                 'serial_number' => 'A.100616'
             ],[
                 'id' => 'DTBM11',
                 'name' => 'Digital Thermohygrobarometer',
-                'merk' => 'Greisinger',
-                'model' => 'GFTB 200',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
                 'serial_number' => 'A.100618'
             ],[
                 'id' => 'DTBM12',
                 'name' => 'Digital Thermohygrobarometer',
-                'merk' => 'Greisinger',
-                'model' => 'GFTB 200',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
                 'serial_number' => 'A.100617'
             ],[
                 'id' => 'DTBM13',
                 'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100615'
+            ],[
+                'id' => 'DTBM14',
+                'name' => 'Digital Thermohygrobarometer',
+                'merk' => 'EXTECH',
+                'model' => 'SD700',
+                'serial_number' => 'A.100605'
+            ],[
+                'id' => 'DTBM15',
+                'name' => 'Digital Thermohygrobarometer',
                 'merk' => 'Greisinger',
                 'model' => 'GFTB 200',
-                'serial_number' => 'A.100615'
-            ],
+                'serial_number' => '34903334'
+            ]
         ];
 
         $electrical_safety_analyzer = [
@@ -605,15 +717,33 @@ class MeasuringInstrumentSeeder extends Seeder
             [
                 'id' => 'NIBP1',
                 'name' => 'NIBP Simulator',
-                'merk' => 'Rigel',
+                'merk' => 'RIGEL',
                 'model' => 'BP-SIM',
                 'serial_number' => '44L-1084'
             ],[
                 'id' => 'NIBP2',
                 'name' => 'NIBP Simulator',
-                'merk' => 'Rigel',
+                'merk' => 'RIGEL',
                 'model' => 'BP-SIM',
                 'serial_number' => '12L-0534'
+            ],[
+                'id' => 'NIBP3',
+                'name' => 'NIBP Simulator',
+                'merk' => 'RIGEL',
+                'model' => 'BP-SIM',
+                'serial_number' => '12L-0536'
+            ],[
+                'id' => 'NIBP4',
+                'name' => 'NIBP Simulator',
+                'merk' => 'RIGEL',
+                'model' => 'BP-SIM',
+                'serial_number' => '44L-1084'
+            ],[
+                'id' => 'NIBP5',
+                'name' => 'NIBP Simulator',
+                'merk' => 'RIGEL',
+                'model' => 'BP-SIM',
+                'serial_number' => '06L-0610'
             ],
         ];
 
@@ -638,6 +768,52 @@ class MeasuringInstrumentSeeder extends Seeder
                 'serial_number' => '1803037'
             ],
         ];
+
+        $spo2_simulator = [
+            [
+                'id' => 'SPO1',
+                'name' => 'SPO₂ Simulator',
+                'merk' => 'Fluke',
+                'model' => 'SPOTLIGHT',
+                'serial_number' => '2799069'
+            ],[
+                'id' => 'SPO2',
+                'name' => 'SPO₂ Simulator',
+                'merk' => 'Fluke',
+                'model' => 'SPOTLIGHT',
+                'serial_number' => '27990099'
+            ],[
+                'id' => 'SPO3',
+                'name' => 'SPO₂ Simulator',
+                'merk' => 'Fluke',
+                'model' => 'SPOTLIGHT',
+                'serial_number' => '2812009'
+            ],[
+                'id' => 'SPO4',
+                'name' => 'SPO₂ Simulator',
+                'merk' => 'Fluke',
+                'model' => 'SPOTLIGHT',
+                'serial_number' => '4403084'
+            ],[
+                'id' => 'SPO5',
+                'name' => 'SPO₂ Simulator',
+                'merk' => 'Fluke',
+                'model' => 'SPOTLIGHT',
+                'serial_number' => '4352022'
+            ],[
+                'id' => 'SPO6',
+                'name' => 'SPO₂ Simulator',
+                'merk' => 'Fluke',
+                'model' => 'SPOTLIGHT',
+                'serial_number' => '4404040'
+            ],[
+                'id' => 'SPO7',
+                'name' => 'SPO₂ Simulator',
+                'merk' => 'Fluke',
+                'model' => 'SPOTLIGHT',
+                'serial_number' => '4589019'
+            ],
+        ];  
 
         $stopwatch = [
             [
@@ -1030,7 +1206,25 @@ class MeasuringInstrumentSeeder extends Seeder
                 'merk' => 'RIGEL',
                 'model' => 'UNI-SiM',
                 'serial_number' => '45K-1059'
-            ],
+            ],[
+                'id' => 'VSS6',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'Prosim 8',
+                'serial_number' => '5144556'
+            ],[
+                'id' => 'VSS7',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'Prosim 4',
+                'serial_number' => '4422046'
+            ],[
+                'id' => 'VSS8',
+                'name' => 'Vital Signs Simulator',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'Prosim 4',
+                'serial_number' => '4416070'
+            ]
         ];
 
         $wireless_temperature_recorder = [
@@ -1114,7 +1308,9 @@ class MeasuringInstrumentSeeder extends Seeder
             ...$mobile_corder,
             ...$reference_themometer,
             ...$wireless_temperature_recorder,
-            ...$temperature_recorder
+            ...$temperature_recorder,
+            ...$spo2_simulator,
+            ...$anak_timbangan_standar
         ];
         foreach($measuringInstrument as $data){
             MeasuringInstrument::create($data);

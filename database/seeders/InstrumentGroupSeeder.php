@@ -53,6 +53,30 @@ class InstrumentGroupSeeder extends Seeder
             ['id' => 28, 'name' => 'Gas Flow Analyzer-Nebulizer'],
             ['id' => 29, 'name' => 'Electrical Safety Analyzer-Nebulizer'],
             ['id' => 30, 'name' => 'Thermohygrolight-Nebulizer'],
+
+            ['id' => 31, 'name' => 'Pengukuran ECG-Patient Monitor'],
+            ['id' => 32, 'name' => 'Pengukuran Pulse Oximetri-Patient Monitor'],
+            ['id' => 33, 'name' => 'Pengukuran NIBP-Patient Monitor'],
+            ['id' => 34, 'name' => 'Pengukuran Keselamatan Kelistrikan-Patient Monitor'],
+            ['id' => 35, 'name' => 'Pengukuran Suhu & Kelembaban-Patient Monitor'],
+
+            ['id' => 36, 'name' => 'SPO2 Simulator-Pulse Oxymetry'],
+            ['id' => 37, 'name' => 'Electrical Safety Analyzer-Pulse Oxymetry'],
+            ['id' => 38, 'name' => 'Thermohygrolight-Pulse Oxymetry'],
+
+            ['id' => 39, 'name' => 'Digital Pressure Meter-Sphygmomanometer'],
+            ['id' => 40, 'name' => 'Digital Thermohygrometer-Sphygmomanometer'],
+            ['id' => 41, 'name' => 'Stopwatch-Sphygmomanometer'],
+
+            ['id' => 42, 'name' => 'Digital Pressure Meter-Suction Pump'],
+            ['id' => 43, 'name' => 'Digital Pressure Meter-Suction Pump'],
+            ['id' => 44, 'name' => 'Digital Thermohygrobarometer-Suction Pump'],
+
+            ['id' => 45, 'name' => 'Electrical Safety Analyzer-Syringe Pump'],
+            ['id' => 46, 'name' => 'Thermohygrolight-Syringe Pump'],
+
+            ['id' => 47, 'name' => 'Anak Timbangan Standar-Timbangan Bayi'],
+            ['id' => 48, 'name' => 'Thermohygrolight-Timbangan Bayi'],
         ];
 
         foreach($groups as $group){
