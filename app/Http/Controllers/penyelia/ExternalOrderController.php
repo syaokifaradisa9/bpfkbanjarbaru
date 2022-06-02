@@ -14,6 +14,7 @@ class ExternalOrderController extends Controller
     public function index(){
         $orders = ExternalOrder::with('external_alkes_order')
                                 ->where('status','DISETUJUI')
+                                ->orWhere('status','DITERIMA')
                                 ->orWhere('status','DALAM PERJALANAN')
                                 ->orWhere('status','PENGERJAAN')
                                 ->orWhere('status','MENUNGGU PEMBAYARAN')

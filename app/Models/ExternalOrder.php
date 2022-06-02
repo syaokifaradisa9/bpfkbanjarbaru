@@ -71,17 +71,13 @@ class ExternalOrder extends Model
         $tempOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $this->id)->get();
         foreach($tempOrders as $order){
             $categoryName = $order->alkes->alkes_category->name;
-            if(isset($orders[$categoryName])){
-                if(isset($orders[$categoryName][$order->alkes->name])){
-                    $orders[$categoryName][$order->alkes->name]['ammount']++;
-                }
+            if(isset($orders[$categoryName][$order->alkes->name])){
+                $orders[$categoryName][$order->alkes->name]['ammount']++;
             }else{
-                $orders[$categoryName] = [
-                    $order->alkes->name => [
-                        'ammount' => 1,
-                        'price' => $order->alkes->price,
-                        'description' => $order->description
-                    ]
+                $orders[$categoryName][$order->alkes->name] = [
+                    'ammount' => 1,
+                    'price' => $order->alkes->price,
+                    'description' => $order->description
                 ];
             }
         }
