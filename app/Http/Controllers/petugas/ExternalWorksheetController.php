@@ -42,7 +42,7 @@ class ExternalWorksheetController extends Controller
         }
 
         
-        // Pengambilan Data Alat Ukur KAlibrasi
+        // Pengambilan Data Alat Ukur Kalibrasi
         $alkes = Alkes::with('instrument_alkes_group')->findOrFail($alkesOrder->alkes->id);
         $measuringInstruments = [];
         foreach($alkes->instrument_alkes_group as $alkesGroup){
@@ -50,7 +50,7 @@ class ExternalWorksheetController extends Controller
 
             $measuringInstrument = [
                 'id' => $instrumentGroup->id,
-                'name' => $instrumentGroup->name,
+                'name' => explode('-', $instrumentGroup->name)[0],
                 'instruments' => []
             ];
             
@@ -66,6 +66,7 @@ class ExternalWorksheetController extends Controller
                 );
             }
 
+            // sort($measuringInstrument['instruments']);
             array_push($measuringInstruments, $measuringInstrument);
         }
 
@@ -76,7 +77,6 @@ class ExternalWorksheetController extends Controller
             'certificate_number' => $certificate_number,
             'measuringInstruments' => $measuringInstruments,
             'order_id' => $order_id,
-            'alkes_order_id' => $alkes_order_id,
             'officers' => $officers
         ]);
     }
