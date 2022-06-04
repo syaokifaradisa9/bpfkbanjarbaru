@@ -18,7 +18,7 @@
             </div>
 
             {{-- Informasi Sertifikat --}}
-            <form action="{{ route('petugas.order.external.worksheet.excel.store', ['order_id' => $order_id, 'alkes_order_id' => $alkes_order_id]) }}" method="post">
+            <form action="{{ route('petugas.order.external.worksheet.excel.store', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}" method="post">
               @csrf
 
               <div class="card-body px-4">
@@ -49,12 +49,12 @@
                         <input name="E9" type="text" placeholder="Resolusi" class="form-control col">
                         <div class="col-5 text-center pt-2">
                           <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="( Analog )" id="customRadioInline1" name="G9" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadioInline1">Analog</label>
+                            <input type="radio" value="( Analog )" id="G9-a" name="G9" class="custom-control-input">
+                            <label class="custom-control-label" for="G9-a">Analog</label>
                           </div>
                           <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline2" value="( Digital )" name="G9" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadioInline2">Digital</label>
+                            <input type="radio" id="G9-b" value="( Digital )" name="G9" class="custom-control-input">
+                            <label class="custom-control-label" for="G9-b">Digital</label>
                           </div>
                         </div>
                       </div>
@@ -190,13 +190,13 @@
                     </tr>
                     @for ($i = 0; $i < 4; $i++)
                       <tr>
-                        <td>{{ $i + 1 }}</td>
+                        <td class="text-center align-middle">{{ $i + 1 }}</td>
                         @if ($i == 0)
                           <td rowspan="4" class="text-center align-middle">Kecepatan Putaran<br>(RPM)</td>
                         @endif
                         @foreach (['D', 'F', 'G', 'H', 'I', 'J', 'K'] as $letter)
                         <td>
-                          <input name="{{ $letter.(36 + $i) }}" type="text" class="form-control">
+                          <input name="{{ $letter.(36 + $i) }}" type="text" class="form-control text-center align-middle">
                         </td>
                         @endforeach
                       </tr>
@@ -223,7 +223,7 @@
                       <td class="text-center align-middle">Waktu (s)</td>
                       @foreach (['D', 'F', 'H', 'J'] as $letter)
                         <td>
-                          <input name="{{ $letter.'44' }}" type="text" class="form-control">
+                          <input name="{{ $letter.'44' }}" type="text" class="form-control text-center align-middle">
                         </td>
                       @endforeach
                     </tr>
