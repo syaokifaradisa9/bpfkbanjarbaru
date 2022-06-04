@@ -487,7 +487,7 @@ class MeasuringInstrumentSeeder extends Seeder
                 'name' => 'Electrical Safety Analyzer',
                 'merk' => 'Fluke',
                 'model' => 'ESA 615',
-                'serial_number' => '28533078'
+                'serial_number' => '2853078'
             ],[
                 'id' => 'ESA5',
                 'name' => 'Electrical Safety Analyzer',
@@ -781,7 +781,7 @@ class MeasuringInstrumentSeeder extends Seeder
                 'name' => 'SPO₂ Simulator',
                 'merk' => 'Fluke',
                 'model' => 'SPOTLIGHT',
-                'serial_number' => '27990099'
+                'serial_number' => '2799009'
             ],[
                 'id' => 'SPO3',
                 'name' => 'SPO₂ Simulator',
