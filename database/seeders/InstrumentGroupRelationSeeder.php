@@ -251,7 +251,7 @@ class InstrumentGroupRelationSeeder extends Seeder
             if($i != 5 || $i != 6){
                 InstrumentGroupRelation::create([
                     'instrument_group_id' => 44, 
-                    'measuring_instrument_id' => 'DPM'.$i
+                    'measuring_instrument_id' => 'DTBM'.$i
                 ]);
             }
         }
