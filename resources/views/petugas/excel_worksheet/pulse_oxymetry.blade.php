@@ -42,7 +42,7 @@
                     <div class="form-group">
                       {{-- Informasi Alat Kesehatan --}}
                       <label><b>Informasi Alat Kesehatan</b></label>
-                      <input name=E4" type="text" placeholder="Merek" class="form-control">
+                      <input name="E4" type="text" placeholder="Merek" class="form-control">
                       <input name="E5" type="text" placeholder="Tipe/Model" class="form-control mt-2">
                       <input name="E6" type="text" placeholder="Nomor Seri" class="form-control mt-2">
                     </div>
