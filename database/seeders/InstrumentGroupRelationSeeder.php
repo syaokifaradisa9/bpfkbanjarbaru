@@ -198,7 +198,7 @@ class InstrumentGroupRelationSeeder extends Seeder
         $group_ids = [39, 41];
         $start     = [12, 1];
         $length    = [17, 16];
-        foreach(['DPM',] as $index => $code){
+        foreach(['DPM', 'STOP'] as $index => $code){
             for($i = $start[$index]; $i <= $length[$index]; $i++){
                 InstrumentGroupRelation::create([
                     'instrument_group_id' => $group_ids[$index], 
