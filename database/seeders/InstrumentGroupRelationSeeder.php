@@ -76,11 +76,11 @@ class InstrumentGroupRelationSeeder extends Seeder
             }
         }
 
-        for($i = 1; $i <= 8; $i++){
-            if($i != 5){
+        for($i = 7; $i <= 14; $i++){
+            if($i != 13){
                 InstrumentGroupRelation::create([
                     'instrument_group_id' => 15, 
-                    'measuring_instrument_id' => 'TB'.$i
+                    'measuring_instrument_id' => 'DTBM'.$i
                 ]);
             }
         }
