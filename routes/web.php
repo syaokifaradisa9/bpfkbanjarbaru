@@ -147,6 +147,7 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
                 Route::prefix('/{alkes_order_id}')->name('excel.')->group(function(){
                     Route::get('/', [ExternalWorksheetController::class, 'excelWorksheet'])->name('index');
                     Route::post('/store', [ExternalWorksheetController::class, 'store'])->name('store');
+                    Route::get('/edit', [ExternalWorksheetController::class, 'edit'])->name('edit');
                 });
             });
         });

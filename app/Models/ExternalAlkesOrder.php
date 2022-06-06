@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\ExternalOrderExcelValue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,6 +24,10 @@ class ExternalAlkesOrder extends Model
 
     public function external_order(){
         return $this->belongsTo(ExternalOrder::class);
+    }
+
+    public function external_order_excel_value(){
+        return $this->hasMany(ExternalOrderExcelValue::class);
     }
 
     protected $appends = [

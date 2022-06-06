@@ -14,6 +14,7 @@ use Database\Seeders\ExternalAlkesOrderSeeder;
 use Database\Seeders\MeasuringInstrumentSeeder;
 use Database\Seeders\InstrumentAlkesGroupSeeder;
 use Database\Seeders\AlkesOrderDescriptionSeeder;
+use Database\Seeders\ExternalOrderExcelValueSeeder;
 use Database\Seeders\InstrumentGroupRelationSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,6 +39,7 @@ class DatabaseSeeder extends Seeder
             InstrumentGroupSeeder::class,
             InstrumentGroupRelationSeeder::class,
             InstrumentAlkesGroupSeeder::class,
+            ExternalOrderExcelValueSeeder::class
         ]);
     }
 }

@@ -55,5 +55,33 @@ class FormatHelper{
         $temp = $value < 0 ? 'minus '. $temp : $temp;
         return ucwords($temp);
     }
+
+    public static function toNumberFromRomanFormat($romanFormat){
+        if($romanFormat == "I"){
+            return 1;
+        }else if($romanFormat == "II"){
+            return 2;
+        }else if($romanFormat == "III"){
+            return 3;
+        }else if($romanFormat == "IV"){
+            return 4;
+        }else if($romanFormat == "V"){
+            return 5;
+        }else if($romanFormat == "VI"){
+            return 6;
+        }else if($romanFormat == "VII"){
+            return 7;
+        }else if($romanFormat == "VIII"){
+            return 8;
+        }else if($romanFormat == "IX"){
+            return 9;
+        }else if($romanFormat == "X"){
+            return 10;
+        }else if($romanFormat == "XI"){
+            return 11;
+        }else{
+            return 12;
+        }
+    }
 }
 ?>
