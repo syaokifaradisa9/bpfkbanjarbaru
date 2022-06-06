@@ -1237,49 +1237,49 @@ class MeasuringInstrumentSeeder extends Seeder
         $vital_sign_simulator = [
             [
                 'id' => 'VSS1',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'RIGEL',
                 'model' => 'UNI-SiM',
                 'serial_number' => '05J-0804'
             ],[
                 'id' => 'VSS2',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'Fluke Biomedical',
                 'model' => 'Prosim 8',
                 'serial_number' => '3217028'
             ],[
                 'id' => 'VSS3',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'Fluke Biomedical',
                 'model' => 'Prosim 8',
                 'serial_number' => '3188428'
             ],[
                 'id' => 'VSS4',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'RIGEL',
                 'model' => 'UNI-SiM',
                 'serial_number' => '45K-1036'
             ],[
                 'id' => 'VSS5',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'RIGEL',
                 'model' => 'UNI-SiM',
                 'serial_number' => '45K-1059'
             ],[
                 'id' => 'VSS6',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'Fluke Biomedical',
                 'model' => 'Prosim 8',
                 'serial_number' => '5144556'
             ],[
                 'id' => 'VSS7',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'Fluke Biomedical',
                 'model' => 'Prosim 4',
                 'serial_number' => '4422046'
             ],[
                 'id' => 'VSS8',
-                'name' => 'Vital Signs Simulator',
+                'name' => 'Vital Sign Simulator',
                 'merk' => 'Fluke Biomedical',
                 'model' => 'Prosim 4',
                 'serial_number' => '4416070'
