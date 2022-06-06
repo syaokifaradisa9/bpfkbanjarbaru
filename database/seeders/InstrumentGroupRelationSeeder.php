@@ -226,19 +226,10 @@ class InstrumentGroupRelationSeeder extends Seeder
         }
 
         // Suction Pump
-        for($i = 1; $i <= 11; $i++){
-            if($i != 3){
-                InstrumentGroupRelation::create([
-                    'instrument_group_id' => 42, 
-                    'measuring_instrument_id' => 'DPM'.$i
-                ]);
-            }
-        }
-
-        $group_ids = [42, 43];
-        $start     = [1, 1];
-        $length    = [1, 9];
-        foreach(['UB', 'ESA'] as $index => $code){
+        $group_ids = [42, 42, 43];
+        $start     = [1,  18,  1];
+        $length    = [1,  27,  9];
+        foreach(['UB', 'DPM', 'ESA'] as $index => $code){
             for($i = $start[$index]; $i <= $length[$index]; $i++){
                 InstrumentGroupRelation::create([
                     'instrument_group_id' => $group_ids[$index], 

@@ -249,8 +249,67 @@ class MeasuringInstrumentSeeder extends Seeder
                 'merk' => 'Fluke Biomedical',
                 'model' => 'DPM 4-1H',
                 'serial_number' => '3191005',
+            ],[
+                'id' => 'DPM18',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '1831021'
+            ],[
+                'id' => 'DPM19',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '1831023'
+            ],[
+                'id' => 'DPM20',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4414016'
+            ],[
+                'id' => 'DPM21',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4414018'
+            ],[
+                'id' => 'DPM22',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4611021'
+            ],[
+                'id' => 'DPM23',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4821027'
+            ],[
+                'id' => 'DPM24',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4600002'
+            ],[
+                'id' => 'DPM25',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4821028'
+            ],[
+                'id' => 'DPM26',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4819018'
+            ],[
+                'id' => 'DPM27',
+                'name' => 'Digital Pressure Meter',
+                'merk' => 'Fluke Biomedical',
+                'model' => 'DPM 4-2G',
+                'serial_number' => '4813009'
             ],
-
         ];
 
         $digital_tachometer = [

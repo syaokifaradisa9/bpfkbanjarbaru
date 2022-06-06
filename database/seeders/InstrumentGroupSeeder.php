@@ -69,7 +69,7 @@ class InstrumentGroupSeeder extends Seeder
             ['id' => 41, 'name' => 'Stopwatch-Sphygmomanometer'],
 
             ['id' => 42, 'name' => 'Digital Pressure Meter-Suction Pump'],
-            ['id' => 43, 'name' => 'Digital Pressure Meter-Suction Pump'],
+            ['id' => 43, 'name' => 'Electrical Safety Analyzer-Suction Pump'],
             ['id' => 44, 'name' => 'Digital Thermohygrobarometer-Suction Pump'],
 
             ['id' => 45, 'name' => 'Electrical Safety Analyzer-Syringe Pump'],
