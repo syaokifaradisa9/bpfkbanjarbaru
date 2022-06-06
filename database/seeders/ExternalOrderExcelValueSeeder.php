@@ -164,9 +164,42 @@ class ExternalOrderExcelValueSeeder extends Seeder
             ['external_alkes_order_id' => $timbangan_bayi_order_id, 'cell' => 'B72', 'value' => 'Thermohygrolight, Merek : KIMO, Model : KH-210-AO, SN : 15062874'],
         ];
 
+        $nebulizer_order_id = 3;
+        $nebulizer_worksheet = [
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'I2', 'value' => '1 / III - 22 / E - 0.0 DL'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E4', 'value' => 'OMRON'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E5', 'value' => 'CX 4'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E6', 'value' => '1946'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E7', 'value' => '2022-03-01'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E8', 'value' => '2022-03-01'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E9', 'value' => 'Laboratorium Kalibrasi LPFK Banjarbaru'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E10', 'value' => 'P2M'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E15', 'value' => 25.1],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'F15', 'value' => 25.1],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E16', 'value' => 70.1],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'F16', 'value' => 70.1],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E17', 'value' => 228],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E20', 'value' => 'Baik'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E21', 'value' => 'Baik'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'I25', 'value' => 7],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'C26', 'value' => 'Resistansi Pembumian Protektif (kabel tidak dapat dilepas)'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'I26', 'value' => 0.120],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'C27', 'value' => 'Arus bocor peralatan untuk peralatan elektromedik kelas I'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'I27', 'value' => 12.1],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'C32', 'value' => 'Flow (L/min) (Compressor)'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'E32', 'value' => 4.3],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'F32', 'value' => 4.2],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'G32', 'value' => 4.3],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'B42', 'value' => 'Gas Flow Analyzer, Merek : Fluke, Model : VT305, SN : BF102163'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'B43', 'value' => 'Electrical Safety Analyzer, Merek : Fluke, Model : ESA 615, SN : 2853077'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'B44', 'value' => 'Thermohygrolight, Merek : Greisinger, Model : GFTB 200, SN : 34904091'],
+            ['external_alkes_order_id' => $nebulizer_order_id, 'cell' => 'B51', 'value' => 'Ryan Rama Chaesar R'],
+        ];
+
         $worksheets = [
             ...$flowmeter_worksheet,
-            ...$timbangan_bayi_worksheet
+            ...$timbangan_bayi_worksheet,
+            ...$nebulizer_worksheet
         ];
 
         foreach($worksheets as $worksheet){
