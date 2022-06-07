@@ -5,8 +5,10 @@ namespace App\Http\Controllers\petugas;
 use App\Models\Alkes;
 use Illuminate\Http\Request;
 use App\Helpers\FormatHelper;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\ExternalAlkesOrder;
 use App\Http\Controllers\Controller;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class ExternalWorksheetController extends Controller
 {
@@ -153,5 +155,30 @@ class ExternalWorksheetController extends Controller
             'order_id' => $order_id,
             'officers' => $officers
         ]);
+    }
+
+    public function result($order_id, $alkes_order_id){
+        $order = ExternalAlkesOrder::with('alkes')->findOrFail($alkes_order_id);
+
+        $excel = (new Xlsx())->load(public_path("alkes_excel_file\\" . $order->alkes->excel_name. '.xlsx'));
+        $sheet = $excel->getSheetByName('ID');
+  
+        $input = $order->external_order_excel_value;
+        foreach($input as $value){
+            $sheet->getCell($value->cell)->setValue($value->value);
+        }
+
+        $result = $excel->getSheetByName('LH');
+        // foreach(range('F','J') as $letter){
+        //     print($letter."18"." = ".$result->getCell($letter.'18')->getFormattedValue()."\n");
+        // }
+        // for($i = 155; $i <=160; $i++){
+        //     print("_____A".$i." = ". $result->getCell('A'.$i)->getFormattedValue());
+        //     print("_____F".$i." = ". $result->getCell('F'.$i)->getFormattedValue());
+        // }
+        // dd($result->getCell('C164')->getFormattedValue());
+            
+        $pdf = Pdf::loadView('petugas.excel_report.'. $order->alkes->excel_name,['data' => $result]);
+        return $pdf->stream('Hasil Kalibrasi '. $order->alkes->name .'.pdf');
     }
 }
