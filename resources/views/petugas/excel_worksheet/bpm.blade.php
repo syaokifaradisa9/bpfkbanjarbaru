@@ -37,54 +37,77 @@
                   </div>
                 </div>
   
-                <div class="row mt-3">
-                  <div class="col">
-                    <div class="form-group">
-                      {{-- Informasi Alat Kesehatan --}}
-                      <label><b>Informasi Alat Kesehatan</b></label>
-                      <input name="E4" type="text" placeholder="Merek" class="form-control">
-                      <input name="E5" type="text" placeholder="Tipe/Model" class="form-control mt-2">
-                      <input name="E6" type="text" placeholder="Nomor Seri" class="form-control mt-2">
-                      <div class="row mt-2 mx-0">
-                        <input name="E14" type="text" placeholder="Resolusi Alat" class="form-control col">
-                        <div class="col-5 text-center pt-2">mmHg (sistole; diastole)</div>
+                <div class="mt-3">
+                  <div class="row">
+                    <div class="form-group col-3">
+                      <label><b>Merek Alat</b></label>
+                      <input name="E4" type="text" placeholder="Merek" class="form-control" value="{{ $excel_value['E4'] ?? '' }}">
+                    </div>
+                    <div class="form-group col-3">
+                      <label><b>Tipe/Model Alat</b></label>
+                      <input name="E5" type="text" placeholder="Tipe/Model" class="form-control" value="{{ $excel_value['E5'] ?? '' }}">
+                    </div>
+                    <div class="form-group col-3">
+                      <label><b>Nomor Seri</b></label>
+                      <input name="E6" type="text" placeholder="Nomor Seri" class="form-control" value="{{ $excel_value['E6'] ?? '' }}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-3">
+                      <label><b>Resolusi (sistole; diastole)</b></label>
+                      <div class="row mx-0">
+                        <input name="E14" type="text" placeholder="Resolusi (sistole; diastole)" class="form-control col" value="{{ $excel_value['E14'] ?? '' }}">
+                        <div class="col-4 text-center pt-2">mmHg</div>
                       </div>
-                      <div class="row mt-2 mx-0">
-                        <input name="J14" type="text" placeholder="Resolusi Alat" class="form-control col">
-                        <div class="col-5 text-center pt-2">BPM (Heart Rate)</div>
+                    </div>
+                    <div class="form-group col-3">
+                      <label><b>Resolusi (Heart Rate)</b></label>
+                      <div class="row mx-0">
+                        <input name="J14" type="text" placeholder="Resolusi (Heart Rate)" class="form-control col" value="{{ $excel_value['J14'] ?? '' }}">
+                        <div class="col-4 text-center pt-2">BPM</div>
                       </div>
                     </div>
                   </div>
-                  <div class="form-group col">
-                    <label><b>Kondisi Ruangan</b></label>
-                    <div class="row mx-0">
-                      <input name="D33" type="text" placeholder="Suhu Awal" class="form-control col">
-                      <input name="F33" type="text" placeholder="Suhu Akhir" class="form-control col ml-3">
+                  <div class="row">
+                    <div class="form-group col-3">
+                      <label><b>Tanggal Penerimaan Alat</b></label>
+                      <input name="E7" type="date" class="form-control" value="{{ $excel_value['E7'] ?? date('Y-m-d', time()) }}">
                     </div>
-                    <div class="row mx-0 mt-2">
-                      <input name="D34" type="text" placeholder="Kelembapan Awal" class="form-control col">
-                      <input name="F34" type="text" placeholder="Kelembapan Akhir" class="form-control col ml-3">
+                    <div class="form-group col-3">
+                      <label><b>Tanggal Kalibrasi</b></label>
+                      <input name="E8" type="date" class="form-control" value="{{ $excel_value['E8'] ?? date('Y-m-d', time()) }}">
                     </div>
-                    <input name="D35" type="text" placeholder="Tegangan Jala-jala" class="form-control col mt-2">
+                    <div class="form-group col-3">
+                      <label><b>Tempat Kalibrasi</b></label>
+                      <input name="E9" type="text" class="form-control" value="{{ $excel_value['E9'] ?? $alkesOrder->external_order->user->fasyenkes_name }}">
+                    </div>
+                    <div class="form-group col-3">
+                      <label><b>Nama Ruang</b></label>
+                      <input name="E10" type="text" class="form-control" value="{{ $excel_value['E10'] ?? '' }}">
+                    </div>
                   </div>
                 </div>
-  
+
                 <div class="row mt-3">
                   <div class="form-group col-3">
-                    <label><b>Tanggal Penerimaan Alat</b></label>
-                    <input name="E7" type="date" class="form-control" value="{{ date('Y-m-d', time()) }}">
+                    <label><b>Suhu Awal</b></label>
+                    <input name="D33" type="text" placeholder="Suhu Awal" class="form-control col" value="{{ $excel_value['D33'] ?? '' }}">
                   </div>
                   <div class="form-group col-3">
-                    <label><b>Tanggal Kalibrasi</b></label>
-                    <input name="E8" type="date" class="form-control" value="{{ date('Y-m-d', time()) }}">
+                    <label><b>Suhu Akhir</b></label>
+                    <input name="D34" type="text" placeholder="Suhu Akhir" class="form-control col" value="{{ $excel_value['D34'] ?? '' }}">
                   </div>
                   <div class="form-group col-3">
-                    <label><b>Tempat Kalibrasi</b></label>
-                    <input name="E9" type="text" class="form-control" value="{{ $alkesOrder->external_order->user->fasyenkes_name }}">
+                    <label><b>Kelembapan Awal</b></label>
+                    <input name="D33" type="text" placeholder="Kelembapan Awal" class="form-control col" value="{{ $excel_value['D34'] ?? '' }}">
                   </div>
                   <div class="form-group col-3">
-                    <label><b>Nama Ruang</b></label>
-                    <input name="E10" type="text" class="form-control">
+                    <label><b>Kelembapan Akhir</b></label>
+                    <input name="D34" type="text" placeholder="Kelembapan Akhir" class="form-control col" value="{{ $excel_value['D34'] ?? '' }}">
+                  </div>
+                  <div class="form-group col-3">
+                    <label><b>Tegangan Jala-jala</b></label>
+                    <input name="D35" type="text" placeholder="Tegangan Jala-jala" class="form-control col" value="{{ $excel_value['D35'] ?? '' }}">
                   </div>
                 </div>
   
@@ -92,37 +115,58 @@
                   <div class="col-2 mx-0 form-group">
                     <label><b>Kondisi Fisik Alat</b></label>
                     <div class="custom-control custom-radio">
-                      <input name="D37" value="Baik" type="radio" id="D37-a" class="custom-control-input">
+                      <input name="D37" value="Baik" type="radio" id="D37-a" class="custom-control-input"
+                        @if (isset($excel_value['D37']))
+                          @if($excel_value['D37'] == "Baik") checked @endif
+                        @endif>
                       <label class="custom-control-label" for="D37-a">Baik</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input name="D37" value="Tidak Baik" type="radio" id="D37-b" class="custom-control-input">
+                      <input name="D37" value="Tidak Baik" type="radio" id="D37-b" class="custom-control-input"
+                        @if (isset($excel_value['D37']))
+                          @if($excel_value['D37'] == "Tidak Baik") checked @endif
+                        @endif>
                       <label class="custom-control-label" for="D37-b">Tidak Baik</label>
                     </div>
                   </div>
                   <div class="col-2 mx-0 form-group">
                     <label><b>Kondisi Fungsi Alat</b></label>
                     <div class="custom-control custom-radio">
-                      <input name="D38" value="Baik" type="radio" id="D38-a" class="custom-control-input">
+                      <input name="D38" value="Baik" type="radio" id="D38-a" class="custom-control-input"
+                        @if (isset($excel_value['D38']))
+                          @if($excel_value['D38'] == "Baik") checked @endif
+                        @endif>
                       <label class="custom-control-label" for="D38-a">Baik</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input name="D38" value="Tidak Baik" type="radio" id="D38-b" class="custom-control-input">
+                      <input name="D38" value="Tidak Baik" type="radio" id="D38-b" class="custom-control-input"
+                        @if (isset($excel_value['D38']))
+                          @if($excel_value['D38'] == "Tidak Baik") checked @endif
+                        @endif>
                       <label class="custom-control-label" for="D38-b">Tidak Baik</label>
                     </div>
                   </div>
                   <div class="col form-group">
                     <label><b>Klasifikasi</b></label>
                     <div class="custom-control custom-radio">
-                      <input name="E16" value="Bayi" type="radio" id="E16-a" class="custom-control-input">
+                      <input name="E16" value="Bayi" type="radio" id="E16-a" class="custom-control-input"
+                        @if (isset($excel_value['E16']))
+                          @if($excel_value['E16'] == "Bayi") checked @endif
+                        @endif>
                       <label class="custom-control-label" for="E16-a">Bayi</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input name="E16" value="Anak" type="radio" id="E16-b" class="custom-control-input">
+                      <input name="E16" value="Anak" type="radio" id="E16-b" class="custom-control-input"
+                        @if (isset($excel_value['E16']))
+                          @if($excel_value['E16'] == "Anak") checked @endif
+                        @endif>
                       <label class="custom-control-label" for="E16-b">Anak</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input name="E16" value="Dewasa" type="radio" id="E16-c" class="custom-control-input">
+                      <input name="E16" value="Dewasa" type="radio" id="E16-c" class="custom-control-input"
+                        @if (isset($excel_value['E16']))
+                          @if($excel_value['E16'] == "Dewasa") checked @endif
+                        @endif>
                       <label class="custom-control-label" for="E16-c">Dewasa</label>
                     </div>
                   </div>
@@ -140,39 +184,51 @@
                       <td class="text-center align-middle">1</td>
                       <td class="align-middle">Resistansi Isolasi</td>
                       <td>
-                        <input name="G42" type="text" class="form-control text-center align-middle">
+                        <input name="G42" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G42'] }}">
                       </td>
                     </tr>
                     <tr>
                       <td class="text-center align-middle">3</td>
                       <td class="align-middle">
                         <select name="A43" class="form-control">
-                          <option value="Resistansi pembumian protektif (kabel dapat dilepas)">
+                          <option value="Resistansi pembumian protektif (kabel dapat dilepas)"
+                            @if (isset($excel_value['A43']))
+                              @if($excel_value['A43'] == "Resistansi pembumian protektif (kabel dapat dilepas)") checked @endif
+                            @endif>
                             Resistansi pembumian protektif (kabel dapat dilepas)
                           </option>
-                          <option value="Resistansi pembumian protektif (kabel tidak dapat dilepas)">
+                          <option value="Resistansi pembumian protektif (kabel tidak dapat dilepas)"
+                            @if (isset($excel_value['A43']))
+                              @if($excel_value['A43'] == "Resistansi pembumian protektif (kabel tidak dapat dilepas)") checked @endif
+                            @endif>
                             Resistansi pembumian protektif (kabel tidak dapat dilepas)
                           </option>
                         </select>
                       </td>
                       <td>
-                        <input name="G43" type="text" class="form-control text-center align-middle">
+                        <input name="G43" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G43'] }}">
                       </td>
                     </tr>
                     <tr>
                       <td class="text-center align-middle">3</td>
                       <td class="align-middle">
                         <select name="A44" class="form-control">
-                          <option value="Arus bocor peralatan untuk perangkat elektromedik kelas I">
+                          <option value="Arus bocor peralatan untuk perangkat elektromedik kelas I"
+                            @if (isset($excel_value['A44']))
+                              @if($excel_value['A44'] == "Arus bocor peralatan untuk perangkat elektromedik kelas I") checked @endif
+                            @endif>
                             Arus bocor peralatan untuk perangkat elektromedik kelas I
                           </option>
-                          <option value="Arus bocor peralatan untuk perangkat elektromedik kelas II">
+                          <option value="Arus bocor peralatan untuk perangkat elektromedik kelas II"
+                            @if (isset($excel_value['A44']))
+                              @if($excel_value['A44'] == "Arus bocor peralatan untuk perangkat elektromedik kelas II") checked @endif
+                            @endif>
                             Arus bocor peralatan untuk perangkat elektromedik kelas II
                           </option>
                         </select>
                       </td>
                       <td>
-                        <input name="G44" type="text" class="form-control text-center align-middle">
+                        <input name="G44" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G44'] }}">
                       </td>
                     </tr>
                   </table>
@@ -212,15 +268,35 @@
                               <td rowspan="2" class="text-center align-middle">
                                   <select class="form-control ml-2" name="E{{ $sistoleRowPosition[$i] }}">
                                       <option value="" disabled selected hidden>Nilai BPM</option>
-                                      <option value="60">60</option>
-                                      <option value="70">70</option>
-                                      <option value="80">80</option>
-                                      <option value="120">120</option>
+                                      <option value="60"
+                                        @if (isset($excel_value['E'.$sistoleRowPosition[$i]]))
+                                          @if($excel_value['E'.$sistoleRowPosition[$i]] == "60") selected @endif
+                                        @endif>
+                                        60
+                                      </option>
+                                      <option value="70"
+                                        @if (isset($excel_value['E'.$sistoleRowPosition[$i]]))
+                                          @if($excel_value['E'.$sistoleRowPosition[$i]] == "70") selected @endif
+                                        @endif>
+                                        70
+                                      </option>
+                                      <option value="80"
+                                        @if (isset($excel_value['E'.$sistoleRowPosition[$i]]))
+                                          @if($excel_value['E'.$sistoleRowPosition[$i]] == "80") selected @endif
+                                        @endif>
+                                        80
+                                      </option>
+                                      <option value="120"
+                                        @if (isset($excel_value['E'.$sistoleRowPosition[$i]]))
+                                          @if($excel_value['E'.$sistoleRowPosition[$i]] == "120") selected @endif
+                                        @endif>
+                                        120
+                                      </option>
                                   </select>
                               </td>
                               @foreach (range('F', 'J') as $letter)
                                   <td class="text-center align-middle">
-                                    <input type="text" class="text-center align-middle form-control" name="{{ $letter.$sistoleRowPosition[$i] }}">
+                                    <input type="text" class="text-center align-middle form-control" name="{{ $letter.$sistoleRowPosition[$i] }}" value={{ $excel_value[$letter.$sistoleRowPosition[$i]] ?? '' }}>
                                   </td>
                               @endforeach
                           </tr>
@@ -229,7 +305,7 @@
                               <td class="align-middle text-center">{{ $diastoleStandard[$i] }}</td>
                               @foreach (range('F', 'J') as $letter)
                                   <td class="text-center align-middle">
-                                    <input type="text" class="text-center align-middle form-control" name="{{ $letter.$diastoleRowPosition[$i] }}">
+                                    <input type="text" class="text-center align-middle form-control" name="{{ $letter.$diastoleRowPosition[$i] }}" value="{{ $excel_value[$letter.$diastoleRowPosition[$i]] ?? '' }}">
                                   </td>
                               @endforeach
                           </tr>
@@ -243,15 +319,24 @@
                               </div>
                               <div class="col">
                                 <div class="custom-control custom-radio">
-                                  <input name="C63" value="200" type="radio" id="C63-a" class="custom-control-input">
+                                  <input name="C63" value="200" type="radio" id="C63-a" class="custom-control-input"
+                                  @if (isset($excel_value['C63']))
+                                    @if($excel_value['C63'] == "200") checked @endif
+                                  @endif>
                                   <label class="custom-control-label" for="C63-a">200</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                  <input name="C63" value="170" type="radio" id="C63-b" class="custom-control-input">
+                                  <input name="C63" value="170" type="radio" id="C63-b" class="custom-control-input"
+                                  @if (isset($excel_value['C63']))
+                                    @if($excel_value['C63'] == "170") checked @endif
+                                  @endif>
                                   <label class="custom-control-label" for="C63-b">170</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                  <input name="C63" value="160" type="radio" id="C63-c" class="custom-control-input">
+                                  <input name="C63" value="160" type="radio" id="C63-c" class="custom-control-input"
+                                  @if (isset($excel_value['C63']))
+                                    @if($excel_value['C63'] == "160") checked @endif
+                                  @endif>
                                   <label class="custom-control-label" for="C63-c">160</label>
                                 </div>
                               </div>
@@ -260,21 +345,45 @@
                           <td rowspan="2" class="text-center align-middle">
                               <select class="form-control ml-2" name="E63">
                                   <option value="" disabled selected hidden>Nilai BPM</option>
-                                  <option value="60">60</option>
-                                  <option value="70">70</option>
-                                  <option value="80">80</option>
-                                  <option value="120">120</option>
+                                  <option value="60"
+                                    @if (isset($excel_value['E63']))
+                                      @if($excel_value['E63'] == "60") selected @endif
+                                    @endif>
+                                    60
+                                  </option>
+                                  <option value="70"
+                                    @if (isset($excel_value['E63']))
+                                      @if($excel_value['E63'] == "70") selected @endif
+                                    @endif>
+                                    70
+                                  </option>
+                                  <option value="80"
+                                    @if (isset($excel_value['E63']))
+                                      @if($excel_value['E63'] == "80") selected @endif
+                                    @endif>
+                                    80
+                                  </option>
+                                  <option value="120"
+                                    @if (isset($excel_value['E63']))
+                                      @if($excel_value['E63'] == "120") selected @endif
+                                    @endif>
+                                    120
+                                  </option>
                               </select>
                           </td>
                           @foreach (range('F', 'J') as $letter)
-                              <td class="text-center align-middle"><input type="text" class="text-center align-middle form-control" name="{{ $letter."63" }}"></td>
+                            <td class="text-center align-middle">
+                              <input type="text" class="text-center align-middle form-control" name="{{ $letter."63" }}" value="{{ $excel_value[$letter."63"] }}">
+                            </td>
                           @endforeach
                       </tr>
                       <tr>
                           <td class="align-middle">Diastole</td>
                           <td class="align-middle text-center">150</td>
                           @foreach (range('F', 'J') as $letter)
-                              <td class="text-center align-middle"><input type="text" class="text-center align-middle form-control" name="{{ $letter."64" }}"></td>
+                            <td class="text-center align-middle">
+                              <input type="text" class="text-center align-middle form-control" name="{{ $letter."64" }}" value="{{ $excel_value[$letter."64"] }}">
+                            </td>
                           @endforeach
                       </tr>
                   </table>
@@ -304,18 +413,26 @@
                       <tr>
                           <td rowspan="3" class="text-center align-middle">1</td>
                           <td rowspan="3" class="text-center align-middle">Heart Rate</td>
-                          <td class="text-center align-middle"><input type="text" class="text-center align-middle form-control" name="D73"></td>
+                          <td class="text-center align-middle">
+                            <input type="text" class="text-center align-middle form-control" name="D73" value="{{ $excel_value['D73'] ?? '' }}">
+                          </td>
                           <td rowspan="3" class="text-center align-middle">120</td>
                           <td rowspan="3" class="text-center align-middle">80</td>
-                          <td class="text-center align-middle"><input type="text" class="text-center align-middle form-control" name="G73"></td>
-                          <td class="text-center align-middle"><input type="text" class="text-center align-middle form-control" name="H73"></td>
-                          <td class="text-center align-middle"><input type="text" class="text-center align-middle form-control" name="I73"></td>
+                          <td class="text-center align-middle">
+                            <input type="text" class="text-center align-middle form-control" name="G73" value="{{ $excel_value['G73'] ?? '' }}">
+                          </td>
+                          <td class="text-center align-middle">
+                            <input type="text" class="text-center align-middle form-control" name="H73" value="{{ $excel_value['H73'] ?? '' }}">
+                          </td>
+                          <td class="text-center align-middle">
+                            <input type="text" class="text-center align-middle form-control" name="I73" value="{{ $excel_value['I73'] ?? '' }}">
+                          </td>
                       </tr>
                       @for ($i = 0; $i < 2; $i++)
                           <tr>
                               @foreach (['D','G','H','I'] as $letter)
                                   <td class="text-center align-middle">
-                                    <input type="text" class="text-center align-middle form-control" value="{{ $letter.($i + 74) }}">
+                                    <input type="text" class="text-center align-middle form-control" name="{{ $letter.($i + 74) }}" value="{{ $excel_value[$letter.($i + 74)] ?? '' }}">
                                   </td>
                               @endforeach
                           </tr>    
@@ -333,8 +450,17 @@
                       <option value=""></option>
                     </select>
                     <select name="B86" class="form-control col ml-2">
-                      <option value="Di sarankan ganti manset">Di sarankan ganti manset</option>
-                      <option value=""></option>
+                      <option value="Di sarankan ganti manset"
+                        @if (isset($excel_value['B86']))
+                          @if($excel_value['B86'] == "Di sarankan ganti manset") selected @endif
+                        @endif>
+                        Di sarankan ganti manset
+                      </option>
+                      <option value=""
+                        @if (isset($excel_value['B86']))
+                          @if($excel_value['B86'] == "") selected @endif
+                        @endif>
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -346,7 +472,12 @@
                         <select name="{{ 'B'.($index + 88) }}" class="form-control">
                           <option disabled selected hidden>Pilih Alat Ukur</option>
                           @foreach ($group['instruments'] as $instrument)
-                            <option value="{{$instrument}}">{{$instrument}}</option>
+                            <option value="{{$instrument}}"
+                              @if (isset($excel_value['B'.($index + 88)]))
+                                @if($excel_value['B'.($index + 88)] == $instrument) selected @endif
+                              @endif>
+                              {{$instrument}}
+                            </option>
                           @endforeach
                         </select>
                       </div>
