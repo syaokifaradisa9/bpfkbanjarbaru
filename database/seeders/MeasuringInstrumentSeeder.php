@@ -879,7 +879,7 @@ class MeasuringInstrumentSeeder extends Seeder
                 'id' => 'STOP1',
                 'name' => 'Stopwatch',
                 'merk' => 'Casio',
-                'model' => 'HS - 3',
+                'model' => 'HS - 80TW',
                 'serial_number' => '611Q02R'
             ],[
                 'id' => 'STOP2',
