@@ -145,6 +145,7 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
             Route::prefix('{order_id}')->group(function(){
                 Route::get('/insert', [ExternalWorksheetController::class, 'insert'])->name('insert');
                 Route::post('/append', [ExternalWorksheetController::class, 'appendAlkes'])->name('append');
+                Route::put('/finishing', [ExternalWorksheetController::class, 'finishing'])->name('finishing');
                 Route::prefix('/worksheet')->name('worksheet.')->group(function(){
                     Route::get('/', [ExternalWorksheetController::class, 'index'])->name('index');
                     Route::prefix('/{alkes_order_id}')->name('excel.')->group(function(){

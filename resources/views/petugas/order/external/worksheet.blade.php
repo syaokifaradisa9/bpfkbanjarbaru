@@ -4,10 +4,18 @@
 <section class="section">
     <div class="section-header">
       <h1>Lembar Kerja</h1>
-      <div class="section-header-breadcrumb">
-        <td><a href="{{ route('petugas.order.external.insert', ['order_id' => $order_id]) }}" class="btn btn-primary mr-2">Tambah Alat Kesehatan</a></td>
-        <td><a href="{{ route('fasyenkes.order.external.create') }}" class="btn btn-success">Konfirmasi Selesai</a></td>
-      </div>
+      @if($order_status != "MENUNGGU PEMBAYARAN")
+        <div class="section-header-breadcrumb">
+          <td><a href="{{ route('petugas.order.external.insert', ['order_id' => $order_id]) }}" class="btn btn-primary mr-2">Tambah Alat Kesehatan</a></td>
+          <td>
+            <form action="{{ route('petugas.order.external.finishing', ['order_id' => $order_id]) }}" method="post" id="finishing-form">
+              @csrf
+              @method('PUT')
+              <button id="finishing-confirm-button" class="btn btn-success" type="submit">Konfirmasi Selesai</button>
+            </form>
+          </td>
+        </div>
+      @endif
     </div>
 
     <div class="section-body">
@@ -49,14 +57,19 @@
                                           <i class="fas fa-cog"></i>
                                         </button>
                                         <div class="dropdown-menu dropright">
+
                                           @if ($order->status == 0)
-                                            <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.index', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
-                                              <i class="fas fa-envelope-open-text"></i> Kerjakan
-                                            </a>
+                                            @if($order_status != "MENUNGGU PEMBAYARAN")
+                                              <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.index', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
+                                                <i class="fas fa-envelope-open-text"></i> Kerjakan
+                                              </a>
+                                            @endif
                                           @else
-                                            <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.edit', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
-                                              <i class="fas fa-envelope-open-text"></i> Edit
-                                            </a>
+                                            @if($order_status != "MENUNGGU PEMBAYARAN")
+                                              <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.edit', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
+                                                <i class="fas fa-envelope-open-text"></i> Edit
+                                              </a>
+                                            @endif
                                             <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.certificate', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}" target="_blank">
                                               <i class="fas fa-envelope-open-text"></i> Sertifikat
                                             </a>
@@ -70,7 +83,11 @@
                                     <td class="align-middle">{{ $order->alkes->name }}</td>
                                     <td class="text-center align-middle">
                                         @if ($order->status == 0)
-                                          <span class="badge badge-warning">Belum Selesai</span>
+                                          @if ($order_status == 'MENUNGGU PEMBAYARAN')
+                                            <span class="badge badge-danger">Tidak Dikerjakan</span>
+                                          @else
+                                            <span class="badge badge-warning">Belum Selesai</span>
+                                          @endif
                                         @else
                                           <span class="badge badge-success">Selesai</span>
                                         @endif
@@ -87,4 +104,8 @@
       </div>
     </div>
   </section>
+@endsection
+
+@section('js-extends')
+  <script src="{{ asset('js/button/finishing_button_event.js') }}"></script>
 @endsection

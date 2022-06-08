@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\ExternalAlkesOrder;
 use App\Http\Controllers\Controller;
 use App\Models\AlkesOrderDescription;
+use App\Models\ExternalOrder;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class ExternalWorksheetController extends Controller
@@ -17,12 +18,13 @@ class ExternalWorksheetController extends Controller
     public function index($order_id){
         $alkesOrder = ExternalAlkesOrder::with('alkes', 'external_order')
                             ->where('external_order_id', $order_id)->orderBy('alkes_id')->get();
-                            
+                           
         return view('petugas.order.external.worksheet', [
             'title' => 'Lembar Kerja Pengujian dan Kalibrasi',
             'menu' => 'external',
             'alkes_orders' => $alkesOrder,
-            'order_id' => $order_id
+            'order_id' => $order_id,
+            'order_status' => $alkesOrder[0]->external_order->status
         ]);
     }   
 
@@ -119,6 +121,16 @@ class ExternalWorksheetController extends Controller
         return redirect(route('petugas.order.external.worksheet.index',[
             'order_id' => $order_id
             ]))->with('success','Berhasil Menambahkan Alat Kesehatan');
+    }
+
+    public function finishing($order_id){
+        $order = ExternalOrder::findOrFail($order_id);
+        $order->status = 'MENUNGGU PEMBAYARAN';
+        $order->save();
+
+        return redirect(route('petugas.order.external.worksheet.index',[
+            'order_id' => $order_id
+        ]))->with('success','Berhasil Mengonfirmasi Order Menjadi Selesai');
     }
 
     public function edit($order_id, $alkes_order_id){
