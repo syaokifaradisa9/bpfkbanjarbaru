@@ -19,7 +19,11 @@ class FormatHelper{
         ];
 
         $dates = explode('-', $date);
-        return $dates[0]. ' ' . $months[(int) $dates[1]] . ' ' . $dates[2];
+        if(strlen($dates[0]) == 4){
+            return $dates[2]. ' ' . $months[(int) $dates[1]] . ' ' . $dates[0];
+        }else{
+            return $dates[0]. ' ' . $months[(int) $dates[1]] . ' ' . $dates[2];
+        }
     }
 
     public static function toIndonesianCurrencyFormat($value){
