@@ -48,7 +48,7 @@
                                             <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.edit', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
                                               <i class="fas fa-envelope-open-text"></i> Edit
                                             </a>
-                                            <a class="dropdown-item has-icon" href="" target="_blank">
+                                            <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.certificate', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}" target="_blank">
                                               <i class="fas fa-envelope-open-text"></i> Sertifikat
                                             </a>
                                             <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.result', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}" target="_blank">

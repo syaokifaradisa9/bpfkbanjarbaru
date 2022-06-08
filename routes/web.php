@@ -149,6 +149,7 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
                     Route::post('/store', [ExternalWorksheetController::class, 'store'])->name('store');
                     Route::get('/edit', [ExternalWorksheetController::class, 'edit'])->name('edit');
                     Route::get('/result', [ExternalWorksheetController::class, 'result'])->name('result');
+                    Route::get('/certificate', [ExternalWorksheetController::class, 'certificate'])->name('certificate');
                 });
             });
         });

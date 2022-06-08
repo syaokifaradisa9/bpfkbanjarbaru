@@ -160,7 +160,7 @@
                 {{ $excel->getCell('A3')->getFormattedValue() }}
             </p>
     
-            <div id="content">
+            <div id="content" style="background-image: url({{ asset('img/logo/cropped-logo-kemenkes.png') }}); background-size: 350px 350 px; background-repeat: no-repeat; background-position: center center; opacity: 0.2">
                 <p style="float: right; font-size: 11px; font-weight: 400">LV. 027 - 18</p>
                 <table class="full-width" style="margin-top: 27px">
                     <tr>

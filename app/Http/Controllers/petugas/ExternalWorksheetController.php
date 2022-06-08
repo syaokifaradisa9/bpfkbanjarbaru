@@ -158,7 +158,7 @@ class ExternalWorksheetController extends Controller
     }
 
     public function result($order_id, $alkes_order_id){
-        $order = ExternalAlkesOrder::with('alkes')->findOrFail($alkes_order_id);
+        $order = ExternalAlkesOrder::with('alkes', 'external_order_excel_value')->findOrFail($alkes_order_id);
 
         $excel = (new Xlsx())->load(public_path("alkes_excel_file\\" . $order->alkes->excel_name. '.xlsx'));
         $sheet = $excel->getSheetByName('ID');
@@ -180,5 +180,31 @@ class ExternalWorksheetController extends Controller
             
         $pdf = Pdf::loadView('petugas.excel_report.'. $order->alkes->excel_name,['data' => $result]);
         return $pdf->stream('Hasil Kalibrasi '. $order->alkes->name .'.pdf');
+    }
+
+    public function certificate($order_id, $alkes_order_id){
+        $alkesOrder = ExternalAlkesOrder::with('alkes', 'external_order_excel_value')->findOrFail($alkes_order_id);
+
+        $excel = (new Xlsx())->load(public_path("alkes_excel_file\\" . $alkesOrder->alkes->excel_name. '.xlsx'));
+        $sheet = $excel->getSheetByName('ID');
+
+        $input = $alkesOrder->external_order_excel_value;
+        foreach($input as $value){
+            $sheet->getCell($value->cell)->setValue($value->value);
+        }
+
+        $data = [
+            'fasyenkes' => $alkesOrder->external_order->user->fasyenkes_name,
+            'fasyenkes_type' => $alkesOrder->external_order->user->type,
+            'fasyenkes_address' => $alkesOrder->external_order->user->address,
+        ];
+
+        $result = $excel->getSheetByName('SERTIFIKAT');
+        $pdf = Pdf::loadView('petugas.certificate.certificate',[
+            'general' => $data,
+            'excel' => $result
+        ])->setPaper('a4','portrait');
+    
+        return $pdf->stream('Sertifikat Kalibrasi '.$alkesOrder->alkes->name);
     }
 }
