@@ -33,7 +33,7 @@ class RegisterVerificationMail extends Mailable
                     ->view('mail.verification_mail')
                     ->with([
                         'user' => $this->user,
-                        'expired' => strtotime(date("h:i:sa"))+900,
+                        'expired' => strtotime(date("h:i:sa")) + 900,
                     ]);
     }
 }

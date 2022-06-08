@@ -16,8 +16,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('fasyenkes_name');
-            $table->string('city');
+            $table->enum('type', ['Negeri', 'Swasta']);
+            $table->enum('category', ['Puskesmas', 'Rumah Sakit', 'Lainnya']);
             $table->string('province');
+            $table->string('city');
             $table->string('phone');
             $table->text('address');
             $table->string('email')->unique();

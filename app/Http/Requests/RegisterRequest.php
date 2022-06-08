@@ -25,9 +25,15 @@ class RegisterRequest extends FormRequest
     {
         return [
             'fasyenkes_name' => ['required', 'min:3', 'max:255'],
+            'phone' => ['required'],
+            'type' =>  ['required'],
+            'category' => ['required'],
+            'province' => ['required'],
+            'city' => ['required'],
+            'address' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:7'],
-            'confirmation_password' => ['required', 'same:password']
+            'c_password' => ['required', 'same:password']
         ];
     }
 
@@ -36,13 +42,19 @@ class RegisterRequest extends FormRequest
             'fasyenkes_name.required' => 'Nama Fasyenkes Tidak Boleh Kosong!',
             'fasyenkes_name.min' => 'Nama Fasyenkes Harus Memiliki Paling Tidak 3 karakter!',
             'fasyenkes_name.max' => 'Nama Fasyenkes Terlalu Panjang!',
+            'phone.required' => 'Nomor Telepon Tidak Boleh Kosong!',
+            'type.required' => 'Mohon Pilih Tipe Fasyenkes Anda!',
+            'category.required' => 'Mohon Pilih Kategori Fasyenkes Anda!',
+            'province.required' => 'Mohon Pilih Provinsi Dimana Fasyenkes Anda Berada!',
+            'city.required' => 'Mohon Pilih Kota Dimana Fasyenkes Anda Berada!',
+            'address.required' => 'Mohon Isikan Alamat Lengkap Fasyenkes Anda Berada!',
             'email.required' => 'Email Tidak Boleh Kosong!',
             'email.email' => 'Mohon Masukkan Email yang Valid!',
             'email.unique' => 'Email Sudah Terdaftar!',
             'password.required' => 'Password Tidak Boleh Kosong!',
             'password.min' => 'Password Harus Memiliki Paling Tidak 7 Karakter!',
-            'confirmation_password.required' => 'Konfirmasi Password Tidak Boleh Kosong!',
-            'confirmation_password.same' => 'Konfirmasi Password Harus Sama Dengan Password!'
+            'c_password.required' => 'Konfirmasi Password Tidak Boleh Kosong!',
+            'c_password.same' => 'Konfirmasi Password Harus Sama Dengan Password!'
         ];
     }
 }

@@ -22,6 +22,12 @@ class RegisterController extends Controller
         $user = User::create([
             'fasyenkes_name' => $request->fasyenkes_name,
             'email' => $request->email,
+            'phone' => $request->phone,
+            'type' => $request->type,
+            'category' => $request->category,
+            'province' => explode('.', $request->province)[1],
+            'city' => $request->city,
+            'address' => $request->address, 
             'password' => bcrypt($request->password),
             'hash' => md5("bpfkbanj".$user_count.$request->mail)
         ]);

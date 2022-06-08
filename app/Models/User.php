@@ -18,6 +18,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'fasyenkes_name',
+        'type',
+        'category',
+        'province',
+        'city',
+        'address',
+        'phone',
         'email',
         'password',
         'hash'
