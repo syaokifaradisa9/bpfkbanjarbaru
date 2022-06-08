@@ -5,9 +5,11 @@ namespace App\Http\Controllers\petugas;
 use App\Models\Alkes;
 use Illuminate\Http\Request;
 use App\Helpers\FormatHelper;
+use App\Models\AlkesCategory;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\ExternalAlkesOrder;
 use App\Http\Controllers\Controller;
+use App\Models\AlkesOrderDescription;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class ExternalWorksheetController extends Controller
@@ -86,6 +88,37 @@ class ExternalWorksheetController extends Controller
 
     public function store(Request $request){
         dd($request->all());
+    }
+
+    public function insert($order_id){
+        $category = AlkesCategory::all();
+        return view('petugas.order.external.insert',[
+            'title' => 'Lembar Kerja Pengujian dan Kalibrasi',
+            'menu' => 'external',
+            'categories' => $category,
+            'order_id' => $order_id
+        ]);
+    }
+
+    public function appendAlkes(Request $request, $order_id){
+        for($i = 0; $i < count($request->alkes); $i++){
+            $description_id = 1;
+            if($request->description[$i] != null){
+                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]]);
+            }
+
+            for($j = 0; $j < $request->ammount[$i]; $j++){
+                ExternalAlkesOrder::create([
+                    'alkes_id' => $request->alkes[$i],
+                    'alkes_order_description_id' => $description_id,
+                    'external_order_id' => $order_id,
+                ]);
+            }
+        }
+
+        return redirect(route('petugas.order.external.worksheet.index',[
+            'order_id' => $order_id
+            ]))->with('success','Berhasil Menambahkan Alat Kesehatan');
     }
 
     public function edit($order_id, $alkes_order_id){

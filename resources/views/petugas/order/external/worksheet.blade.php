@@ -4,6 +4,10 @@
 <section class="section">
     <div class="section-header">
       <h1>Lembar Kerja</h1>
+      <div class="section-header-breadcrumb">
+        <td><a href="{{ route('petugas.order.external.insert', ['order_id' => $order_id]) }}" class="btn btn-primary mr-2">Tambah Alat Kesehatan</a></td>
+        <td><a href="{{ route('fasyenkes.order.external.create') }}" class="btn btn-success">Konfirmasi Selesai</a></td>
+      </div>
     </div>
 
     <div class="section-body">
@@ -12,6 +16,11 @@
 
       <div class="row">
         <div class="col-12">
+            @if (Session::has('success'))
+                <div class="alert alert-success mb-2">{{ Session::get('success') }}</div>
+            @elseif(Session::has('error'))
+                <div class="alert alert-danger mb-2">{{ Session::get('error') }}</div>
+            @endif
             <div class="card">
               <div class="card-header">
                 <h4>Tabel Alat Kesehatan</h4>

@@ -142,14 +142,18 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
         // Order External
         Route::prefix('external')->name('external.')->group(function(){
             Route::get('/', [PetugasExternalOrderController::class, 'index'])->name('index');
-            Route::prefix('{order_id}/worksheet')->name('worksheet.')->group(function(){
-                Route::get('/', [ExternalWorksheetController::class, 'index'])->name('index');
-                Route::prefix('/{alkes_order_id}')->name('excel.')->group(function(){
-                    Route::get('/', [ExternalWorksheetController::class, 'excelWorksheet'])->name('index');
-                    Route::post('/store', [ExternalWorksheetController::class, 'store'])->name('store');
-                    Route::get('/edit', [ExternalWorksheetController::class, 'edit'])->name('edit');
-                    Route::get('/result', [ExternalWorksheetController::class, 'result'])->name('result');
-                    Route::get('/certificate', [ExternalWorksheetController::class, 'certificate'])->name('certificate');
+            Route::prefix('{order_id}')->group(function(){
+                Route::get('/insert', [ExternalWorksheetController::class, 'insert'])->name('insert');
+                Route::post('/append', [ExternalWorksheetController::class, 'appendAlkes'])->name('append');
+                Route::prefix('/worksheet')->name('worksheet.')->group(function(){
+                    Route::get('/', [ExternalWorksheetController::class, 'index'])->name('index');
+                    Route::prefix('/{alkes_order_id}')->name('excel.')->group(function(){
+                        Route::get('/', [ExternalWorksheetController::class, 'excelWorksheet'])->name('index');
+                        Route::post('/store', [ExternalWorksheetController::class, 'store'])->name('store');
+                        Route::get('/edit', [ExternalWorksheetController::class, 'edit'])->name('edit');
+                        Route::get('/result', [ExternalWorksheetController::class, 'result'])->name('result');
+                        Route::get('/certificate', [ExternalWorksheetController::class, 'certificate'])->name('certificate');
+                    });
                 });
             });
         });
