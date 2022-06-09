@@ -11,7 +11,8 @@ class ExternalOfficerOrder extends Model
 
     protected $fillable = [
         'admin_user_id',
-        'external_order_id'
+        'external_order_id',
+        'role'
     ];
 
     public function admin_user(){

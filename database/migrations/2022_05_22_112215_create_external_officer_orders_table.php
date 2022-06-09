@@ -19,6 +19,7 @@ class CreateExternalOfficerOrdersTable extends Migration
             $table->id();
             $table->foreignIdFor(AdminUser::class)->constrained();
             $table->foreignIdFor(ExternalOrder::class)->constrained();
+            $table->enum('role', ['Ketua','Anggota']);
             $table->timestamps();
         });
     }

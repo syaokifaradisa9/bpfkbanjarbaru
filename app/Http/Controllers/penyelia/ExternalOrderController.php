@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\penyelia;
 
 use App\Models\AdminUser;
-use App\Models\OfficerOrder;
 use Illuminate\Http\Request;
 use App\Models\ExternalOrder;
 use App\Http\Controllers\Controller;
@@ -33,9 +32,15 @@ class ExternalOrderController extends Controller
         $order = ExternalOrder::findOrFail($id);
 
         $existOfficers = ExternalOfficerOrder::where('external_order_id', $id)->get();
+
         $existOfficerIds = [];
+        $chiefOfficer = 0;
         foreach($existOfficers as $officer){
-            array_push($existOfficerIds, $officer->admin_user_id);
+            if($officer->role == "Ketua"){
+                $chiefOfficer = $officer->admin_user_id;
+            }else{
+                array_push($existOfficerIds, $officer->admin_user_id);
+            }
         }
 
         return view('penyelia.order.external.officer-edit', [
@@ -43,6 +48,7 @@ class ExternalOrderController extends Controller
             'menu' => 'external',
             'officers' => $officers,
             'order' => $order,
+            'chiefOfficer' => $chiefOfficer,
             'officerExists' => $existOfficerIds,
         ]);
     }
@@ -100,22 +106,47 @@ class ExternalOrderController extends Controller
 
         $order_id = $id;
 
+        // Filter Data
+        $chiefOfficerSelected = array_filter(array_keys($officerSelected), function ($officer){
+            return explode("_",$officer)[0] == "chief";
+        });
+        $officerSelected = array_filter(array_keys($officerSelected), function ($officer){
+            return explode("_",$officer)[0] != "chief";
+        });
+
+        // Validasi Ketua Tim
+        $selectedChiefId = explode("_", $chiefOfficerSelected[0])[1];
+        $chiefOfficer = ExternalOfficerOrder::where('external_order_id', $order_id)->where('role','Ketua')->get();
+        if(count($chiefOfficer) > 0){
+            if($chiefOfficer[0]->admin_user_id != $selectedChiefId){
+                $chiefOfficer[0]->admin_user_id = $selectedChiefId;
+                $chiefOfficer[0]->save();   
+            }
+        }else{
+            ExternalOfficerOrder::create([
+                'admin_user_id' => $selectedChiefId,
+                'external_order_id' => $order_id,
+                'role' => 'Ketua'
+            ]);
+        }
+
         // Pengambilan List Petugas dari Database
         $officerIds = [];
-        $officers = ExternalOfficerOrder::select('admin_user_id')->where('external_order_id', $id)->get();
+        $officers = ExternalOfficerOrder::select('admin_user_id')->where('external_order_id', $order_id)->where('role','Anggota')->get();
         foreach($officers as $officer){
             array_push($officerIds, $officer->admin_user_id);
         }
 
         // Menambahkan database jika pada database blm ada id petugas
         $clean_officer_selected = [];
-        foreach($officerSelected as $key => $value){
-            $user_id = explode('_', $key)[1];
+        foreach($officerSelected as $value){
+            $user_id = explode('_', $value)[1];
             array_push($clean_officer_selected, $user_id);
             if(!in_array($user_id, $officerIds)){
                 ExternalOfficerOrder::create([
                     'admin_user_id' => $user_id,
                     'external_order_id' => $order_id,
+                    'role' => 'Anggota'
                 ]);
             }
         }

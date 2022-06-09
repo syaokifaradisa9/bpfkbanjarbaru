@@ -46,12 +46,33 @@
                         <div class="col-6 row"></div>
                     </div>
 
-                    <label class="mt-3"><b>Petugas Kalibrasi (Pilih {{ $order->total_officer }} Orang)</b></label>
+                    <label class="mt-3"><b>Ketua Tim Kalibrasi (Pilih 1 Orang)</b></label>
                     <div class="row px-3">
                         @foreach ($officers as $officer)
                             <div class="custom-control custom-checkbox col-lg-3 col-md-4 mb-1">
                                 <input type="checkbox" 
-                                       class="custom-control-input" 
+                                       class="custom-control-input officer-chief-checkbox" 
+                                       id="officer_chief_{{ $officer->id }}" 
+                                       name="chief_{{ $officer->id }}" 
+                                       class="officer-checkbox"
+                                       @if ($officer->id == $chiefOfficer) checked @endif>
+                                <label class="custom-control-label" for="officer_chief_{{ $officer->id }}" name="{{ $officer->id }}" id="officer_chief_name_{{ $officer->id }}">
+                                  @if ($officer->id == $chiefOfficer)
+                                    <strong>{{ $officer->name }} </strong>
+                                  @else
+                                    {{ $officer->name }}
+                                  @endif
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <label class="mt-3"><b>Petugas Kalibrasi (Pilih {{ $order->total_officer - 1 }} Orang)</b></label>
+                    <div class="row px-3">
+                        @foreach ($officers as $officer)
+                            <div class="custom-control custom-checkbox col-lg-3 col-md-4 mb-1">
+                                <input type="checkbox" 
+                                       class="custom-control-input officer-checkbox" 
                                        id="{{ $officer->id }}" 
                                        name="officer_{{ $officer->id }}" 
                                        class="officer-checkbox"
