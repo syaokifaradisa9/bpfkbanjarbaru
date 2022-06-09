@@ -11,9 +11,11 @@ function checklistOfficerChiefValidation(event){
     var officerChiefChecked = document.getElementsByClassName('officer-chief-checkbox');
 
     officerChiefCheckedCount = 0;
+    var officerChiefId = 0;
     for(i = 0; i < officerChiefChecked.length; i++){
         if(officerChiefChecked[i].checked){
             officerChiefCheckedCount++;
+            officerChiefId = officerChiefChecked[i].id.split('_')[2];
         }
     }
 
@@ -24,6 +26,22 @@ function checklistOfficerChiefValidation(event){
             title: 'Akses Ditolak!',
             text: `Ketua tim tidak boleh melebihi 1 Orang!`
         });
+    }else{
+        var officerChecked = document.getElementsByClassName('officer-checkbox');
+        for(i = 0; i < officerChecked.length; i++){
+            if(officerChecked[i].checked){
+                if(officerChecked[i].id == officerChiefId){
+                    event.target.checked = false;
+    
+                    officerChiefName = document.getElementById(`officer_chief_name_${officerChiefId}`).innerHTML;
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Akses Ditolak!',
+                        text: `Mohon Maaf ${officerChiefName} Sudah Terpilih Menjadi Anggota Tim, Silahkan Pilih yang lain!`
+                    });
+                }
+            }
+        }
     }
 }
 
