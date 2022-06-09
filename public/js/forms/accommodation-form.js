@@ -15,24 +15,17 @@ function rupiahConverter(number, prefix){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-  var lodgingForm = document.getElementById('lodging_cost');
-  lodgingForm.value = rupiahConverter(lodgingForm.value, 'Rp. ')
-  var transformForm = document.getElementById('transportation_cost');
-  transformForm.value = rupiahConverter(transformForm.value, 'Rp. ')
+  var AccommodationForm = document.getElementById('accommodation_cost');
+  AccommodationForm.value = rupiahConverter(AccommodationForm.value, 'Rp. ')
   var rapidForm = document.getElementById('rapid_cost');
   rapidForm.value = rupiahConverter(rapidForm.value, 'Rp. ')
   var dailyForm = document.getElementById('daily_cost');
   dailyForm.value = rupiahConverter(dailyForm.value, 'Rp. ')
 
-  lodgingForm.addEventListener('click', setUpAccomodationForm);
-  lodgingForm.addEventListener('input', changeFormAccomodation);
-  lodgingForm.addEventListener('focusout', keyFocusOutAccomodationEvent);
-  lodgingForm.addEventListener('keyup', keyUpAccomodationEvent);
-
-  transformForm.addEventListener('click', setUpAccomodationForm);
-  transformForm.addEventListener('input', changeFormAccomodation);
-  transformForm.addEventListener('focusout', keyFocusOutAccomodationEvent);
-  transformForm.addEventListener('keyup', keyUpAccomodationEvent);
+  AccommodationForm.addEventListener('click', setUpAccomodationForm);
+  AccommodationForm.addEventListener('input', changeFormAccomodation);
+  AccommodationForm.addEventListener('focusout', keyFocusOutAccomodationEvent);
+  AccommodationForm.addEventListener('keyup', keyUpAccomodationEvent);
 
   rapidForm.addEventListener('click', setUpAccomodationForm);
   rapidForm.addEventListener('input', changeFormAccomodation);

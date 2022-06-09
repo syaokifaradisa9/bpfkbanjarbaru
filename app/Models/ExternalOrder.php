@@ -22,10 +22,8 @@ class ExternalOrder extends Model
         'pp_hour',
         'pp_minute',
         'total_officer',
-        'lodging_accommodation',
-        'lodging_description',
-        'transportation_accommodation',
-        'transportation_description',
+        'accommodation',
+        'accommodation_description',
         'daily_accommodation',
         'daily_description',
         'rapid_test_accommodation',
@@ -44,8 +42,8 @@ class ExternalOrder extends Model
 
     public function getTotalAccommodationAttribute()
     {
-        if(isset($this->lodging_accommodation)){
-            return $this->lodging_accommodation + $this->transportation_accommodation + $this->rapid_test_accommodation + $this->daily_accommodation;
+        if(isset($this->accommodation)){
+            return $this->accommodation + $this->rapid_test_accommodation + $this->daily_accommodation;
         }else{
             return 0;
         }

@@ -54,11 +54,8 @@ class ExternalOrderController extends Controller
     public function updateAccommodation(Request $request, $id){
         $order = ExternalOrder::findOrFail($id);
 
-        $order->lodging_accommodation = filter_var($request->lodging_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->lodging_description = $request->lodging_cost_description ?? '-';
-
-        $order->transportation_accommodation = filter_var($request->transportation_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->transportation_description = $request->transportation_cost_description ?? '-';
+        $order->accommodation = filter_var($request->accommodation_cost,FILTER_SANITIZE_NUMBER_INT);
+        $order->accommodation_description = $request->accommodation_cost_description ?? '-';
 
         $order->daily_accommodation = filter_var($request->daily_cost,FILTER_SANITIZE_NUMBER_INT);
         $order->daily_description = $request->daily_cost_description ?? '-';

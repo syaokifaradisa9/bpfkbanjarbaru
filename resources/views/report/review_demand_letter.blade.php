@@ -110,12 +110,12 @@
             <td>
                 <table class="border-table" style="width: 100%">
                     <tr>
-                        <td class="text-center">NO</td>
-                        <td class="text-center">NAMA ALAT</td>
-                        <td class="text-center">JUMLAH (UNIT)</td>
-                        <td class="text-center">TARIF (Rp.)</td>
-                        <td class="text-center">TOTAL BIAYA (Rp.)</td>
-                        <td class="text-center">KETERANGAN</td>
+                        <td class="text-center" style="width: 20px">NO</td>
+                        <td class="text-center" style="width: 200px">NAMA ALAT</td>
+                        <td class="text-center" style="width: 50px">JUMLAH (UNIT)</td>
+                        <td class="text-center" style="width: 80px">TARIF (Rp.)</td>
+                        <td class="text-center" style="width: 80px">TOTAL BIAYA (Rp.)</td>
+                        <td class="text-center" style="width: 150px">KETERANGAN</td>
                     </tr>
                     <?php 
                         $number = 1;
@@ -134,8 +134,8 @@
                                 <td class="text-center">{{ $number }}</td>
                                 <td>{{ $name }}</td>
                                 <td class="text-center">{{ $value['ammount'] }}</td>
-                                <td class="text-center">{{ 'Rp. ' . FormatHelper::toIndonesianCurrencyFormat($value['price']) }}</td>
-                                <td class="text-center">{{ 'Rp. ' . FormatHelper::toIndonesianCurrencyFormat($value['price'] * $value['ammount']) }}</td>
+                                <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($value['price']) }}</td>
+                                <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($value['price'] * $value['ammount']) }}</td>
                                 <td>{{ $value['description'] ?? '-' }}</td>
                             </tr>
                             <?php 
@@ -149,8 +149,8 @@
                     <tr>
                         <td colspan="2"><b>Total</b></td>
                         <td class="text-center">{{ $total_ammount }}</td>
-                        <td class="text-center">{{ 'Rp. ' . FormatHelper::toIndonesianCurrencyFormat($total_price) }}</td>
-                        <td class="text-center">{{ 'Rp. ' . FormatHelper::toIndonesianCurrencyFormat($total_payment) }}</td>
+                        <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($total_price) }}</td>
+                        <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($total_payment) }}</td>
                         <td></td>
                     </tr>
                 </table>
@@ -183,8 +183,8 @@
                         <td colspan="2"><b>Biaya Petugas Pengujian dan / atau Kalibrasi</b></td>
                     </tr>
                     <tr>
-                        <td>- Transportasi</td>
-                        <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($order->transportation_accommodation + $order->lodging_accommodation) }}</td>
+                        <td>- Transportasi dan Akomodasi</td>
+                        <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($order->accommodation) }}</td>
                     </tr>
                     <tr>
                         <td>- Biaya Petugas</td>

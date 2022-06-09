@@ -89,7 +89,7 @@
         <tr>
             <td style="width: 20px; vertical-align: top">1.</td>
             <td>
-                Total Biaya untuk Layanan Pengujian dan / atau Kalibrasi adalah sebesar : Rp. {{ FormatHelper::toIndonesianCurrencyFormat($order->total_accommodation) }} ({{ FormatHelper::toIndonesianCurrencyStringFormat($order->total_accommodation). ' Rupiah' }}) dengan jumlah item alat sesuai perincian terlampir.
+                Total Biaya untuk Layanan Pengujian dan / atau Kalibrasi adalah sebesar : Rp. {{ FormatHelper::toIndonesianCurrencyFormat($order->total_alkes_price) }} ({{ FormatHelper::toIndonesianCurrencyStringFormat($order->total_accommodation). ' Rupiah' }}) dengan jumlah item alat sesuai perincian terlampir.
             </td>
         </tr>
         <tr>

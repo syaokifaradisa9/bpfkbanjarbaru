@@ -54,15 +54,9 @@
         </tr>
         <tr>
             <td class="text-center">1</td>
-            <td>Transportasi</td>
-            <td>{{ $order->transportation_description }}</td>
-            <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($order->transportation_accommodation) }}</td>
-        </tr>
-        <tr>
-            <td class="text-center">2</td>
-            <td>Penginapan</td>
-            <td>{{ $order->lodging_description }}</td>
-            <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($order->lodging_accommodation) }}</td>
+            <td>Akomodasi</td>
+            <td>{{ $order->accommodation_description }}</td>
+            <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($order->accommodation) }}</td>
         </tr>
         <tr>
             <td class="text-center">3</td>
@@ -78,7 +72,7 @@
         </tr>
         <tr>
             <td colspan="3"><b>Total</b></td>
-            <td class="text-right"><b>Rp. {{ FormatHelper::toIndonesianCurrencyFormat($order->total_accommodation) }}</b></td>
+            <td class="text-right"><b>{{ FormatHelper::toIndonesianCurrencyFormat($order->total_accommodation) }}</b></td>
         </tr>
     </table>
 </body>

@@ -23,12 +23,8 @@
                 <div class="card-body py-0 px-4">
                   <div class="row">
                     <div class="form-group col">
-                        <label><b>Penginapan</b></label>
-                        <input type="text" class="form-control" id="lodging_cost" name="lodging_cost" value="Rp. {{ $order->lodging_accommodation ?? '0' }}">
-                    </div>
-                    <div class="form-group col">
-                        <label><b>Transportasi</b></label>
-                        <input type="text" class="form-control" id="transportation_cost" name="transportation_cost" value="Rp. {{ $order->transportation_accommodation ?? '0' }}">
+                        <label><b>Akomodasi</b></label>
+                        <input type="text" class="form-control" id="accommodation_cost" name="accommodation_cost" value="Rp. {{ $order->accommodation ?? '0' }}">
                     </div>
                     <div class="form-group col">
                       <label><b>Rapid Test</b></label>
@@ -41,12 +37,8 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-6">
-                        <label><b> Keterangan Penginapan</b></label>
-                        <input type="text" class="form-control" name="lodging_cost_description" placeholder="Keterangan Penggunaan Akomodasi Penginapan" value='{{ $order->lodging_description ?? '' }}'>
-                    </div>
-                    <div class="form-group col-6">
-                        <label><b>Keterangan Transportasi</b></label>
-                        <input type="text" class="form-control" name="transportation_cost_description" placeholder="Keterangan Penggunaan Akomodasi Transportasi" value='{{ $order->transportation_description ?? '' }}'>
+                        <label><b>Keterangan Akomodasi</b></label>
+                        <input type="text" class="form-control" name="accommodation_cost_description" placeholder="Keterangan Penggunaan Akomodasi" value='{{ $order->accommodation_description ?? '' }}'>
                     </div>
                     <div class="form-group col-6">
                       <label><b>Keterangan Rapid Test</b></label>
