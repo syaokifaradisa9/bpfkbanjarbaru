@@ -96,10 +96,10 @@
             <td style="width: 20px; vertical-align: top">2.</td>
             <td>
                 <div>
-                    <b>Sesuai PP No. 64 Tahun 2019 Pasal 5 Ayat 1 bahwa selain pola Tarif, Pelanggan juga dikenakan biaya Akomodasi, Uang Harian dan Transportasi ( Peraturan Menteri Keuangan RI Nomor : 78/PMK.02/2019 Tentang Standar Biaya Masukan Tahun Anggaran 2020), dengan rincian biaya terlampir.</b>
+                    <b>Sesuai PP No. 64 Tahun 2019 Pasal 5 Ayat 1 bahwa selain pola Tarif, Pelanggan juga dikenakan biaya Akomodasi, Biaya Petugas dan Transportasi ( Peraturan Menteri Keuangan RI Nomor : 78/PMK.02/2019 Tentang Standar Biaya Masukan Tahun Anggaran 2020), dengan rincian biaya terlampir.</b>
                 </div>
                 <div style="margin-top: 8px">
-                    <b>"PP No. 64 Tahun 2019 Tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak yang berlaku pada Kementerian Kesehatan [Pasal 5 sayat (1)] :“ Biaya akomodasi, uang harian, dan transportasi sebagaimana dimaksud pada ayat (1) dibebankan kepada wajib bayar sesuai dengan ketentuan Peraturan Perundang-undangan”) dan Bagian Penjelasan atas PP No 64 Tahun 2019, untuk pasal 5 ayat 1 : “Yang dimaksud dengan “ketentuan peraturan perundang- undangan” adalah Peraturan Menteri Keuangan yang mengatur mengenai standar biaya".</b>
+                    <b>"PP No. 64 Tahun 2019 Tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak yang berlaku pada Kementerian Kesehatan [Pasal 5 sayat (1)] :“ Biaya akomodasi, biaya petugas, dan transportasi sebagaimana dimaksud pada ayat (1) dibebankan kepada wajib bayar sesuai dengan ketentuan Peraturan Perundang-undangan”) dan Bagian Penjelasan atas PP No 64 Tahun 2019, untuk pasal 5 ayat 1 : “Yang dimaksud dengan “ketentuan peraturan perundang- undangan” adalah Peraturan Menteri Keuangan yang mengatur mengenai standar biaya".</b>
                 </div>
             </td>
         </tr>

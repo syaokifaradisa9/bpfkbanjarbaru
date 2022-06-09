@@ -39,9 +39,9 @@
     </style>
 </head>
 <body>
-    <p style="font-size: 13px; text-align: center; "><b>KAJI ULANG PERMINTAAN</b></p>
-    <p style="font-size: 13px; text-align: center; "><b>LAYANAN PENGUJIAN DAN / ATAU KALIBRASI ALAT-ALAT KESEHATAN</b></p>
-    <p style="font-size: 13px; text-align: center; "><b>LOKA PENGAMANAN FASILITAS KESEHATAN (LPFK) BANJARBARU</b></p>
+    <p style="font-size: 13px; text-align: center;"><b>KAJI ULANG PERMINTAAN</b></p>
+    <p style="font-size: 13px; text-align: center;"><b>LAYANAN PENGUJIAN DAN / ATAU KALIBRASI ALAT-ALAT KESEHATAN</b></p>
+    <p style="font-size: 13px; text-align: center;"><b>LOKA PENGAMANAN FASILITAS KESEHATAN (LPFK) BANJARBARU</b></p>
 
     <table style="margin-top: 20px; width: 100%">
         {{-- Data pelanggan --}}
@@ -187,7 +187,7 @@
                         <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($order->transportation_accommodation + $order->lodging_accommodation) }}</td>
                     </tr>
                     <tr>
-                        <td>- Uang Harian</td>
+                        <td>- Biaya Petugas</td>
                         <td class="text-right">{{ FormatHelper::toIndonesianCurrencyFormat($order->daily_accommodation) }}</td>
                     </tr>
                     <tr>
