@@ -77,6 +77,10 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
             Route::get('/create', [FasyenkesExternalOrderController::class, 'create'])->name('create');
             Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
             Route::post('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
+            Route::prefix('/{id}')->group(function(){
+                Route::get('edit', [FasyenkesExternalOrderController::class, 'edit'])->name('edit');
+                Route::put('update', [FasyenkesExternalOrderController::class, 'update'])->name('update');
+            });
         });
     });
 });

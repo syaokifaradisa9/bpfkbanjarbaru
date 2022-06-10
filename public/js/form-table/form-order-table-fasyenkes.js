@@ -84,6 +84,20 @@ function refreshTable(){
     document.getElementById('total_price').innerHTML = rupiahConverter(totals, 'Rp. ');
 }
 
+// Setup Tabel Edit
+function setUpEditTable(){
+    // Mendapatkan jumlah data
+    const alkesOrdertable = document.getElementById('alkes-order-table');
+    const totalDataRow = alkesOrdertable.rows.length - 2;
+
+    // Perulangan sebanyak banyak data
+    for(var i=0; i<totalDataRow; i++){
+        // Kalkulasi Sub total
+        const rawPrice = document.getElementById(`price_${i}`).innerHTML;
+        document.getElementById(`price_${i}`).innerHTML = rupiahConverter(rawPrice, "Rp. ");
+    }
+}
+
 // Action Function
 function addRowAlkesOrder(){
     event.preventDefault();
@@ -193,5 +207,11 @@ document.addEventListener("DOMContentLoaded", function(){
     const addAlkesOrderRow = document.getElementById('btnAddRow');
     addAlkesOrderRow.addEventListener('click', addRowAlkesOrder);
 
+    const alkesOrderTable = document.getElementById('alkes-order-table');
+    const totalDataRows = alkesOrderTable.rows.length - 2;
+
+    if(totalDataRows !== 1){
+        setUpEditTable();
+    }
     refreshTable();
 });
