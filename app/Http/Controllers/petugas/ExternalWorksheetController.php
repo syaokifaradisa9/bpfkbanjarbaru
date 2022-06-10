@@ -11,6 +11,7 @@ use App\Models\ExternalAlkesOrder;
 use App\Http\Controllers\Controller;
 use App\Models\AlkesOrderDescription;
 use App\Models\ExternalOrder;
+use App\Models\ExternalOrderExcelValue;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class ExternalWorksheetController extends Controller
@@ -88,8 +89,31 @@ class ExternalWorksheetController extends Controller
         ]);
     }
 
-    public function store(Request $request){
-        dd($request->all());
+    public function store(Request $request, $orderId, $alkesOrderId){
+        $certificate_number = $request->certificate_number.' / ';
+        $certificate_number = $certificate_number.FormatHelper::toRomanMonthNumber(explode('-', $request->certificate_date)[1]).' - ';
+        $certificate_number = $certificate_number.explode('-', $request->certificate_date)[0].' / ';
+        $certificate_number = $certificate_number.$request->order_number;
+
+        $input = $request->all();
+
+        unset($input['_token']);
+        unset($input['certificate_date']);
+        unset($input['certificate_number']);
+        unset($input['order_number']);
+        
+        $input['I2'] = $certificate_number;
+        foreach($input as $key => $value){
+            ExternalOrderExcelValue::create([
+                'external_alkes_order_id' => $alkesOrderId,
+                'cell' => $key,
+                'value' => $value
+            ]);
+        }
+
+        return redirect(route('petugas.order.external.worksheet.index',[
+            'order_id' => $orderId
+        ]))->with('success','Berhasil Menyimpan Data');
     }
 
     public function insert($order_id){
@@ -188,7 +212,8 @@ class ExternalWorksheetController extends Controller
         }
         
         $certificate_month = explode(' - ', trim(explode('/', $excel_values['I2'])[1]));
-        $certificate_month = "20".$certificate_month[1]."-".FormatHelper::toNumberFromRomanFormat($certificate_month[0]);
+        $certificate_month = $certificate_month[1]."-".FormatHelper::toNumberFromRomanFormat($certificate_month[0]);
+
         return view('petugas.excel_worksheet.'.strtolower($alkesOrder->alkes->excel_name),[
             'alkesOrder' => $alkesOrder,
             'excel_value' => $excel_values,
@@ -198,8 +223,38 @@ class ExternalWorksheetController extends Controller
             'certificate_month' => $certificate_month,
             'measuringInstruments' => $measuringInstruments,
             'order_id' => $order_id,
-            'officers' => $officers
+            'officers' => $officers,
         ]);
+    }
+
+    public function update(Request $request, $order_id, $alkes_order_id){
+        $certificate_number = $request->certificate_number.' / ';
+        $certificate_number = $certificate_number.FormatHelper::toRomanMonthNumber(explode('-', $request->certificate_date)[1]).' - ';
+        $certificate_number = $certificate_number.explode('-', $request->certificate_date)[0].' / ';
+        $certificate_number = $certificate_number.$request->order_number;
+
+        $input = $request->all();
+
+        unset($input['_token']);
+        unset($input['_method']);
+        unset($input['certificate_date']);
+        unset($input['certificate_number']);
+        unset($input['order_number']);
+        
+        $input['I2'] = $certificate_number;
+
+        foreach($input as $cell => $value){
+            $excel_value = ExternalOrderExcelValue::where('external_alkes_order_id', $alkes_order_id)
+                                                  ->where('cell', $cell)
+                                                  ->get()->first();
+
+            $excel_value->value = $value;
+            $excel_value->save();
+        }
+
+        return redirect(route('petugas.order.external.worksheet.index', [
+            'order_id' => $order_id
+        ]))->with('success','Berhasil Mengubah Hasil Kalibrasi');
     }
 
     public function result($order_id, $alkes_order_id){

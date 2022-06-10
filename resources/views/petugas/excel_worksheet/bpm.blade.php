@@ -29,7 +29,7 @@
                   </div>
                   <div class="form-group col-2">
                     <label><b>Bulan Sertifikat</b></label>
-                    <input type="month" class="form-control" value="{{ date('Y-m', time()) }}" name="certificate_date">
+                    <input type="month" class="form-control" name="certificate_date" value="{{ date('Y-m', strtotime($certificate_month ?? now())) }}">
                   </div>
                   <div class="form-group ml-3">
                     <label><b>Nomor Order</b></label>
@@ -184,7 +184,7 @@
                       <td class="text-center align-middle">1</td>
                       <td class="align-middle">Resistansi Isolasi</td>
                       <td>
-                        <input name="G42" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G42'] }}">
+                        <input name="G42" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G42'] ?? '' }}">
                       </td>
                     </tr>
                     <tr>
@@ -206,7 +206,7 @@
                         </select>
                       </td>
                       <td>
-                        <input name="G43" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G43'] }}">
+                        <input name="G43" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G43'] ?? '' }}">
                       </td>
                     </tr>
                     <tr>
@@ -228,7 +228,7 @@
                         </select>
                       </td>
                       <td>
-                        <input name="G44" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G44'] }}">
+                        <input name="G44" type="text" class="form-control text-center align-middle" value="{{ $excel_value['G44'] ?? ''}}">
                       </td>
                     </tr>
                   </table>
@@ -373,7 +373,7 @@
                           </td>
                           @foreach (range('F', 'J') as $letter)
                             <td class="text-center align-middle">
-                              <input type="text" class="text-center align-middle form-control" name="{{ $letter."63" }}" value="{{ $excel_value[$letter."63"] }}">
+                              <input type="text" class="text-center align-middle form-control" name="{{ $letter."63" }}" value="{{ $excel_value[$letter."63"] ?? '' }}">
                             </td>
                           @endforeach
                       </tr>
@@ -382,7 +382,7 @@
                           <td class="align-middle text-center">150</td>
                           @foreach (range('F', 'J') as $letter)
                             <td class="text-center align-middle">
-                              <input type="text" class="text-center align-middle form-control" name="{{ $letter."64" }}" value="{{ $excel_value[$letter."64"] }}">
+                              <input type="text" class="text-center align-middle form-control" name="{{ $letter."64" }}" value="{{ $excel_value[$letter."64"] ?? ''}}">
                             </td>
                           @endforeach
                       </tr>

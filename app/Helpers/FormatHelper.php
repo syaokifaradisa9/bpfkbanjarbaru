@@ -87,5 +87,33 @@ class FormatHelper{
             return 12;
         }
     }
+
+    public static function toRomanMonthNumber($num){
+        if($num == 1 || $num == '01'){
+            return 'I';
+        }else if($num == 2 || $num == '02'){
+            return 'II';
+        }else if($num == 3 || $num == '03'){
+            return 'III';
+        }else if($num == 4 || $num == '04'){
+            return 'IV';
+        }else if($num == 5 || $num == '05'){
+            return 'V';
+        }else if($num == 6 || $num == '06'){
+            return 'VI';
+        }else if($num == 7 || $num == '07'){
+            return 'VII';
+        }else if($num == 8 || $num == '08'){
+            return 'VII';
+        }else if($num == 9 || $num == '09'){
+            return 'IX';
+        }else if($num == 10 || $num == '10'){
+            return 'X';
+        }else if($num == 11 || $num == '11'){
+            return 'XI';
+        }else{
+            return 'XII';
+        }
+    }
 }
 ?>

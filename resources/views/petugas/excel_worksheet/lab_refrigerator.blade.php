@@ -29,7 +29,7 @@
                   </div>
                   <div class="form-group col-2">
                     <label><b>Bulan Sertifikat</b></label>
-                    <input type="month" class="form-control" value="{{ date('Y-m', time()) }}" name="certificate_date">
+                    <input type="month" class="form-control" name="certificate_date" value="{{ date('Y-m', strtotime($certificate_month ?? now())) }}">
                   </div>
                   <div class="form-group ml-3">
                     <label><b>Nomor Order</b></label>
@@ -168,14 +168,14 @@
                       <td class="text-center align-middle">1</td>
                       <td class="align-middle">Resistansi Isolasi</td>
                       <td>
-                        <input name="I27" type="text" class="form-control text-center align-middle" value="{{ $excel_value['I27'] }}">
+                        <input name="I27" type="text" class="form-control text-center align-middle" value="{{ $excel_value['I27'] ?? '' }}">
                       </td>
                     </tr>
                     <tr>
                       <td class="text-center align-middle">2</td>
                       <td class="align-middle">Resistansi Pembumian Protektif</td>
                       <td>
-                        <input name="I28" type="text" class="form-control text-center align-middle" value="{{ $excel_value['I28'] }}">
+                        <input name="I28" type="text" class="form-control text-center align-middle" value="{{ $excel_value['I28'] ?? ''}}">
                       </td>
                     </tr>
                     <tr>
@@ -197,7 +197,7 @@
                         </select>
                       </td>
                       <td>
-                        <input name="I30" type="text" class="form-control text-center align-middle" value="{{ $excel_value['I30'] }}">
+                        <input name="I30" type="text" class="form-control text-center align-middle" value="{{ $excel_value['I30'] ?? ''}}">
                       </td>
                     </tr>
                   </table>
@@ -210,15 +210,15 @@
                     <div class="row mt-3">
                       <div class="form-group col">
                         <label><b>Panjang</b></label>
-                        <input name="A37" placeholder="Panjang (m)" type="text" class="form-control col" value="{{ $excel_value['A37'] }}">
+                        <input name="A37" placeholder="Panjang (m)" type="text" class="form-control col" value="{{ $excel_value['A37'] ?? '' }}">
                       </div>
                       <div class="form-group col">
                         <label><b>lebar</b></label>
-                        <input name="B37" placeholder="Lebar (m)" type="text" class="form-control col mx-2" value="{{ $excel_value['B37'] }}">
+                        <input name="B37" placeholder="Lebar (m)" type="text" class="form-control col mx-2" value="{{ $excel_value['B37'] ?? '' }}">
                       </div>
                       <div class="form-group col">
                         <label><b>Tinggi</b></label>
-                        <input name="C37" placeholder="Tinggi (m)" type="text" class="form-control col" value="{{ $excel_value['C37'] }}">
+                        <input name="C37" placeholder="Tinggi (m)" type="text" class="form-control col" value="{{ $excel_value['C37'] ?? '' }}">
                       </div>
                     </div>
                     <table class="table table-bordered table-md mt-3">
@@ -237,7 +237,7 @@
                           <td class="text-center">{{ $i }}</td>
                           @foreach (['C','D','E','F','G','H','I','J','K','L'] as $letter)
                             <td>
-                              <input name="{{ $letter.($i + 72) }}" type="text" class="form-control text-center align-middle" value="{{ $excel_value[$letter.($i + 72)] }}">
+                              <input name="{{ $letter.($i + 72) }}" type="text" class="form-control text-center align-middle" value="{{ $excel_value[$letter.($i + 72)] ?? ''}}">
                             </td>
                           @endforeach
                         </tr>
@@ -245,10 +245,10 @@
                       <tr>
                         <td class="text-center">Penunjukkan Indikator</td>
                         <td colspan="5">
-                          <input name="C81" type="text" class="form-control text-center align-middle" value="{{ $excel_value['C81'] }}">
+                          <input name="C81" type="text" class="form-control text-center align-middle" value="{{ $excel_value['C81'] ?? ''}}">
                         </td>
                         <td colspan="5">
-                          <input name="H81" type="text" class="form-control text-center align-middle" value="{{ $excel_value['H81'] }}">
+                          <input name="H81" type="text" class="form-control text-center align-middle" value="{{ $excel_value['H81'] ?? '' }}">
                         </td>
                       </tr>
                     </table>

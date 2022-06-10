@@ -29,7 +29,7 @@
                   </div>
                   <div class="form-group col-2">
                     <label><b>Bulan Sertifikat</b></label>
-                    <input type="month" class="form-control" value="{{ date('Y-m', time()) }}" name="certificate_date">
+                    <input type="month" class="form-control" name="certificate_date" value="{{ date('Y-m', strtotime($certificate_month ?? now())) }}">
                   </div>
                   <div class="form-group ml-3">
                     <label><b>Nomor Order</b></label>
@@ -178,7 +178,7 @@
                           </label>
                         </div>
                       </div>
-                      <input name="B43" type="text" class="form-control col" placeholder="Nilai Laju Kebocoran" value="{{ $excel_value['B43'] }}">
+                      <input name="B43" type="text" class="form-control col" placeholder="Nilai Laju Kebocoran" value="{{ $excel_value['B43'] ?? '' }}">
                     </div>
                   </div>
                   <div class="col form-group">
@@ -204,7 +204,7 @@
                           </label>
                         </div>
                       </div>
-                      <input name="B54" type="text" class="form-control col" placeholder="Nilai Laju Buang Cepat" value="{{ $excel_value['B54'] }}">
+                      <input name="B54" type="text" class="form-control col" placeholder="Nilai Laju Buang Cepat" value="{{ $excel_value['B54'] ?? '' }}">
                     </div>
                   </div>
                 </div>
@@ -227,7 +227,7 @@
                         <td class="text-center">{{ $standar }}</td>
                         @foreach (['B','C','D','E','F','G'] as $letter)
                           <td>
-                            <input name="{{ $letter.($index + 68) }}" type="text" class="form-control text-center" value="{{ $excel_value[$letter.($index + 68)] }}">
+                            <input name="{{ $letter.($index + 68) }}" type="text" class="form-control text-center" value="{{ $excel_value[$letter.($index + 68)] ?? ''}}">
                           </td>
                         @endforeach
                       </tr>

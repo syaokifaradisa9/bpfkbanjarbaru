@@ -18,8 +18,18 @@
             </div>
 
             {{-- Informasi Sertifikat --}}
-            <form action="{{ route('petugas.order.external.worksheet.excel.store', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}" method="post">
+            <form action="
+              @if (explode('/', Route::getFacadeRoot()->current()->uri())[6] == 'edit')
+                {{ route('petugas.order.external.worksheet.excel.update', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
+              @else
+                {{ route('petugas.order.external.worksheet.excel.store', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
+              @endif" 
+              method="post">
+              
               @csrf
+              @if (explode('/', Route::getFacadeRoot()->current()->uri())[6] == 'edit')
+                @method('PUT')
+              @endif" 
 
               <div class="card-body px-4">
                 <div class="row">
@@ -29,7 +39,7 @@
                   </div>
                   <div class="form-group col-2">
                     <label><b>Bulan Sertifikat</b></label>
-                    <input type="month" class="form-control" value="{{ date('Y-m', time()) }}" name="certificate_date">
+                    <input type="month" class="form-control" name="certificate_date" value="{{ date('Y-m', strtotime($certificate_month ?? now())) }}">
                   </div>
                   <div class="form-group ml-3">
                     <label><b>Nomor Order</b></label>
@@ -196,7 +206,7 @@
                       <td class="text-center align-middle">1</td>
                       <td class="align-middle">Resistansi Isolasi</td>
                       <td>
-                        <input name="J27" type="text" class="form-control text-center align-middle" value="{{ $excel_value['J27'] }}">
+                        <input name="J27" type="text" class="form-control text-center align-middle" value="{{ $excel_value['J27'] ?? '' }}">
                       </td>
                     </tr>
                     <tr>
@@ -218,7 +228,7 @@
                         </select>
                       </td>
                       <td>
-                        <input name="J28" type="text" class="form-control text-center align-middle" value="{{ $excel_value['J28'] }}">
+                        <input name="J28" type="text" class="form-control text-center align-middle" value="{{ $excel_value['J28'] ?? '' }}">
                       </td>
                     </tr>
                     <tr>
@@ -240,7 +250,7 @@
                         </select>
                       </td>
                       <td>
-                        <input name="J29" type="text" class="form-control text-center align-middle" value="{{ $excel_value['J29'] }}">
+                        <input name="J29" type="text" class="form-control text-center align-middle" value="{{ $excel_value['J29'] ?? ''}}">
                       </td>
                     </tr>
                   </table>
@@ -274,7 +284,7 @@
                         <td class="text-center align-middle">{{ $setting }}</td>
                         @foreach (['F','G','H','I','J','K'] as $letter)
                           <td class="text-center align-middle">
-                            <input name="{{ $letter.($index + 34) }}" type="text" class="form-control text-center align-middle" value="{{ $excel_value[$letter.($index + 34)] }}">
+                            <input name="{{ $letter.($index + 34) }}" type="text" class="form-control text-center align-middle" value="{{ $excel_value[$letter.($index + 34)] ?? ''}}">
                           </td>
                         @endforeach
                       </tr>
@@ -302,7 +312,7 @@
                       </td>
                       @foreach (['F','G','H','I','J','K'] as $letter)
                         <td class="text-center align-middle">
-                          <input name="{{ $letter."41" }}" type="text" class="form-control text-center align-middle" value="{{ $excel_value[$letter."41"] }}">
+                          <input name="{{ $letter."41" }}" type="text" class="form-control text-center align-middle" value="{{ $excel_value[$letter."41"] ?? '' }}">
                         </td>
                       @endforeach
                     </tr>

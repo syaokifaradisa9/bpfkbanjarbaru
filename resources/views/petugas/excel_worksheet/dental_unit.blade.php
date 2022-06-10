@@ -29,7 +29,7 @@
                   </div>
                   <div class="form-group col-2">
                     <label><b>Bulan Sertifikat</b></label>
-                    <input type="month" class="form-control" value="{{ date('Y-m', time()) }}" name="certificate_date">
+                    <input type="month" class="form-control" name="certificate_date" value="{{ date('Y-m', strtotime($certificate_month ?? now())) }}">
                   </div>
                   <div class="form-group ml-3">
                     <label><b>Nomor Order</b></label>
@@ -167,7 +167,7 @@
                         </select>
                       </td>
                       <td>
-                        <input name="H26" type="text" class="form-control" value="{{ $excel_value['H26'] }}">
+                        <input name="H26" type="text" class="form-control" value="{{ $excel_value['H26'] ?? '' }}">
                       </td>
                     </tr>
                     <tr>
