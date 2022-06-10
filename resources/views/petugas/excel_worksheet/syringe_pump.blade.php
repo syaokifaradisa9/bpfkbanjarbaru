@@ -19,7 +19,7 @@
 
             {{-- Informasi Sertifikat --}}
             <form action="
-              @if (explode('/', Route::getFacadeRoot()->current()->uri())[6] == 'edit')
+              @if (isset(explode('/', Route::getFacadeRoot()->current()->uri())[6]))
                 {{ route('petugas.order.external.worksheet.excel.update', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
               @else
                 {{ route('petugas.order.external.worksheet.excel.store', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
@@ -27,7 +27,7 @@
               method="post">
               
               @csrf
-              @if (explode('/', Route::getFacadeRoot()->current()->uri())[6] == 'edit')
+              @if (isset(explode('/', Route::getFacadeRoot()->current()->uri())[6]))
                 @method('PUT')
               @endif" 
 
