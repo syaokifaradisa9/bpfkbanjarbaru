@@ -111,6 +111,12 @@ class ExternalWorksheetController extends Controller
             ]);
         }
 
+        $order = ExternalOrder::findOrFail($orderId);
+        if($order->status == "DISETUJUI"){
+            $order->status = 'PENGERJAAN';
+            $order->save();
+        }
+
         return redirect(route('petugas.order.external.worksheet.index',[
             'order_id' => $orderId
         ]))->with('success','Berhasil Menyimpan Data');
