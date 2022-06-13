@@ -3,6 +3,10 @@ namespace App\Helpers;
 
 class FormatHelper{
     public static function toIndonesianDateFormat($date){
+        if(count(explode(' ', $date)) > 1){
+            $date = explode(' ', $date)[0];
+        }
+
         $months = [
             1 => 'Januari',
             2 => 'Februari',
