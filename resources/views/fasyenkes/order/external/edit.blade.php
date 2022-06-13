@@ -139,7 +139,10 @@
                 </div> 
               </div>
               <div class="card-footer text-right">
-                  <button class="btn btn-primary px-3">Edit Pengajuan</button>
+                  <button class="btn btn-primary px-3">
+                    <i class="fas fa-edit mr-1"></i>
+                    Edit Pengajuan
+                  </button>
               </div>
             </form>
           </div>
@@ -151,6 +154,6 @@
 @endsection
 
 @section('js-extends')
-    <script src="{{ asset('js/form-table/form-order-table-fasyenkes.js') }}"></script>
-    <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
+  <script src="{{ asset('js/form-table/form-order-table-fasyenkes.js') }}"></script>
+  <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
 @endsection

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\auth;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function index(){
-        return view('auth.login',['title' => 'Halaman Login']);
+        return view('auth.login');
     }
 
     public function verify(Request $request){

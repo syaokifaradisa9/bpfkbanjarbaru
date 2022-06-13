@@ -1,71 +1,9 @@
-{{-- @extends('templates.auth')
-
-@section('form-content')
-<form method="POST" action="{{ route('register.store') }}">
-    @csrf
-
-    <div class="form-group">
-        <label for="fasyenkes_name">Nama Fasyenkes</label>
-        <input id="fasyenkes_name" type="text" class="form-control @error('fasyenkes_name') is-invalid @enderror" name="fasyenkes_name" tabindex="1" value="{{ old('fasyenkes_name') }}">
-        @error('fasyenkes_name')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>  
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" tabindex="1" value="{{ old('email') }}">
-        @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-
-    <div class="form-group">
-        <div class="d-block">
-            <label for="password" class="control-label">Password</label>
-        </div>
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2">
-        @error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-
-    <div class="form-group">
-        <div class="d-block">
-          <label for="confirmation_password" class="control-label">Konfirmasi Password</label>
-        </div>
-        <input id="confirmation_password" type="password" class="form-control @error('confirmation_password') is-invalid @enderror" name="confirmation_password" tabindex="2">
-        @error('confirmation_password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-      </div>
-
-    <div class="form-group text-right">
-      <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
-        Daftar
-      </button>
-    </div>
-
-    <div class="mt-5 text-center">
-      Sudah mempunyai akun? <a href="{{ route('login.index') }}">Login</a>
-    </div>
-</form>
-@endsection --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Halaman Registrasi</title>
+  <title>Halaman Registrasi | BPFK Banjarbaru 2022</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -77,6 +15,8 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('vendor/stisla/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/stisla/css/components.css') }}">
+  <link rel="icon" type="image/png" href="{{ asset('img/logo/logo.png') }}" />
+
 </head>
 
 <body>
@@ -264,10 +204,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-0">
                         <button type="submit" class="btn btn-primary btn-lg btn-block">
-                        Daftar
+                            Daftar
                         </button>
+                    </div>
+
+                    <div class="text-center mt-2">
+                        Jika anda sudah memiliki akun, maka anda bisa login <a href="{{ route('login.index') }}">disini.</a>
                     </div>
                 </form>
               </div>

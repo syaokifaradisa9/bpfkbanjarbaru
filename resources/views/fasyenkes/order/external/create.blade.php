@@ -103,7 +103,10 @@
                 </div> 
               </div>
               <div class="card-footer text-right">
-                  <button class="btn btn-primary px-3">Kirim Pengajuan</button>
+                  <button class="btn btn-primary px-3">
+                    <i class="fas fa-paper-plane mr-1"></i>
+                    Kirim Pengajuan
+                  </button>
               </div>
             </form>
           </div>

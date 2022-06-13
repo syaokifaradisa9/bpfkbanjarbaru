@@ -3,10 +3,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-      <h1>Pengajuan Eskternal</h1>
-      <div class="section-header-breadcrumb">
-        <td><a href="{{ route('fasyenkes.order.external.create') }}" class="btn btn-primary">Tambah Order</a></td>
-      </div>
+      <h1>Lampiran Order External</h1>
     </div>
 
     <div class="section-body">

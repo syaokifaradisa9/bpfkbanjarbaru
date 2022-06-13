@@ -108,7 +108,7 @@
                 <i class="far fa-user"></i> Profile
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -128,12 +128,6 @@
               <li class="{{ $menu == 'internal' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order-internal-redirect') }}"><i class="fas fa-building"></i> <span>Internal</span></a></li>
               <li class="{{ $menu == 'external' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order-external-redirect') }}"><i class="fas fa-hospital"></i> <span>Eksternal</span></a></li>
             </ul>
-
-            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="{{ route('logout') }}" class="btn btn-danger btn-lg btn-block btn-icon-split">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-            </div>
         </aside>
       </div>
 

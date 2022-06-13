@@ -5,7 +5,12 @@
     <div class="section-header">
       <h1>Pengajuan Eskternal</h1>
       <div class="section-header-breadcrumb">
-        <td><a href="{{ route('fasyenkes.order.external.create') }}" class="btn btn-primary">Tambah Order</a></td>
+        <td>
+          <a href="{{ route('fasyenkes.order.external.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus mr-1"></i>
+            Tambah Order
+          </a>
+        </td>
       </div>
     </div>
 
@@ -36,7 +41,7 @@
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" id="external-order-table">
                   <tr>
                     <th class="text-center" style="width: 30px">No.</th>
                     <th class="text-center" style="width: 30px">Aksi</th>
@@ -49,6 +54,9 @@
                       <tr>
                         <td class="text-center">
                           {{ $index + 1 }}
+                          <span id="order-id-{{ $index }}" class="d-none">
+                            {{ $data->id }}
+                          </span>
                         </td>
                         <td class="text-center">
                           <div class="btn-group dropright px-0 pr-2">
@@ -69,23 +77,23 @@
                                 @endif
                                 Bukti Bayar
                               </a>
-                              <a class="dropdown-item has-icon @if($data->number) d-none @endif" href="{{ route('fasyenkes.order.external.edit', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
+                              <a class="dropdown-item has-icon @if($data->status != "TERKIRIM") d-none @endif" href="{{ route('fasyenkes.order.external.edit', ['id' => $data->id]) }}" id="btn-edit-order-{{ $index }}">
                                 <i class="fas fa-edit"></i>
                                 Edit
                               </a>
-                              <a class="dropdown-item has-icon text-danger @if($data->number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
-                                <i class="fas fa-undo"></i>
+                              <a class="dropdown-item has-icon @if($data->status != "TERKIRIM") d-none @endif" href="#" id="btn-cancel-{{ $index }}">
+                                <i class="fas fa-trash-alt"></i>
                                 Batalkan
                               </a>
                               <a class="dropdown-item has-icon @if($data->status != "SELESAI") d-none @endif" href="{{ route('fasyenkes.order.external.certificates.index', ['id' => $data->id]) }}">
-                                <i class="fas fa-file-alt"></i>
+                                <i class="fas fa-folder-open"></i>
                                 Lampiran
                               </a>
                             </div>
                           </div>
                         </td>
                         <td>
-                          @if ($data->status != 'MENUNGGU')
+                          @if ($data->status != 'TERKIRIM')
                             {{ $data->number }}
                           @else
                             -
@@ -96,7 +104,7 @@
                             {{ date('H:m', strtotime($data->created_at)) }}
                         </td>
                         <td class="text-center">
-                          <div class="badge badge-secondary">{{ $data->status }}</div>
+                          <div class="badge badge-secondary" id="status_{{ $index }}">{{ $data->status }}</div>
                         </td>
                       </tr>
                     @endforeach
@@ -116,6 +124,5 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/action_table/upload_proof_of_payment.js') }}"></script>
-  <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
+  <script src="{{ asset('js/action_table/external-order-cancel-event.js') }}"></script>
 @endsection

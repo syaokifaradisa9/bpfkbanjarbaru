@@ -6,12 +6,18 @@
       <h1>Lembar Kerja</h1>
       @if($order_status != "MENUNGGU PEMBAYARAN")
         <div class="section-header-breadcrumb">
-          <td><a href="{{ route('petugas.order.external.insert', ['order_id' => $order_id]) }}" class="btn btn-primary mr-2">Tambah Alat Kesehatan</a></td>
+          <td><a href="{{ route('petugas.order.external.insert', ['order_id' => $order_id]) }}" class="btn btn-primary mr-2">
+            <i class="fas fa-plus mr-1"></i>
+            Tambah Alat Kesehatan
+          </a></td>
           <td>
             <form action="{{ route('petugas.order.external.finishing', ['order_id' => $order_id]) }}" method="post" id="finishing-form">
               @csrf
               @method('PUT')
-              <button id="finishing-confirm-button" class="btn btn-success" type="submit">Konfirmasi Selesai</button>
+              <button id="finishing-confirm-button" class="btn btn-success" type="submit">
+                <i class="fas fa-check-circle mr-1"></i>
+                Konfirmasi Selesai
+              </button>
             </form>
           </td>
         </div>
@@ -61,20 +67,23 @@
                                           @if ($order->status == 0)
                                             @if($order_status != "MENUNGGU PEMBAYARAN")
                                               <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.index', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
-                                                <i class="fas fa-envelope-open-text"></i> Kerjakan
+                                                <i class="fas fa-file-alt"></i> Kerjakan
                                               </a>
                                             @endif
                                           @else
                                             @if($order_status != "MENUNGGU PEMBAYARAN")
                                               <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.edit', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}">
-                                                <i class="fas fa-envelope-open-text"></i> Edit
+                                                <i class="fas fa-edit"></i>
+                                                Edit
                                               </a>
                                             @endif
                                             <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.certificate', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}" target="_blank">
-                                              <i class="fas fa-envelope-open-text"></i> Sertifikat
+                                              <i class="fas fa-file-pdf"></i>
+                                              Sertifikat
                                             </a>
                                             <a class="dropdown-item has-icon" href="{{ route('petugas.order.external.worksheet.excel.result', ['order_id' => $order_id, 'alkes_order_id' => $order->id]) }}" target="_blank">
-                                              <i class="fas fa-envelope-open-text"></i> Hasil
+                                              <i class="fas fa-file-contract"></i>
+                                              Hasil
                                             </a>
                                           @endif
                                         </div>

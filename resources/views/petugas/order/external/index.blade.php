@@ -44,7 +44,10 @@
                           <td>{{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}</td>
                           <td>{{ $data->user->address }}</td>
                           <td class="text-center">
-                            <a href="{{ route('petugas.order.external.worksheet.index',['order_id' => $data->id]) }}" class="btn btn-primary">Lembar Kerja</a>
+                            <a href="{{ route('petugas.order.external.worksheet.index',['order_id' => $data->id]) }}" class="btn btn-primary">
+                              <i class="fas fa-folder-open mr-1"></i>
+                              Lembar Kerja
+                            </a>
                           </td>
                         </tr>
                       @endforeach

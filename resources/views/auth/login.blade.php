@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>{{ $title }} | BPFK Banjarbaru</title>
+  <title>Halaman Login | BPFK Banjarbaru 2022</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -58,7 +58,8 @@
                   <a href="auth-forgot-password.html" class="float-left mt-3">
                     Lupa Password?
                   </a>
-                  <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                  <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right px-3 text-center" tabindex="4">
+                    <i class="fas fa-sign-in-alt ml-0 mr-1"></i>
                     Login
                   </button>
                 </div>

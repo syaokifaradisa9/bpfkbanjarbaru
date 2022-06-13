@@ -344,7 +344,10 @@
                 </div>
               </div>
               <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary px-3">Simpan</button>
+                <button type="submit" class="btn btn-primary px-3">
+                  <i class="fas fa-save mr-1"></i>
+                  Simpan
+                </button>
               </div>
             </form>
           </div>

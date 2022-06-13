@@ -89,7 +89,10 @@
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-primary px-3">Edit Petugas</button>
+                    <button class="btn btn-primary px-3">
+                      <i class="fas fa-edit mr-1"></i>
+                      Edit Petugas
+                    </button>
                 </div>
             </form>
           </div>

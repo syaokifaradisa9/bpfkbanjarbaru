@@ -65,7 +65,7 @@
                               </a>
                               @if ($order->external_payment)
                                 <a class="dropdown-item has-icon" href="{{ route('print-offering-letter', ['id' => $order->id]) }}">
-                                  <i class="fas fa-file-alt"></i>
+                                  <i class="fas fa-file-invoice-dollar"></i>
                                   Bukti Pembayaran
                                 </a>
                               @endif
