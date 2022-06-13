@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Fasyenkes & Yantek
+use App\Http\Controllers\ReportController;
+
 // Auth
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
@@ -12,8 +15,8 @@ use App\Http\Controllers\GeneralRoutesController;
 use App\Http\Controllers\fasyenkes\HomeController as FasyenkesHomeController;
 use App\Http\Controllers\fasyenkes\ExternalOrderController as FasyenkesExternalOrderController;
 use App\Http\Controllers\fasyenkes\InternalOrderController as FasyenkesInternalOrderController;
-use App\Http\Controllers\fasyenkes\PaymentController;
-use App\Http\Controllers\ReportController;
+use App\Http\Controllers\fasyenkes\PaymentController as FasyenkesPaymentController;
+use App\Http\Controllers\fasyenkes\CertificateController as FasyenkesCertificateController;
 
 // Yantek
 use App\Http\Controllers\yantek\HomeController as YantekHomeController;
@@ -84,16 +87,22 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
             Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
             Route::post('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
             Route::prefix('/{id}')->group(function(){
-                Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
-                Route::post('/payment-store', [PaymentController::class, 'payment_store'])->name('payment-store');
+                Route::get('/payment', [FasyenkesPaymentController::class, 'index'])->name('payment');
+                Route::post('/payment-store', [FasyenkesPaymentController::class, 'payment_store'])->name('payment-store');
                 Route::get('/edit', [FasyenkesExternalOrderController::class, 'edit'])->name('edit');
                 Route::put('/update', [FasyenkesExternalOrderController::class, 'update'])->name('update');
+                Route::prefix('/certificates')->name('certificates.')->group(function(){
+                    Route::get('/', [FasyenkesCertificateController::class, 'index'])->name('index');
+                    Route::get('/{alkes_order_id}', [FasyenkesCertificateController::class, 'printSertificate'])->name('print');
+                });
             });
         });
     });
 });
 
-Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExternalOfferingLetter'])->name('print-offering-letter');
+Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExternalOfferingLetter'])
+        ->name('print-offering-letter')
+        ->middleware(['fasyenkes', 'yantek']);
 
 Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
     Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');

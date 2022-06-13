@@ -77,6 +77,10 @@
                                 <i class="fas fa-undo"></i>
                                 Batalkan
                               </a>
+                              <a class="dropdown-item has-icon @if($data->status != "SELESAI") d-none @endif" href="{{ route('fasyenkes.order.external.certificates.index', ['id' => $data->id]) }}">
+                                <i class="fas fa-file-alt"></i>
+                                Lampiran
+                              </a>
                             </div>
                           </div>
                         </td>
