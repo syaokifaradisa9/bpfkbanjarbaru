@@ -43,6 +43,8 @@ class CreateExternalOrdersTable extends Migration
             $table->integer('rapid_test_accommodation')->nullable();
             $table->string('rapid_test_description')->nullable();
 
+            $table->timestamp('finishing_date')->nullable();
+
             $table->timestamps();
         });
     }

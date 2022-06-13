@@ -16,7 +16,8 @@ class ExternalAlkesOrder extends Model
         'alkes_id',
         'external_order_id',
         'alkes_order_description_id',
-        'officer'
+        'officer',
+        'is_success'
     ];
 
     public function alkes(){

@@ -28,6 +28,7 @@ class ExternalOrder extends Model
         'daily_description',
         'rapid_test_accommodation',
         'rapid_test_description',
+        'finishing_date'
     ];
 
     // Atribut Tambahan
@@ -126,5 +127,9 @@ class ExternalOrder extends Model
 
     public function external_officer_order(){
         return $this->hasMany(ExternalOfficerOrder::class);
+    }
+
+    public function external_payment(){
+        return $this->hasMany(ExternalPayment::class);
     }
 }

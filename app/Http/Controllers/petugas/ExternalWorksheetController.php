@@ -156,6 +156,7 @@ class ExternalWorksheetController extends Controller
     public function finishing($order_id){
         $order = ExternalOrder::findOrFail($order_id);
         $order->status = 'MENUNGGU PEMBAYARAN';
+        $order->finishing_date = now();
         $order->save();
 
         return redirect(route('petugas.order.external.worksheet.index',[

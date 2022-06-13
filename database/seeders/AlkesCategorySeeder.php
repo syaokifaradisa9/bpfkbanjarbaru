@@ -15,13 +15,13 @@ class AlkesCategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['name' => 'Kalibrasi'],
-            ['name' => 'Pengujian'],
-            ['name' => 'Pengujian dan Kalibrasi'],
-            ['name' => 'Pengukuran Paparan Radiasi & Proteksi Radiasi'],
-            ['name' => 'Paparan Proteksi Radiasi'],
-            ['name' => 'Pelayanan Uji Kesesuaian'],
-            ['name' => 'Pelayanan Inspeksi']
+            ['name' => 'Kalibrasi', 'lab' => 'PK'],
+            ['name' => 'Pengujian', 'lab' => 'PK'],
+            ['name' => 'Pengujian dan Kalibrasi', 'lab' => 'PK'],
+            ['name' => 'Pengukuran Paparan Radiasi & Proteksi Radiasi', 'lab' => 'PDP'],
+            ['name' => 'Paparan Proteksi Radiasi', 'lab' => 'PDP'],
+            ['name' => 'Pelayanan Uji Kesesuaian', 'lab' => 'UK'],
+            ['name' => 'Pelayanan Inspeksi', 'lab' => 'SARPRAS']
         ];
 
         foreach($categories as $category){
