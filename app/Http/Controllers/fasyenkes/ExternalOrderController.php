@@ -9,11 +9,14 @@ use App\Models\ExternalAlkesOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
+use Exception;
 
 class ExternalOrderController extends Controller
 {
     public function index(){
-        $orders = ExternalOrder::where('user_id', Auth::guard('web')->user()->id)->get();
+        $orders = ExternalOrder::where('user_id', Auth::guard('web')->user()->id)
+                                ->orderBy('created_at', 'DESC')->get();
+                                
         return view('fasyenkes.order.external.index', [
             'title' => 'Pengajuan External',
             'menu' => 'external',
@@ -119,10 +122,39 @@ class ExternalOrderController extends Controller
         return redirect(route('fasyenkes.order.external.index'))->with('success', 'Edit Pengajuan Order Berhasil');
     }
 
-    public function cancel(Request $request){
-        ExternalAlkesOrder::where('external_order_id', $request->id)->delete();
-        ExternalOrder::find($request->id)->delete();
+    public function cancel($order_id){
+        try{
+            $order = ExternalOrder::findOrFail($order_id);
 
-        return redirect(route('fasyenkes.order.external.index'))->with('success', 'Membatalkan Pengajuan Berhasil, Kami Tidak akan Memproses Pengajuan Anda!');
+            // Validasi Aksi Fasyenkes
+            if($order->user->id != Auth::user()->id){
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Akses Ditolak!'
+                ]);
+            }
+
+            // Validasi Status Order
+            if($order->status != 'TERKIRIM'){
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Akses Ditolak!'
+                ]);
+            }
+
+            // Update Status
+            $order->status = 'DIBATALKAN';
+            $order->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Sukses Membatalkan Order!'
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal Membatalkan Order, Silahkan Coba Lagi!'
+            ]);
+        }
     }
 }

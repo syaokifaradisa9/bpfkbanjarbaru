@@ -22,7 +22,8 @@ class CreateExternalOrdersTable extends Migration
             $table->integer('out_letter_number')->nullable();
             $table->timestamp('letter_date');
             $table->enum('status', [
-                'MENUNGGU', 
+                'DIBATALKAN',
+                'TERKIRIM', 
                 'DITERIMA',
                 'MENUNGGU PERSETUJUAN', 
                 'DISETUJUI', 
@@ -30,7 +31,7 @@ class CreateExternalOrdersTable extends Migration
                 'PENGERJAAN', 
                 'MENUNGGU PEMBAYARAN', 
                 'SELESAI'
-            ])->default('MENUNGGU');
+            ])->default('TERKIRIM');
 
             $table->integer('pp_hour')->nullable();
             $table->integer('pp_minute')->nullable();

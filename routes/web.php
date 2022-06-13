@@ -85,8 +85,8 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
             Route::get('/', [FasyenkesExternalOrderController::class, 'index'])->name('index');
             Route::get('/create', [FasyenkesExternalOrderController::class, 'create'])->name('create');
             Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
-            Route::post('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
             Route::prefix('/{id}')->group(function(){
+                Route::get('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
                 Route::get('/payment', [FasyenkesPaymentController::class, 'index'])->name('payment');
                 Route::post('/payment-store', [FasyenkesPaymentController::class, 'payment_store'])->name('payment-store');
                 Route::get('/edit', [FasyenkesExternalOrderController::class, 'edit'])->name('edit');
