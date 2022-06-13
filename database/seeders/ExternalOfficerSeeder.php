@@ -15,7 +15,7 @@ class ExternalOfficerSeeder extends Seeder
     public function run()
     {
         ExternalOfficerOrder::create([
-            'admin_user_id' => 4,
+            'admin_user_id' => 5,
             'external_order_id' => 1
         ]);
     }

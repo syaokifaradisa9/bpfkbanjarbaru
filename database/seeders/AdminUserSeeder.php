@@ -26,6 +26,11 @@ class AdminUserSeeder extends Seeder
                 'password' => bcrypt('1234567'),
                 'role' => "PENYELIA"
             ],[
+                'name' => "Muhammad Syaoki Faradisa",
+                'email' => 'syaokifaradisa@gmail.com',
+                'password' => bcrypt('123'),
+                'role' => 'BENDAHARA',
+            ],[
                 'name' => "Farid Wajidi, S.KM",
                 'email' => "faridwajidi931@yahoo.com",
                 'password' => bcrypt('1234567'),
@@ -50,8 +55,7 @@ class AdminUserSeeder extends Seeder
                 'email' => "isramahensa16@gmail.com",
                 'password' => bcrypt('1234567'),
                 'role' => "PETUGAS"
-            ],
-            [
+            ],[
                 'name' => "Muhammad Arrizal Septiawan",
                 'email' => "rizalkecell@gmail.com",
                 'password' => bcrypt('1234567'),
@@ -101,14 +105,12 @@ class AdminUserSeeder extends Seeder
                 'email' => "takankatia@gmail.com",
                 'password' => bcrypt('1234567'),
                 'role' => "PETUGAS"
-            ],
-            [
+            ],[
                 'name' => "Achmad Fauzan Adzim",
                 'email' => "a.fauzanadzim@gmail.com",
                 'password' => bcrypt('1234567'),
                 'role' => "PETUGAS"
-            ],
-            [
+            ],[
                 'name' => "Gusti Arya Dinata",
                 'email' => "gustiaryad@gmail.com",
                 'password' => bcrypt('1234567'),

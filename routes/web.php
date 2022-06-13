@@ -29,6 +29,11 @@ use App\Http\Controllers\petugas\HomeController as PetugasHomeController;
 use App\Http\Controllers\petugas\ExternalOrderController as PetugasExternalOrderController;
 use App\Http\Controllers\petugas\ExternalWorksheetController;
 
+// Bendahara
+use App\Http\Controllers\bendahara\HomeController as BendaharaHomeController;
+use App\Http\Controllers\bendahara\ExternalOrderController as BendaharaExternalOrderController;
+use App\Http\Controllers\bendahara\InternalOrderController as BendaharaInternalOrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -138,7 +143,7 @@ Route::middleware(['penyelia'])->prefix('penyelia')->name('penyelia.')->group(fu
 });
 
 Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(function(){
-    Route::get('/petugas/home', [PetugasHomeController::class, 'index'])->name('home.index');
+    Route::get('/home', [PetugasHomeController::class, 'index'])->name('home.index');
     Route::prefix('order')->name('order.')->group(function(){
 
         // Order Internal
@@ -170,7 +175,18 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
 });
 
 Route::middleware(['bendahara'])->prefix('bendahara')->name('bendahara.')->group(function(){
-    Route::get('/petugas/home', function(){
-        dd("Petugas");
-    })->name('petugas.home');
+    Route::get('/home', [BendaharaHomeController::class, 'index'])->name('home.index');
+
+    Route::prefix('/order')->name('order.')->group(function(){
+        Route::prefix('internal')->name('internal.')->group(function(){
+
+        });
+    
+        Route::prefix('external')->name('external.')->group(function(){
+            Route::get('/', [BendaharaExternalOrderController::class, 'index'])->name('index');
+            Route::prefix('{id}')->group(function(){
+                Route::get('confirm-payment', [BendaharaExternalOrderController::class, 'confirmPayment'])->name('confirm-payment');
+            });
+        });
+    });
 });
