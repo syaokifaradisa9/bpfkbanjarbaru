@@ -90,9 +90,9 @@ function setUpEditTable(){
     const alkesOrdertable = document.getElementById('alkes-order-table');
     const totalDataRow = alkesOrdertable.rows.length - 2;
 
+    console.log(totalDataRow);
     // Perulangan sebanyak banyak data
     for(var i=0; i<totalDataRow; i++){
-        // Kalkulasi Sub total
         const rawPrice = document.getElementById(`price_${i}`).innerHTML;
         document.getElementById(`price_${i}`).innerHTML = rupiahConverter(rawPrice, "Rp. ");
     }
@@ -207,11 +207,9 @@ document.addEventListener("DOMContentLoaded", function(){
     const addAlkesOrderRow = document.getElementById('btnAddRow');
     addAlkesOrderRow.addEventListener('click', addRowAlkesOrder);
 
-    const alkesOrderTable = document.getElementById('alkes-order-table');
-    const totalDataRows = alkesOrderTable.rows.length - 2;
-
-    if(totalDataRows !== 1){
+    if(document.getElementById('alkes_0').value != "-"){
         setUpEditTable();
     }
+
     refreshTable();
 });
