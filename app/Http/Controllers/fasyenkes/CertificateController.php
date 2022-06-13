@@ -14,6 +14,10 @@ class CertificateController extends Controller
 {
     public function index($id){
         $alkesOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $id)->get();
+        $alkesOrders = $alkesOrders->filter(function($item){
+            return $item->status == 1;
+        });
+        
         return view('fasyenkes.order.certificate.index',[
             'title' => 'Halaman Lampiran Order',
             'menu' => 'external',
