@@ -56,6 +56,7 @@ return array(
     'App\\Models\\ExternalOfficerOrder' => $baseDir . '/app/Models/ExternalOfficerOrder.php',
     'App\\Models\\ExternalOrder' => $baseDir . '/app/Models/ExternalOrder.php',
     'App\\Models\\ExternalOrderExcelValue' => $baseDir . '/app/Models/ExternalOrderExcelValue.php',
+    'App\\Models\\ExternalPayment' => $baseDir . '/app/Models/ExternalPayment.php',
     'App\\Models\\InstrumentAlkesGroup' => $baseDir . '/app/Models/InstrumentAlkesGroup.php',
     'App\\Models\\InstrumentGroup' => $baseDir . '/app/Models/InstrumentGroup.php',
     'App\\Models\\InstrumentGroupRelation' => $baseDir . '/app/Models/InstrumentGroupRelation.php',

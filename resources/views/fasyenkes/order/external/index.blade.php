@@ -47,7 +47,9 @@
                   @if (count($orders) != 0)
                     @foreach ($orders as $index => $data)
                       <tr>
-                        <td class="text-center">{{ $index + 1 }}</td>
+                        <td class="text-center">
+                          {{ $index + 1 }}
+                        </td>
                         <td class="text-center">
                           <div class="btn-group dropright px-0 pr-2">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,9 +60,14 @@
                                 <i class="fas fa-info-circle"></i>
                                 Detail Order
                               </a>
-                              <a class="dropdown-item has-icon @if($data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
-                                <i class="fas fa-file-upload"></i>
-                                Upload Bukti Bayar
+                              <a class="dropdown-item has-icon  @if($data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyenkes.order.external.payment', ['id' => $data->id]) }}" >
+                                @if (count($data->external_payment) == 0)
+                                  <i class="fas fa-file-upload"></i>
+                                  Upload 
+                                @else
+                                  <i class="fas fa-file-alt"></i>
+                                @endif
+                                Bukti Bayar
                               </a>
                               <a class="dropdown-item has-icon @if($data->number) d-none @endif" href="{{ route('fasyenkes.order.external.edit', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
                                 <i class="fas fa-edit"></i>
@@ -102,4 +109,9 @@
       </div>
     </div>
   </section>
+@endsection
+
+@section('js-extends')
+  <script src="{{ asset('js/action_table/upload_proof_of_payment.js') }}"></script>
+  <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
 @endsection

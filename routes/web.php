@@ -12,6 +12,7 @@ use App\Http\Controllers\GeneralRoutesController;
 use App\Http\Controllers\fasyenkes\HomeController as FasyenkesHomeController;
 use App\Http\Controllers\fasyenkes\ExternalOrderController as FasyenkesExternalOrderController;
 use App\Http\Controllers\fasyenkes\InternalOrderController as FasyenkesInternalOrderController;
+use App\Http\Controllers\fasyenkes\PaymentController;
 use App\Http\Controllers\ReportController;
 
 // Yantek
@@ -78,8 +79,10 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
             Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
             Route::post('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
             Route::prefix('/{id}')->group(function(){
-                Route::get('edit', [FasyenkesExternalOrderController::class, 'edit'])->name('edit');
-                Route::put('update', [FasyenkesExternalOrderController::class, 'update'])->name('update');
+                Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+                Route::post('/payment-store', [PaymentController::class, 'payment_store'])->name('payment-store');
+                Route::get('/edit', [FasyenkesExternalOrderController::class, 'edit'])->name('edit');
+                Route::put('/update', [FasyenkesExternalOrderController::class, 'update'])->name('update');
             });
         });
     });

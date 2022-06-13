@@ -698,6 +698,7 @@ class ComposerStaticInit563751b83e64b49f258800a2c3803bea
         'App\\Models\\ExternalOfficerOrder' => __DIR__ . '/../..' . '/app/Models/ExternalOfficerOrder.php',
         'App\\Models\\ExternalOrder' => __DIR__ . '/../..' . '/app/Models/ExternalOrder.php',
         'App\\Models\\ExternalOrderExcelValue' => __DIR__ . '/../..' . '/app/Models/ExternalOrderExcelValue.php',
+        'App\\Models\\ExternalPayment' => __DIR__ . '/../..' . '/app/Models/ExternalPayment.php',
         'App\\Models\\InstrumentAlkesGroup' => __DIR__ . '/../..' . '/app/Models/InstrumentAlkesGroup.php',
         'App\\Models\\InstrumentGroup' => __DIR__ . '/../..' . '/app/Models/InstrumentGroup.php',
         'App\\Models\\InstrumentGroupRelation' => __DIR__ . '/../..' . '/app/Models/InstrumentGroupRelation.php',
