@@ -37,6 +37,7 @@ class ExternalOrder extends Model
         'total_alkes_price', 
         'total_payment', 
         'alkes_order_with_category',
+        'done_alkes_order',
         'estimation_day',
         'total_officer_selected',
         'letter_path'
@@ -54,10 +55,23 @@ class ExternalOrder extends Model
     public function getTotalAlkesPriceAttribute()
     {
         $alkesOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $this->id)->get();
+        
+        $condition1 = $this->status == "MENUNGGU PEMBAYARAN";
+        $condition2 = $this->status == "SELESAI";
+        
         $total = 0;
-        foreach($alkesOrders as $alkesOrder){
-            $total += $alkesOrder->alkes->price;
+        if($condition1 || $condition2){
+            foreach($alkesOrders as $alkesOrder){
+                if($alkesOrder->status == 1){
+                    $total += $alkesOrder->alkes->price;
+                }
+            }
+        }else{
+            foreach($alkesOrders as $alkesOrder){
+                $total += $alkesOrder->alkes->price;
+            }
         }
+        
         return $total;
     }
 
@@ -67,6 +81,25 @@ class ExternalOrder extends Model
     }
 
     public function getAlkesOrderWithcategoryAttribute(){
+        $orders = [];
+        $tempOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $this->id)->get();
+        foreach($tempOrders as $order){
+            $categoryName = $order->alkes->alkes_category->name;
+            if(isset($orders[$categoryName][$order->alkes->name])){
+                $orders[$categoryName][$order->alkes->name]['ammount']++;
+            }else{
+                $orders[$categoryName][$order->alkes->name] = [
+                    'ammount' => 1,
+                    'price' => $order->alkes->price,
+                    'description' => $order->description
+                ];
+            }
+        }
+
+        return $orders;
+    }
+
+    public function getDoneAlkesOrderAttribute(){
         $orders = [];
         $tempOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $this->id)->get();
         foreach($tempOrders as $order){

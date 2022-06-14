@@ -60,7 +60,7 @@
                     </tr>
                     <tr>
                         <td>Nama Instansi</td>
-                        <td colspan="2">{{ $order->user->fasyenkes_name }}</td>
+                        <td colspan="2">{{ $order->user->fasyankes_name }}</td>
                     </tr>
                     <tr>
                         <td>Alamat</td>
@@ -122,8 +122,14 @@
                         $total_ammount = 0;
                         $total_price = 0;
                         $total_payment = 0;
+
+                        // Pengambilan Data Alkes Order yang sudah selesai
+                        $condition1 = $order->status == "MENUNGGU PEMBAYARAN";
+                        $condition2 = $order->status == "SELESAI";
+
+                        $alkes_order_with_category = $condition1 || $condition2 ? $order->done_alkes_order : $order->alkes_order_with_category;
                     ?>
-                    @foreach ($order->alkes_order_with_category as $category => $alkes_order)
+                    @foreach ($alkes_order_with_category as $category => $alkes_order)
                         <tr>
                             <td colspan="6">
                                 <b>{{ $category }}</b>
