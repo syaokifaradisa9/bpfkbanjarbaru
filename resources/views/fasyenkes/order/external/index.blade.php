@@ -89,6 +89,10 @@
                                 <i class="fas fa-folder-open"></i>
                                 Lampiran
                               </a>
+                              <a class="dropdown-item has-icon @if($data->status != "SELESAI" && $data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyenkes.order.external.order-billing', ['id' => $data->id]) }}">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                Tagihan
+                              </a>
                             </div>
                           </div>
                         </td>

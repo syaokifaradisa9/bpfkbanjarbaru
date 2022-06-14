@@ -87,6 +87,7 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
             Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
             Route::prefix('/{id}')->group(function(){
                 Route::get('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
+                Route::get('/order-billing', [FasyenkesPaymentController::class, 'orderBilling'])->name('order-billing');
                 Route::get('/payment', [FasyenkesPaymentController::class, 'index'])->name('payment');
                 Route::post('/payment-store', [FasyenkesPaymentController::class, 'payment_store'])->name('payment-store');
                 Route::get('/edit', [FasyenkesExternalOrderController::class, 'edit'])->name('edit');
@@ -101,8 +102,7 @@ Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
 });
 
 Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExternalOfferingLetter'])
-        ->name('print-offering-letter')
-        ->middleware(['fasyenkes', 'yantek']);
+        ->name('print-offering-letter');
 
 Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
     Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');

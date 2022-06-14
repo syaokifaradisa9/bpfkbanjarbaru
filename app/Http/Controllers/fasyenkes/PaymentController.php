@@ -6,6 +6,7 @@ use App\Models\ExternalOrder;
 use App\Models\ExternalPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PaymentController extends Controller
 {
@@ -46,5 +47,24 @@ class PaymentController extends Controller
         }
 
         return redirect(route('fasyenkes.order.external.index'))->with('success','Sukses Mengirimkan File Bukti Pembayaran');
+    }
+
+    public function orderBilling($id){
+        $data = ExternalOrder::findOrFail($id);
+
+        $orders = [];
+        foreach($data->alkes_order_with_category as $category => $alkesOrder){
+            foreach($alkesOrder as $alkesName => $alkesValue){
+                $orders[$alkesName] = $alkesValue;
+            }
+        }
+        ksort($orders);
+
+        $pdf = Pdf::loadView('report.order_billing',[
+            'alkesOrders' => $orders,
+            'order' => $data
+        ])->setPaper('a4','portrait');
+
+        return $pdf->stream("tes.pdf");
     }
 }
