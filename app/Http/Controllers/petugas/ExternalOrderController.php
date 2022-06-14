@@ -15,7 +15,16 @@ class ExternalOrderController extends Controller
 
         $orders = [];
         foreach($officerOrders as $order){
-            array_push($orders, $order->external_order);
+            $status_order = $order->external_order->status;
+
+            $condition1 = ($status_order == "DALAM PERJALANAN");
+            $condition2 = ($status_order == "PENGERJAAN");
+            $condition3 = ($status_order == "MENUNGGU PEMBAYARAN");
+            $condition4 = ($status_order == "SELESAI");
+
+            if($condition1 || $condition2 || $condition3 || $condition4){
+                array_push($orders, $order->external_order);
+            }
         }
         
         return view('petugas.order.external.index', [
