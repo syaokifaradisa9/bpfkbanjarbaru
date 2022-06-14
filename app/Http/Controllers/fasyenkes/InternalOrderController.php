@@ -32,11 +32,14 @@ class InternalOrderController extends Controller
     }
 
     public function store(Request $request){
-        $name = $request->file('covering_letter')->getClientOriginalName();
-        $extension = explode('.', $name)[1];
+        $fileName = '';
+        if($request->file('letter')){
+            $file = $request->file('letter');
+            $extension = explode('.', $file->getClientOriginalName())[1];
 
-        $newFileName = str_replace(' ', '_', Auth::guard('web')->user()->fasyenkes_name) . "_" . date("Y_m_d") . "." . $extension;
-        $request->file('covering_letter')->storeAs('public/files/coverring_letter', $newFileName);
+            $fileName = date('Y-m-d-H-m').'.'.$extension;        
+            $file->move(public_path('order/'.Auth::user()->id.'/internal/file'), $fileName);
+        }
 
         $order = InternalOrder::create([
             'user_id' => Auth::user()->id,
@@ -44,15 +47,19 @@ class InternalOrderController extends Controller
             'delivery_option' => $request->delivery_option,
             'delivery_travel_name' => $request->delivery_travel_name,
             'arrival_date_estimation' => $request->arrival_date_estimation,
-            'covering_letter_path' => $newFileName,
+            'letter_name' => $fileName,
         ]);
 
         for($i = 0; $i < count($request->alkes); $i++){
-            $description = AlkesOrderDescription::create(['description' => $request->description[$i]]);
+            $description_id = 1;
+            if($request->description[$i] != null){
+                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]]);
+            }
+
             for($j = 0; $j < $request->ammount[$i]; $j++){
                 InternalAlkesOrder::create([
                     'alkes_id' => $request->alkes[$i],
-                    'alkes_order_description_id' => $description->id,
+                    'alkes_order_description_id' => $description_id,
                     'internal_order_id' => $order->id,
                 ]);
             }

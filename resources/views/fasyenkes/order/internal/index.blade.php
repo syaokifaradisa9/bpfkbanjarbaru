@@ -5,7 +5,12 @@
     <div class="section-header">
       <h1>Pengajuan Internal</h1>
       <div class="section-header-breadcrumb">
-        <td><a href="{{ route('fasyenkes.order.internal.create') }}" class="btn btn-primary">Tambah Order</a></td>
+        <td>
+          <a href="{{ route('fasyenkes.order.internal.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus mr-1"></i>
+            Tambah Order
+          </a>
+        </td>
       </div>
     </div>
 
@@ -39,20 +44,40 @@
                 <table class="table table-striped">
                   <tr>
                     <th class="text-center" style="width: 30px">No.</th>
+                    <th class="text-center" style="width: 30px">Aksi</th>
                     <th>Nomor Order</th>
-                    <th class="text-center" style="width: 190px">Tanggal Pengajuan</th>
+                    <th class="text-center" style="width: 190px">Surat Permohonan</th>
+                    <th class="text-center" style="width: 190px">Waktu Pengajuan</th>
                     <th class="text-center" style="width: 190px">Estimasi Pengiriman</th>
                     <th class="text-center" style="width: 160px">Estimasi Sampai</th>
                     <th style="width: 100px" class="text-center">Status</th>
-                    <th style="width: 260px" class="text-center">Aksi</th>
                   </tr>
                   @foreach ($orders as $index => $data)
                     <tr>
                       <td class="text-center">{{ $index + 1 }}</td>
-                      <td>{{ $data->number }}</td>
-                      <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
-                      <td class="text-center">{{ date('d-m-Y', strtotime($data->delivery_date_estimation)) }}</td>
-                      <td class="text-center">{{ date('d-m-Y', strtotime($data->arrival_date_estimation)) }}</td>
+                      <td class="text-center">
+                        <div class="btn-group dropright px-0 pr-2">
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                          </button>
+                          <div class="dropdown-menu dropright">
+                            <a class="dropdown-item has-icon" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
+                              <i class="fas fa-info-circle"></i>
+                              Detail Order
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{{ $data->number ?? '-'}}</td>
+                      <td class="text-center">
+                        <a href="{{ asset($data->letter_path) }}" target="_blank">File</a>
+                      </td>
+                      <td class="text-center">
+                        {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }} <br>
+                        {{ date('H:m', strtotime($data->created_at)) }}
+                      </td>
+                      <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->delivery_date_estimation))) }}</td>
+                      <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->arrival_date_estimation))) }}</td>
                       <td class="text-center">
                         @if ($data->status == 'TERKIRIM')
                           <div class="badge badge-secondary">{{ $data->status }}</div>
@@ -61,11 +86,6 @@
                         @elseif ($data->status == 'DITERIMA')
                           <div class="badge badge-success">{{ $data->status }}</div>
                         @endif
-                      </td>
-                      <td class="text-center">
-                        <a href="#" class="btn btn-primary">Detail</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-danger">Batalkan</a>
                       </td>
                     </tr>
                   @endforeach

@@ -12,10 +12,24 @@ class InternalOrder extends Model
     public $fillable = [
         'number',
         'user_id',
-        'covering_letter_path',
+        'letter_name',
         'delivery_date_estimation',
         'delivery_option',
         'delivery_travel',
         'arrival_date_estimation'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    // Atribut Tambahan
+    protected $appends = [
+        'letter_path'
+    ];
+
+    public function getLetterPathAttribute()
+    {
+        return 'order/'.$this->user->id.'/internal/file/'.$this->letter_name;
+    }
 }

@@ -17,7 +17,7 @@ class CreateInternalOrdersTable extends Migration
             $table->id();
             $table->string('number')->nullable();
             $table->foreignId('user_id')->constrained();
-            $table->string('covering_letter_path');
+            $table->string('letter_name');
             $table->timestamp('delivery_date_estimation');
             $table->string('delivery_option');
             $table->string('delivery_travel_name')->nullable();

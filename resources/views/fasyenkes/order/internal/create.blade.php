@@ -23,7 +23,7 @@
                 <div class="form-group">
                   <label><b>Surat Pengantar</b></label>
                   <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="uploaded-file-form" name="covering_letter">
+                      <input type="file" class="custom-file-input" id="uploaded-file-form" name="letter">
                       <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
                   </div>
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
@@ -131,7 +131,10 @@
                 </div> 
               </div>
               <div class="card-footer text-right">
-                  <button class="btn btn-primary px-3">Kirim Pengajuan</button>
+                  <button class="btn btn-primary px-3" type="submit">
+                    <i class="fas fa-paper-plane mr-1"></i>
+                    Kirim Pengajuan
+                  </button>
               </div>
             </form>
           </div>
@@ -142,6 +145,6 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/alkes_order.js') }}"></script>
-  <script src="{{ asset('js/file_upload_form.js') }}"></script>
+  <script src="{{ asset('js/form-table/form-order-table-fasyenkes.js') }}"></script>
+  <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
 @endsection
