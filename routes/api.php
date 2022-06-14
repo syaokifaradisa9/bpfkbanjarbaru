@@ -22,7 +22,7 @@ Route::prefix('order')->group(function(){
     Route::put('/{id}/order_number', [OrderController::class, 'updateExternalOrderNumber']);
     Route::put('/{id}/accomodation', [OrderController::class, 'updateAccomodationExternalOrder']);
     Route::put('/{id}/out_order_number', [OrderController::class, 'updateOutLetterNumberExternalOrder']);
-    Route::put('/{id}/sendOfferingLetter', [OrderController::class, 'sendOfferingLetterToFasyenkes']);
+    Route::put('/{id}/sendOfferingLetter', [OrderController::class, 'sendOfferingLetterToFasyankes']);
     Route::put('/{id}/updateStatusToAccepted', [OrderController::class, 'updateStatusToAccepted']);
     Route::put('/{id}/updateStatusTodeparture', [OrderController::class, 'updateStatusTodeparture']);
 });

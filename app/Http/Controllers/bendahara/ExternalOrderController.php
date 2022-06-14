@@ -28,7 +28,7 @@ class ExternalOrderController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => "Sukses Mengonfirmasi Pembayaran Fasyenkes"
+                'message' => "Sukses Mengonfirmasi Pembayaran Fasyankes"
             ]);
         }catch(Exception $e){
             return response()->json([

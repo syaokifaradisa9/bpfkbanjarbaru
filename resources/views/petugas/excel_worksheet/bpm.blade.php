@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group col-3">
                       <label><b>Tempat Kalibrasi</b></label>
-                      <input name="E9" type="text" class="form-control" value="{{ $excel_value['E9'] ?? $alkesOrder->external_order->user->fasyenkes_name }}">
+                      <input name="E9" type="text" class="form-control" value="{{ $excel_value['E9'] ?? $alkesOrder->external_order->user->fasyankes_name }}">
                     </div>
                     <div class="form-group col-3">
                       <label><b>Nama Ruang</b></label>

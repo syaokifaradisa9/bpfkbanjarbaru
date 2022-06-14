@@ -75,13 +75,13 @@
 
     <p style="margin-top: 20px">
         Yth. <br>
-        Pimpinan {{ $order->user->fasyenkes_name }} <br>
+        Pimpinan {{ $order->user->fasyankes_name }} <br>
         {{ $order->user->city }} - {{ $order->user->province }}
     </p>
 
     
     <p style="margin-top: 30px">
-        Menindaklanjuti surat dari {{ $order->user->fasyenkes_name }} nomor surat {{ $order->letter_number }}, tanggal {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($order->letter_date))) }},
+        Menindaklanjuti surat dari {{ $order->user->fasyankes_name }} nomor surat {{ $order->letter_number }}, tanggal {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($order->letter_date))) }},
         perihal permohonan pengujian dan kalibrasi alat kesehatan, maka berikut ini kami sampaikan:
     </p>
 
@@ -106,7 +106,7 @@
         <tr style="margin-top: 5px">
             <td style="width: 20px; vertical-align: top">3.</td>
             <td>
-                Apabila disetujui maka pihak {{ $order->user->fasyenkes_name }} harus melakukan konfirmasi persetujuan pelaksanaan Pengujian dan/atau Kalibrasi Alat Kesehatan dengan menandatangani dan diberi stempel pada formulir kaji ulang permintaan (terlampir) dan mengirimkan kembali formulir tersebut ke LPFK Banjarbaru 
+                Apabila disetujui maka pihak {{ $order->user->fasyankes_name }} harus melakukan konfirmasi persetujuan pelaksanaan Pengujian dan/atau Kalibrasi Alat Kesehatan dengan menandatangani dan diberi stempel pada formulir kaji ulang permintaan (terlampir) dan mengirimkan kembali formulir tersebut ke LPFK Banjarbaru 
                 <b>selambat-lambatnya 4 hari kerja setelah Penawaran Biaya Pengujian dan / atau Kalibrasi Alat Kesehatan diterima</b>, untuk dimasukan dalam daftar antrian pelaksanaan Pengujian dan / atau Kalibrasi.
             </td>
         </tr>

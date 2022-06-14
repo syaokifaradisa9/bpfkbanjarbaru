@@ -6,7 +6,7 @@
       <h1>Pengajuan Eskternal</h1>
       <div class="section-header-breadcrumb">
         <td>
-          <a href="{{ route('fasyenkes.order.external.create') }}" class="btn btn-primary">
+          <a href="{{ route('fasyankes.order.external.create') }}" class="btn btn-primary">
             <i class="fas fa-plus mr-1"></i>
             Tambah Order
           </a>
@@ -68,7 +68,7 @@
                                 <i class="fas fa-info-circle"></i>
                                 Detail Order
                               </a>
-                              <a class="dropdown-item has-icon  @if($data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyenkes.order.external.payment', ['id' => $data->id]) }}" >
+                              <a class="dropdown-item has-icon  @if($data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyankes.order.external.payment', ['id' => $data->id]) }}" >
                                 @if (count($data->external_payment) == 0)
                                   <i class="fas fa-file-upload"></i>
                                   Upload 
@@ -77,7 +77,7 @@
                                 @endif
                                 Bukti Bayar
                               </a>
-                              <a class="dropdown-item has-icon @if($data->status != "TERKIRIM") d-none @endif" href="{{ route('fasyenkes.order.external.edit', ['id' => $data->id]) }}" id="btn-edit-order-{{ $index }}">
+                              <a class="dropdown-item has-icon @if($data->status != "TERKIRIM") d-none @endif" href="{{ route('fasyankes.order.external.edit', ['id' => $data->id]) }}" id="btn-edit-order-{{ $index }}">
                                 <i class="fas fa-edit"></i>
                                 Edit
                               </a>
@@ -85,11 +85,11 @@
                                 <i class="fas fa-trash-alt"></i>
                                 Batalkan
                               </a>
-                              <a class="dropdown-item has-icon @if($data->status != "SELESAI") d-none @endif" href="{{ route('fasyenkes.order.external.certificates.index', ['id' => $data->id]) }}">
+                              <a class="dropdown-item has-icon @if($data->status != "SELESAI") d-none @endif" href="{{ route('fasyankes.order.external.certificates.index', ['id' => $data->id]) }}">
                                 <i class="fas fa-folder-open"></i>
                                 Lampiran
                               </a>
-                              <a class="dropdown-item has-icon @if($data->status != "SELESAI" && $data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyenkes.order.external.order-billing', ['id' => $data->id]) }}">
+                              <a class="dropdown-item has-icon @if($data->status != "SELESAI" && $data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyankes.order.external.order-billing', ['id' => $data->id]) }}">
                                 <i class="fas fa-file-invoice-dollar"></i>
                                 Tagihan
                               </a>

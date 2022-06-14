@@ -24,7 +24,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'fasyenkes_name' => ['required', 'min:3', 'max:255'],
+            'fasyankes_name' => ['required', 'min:3', 'max:255'],
             'phone' => ['required'],
             'type' =>  ['required'],
             'category' => ['required'],
@@ -39,15 +39,15 @@ class RegisterRequest extends FormRequest
 
     public function messages(){
         return [
-            'fasyenkes_name.required' => 'Nama Fasyenkes Tidak Boleh Kosong!',
-            'fasyenkes_name.min' => 'Nama Fasyenkes Harus Memiliki Paling Tidak 3 karakter!',
-            'fasyenkes_name.max' => 'Nama Fasyenkes Terlalu Panjang!',
+            'fasyankes_name.required' => 'Nama Fasyankes Tidak Boleh Kosong!',
+            'fasyankes_name.min' => 'Nama Fasyankes Harus Memiliki Paling Tidak 3 karakter!',
+            'fasyankes_name.max' => 'Nama Fasyankes Terlalu Panjang!',
             'phone.required' => 'Nomor Telepon Tidak Boleh Kosong!',
-            'type.required' => 'Mohon Pilih Tipe Fasyenkes Anda!',
-            'category.required' => 'Mohon Pilih Kategori Fasyenkes Anda!',
-            'province.required' => 'Mohon Pilih Provinsi Dimana Fasyenkes Anda Berada!',
-            'city.required' => 'Mohon Pilih Kota Dimana Fasyenkes Anda Berada!',
-            'address.required' => 'Mohon Isikan Alamat Lengkap Fasyenkes Anda Berada!',
+            'type.required' => 'Mohon Pilih Tipe Fasyankes Anda!',
+            'category.required' => 'Mohon Pilih Kategori Fasyankes Anda!',
+            'province.required' => 'Mohon Pilih Provinsi Dimana Fasyankes Anda Berada!',
+            'city.required' => 'Mohon Pilih Kota Dimana Fasyankes Anda Berada!',
+            'address.required' => 'Mohon Isikan Alamat Lengkap Fasyankes Anda Berada!',
             'email.required' => 'Email Tidak Boleh Kosong!',
             'email.email' => 'Mohon Masukkan Email yang Valid!',
             'email.unique' => 'Email Sudah Terdaftar!',

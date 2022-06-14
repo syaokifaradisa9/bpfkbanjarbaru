@@ -8,7 +8,7 @@
 
     <div class="section-body">
       <h2 class="section-title">Pengajuan Eskternal Pengujian dan Kalibrasi Alat Kesehatan</h2>
-      <p class="section-lead">Melakukan pengujian dan kalibrasi langsung di tempat fasyenkes berada</p>
+      <p class="section-lead">Melakukan pengujian dan kalibrasi langsung di tempat fasyankes berada</p>
 
       <div class="row">
         <div class="col-12">
@@ -16,7 +16,7 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('fasyenkes.order.external.update', ['id' => $order->id]) }}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('fasyankes.order.external.update', ['id' => $order->id]) }}" method="POST" enctype='multipart/form-data'>
               @csrf
               @method('PUT')
 
@@ -56,7 +56,7 @@
                         <th style="width: 121px">Jumlah</th>
                         <th style="width: 148px">Sub Total</th>
                         <th>Keterangan</th>
-                        <th style="width: 2px">Aksi</th>
+                        <th style="width: 2px">Aksi </th>
                       </tr>
                       <?php 
                         $id = 0; 
@@ -154,6 +154,6 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/form-table/form-order-table-fasyenkes.js') }}"></script>
+  <script src="{{ asset('js/form-table/form-order-table-fasyankes.js') }}"></script>
   <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
 @endsection

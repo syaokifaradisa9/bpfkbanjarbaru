@@ -39,7 +39,7 @@
                   </div>
                   <div class="form-group col-2">
                     <label><b>Bulan Sertifikat</b></label>
-                    <input type="month" class="form-control" name="certificate_date" value="{{ date('Y-m', strtotime($certificate_month ?? now())) }}">
+                    <input type="month" class="form-control" name="certificate_date" value="{{ date('Y-m', strtotime($certificate_month ?? time())) }}">
                   </div>
                   <div class="form-group ml-3">
                     <label><b>Nomor Order</b></label>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group col-3">
                       <label><b>Tempat Kalibrasi</b></label>
-                      <input name="E11" type="text" class="form-control" value="{{ $alkesOrder->external_order->user->fasyenkes_name }}">
+                      <input name="E11" type="text" class="form-control" value="{{ $alkesOrder->external_order->user->fasyankes_name }}">
                     </div>
                     <div class="form-group col-3">
                       <label><b>Nama Ruang</b></label>

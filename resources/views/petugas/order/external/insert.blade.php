@@ -8,7 +8,7 @@
 
     <div class="section-body">
       <h2 class="section-title">Pengajuan Eskternal Pengujian dan Kalibrasi Alat Kesehatan</h2>
-      <p class="section-lead">Melakukan pengujian dan kalibrasi langsung di tempat fasyenkes berada</p>
+      <p class="section-lead">Melakukan pengujian dan kalibrasi langsung di tempat fasyankes berada</p>
 
       <div class="row">
         <div class="col-12">
@@ -97,5 +97,5 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/form-table/form-order-table-fasyenkes.js') }}"></script>
+  <script src="{{ asset('js/form-table/form-order-table-fasyankes.js') }}"></script>
 @endsection

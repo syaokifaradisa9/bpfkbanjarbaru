@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\fasyenkes;
+namespace App\Http\Controllers\fasyankes;
 
 use App\Models\ExternalOrder;
 use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
@@ -18,7 +18,7 @@ class CertificateController extends Controller
             return $item->status == 1;
         });
         
-        return view('fasyenkes.order.certificate.index',[
+        return view('fasyankes.order.certificate.index',[
             'title' => 'Halaman Lampiran Order',
             'menu' => 'external',
             'orders' => $alkesOrders,
@@ -29,14 +29,14 @@ class CertificateController extends Controller
     public function printSertificate($order_id, $alkesOrderId){
         $order = ExternalOrder::with('user')->findOrFail($order_id);
 
-        // Validasi Jika Ada Fasyenke Lain yang Mengakses
+        // Validasi Jika Ada Fasyankes Lain yang Mengakses
         if($order->user->id != Auth::guard('web')->user()->id){
-            return redirect(route('fasyenkes.order.external.certificates.index', ['id' => $order])); 
+            return redirect(route('fasyankes.order.external.certificates.index', ['id' => $order])); 
         }
 
         // Validasi Jika Order Belum Terbayar
         if($order->status != "SELESAI"){
-            return redirect(route('fasyenkes.order.external.certificates.index', ['id' => $order])); 
+            return redirect(route('fasyankes.order.external.certificates.index', ['id' => $order])); 
         }
 
         // [1] Pengambilan Data Excel dari Database
@@ -65,9 +65,9 @@ class CertificateController extends Controller
             Pdf::loadView('petugas.certificate.certificate', [
                 'excel' => $excel->getSheetByName('SERTIFIKAT'),
                 'general' => [
-                    'fasyenkes' => $order->user->fasyenkes_name,
-                    'fasyenkes_type' => $order->user->type,
-                    'fasyenkes_address' => $order->user->address,
+                    'fasyankes' => $order->user->fasyankes_name,
+                    'fasyankes_type' => $order->user->type,
+                    'fasyankes_address' => $order->user->address,
                 ]
             ])->setPaper('a4','portrait')->output()
         );

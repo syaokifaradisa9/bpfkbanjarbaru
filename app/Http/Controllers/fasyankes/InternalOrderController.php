@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\fasyenkes;
+namespace App\Http\Controllers\fasyankes;
 
 use Illuminate\Http\Request;
 use App\Models\AlkesCategory;
@@ -14,7 +14,7 @@ class InternalOrderController extends Controller
 {
     public function index(){
         $orders = InternalOrder::where('user_id', Auth::guard('web')->user()->id)->get();
-        return view('fasyenkes.order.internal.index', [
+        return view('fasyankes.order.internal.index', [
             'title' => "Pengajuan Internal",
             'menu' => 'internal',
             'orders' => $orders,
@@ -24,7 +24,7 @@ class InternalOrderController extends Controller
     public function create(){
         $category = AlkesCategory::all();
 
-        return view('fasyenkes.order.internal.create',[
+        return view('fasyankes.order.internal.create',[
             'title' => 'Tambah Pengajuan Internal',
             'menu' => 'internal',
             'categories' => $category,
@@ -65,6 +65,6 @@ class InternalOrderController extends Controller
             }
         }
 
-        return redirect(route('fasyenkes.order.internal.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
+        return redirect(route('fasyankes.order.internal.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
     }
 }

@@ -39,9 +39,9 @@
 
                     <div class="row">
                         <div class="form-group col">
-                            <label for="fasyenkes_name">Nama Fasyenkes</label>
-                            <input type="text" class="form-control @error('fasyenkes_name') is-invalid @enderror" name="fasyenkes_name" id="fasyenkes_name" value="{{ old('fasyenkes_name') ?? '' }}">
-                            @error('fasyenkes_name')
+                            <label for="fasyankes_name">Nama Fasyankes</label>
+                            <input type="text" class="form-control @error('fasyankes_name') is-invalid @enderror" name="fasyankes_name" id="fasyankes_name" value="{{ old('fasyankes_name') ?? '' }}">
+                            @error('fasyankes_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

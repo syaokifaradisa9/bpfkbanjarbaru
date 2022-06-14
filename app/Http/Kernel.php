@@ -64,7 +64,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         // Role
-        'fasyenkes' => \App\Http\Middleware\RedirectIfNotUser::class,
+        'fasyankes' => \App\Http\Middleware\RedirectIfNotUser::class,
         'yantek' => \App\Http\Middleware\RedirectIfNotYantek::class,
         'penyelia' => \App\Http\Middleware\RedirectIfNotPenyelia::class,
         'petugas' => \App\Http\Middleware\RedirectIfNotPetugas::class,

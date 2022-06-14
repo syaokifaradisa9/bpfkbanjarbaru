@@ -23,7 +23,7 @@ function sendExternalOfferingLetterViaEmail(event){
           
           swalWithBootstrapButtons.fire({
             title: 'Konfirmasi Pengiriman Surat Penawaran?',
-            text: "Yakin ingin mengirim surat penawaran ke fasyenkes?",
+            text: "Yakin ingin mengirim surat penawaran ke fasyankes?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Ya',
@@ -49,13 +49,13 @@ function sendExternalOfferingLetterViaEmail(event){
                 Swal.fire({
                   icon: 'success',
                   title: 'Sukses',
-                  text: 'Sukses Mengirim Surat Penawaran ke Fasyenkes'
+                  text: 'Sukses Mengirim Surat Penawaran ke Fasyankes'
                 });
               }else{
                 Swal.fire({
                   icon: 'error',
                   title: 'Gagal!',
-                  text: 'Gagal Mengirim Surat Penawaran ke Fasyenkes, Silahkan Coba Lagi!'
+                  text: 'Gagal Mengirim Surat Penawaran ke Fasyankes, Silahkan Coba Lagi!'
                 });
               }
             }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\fasyenkes;
+namespace App\Http\Controllers\fasyankes;
 
 use Illuminate\Http\Request;
 use App\Models\AlkesCategory;
@@ -17,7 +17,7 @@ class ExternalOrderController extends Controller
         $orders = ExternalOrder::where('user_id', Auth::guard('web')->user()->id)
                                 ->orderBy('created_at', 'DESC')->get();
                                 
-        return view('fasyenkes.order.external.index', [
+        return view('fasyankes.order.external.index', [
             'title' => 'Pengajuan External',
             'menu' => 'external',
             'orders' => $orders,
@@ -26,7 +26,7 @@ class ExternalOrderController extends Controller
 
     public function create(){
         $category = AlkesCategory::all();
-        return view('fasyenkes.order.external.create',[
+        return view('fasyankes.order.external.create',[
             'title' => 'Tambah Pengajuan External',
             'menu' => 'external',
             'categories' => $category,
@@ -78,12 +78,12 @@ class ExternalOrderController extends Controller
             }
         }
 
-        return redirect(route('fasyenkes.order.external.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
+        return redirect(route('fasyankes.order.external.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
     }
 
     public function edit($id){
         $order = ExternalOrder::findOrFail($id);
-        return view('fasyenkes.order.external.edit',[
+        return view('fasyankes.order.external.edit',[
             'title' => 'Edit Pengajuan External',
             'menu' => 'external',
             'order' => $order,
@@ -121,14 +121,14 @@ class ExternalOrderController extends Controller
             }
         }
 
-        return redirect(route('fasyenkes.order.external.index'))->with('success', 'Edit Pengajuan Order Berhasil');
+        return redirect(route('fasyankes.order.external.index'))->with('success', 'Edit Pengajuan Order Berhasil');
     }
 
     public function cancel($order_id){
         try{
             $order = ExternalOrder::findOrFail($order_id);
 
-            // Validasi Aksi Fasyenkes
+            // Validasi Aksi Fasyankes
             if($order->user->id != Auth::user()->id){
                 return response()->json([
                     'status' => 'error',

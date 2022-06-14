@@ -190,16 +190,16 @@
                 </table>
                 <table style="margin-top: 17px" class="full-width">
                     <tr>
-                        <td class="have-border text-content left-layout pl">Nama Pemilik : {{ $general['fasyenkes'] }}</td>
+                        <td class="have-border text-content left-layout pl">Nama Pemilik : {{ $general['fasyankes'] }}</td>
                         <td class="middle-layout"></td>
-                        <td class="have-border text-content right-layout pl">Identitas Pemilik : {{ Str::title($general['fasyenkes_type']) }}</td>
+                        <td class="have-border text-content right-layout pl">Identitas Pemilik : {{ Str::title($general['fasyankes_type']) }}</td>
                     </tr>
                 </table>
                 <table class="full-width top-margin-spacer">
                     <tr>
                         <td class="text-content left-layout" style="vertical-align: top">Alamat Pemilik</td>
                         <td class="text-center middle-layout" style="vertical-align: top">:</td>
-                        <td class="text-content right-layout">{{ $general['fasyenkes_address'] }}</td>
+                        <td class="text-content right-layout">{{ $general['fasyankes_address'] }}</td>
                     </tr>
                     <tr>
                         <td class="text-content" style="padding-top: 4px">Nama Ruang</td>

@@ -31,8 +31,8 @@
                             <label class="col-4">Nomor Order</label>
                             <p class="col-8">: {{ $order->number }}</p>
 
-                            <label class="col-4">Fasyenkes</label>
-                            <p class="col-8">: {{ $order->user->fasyenkes_name . ' ' . $order->user->city . ' ' . $order->user->province }}</p>
+                            <label class="col-4">Fasyankes</label>
+                            <p class="col-8">: {{ $order->user->fasyankes_name . ' ' . $order->user->city . ' ' . $order->user->province }}</p>
 
                             <label class="col-4">Lokasi</label>
                             <p class="col-8">: {{ $order->user->address }}</p>

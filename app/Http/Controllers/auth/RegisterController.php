@@ -20,7 +20,7 @@ class RegisterController extends Controller
         $user_count = User::count();
 
         $user = User::create([
-            'fasyenkes_name' => $request->fasyenkes_name,
+            'fasyankes_name' => $request->fasyankes_name,
             'email' => $request->email,
             'phone' => $request->phone,
             'type' => $request->type,

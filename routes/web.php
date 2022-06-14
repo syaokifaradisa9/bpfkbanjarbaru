@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Fasyenkes & Yantek
+// Fasyankes & Yantek
 use App\Http\Controllers\ReportController;
 
 // Auth
@@ -10,13 +10,13 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
 
-// Fasyenkes
+// Fasyankes
 use App\Http\Controllers\GeneralRoutesController;
-use App\Http\Controllers\fasyenkes\HomeController as FasyenkesHomeController;
-use App\Http\Controllers\fasyenkes\ExternalOrderController as FasyenkesExternalOrderController;
-use App\Http\Controllers\fasyenkes\InternalOrderController as FasyenkesInternalOrderController;
-use App\Http\Controllers\fasyenkes\PaymentController as FasyenkesPaymentController;
-use App\Http\Controllers\fasyenkes\CertificateController as FasyenkesCertificateController;
+use App\Http\Controllers\fasyankes\HomeController as FasyankesHomeController;
+use App\Http\Controllers\fasyankes\ExternalOrderController as FasyankesExternalOrderController;
+use App\Http\Controllers\fasyankes\InternalOrderController as FasyankesInternalOrderController;
+use App\Http\Controllers\fasyankes\PaymentController as FasyankesPaymentController;
+use App\Http\Controllers\fasyankes\CertificateController as FasyankesCertificateController;
 
 // Yantek
 use App\Http\Controllers\yantek\HomeController as YantekHomeController;
@@ -69,32 +69,32 @@ Route::middleware(['guest'])->group(function () {
 // Logout
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 
-Route::middleware(['fasyenkes'])->name('fasyenkes.')->group(function(){
-    Route::get('/home', [FasyenkesHomeController::class, 'index'])->name('home');
+Route::middleware(['fasyankes'])->name('fasyankes.')->group(function(){
+    Route::get('/home', [FasyankesHomeController::class, 'index'])->name('home');
     Route::name('order.')->prefix('order')->group(function(){
 
         // Order Internal
         Route::name('internal.')->prefix('/internal')->group(function(){
-            Route::get('/', [FasyenkesInternalOrderController::class, 'index'])->name('index');
-            Route::get('/create', [FasyenkesInternalOrderController::class, 'create'])->name('create');
-            Route::post('/store', [FasyenkesInternalOrderController::class, 'store'])->name('store');
+            Route::get('/', [FasyankesInternalOrderController::class, 'index'])->name('index');
+            Route::get('/create', [FasyankesInternalOrderController::class, 'create'])->name('create');
+            Route::post('/store', [FasyankesInternalOrderController::class, 'store'])->name('store');
         });
 
         // Order Eksternal
         Route::name('external.')->prefix('external')->group(function(){
-            Route::get('/', [FasyenkesExternalOrderController::class, 'index'])->name('index');
-            Route::get('/create', [FasyenkesExternalOrderController::class, 'create'])->name('create');
-            Route::post('/store', [FasyenkesExternalOrderController::class, 'store'])->name('store');
+            Route::get('/', [FasyankesExternalOrderController::class, 'index'])->name('index');
+            Route::get('/create', [FasyankesExternalOrderController::class, 'create'])->name('create');
+            Route::post('/store', [FasyankesExternalOrderController::class, 'store'])->name('store');
             Route::prefix('/{id}')->group(function(){
-                Route::get('/cancel', [FasyenkesExternalOrderController::class, 'cancel'])->name('cancel');
-                Route::get('/order-billing', [FasyenkesPaymentController::class, 'orderBilling'])->name('order-billing');
-                Route::get('/payment', [FasyenkesPaymentController::class, 'index'])->name('payment');
-                Route::post('/payment-store', [FasyenkesPaymentController::class, 'payment_store'])->name('payment-store');
-                Route::get('/edit', [FasyenkesExternalOrderController::class, 'edit'])->name('edit');
-                Route::put('/update', [FasyenkesExternalOrderController::class, 'update'])->name('update');
+                Route::get('/cancel', [FasyankesExternalOrderController::class, 'cancel'])->name('cancel');
+                Route::get('/order-billing', [FasyankesPaymentController::class, 'orderBilling'])->name('order-billing');
+                Route::get('/payment', [FasyankesPaymentController::class, 'index'])->name('payment');
+                Route::post('/payment-store', [FasyankesPaymentController::class, 'payment_store'])->name('payment-store');
+                Route::get('/edit', [FasyankesExternalOrderController::class, 'edit'])->name('edit');
+                Route::put('/update', [FasyankesExternalOrderController::class, 'update'])->name('update');
                 Route::prefix('/certificates')->name('certificates.')->group(function(){
-                    Route::get('/', [FasyenkesCertificateController::class, 'index'])->name('index');
-                    Route::get('/{alkes_order_id}', [FasyenkesCertificateController::class, 'printSertificate'])->name('print');
+                    Route::get('/', [FasyankesCertificateController::class, 'index'])->name('index');
+                    Route::get('/{alkes_order_id}', [FasyankesCertificateController::class, 'printSertificate'])->name('print');
                 });
             });
         });

@@ -7,7 +7,7 @@ class GeneralRoutesController extends Controller
 {
     public function home(){
         if(Auth::guard('web')->check()){
-            return redirect(route('fasyenkes.home'));
+            return redirect(route('fasyankes.home'));
         }else if(Auth::guard('admin')->check()){
             $role = Auth::guard('admin')->user()->role;
             if($role == "YANTEK"){
@@ -26,7 +26,7 @@ class GeneralRoutesController extends Controller
 
     public function internalOrder(){
         if(Auth::guard('web')->check()){
-            return redirect(route('fasyenkes.order.internal.index'));
+            return redirect(route('fasyankes.order.internal.index'));
         }else if(Auth::guard('admin')->check()){
             $role = Auth::guard('admin')->user()->role;
             if($role == "YANTEK"){
@@ -39,7 +39,7 @@ class GeneralRoutesController extends Controller
 
     public function externalOrder(){
         if(Auth::guard('web')->check()){
-            return redirect(route('fasyenkes.order.external.index'));
+            return redirect(route('fasyankes.order.external.index'));
         }else if(Auth::guard('admin')->check()){
             $role = Auth::guard('admin')->user()->role;
             if($role == "YANTEK"){

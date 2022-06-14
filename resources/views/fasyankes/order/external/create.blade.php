@@ -3,12 +3,12 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-      <h1>Pengajuan Internal</h1>
+      <h1>Pengajuan Eskternal</h1>
     </div>
 
     <div class="section-body">
-      <h2 class="section-title">Pengajuan Internal Pengujian dan Kalibrasi Alat Kesehatan</h2>
-      <p class="section-lead">Melakukan pengujian dan kalibrasi di Loka Pengamanan Fasilitas Kesehatan (LPFK) Banjarbaru</p>
+      <h2 class="section-title">Pengajuan Eskternal Pengujian dan Kalibrasi Alat Kesehatan</h2>
+      <p class="section-lead">Melakukan pengujian dan kalibrasi langsung di tempat fasyankes berada</p>
 
       <div class="row">
         <div class="col-12">
@@ -16,56 +16,28 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('fasyenkes.order.internal.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('fasyankes.order.external.store') }}" method="POST" enctype='multipart/form-data'>
               @csrf
 
               <div class="card-body py-0 px-4">
                 <div class="form-group">
-                  <label><b>Surat Pengantar</b></label>
+                  <label><b>Surat Permohonan</b></label>
                   <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="uploaded-file-form" name="letter">
+                      <input type="file" name="letter" class="custom-file-input" id="uploaded-file-form" required>
                       <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
                   </div>
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
                 </div>
-                <div class="row mt-4">
-                    <div class="form-group col">
-                        <label><b>Estimasi Pengiriman Alat</b></label>
-                        <input type="date" class="form-control" name="delivery_date_estimation">
-                    </div>
-                    <div class="form-group col">
-                        <label><b>Estimasi Alat Sampai di LPFK Banjarbaru</b></label>
-                        <input type="date" class="form-control" name="arrival_date_estimation">
-                    </div>
-                </div>
                 <div class="row">
-                    <div class="form-group col">
-                        <label><b>Opsi Pengiriman</b></label>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option1" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak pertama">
-                            <label class="custom-control-label" for="option1">Diantar oleh pihak pertama</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option2" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak ketiga (Mitra/Perusahaan)">
-                            <label class="custom-control-label" for="option2">Diantar oleh pihak ketiga (Mitra/Perusahaan)</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option3" name="delivery_option" class="custom-control-input" value="Via Travel">
-                            <label class="custom-control-label" for="option3">Via Travel</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option4" name="delivery_option" class="custom-control-input" value="Via Ekspedisi">
-                            <label class="custom-control-label" for="option4">Via Ekspedisi</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option5" name="delivery_option" class="custom-control-input" value="Menyerahkan melalui petugas">
-                            <label class="custom-control-label" for="option5">Menyerahkan melalui petugas</label>
-                        </div>
-                    </div>
-                    <div class="form-group col">
-                        <label><b>Nama Travel/Ekspedisi/Pihak Ketiga (Wajib diisi jika ada)</b></label>
-                        <input type="text" class="form-control" name="delivery_travel_name">
-                    </div>
+                  <div class="form-group col">
+                    <label><b>Nomor Surat</b></label>
+                    <input type="number" class="form-control" name="letter_number" placeholder="Masukkan nomor surat yang telah diupload di atas">
+                    <small>Contoh input nomor surat bisa dilhat <a href="{{ asset('img/contoh_nomor_surat.jpg') }}" target="_blank">disini</a></small>
+                  </div>
+                  <div class="form-group col">
+                    <label><b>Tanggal Surat</b></label>
+                    <input type="date" class="form-control" name="letter_date">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="mt-3"><b>Alat Kesehatan</b></label>
@@ -131,7 +103,7 @@
                 </div> 
               </div>
               <div class="card-footer text-right">
-                  <button class="btn btn-primary px-3" type="submit">
+                  <button class="btn btn-primary px-3">
                     <i class="fas fa-paper-plane mr-1"></i>
                     Kirim Pengajuan
                   </button>
@@ -140,11 +112,12 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/form-table/form-order-table-fasyenkes.js') }}"></script>
+  <script src="{{ asset('js/form-table/form-order-table-fasyankes.js') }}"></script>
   <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
 @endsection

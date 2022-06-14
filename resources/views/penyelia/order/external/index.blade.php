@@ -38,7 +38,7 @@
                     <tr>
                       <th class="text-center" style="width: 20px">No.</th>
                       <th class="text-center" style="width: 140px">Nomor Order</th>
-                      <th class="text-center" style="width: 180px">Fasyenkes</th>
+                      <th class="text-center" style="width: 180px">Fasyankes</th>
                       <th class="text-center" style="width: 300px">Lokasi</th>
                       <th class="text-center" >Estimasi</th>
                       <th class="text-center" >Petugas</th>
@@ -51,7 +51,7 @@
                         <tr>
                           <td class="text-center">{{ $index + 1 }}</td>
                           <td class="text-center">{{ $data->number }}</td>
-                          <td>{{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}</td>
+                          <td>{{ $data->user->fasyankes_name." ".$data->user->city." ".$data->user->province }}</td>
                           <td>{{ $data->user->address }}</td>
                           <td class="text-center">
                             <a href="{{ route('penyelia.order.external.edit_estimation', ['id' => $data->id]) }}">

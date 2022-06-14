@@ -12,8 +12,8 @@ function paymentConfirmation(event){
       })
       
       swalWithBootstrapButtons.fire({
-        title: 'Konfirmasi Penerimaan Pembayaran Fasyenkes?',
-        text: "Yakin ingin mengonfirmasi pembayaran fasyenkes?",
+        title: 'Konfirmasi Penerimaan Pembayaran Fasyankes?',
+        text: "Yakin ingin mengonfirmasi pembayaran fasyankes?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Ya',
@@ -37,13 +37,13 @@ function paymentConfirmation(event){
             Swal.fire({
               icon: 'success',
               title: 'Sukses',
-              text: 'Sukses Mengonfirmasi Pembayaran Fasyenkes'
+              text: 'Sukses Mengonfirmasi Pembayaran Fasyankes'
             });
           }else{
             Swal.fire({
               icon: 'error',
               title: 'Gagal!',
-              text: 'Gagal Mengonfirmasi Pembayaran Fasyenkes, Silahkan Coba Lagi!'
+              text: 'Gagal Mengonfirmasi Pembayaran Fasyankes, Silahkan Coba Lagi!'
             });
           }
         }

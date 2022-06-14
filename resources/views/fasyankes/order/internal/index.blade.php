@@ -6,7 +6,7 @@
       <h1>Pengajuan Internal</h1>
       <div class="section-header-breadcrumb">
         <td>
-          <a href="{{ route('fasyenkes.order.internal.create') }}" class="btn btn-primary">
+          <a href="{{ route('fasyankes.order.internal.create') }}" class="btn btn-primary">
             <i class="fas fa-plus mr-1"></i>
             Tambah Order
           </a>

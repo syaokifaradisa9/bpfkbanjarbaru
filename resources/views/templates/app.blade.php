@@ -98,7 +98,7 @@
             <img alt="image" src="{{ asset('img/logo/logo.png') }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">
               @if (Auth::guard('web')->check())
-                {{ Auth::guard('web')->user()->fasyenkes_name }}
+                {{ Auth::guard('web')->user()->fasyankes_name }}
               @else
                 {{ Auth::guard('admin')->user()->name }}
               @endif  

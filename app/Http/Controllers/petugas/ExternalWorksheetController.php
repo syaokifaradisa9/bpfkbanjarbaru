@@ -219,7 +219,7 @@ class ExternalWorksheetController extends Controller
         }
         
         $certificate_month = explode(' - ', trim(explode('/', $excel_values['I2'])[1]));
-        $certificate_month = $certificate_month[1]."-".FormatHelper::toNumberFromRomanFormat($certificate_month[0]);
+        $certificate_month = '20'.$certificate_month[1]."-".FormatHelper::toNumberFromRomanFormat($certificate_month[0]);
 
         return view('petugas.excel_worksheet.'.strtolower($alkesOrder->alkes->excel_name),[
             'alkesOrder' => $alkesOrder,
@@ -301,9 +301,9 @@ class ExternalWorksheetController extends Controller
         }
 
         $data = [
-            'fasyenkes' => $alkesOrder->external_order->user->fasyenkes_name,
-            'fasyenkes_type' => $alkesOrder->external_order->user->type,
-            'fasyenkes_address' => $alkesOrder->external_order->user->address,
+            'fasyankes' => $alkesOrder->external_order->user->fasyankes_name,
+            'fasyankes_type' => $alkesOrder->external_order->user->type,
+            'fasyankes_address' => $alkesOrder->external_order->user->address,
         ];
 
         $result = $excel->getSheetByName('SERTIFIKAT');

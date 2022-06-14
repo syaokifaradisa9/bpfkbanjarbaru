@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\fasyenkes;
+namespace App\Http\Controllers\fasyankes;
+
 use App\Http\Controllers\Controller;
 use App\Models\ExternalOrder;
 use App\Models\ExternalPayment;
@@ -18,7 +19,7 @@ class PaymentController extends Controller
             $menu = 'external';
         }
         
-        return view('fasyenkes.payment.upload-form',[
+        return view('fasyankes.payment.upload-form',[
             'total_payment' => $order->total_payment,
             'files' => $order->external_payment,
             'order_number' => $order->number,
@@ -46,14 +47,14 @@ class PaymentController extends Controller
             }
         }
 
-        return redirect(route('fasyenkes.order.external.index'))->with('success','Sukses Mengirimkan File Bukti Pembayaran');
+        return redirect(route('fasyankes.order.external.index'))->with('success','Sukses Mengirimkan File Bukti Pembayaran');
     }
 
     public function orderBilling($id){
         $data = ExternalOrder::findOrFail($id);
 
         $orders = [];
-        foreach($data->alkes_order_with_category as $category => $alkesOrder){
+        foreach($data->done_alkes_order as $category => $alkesOrder){
             foreach($alkesOrder as $alkesName => $alkesValue){
                 $orders[$alkesName] = $alkesValue;
             }

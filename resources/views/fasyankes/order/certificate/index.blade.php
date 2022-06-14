@@ -49,7 +49,7 @@
                                     {{ $orders[$i]->alkes->name }}
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('fasyenkes.order.external.certificates.print', ['id' => $order_id, 'alkes_order_id' => $orders[$i]->id]) }}">
+                                    <a href="{{ route('fasyankes.order.external.certificates.print', ['id' => $order_id, 'alkes_order_id' => $orders[$i]->id]) }}">
                                         <i class="fas fa-file-alt mr-1"></i> File
                                     </a>
                                 </td>
@@ -77,7 +77,7 @@
                                         {{ $orders[$index]->alkes->name }}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('fasyenkes.order.external.certificates.print', ['id' => $order_id, 'alkes_order_id' => $orders[$index]->id]) }}">
+                                        <a href="{{ route('fasyankes.order.external.certificates.print', ['id' => $order_id, 'alkes_order_id' => $orders[$index]->id]) }}">
                                             <i class="fas fa-file-alt mr-1"></i> File
                                         </a>
                                     </td>

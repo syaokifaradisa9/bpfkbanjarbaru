@@ -8,7 +8,7 @@
 
     <div class="section-body">
       <h2 class="section-title">Pengajuan Eskternal Pengujian dan Kalibrasi Alat Kesehatan</h2>
-      <p class="section-lead">Melakukan pengujian dan kalibrasi langsung di tempat fasyenkes berada</p>
+      <p class="section-lead">Melakukan pengujian dan kalibrasi langsung di tempat fasyankes berada</p>
 
       <div class="row">
         <div class="col-12">
@@ -21,7 +21,7 @@
             <div class="card-header">
               <h4>Pembayaran </h4>
             </div>
-            <form action="{{ route('fasyenkes.order.external.payment-store', ['id' => $order_id]) }}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('fasyankes.order.external.payment-store', ['id' => $order_id]) }}" method="POST" enctype='multipart/form-data'>
               @csrf
 
                 <div class="card-body py-0 px-4">
@@ -87,7 +87,10 @@
                     </table>
                 </div>
                 <div class="card-footer text-right">
-                  <button class="btn btn-primary px-3">Kirim Bukti Pembayaran</button>
+                  <button class="btn btn-primary px-3" type="submit">
+                    <i class="fas fa-paper-plane mr-1"></i>
+                    Kirim Bukti Pembayaran
+                  </button>
                 </div>
             </form>
           </div>
@@ -99,5 +102,5 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/form-table/form-payment-fasyenkes.js') }}"></script>
+  <script src="{{ asset('js/form-table/form-payment-fasyankes.js') }}"></script>
 @endsection

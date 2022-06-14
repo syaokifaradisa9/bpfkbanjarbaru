@@ -46,7 +46,7 @@
     <div>
         <div style="text-align: center; margin-top: 30px">
             <p>
-                Daftar Alat yang Dikalibrasi di {{ $order->user->fasyenkes_name }} ({{ $order->number }})
+                Daftar Alat yang Dikalibrasi di {{ $order->user->fasyankes_name }} ({{ $order->number }})
             </p>
             <table class="border-table" style="width: 100%; margin-top: 10px">
                 <tr>

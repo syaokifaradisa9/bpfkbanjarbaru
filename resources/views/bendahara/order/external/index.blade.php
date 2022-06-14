@@ -39,7 +39,7 @@
                       <th class="text-center" style="width: 15px">No</th>
                       <th class="text-center">Aksi</th>
                       <th class="text-center">Nomor Order</th>
-                      <th class="text-center">Fasyenkes</th>
+                      <th class="text-center">Fasyankes</th>
                       <th class="text-center">Tanggal Selesai</th>
                       <th class="text-center">Status</th>
                     </tr>
@@ -80,7 +80,7 @@
                           {{ $order->number }}
                         </td>
                         <td class="text-center align-middle">
-                          {{ $order->user->category . ' '. $order->user->type .  ' ' . $order->user->fasyenkes_name. ' '. $order->user->city . ' ' . $order->user->province }}
+                          {{ $order->user->category . ' '. $order->user->type .  ' ' . $order->user->fasyankes_name. ' '. $order->user->city . ' ' . $order->user->province }}
                         </td>
                         <td class="text-center align-middle">
                           {{ FormatHelper::toIndonesianDateFormat($order->finishing_date) }}

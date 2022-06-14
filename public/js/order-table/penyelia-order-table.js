@@ -17,7 +17,7 @@ function statusValidation(event){
         Swal.fire({
             icon: 'error',
             title: 'Akses Ditolak!',
-            text: 'Mohon Tunggu Yantek Mengonfirmasi Persetujuan Fasyenkes!'
+            text: 'Mohon Tunggu Yantek Mengonfirmasi Persetujuan Fasyankes!'
         });
     }else{
         window.location.href = event.target.href;

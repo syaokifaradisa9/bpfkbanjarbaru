@@ -38,7 +38,7 @@
                     <tr>
                       <th class="text-center" style="width: 15px">No</th>
                       <th class="text-center" style="width: 20px">Aksi</th>
-                      <th class="text-center" style="width: 190px">Fasyenkes</th>
+                      <th class="text-center" style="width: 190px">Fasyankes</th>
                       <th class="text-center" style="width: 140px">Waktu Pengajuan</th>
                       <th class="text-center" style="width: 210px">Nomor Order</th>
                       <th class="text-center" style="width: 160px">Akomodasi</th>
@@ -85,7 +85,7 @@
                             </div>
                           </td>
                           <td>
-                            {{ $data->user->fasyenkes_name." ".$data->user->city." ".$data->user->province }}
+                            {{ $data->user->fasyankes_name." ".$data->user->city." ".$data->user->province }}
                           </td>
                           <td class="text-center">
                             {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }} <br>

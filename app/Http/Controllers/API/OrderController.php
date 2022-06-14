@@ -23,12 +23,12 @@ class OrderController extends Controller
 
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Berhasil Menerima Order Fasyenkes'
+                    'message' => 'Berhasil Menerima Order Fasyankes'
                 ]);
             }catch(Exception $error){
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Gagal Menerima Order Fasyenkes, Silahkan Coba Lagi!'
+                    'message' => 'Gagal Menerima Order Fasyankes, Silahkan Coba Lagi!'
                 ]);
             }
         }
@@ -46,12 +46,12 @@ class OrderController extends Controller
 
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Berhasil Menetapkan Akomodasi Pada Order Fasyenkes'
+                    'message' => 'Berhasil Menetapkan Akomodasi Pada Order Fasyankes'
                 ]);
             }catch(Exception $error){
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Gagal Menetapkan Akomodasi Pada Order Fasyenkes, Silahkan Coba Lagi!'
+                    'message' => 'Gagal Menetapkan Akomodasi Pada Order Fasyankes, Silahkan Coba Lagi!'
                 ]);
             }
         }
@@ -71,17 +71,17 @@ class OrderController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Berhasil Menetapkan Nomor Surat Keluar Pada Order Fasyenkes'
+                'message' => 'Berhasil Menetapkan Nomor Surat Keluar Pada Order Fasyankes'
             ]);
         }catch(Exception $e){
             return response()->json([
                 'status' => 'error',
-                'message' => 'Gagal Menetapkan Akomodasi Pada Order Fasyenkes, Silahkan Coba Lagi!'
+                'message' => 'Gagal Menetapkan Akomodasi Pada Order Fasyankes, Silahkan Coba Lagi!'
             ]);
         }
     }
 
-    public function sendOfferingLetterToFasyenkes(Request $request, $id){
+    public function sendOfferingLetterToFasyankes(Request $request, $id){
         if($request->api_key != "YIYCm4oo91XxvLG1gIUVKRyprHIF78Dz40IaB0DFodsz171MNqidSDtcflzfkK9N"){
             return response()->json(['message' => "Anda Tidak Memiliki Akses Pada Resource ini!"]);
         }
@@ -125,12 +125,12 @@ class OrderController extends Controller
             unlink(public_path('temp_files/'.$order->id.$order->user->id.'.pdf'));
             return response()->json([
                 'status' => 'success',
-                'message' => 'Sukses Mengirimkan Surat Penawaran Ke Fasyenkes, Silahkan Tunggu Sampai Pihak Fasyenkes Menyetujui Penawaran!'
+                'message' => 'Sukses Mengirimkan Surat Penawaran Ke Fasyankes, Silahkan Tunggu Sampai Pihak Fasyankes Menyetujui Penawaran!'
             ]);
         }catch(Exception $e){
             return response()->json([
                 'status' => 'error',
-                'message' => 'Gagal Mengirimkan Surat Penawaran Ke Fasyenkes, Silahkan Coba Lagi!'
+                'message' => 'Gagal Mengirimkan Surat Penawaran Ke Fasyankes, Silahkan Coba Lagi!'
             ]);
         }
     }  
