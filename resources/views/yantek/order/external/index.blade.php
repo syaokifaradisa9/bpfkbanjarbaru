@@ -62,7 +62,7 @@
                               </button>
                               <div class="dropdown-menu dropright">
                                 <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
-                                <a class="dropdown-item has-icon" href="{{ asset('letter_files/'.$data->letter_number.'_'.$data->user->id.'.pdf') }}">
+                                <a class="dropdown-item has-icon" href="{{ asset($data->letter_path) }}" target="_blank">
                                   <i class="fas fa-envelope-open-text"></i> Surat Masuk
                                 </a>
                                 <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">

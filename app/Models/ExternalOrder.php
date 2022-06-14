@@ -39,6 +39,7 @@ class ExternalOrder extends Model
         'alkes_order_with_category',
         'estimation_day',
         'total_officer_selected',
+        'letter_path'
     ];
 
     public function getTotalAccommodationAttribute()
@@ -115,6 +116,11 @@ class ExternalOrder extends Model
 
     public function getTotalOfficerSelectedAttribute(){
         return count($this->external_officer_order) ?? 0;
+    }
+
+    public function getletterPathAttribute()
+    {
+        return 'order/'.$this->user->id.'/external/file/'.$this->letter_name;
     }
 
     // Relasi Tabel

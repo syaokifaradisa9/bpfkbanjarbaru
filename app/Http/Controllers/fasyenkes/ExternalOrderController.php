@@ -35,11 +35,13 @@ class ExternalOrderController extends Controller
 
     public function store(Request $request){
         // Upload File
+        $fileName = '';
         if($request->file('letter')){
             $file = $request->file('letter');
-            $fileName = $request->letter_number . "_" . Auth::user()->id.".pdf";
-        
-            $file->move(public_path().'/letter_files', $fileName);
+            $extension = explode('.', $file->getClientOriginalName())[1];
+
+            $fileName = date('Y-m-d-H-m').'.'.$extension;        
+            $file->move(public_path('order/'.Auth::user()->id.'/external/file'), $fileName);
         }
 
         // Perhitungan Nomor Order Otomatis
