@@ -21,12 +21,11 @@
 
               <div class="card-body py-0 px-4">
                 <div class="form-group">
-                  <label><b>Surat Pengantar</b></label>
+                  <label><b>Surat Pengantar (Optional)</b></label>
                   <div class="custom-file">
                       <input type="file" class="custom-file-input" id="uploaded-file-form" name="letter">
                       <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
                   </div>
-                  <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
                 </div>
                 <div class="row mt-4">
                     <div class="form-group col">
@@ -39,33 +38,43 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col">
-                        <label><b>Opsi Pengiriman</b></label>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option1" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak pertama">
-                            <label class="custom-control-label" for="option1">Diantar oleh pihak pertama</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option2" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak ketiga (Mitra/Perusahaan)">
-                            <label class="custom-control-label" for="option2">Diantar oleh pihak ketiga (Mitra/Perusahaan)</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option3" name="delivery_option" class="custom-control-input" value="Via Travel">
-                            <label class="custom-control-label" for="option3">Via Travel</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option4" name="delivery_option" class="custom-control-input" value="Via Ekspedisi">
-                            <label class="custom-control-label" for="option4">Via Ekspedisi</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="option5" name="delivery_option" class="custom-control-input" value="Menyerahkan melalui petugas">
-                            <label class="custom-control-label" for="option5">Menyerahkan melalui petugas</label>
-                        </div>
+                  <div class="form-group col">
+                    <label><b>Nama Lengkap Pengantar</b></label>
+                    <input type="text" class="form-control" name="contact_person_name">
+                  </div>
+                  <div class="form-group col">
+                    <label><b>Nomor Telepon Pengantar</b></label>
+                    <input type="text" class="form-control" name="contact_person_phone">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col">
+                    <label><b>Opsi Pengiriman</b></label>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="option1" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak pertama">
+                        <label class="custom-control-label" for="option1">Diantar oleh pihak pertama</label>
                     </div>
-                    <div class="form-group col">
-                        <label><b>Nama Travel/Ekspedisi/Pihak Ketiga (Wajib diisi jika ada)</b></label>
-                        <input type="text" class="form-control" name="delivery_travel_name">
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="option2" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak ketiga (Mitra/Perusahaan)">
+                        <label class="custom-control-label" for="option2">Diantar oleh pihak ketiga (Mitra/Perusahaan)</label>
                     </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="option3" name="delivery_option" class="custom-control-input" value="Via Travel">
+                        <label class="custom-control-label" for="option3">Via Travel</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="option4" name="delivery_option" class="custom-control-input" value="Via Ekspedisi">
+                        <label class="custom-control-label" for="option4">Via Ekspedisi</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="option5" name="delivery_option" class="custom-control-input" value="Menyerahkan melalui petugas">
+                        <label class="custom-control-label" for="option5">Menyerahkan melalui petugas</label>
+                    </div>
+                  </div>
+                  <div class="form-group col">
+                      <label><b>Nama Travel/Ekspedisi/Pihak Ketiga (Wajib diisi jika ada)</b></label>
+                      <input type="text" class="form-control" name="delivery_travel_name">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="mt-3"><b>Alat Kesehatan</b></label>

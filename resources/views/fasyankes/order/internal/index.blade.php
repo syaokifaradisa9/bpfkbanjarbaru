@@ -66,6 +66,10 @@
                                 <i class="fas fa-info-circle"></i>
                                 Detail Order
                               </a>
+                              <a class="dropdown-item has-icon @if($data->status != "MENUNGGU") d-none @endif" href="{{ route('fasyankes.order.internal.edit', ['id' => $data->id]) }}" id="btn-edit-order-{{ $index }}">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                              </a>
                             </div>
                           </div>
                         </td>
@@ -80,7 +84,7 @@
                         <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->delivery_date_estimation))) }}</td>
                         <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->arrival_date_estimation))) }}</td>
                         <td class="text-center">
-                          @if ($data->status == 'TERKIRIM')
+                          @if ($data->status == 'MENUNGGU')
                             <div class="badge badge-secondary">{{ $data->status }}</div>
                           @elseif ($data->status == 'DITOLAK')
                             <div class="badge badge-danger">{{ $data->status }}</div>

@@ -78,6 +78,10 @@ Route::middleware(['fasyankes'])->name('fasyankes.')->group(function(){
             Route::get('/', [FasyankesInternalOrderController::class, 'index'])->name('index');
             Route::get('/create', [FasyankesInternalOrderController::class, 'create'])->name('create');
             Route::post('/store', [FasyankesInternalOrderController::class, 'store'])->name('store');
+            Route::prefix('/{id}')->group(function(){
+                Route::get('/edit', [FasyankesInternalOrderController::class, 'edit'])->name('edit');
+                Route::put('/update', [FasyankesInternalOrderController::class, 'update'])->name('update');
+            });
         });
 
         // Order Eksternal

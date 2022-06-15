@@ -22,7 +22,9 @@ class CreateInternalOrdersTable extends Migration
             $table->string('delivery_option');
             $table->string('delivery_travel_name')->nullable();
             $table->timestamp('arrival_date_estimation');
-            $table->enum('status', ['TERKIRIM', 'DITERIMA','DITOLAK', 'DIPROSES', 'SELESAI'])->default('TERKIRIM');
+            $table->string('contact_person_name');
+            $table->string('contact_person_phone');
+            $table->enum('status', ['MENUNGGU', 'DITERIMA','DITOLAK', 'DIPROSES', 'SELESAI'])->default('MENUNGGU');
             $table->timestamps();
         });
     }
