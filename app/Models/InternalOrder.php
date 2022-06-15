@@ -25,6 +25,8 @@ class InternalOrder extends Model
         return $this->belongsTo(User::class);
     }
 
+    
+
     // Atribut Tambahan
     protected $appends = [
         'letter_path',

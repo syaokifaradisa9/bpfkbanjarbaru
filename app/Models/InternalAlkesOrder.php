@@ -15,4 +15,8 @@ class InternalAlkesOrder extends Model
         'internal_order_id',
         'alkes_order_description_id'
     ];
+
+    public function alkes(){
+        return $this->belongsTo(Alkes::class);
+    }
 }
