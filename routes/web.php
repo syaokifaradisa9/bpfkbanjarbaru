@@ -29,6 +29,7 @@ use App\Http\Controllers\penyelia\ExternalOrderController as PenyeliaExternalOrd
 
 // Petugas
 use App\Http\Controllers\petugas\HomeController as PetugasHomeController;
+use App\Http\Controllers\petugas\InternalOrderController as PetugasInternalOrderController;
 use App\Http\Controllers\petugas\ExternalOrderController as PetugasExternalOrderController;
 use App\Http\Controllers\petugas\ExternalWorksheetController;
 
@@ -161,7 +162,7 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
 
         // Order Internal
         Route::prefix('internal')->name('internal.')->group(function(){
-
+            Route::get('/', [PetugasInternalOrderController::class, 'index'])->name('index');
         });
 
         // Order External

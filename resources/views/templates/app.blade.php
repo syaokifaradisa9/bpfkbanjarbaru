@@ -152,7 +152,7 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="nav-link @if($menu == "internal") text-primary @endif" href="">Order</a>
+                        <a class="nav-link @if($menu == "internal") text-primary @endif" href="{{ route('petugas.order.internal.index') }}">Order</a>
                       </li>
                       <li>
                         <a class="nav-link @if($menu == "worksheet") text-primary @endif" href="">Lembar Kerja</a>
