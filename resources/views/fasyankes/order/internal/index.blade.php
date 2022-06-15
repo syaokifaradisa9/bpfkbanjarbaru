@@ -45,18 +45,19 @@
                   <tr>
                     <th class="text-center" style="width: 30px">No.</th>
                     <th class="text-center" style="width: 30px">Aksi</th>
-                    <th>Nomor Order</th>
-                    <th class="text-center" style="width: 190px">Surat Permohonan</th>
-                    <th class="text-center" style="width: 190px">Waktu Pengajuan</th>
-                    <th class="text-center" style="width: 190px">Estimasi Pengiriman</th>
-                    <th class="text-center" style="width: 160px">Estimasi Sampai</th>
-                    <th style="width: 100px" class="text-center">Status</th>
+                    <th class="text-center" style="width: 120px">Nomor Order</th>
+                    <th class="text-center" style="width: 100px">Contact Person</th>
+                    <th class="text-center" style="width: 30px">Surat Pengantar</th>
+                    <th class="text-center" style="width: 130px">Waktu Pengajuan</th>
+                    <th class="text-center" style="width: 130px">Estimasi Pengiriman</th>
+                    <th class="text-center">Keterangan</th>
+                    <th class="text-center" style="width: 100px">Status</th>
                   </tr>
                   @if (count($orders) > 0)
                     @foreach ($orders as $index => $data)
                       <tr>
-                        <td class="text-center">{{ $index + 1 }}</td>
-                        <td class="text-center">
+                        <td class="text-center align-middle">{{ $index + 1 }}</td>
+                        <td class="text-center align-middle">
                           <div class="btn-group dropright px-0 pr-2">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="fas fa-cog"></i>
@@ -73,23 +74,29 @@
                             </div>
                           </div>
                         </td>
-                        <td>{{ $data->number ?? '-'}}</td>
-                        <td class="text-center">
+                        <td class="text-center align-middle">{{ $data->number ?? '-'}}</td>
+                        <td class="align-middle">
+                          {{ $data->contact_person_name }} <br>
+                          {{ $data->contact_person_phone }}
+                        </td>
+                        <td class="text-center align-middle">
                           <a href="{{ asset($data->letter_path) }}" target="_blank">File</a>
                         </td>
-                        <td class="text-center">
-                          {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }} <br>
-                          {{ date('H:m', strtotime($data->created_at)) }}
+                        <td class="text-center align-middle">
+                          {{ date('d-m-Y', strtotime($data->created_at)) }}
                         </td>
-                        <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->delivery_date_estimation))) }}</td>
-                        <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->arrival_date_estimation))) }}</td>
-                        <td class="text-center">
+                        <td class="text-center align-middle">
+                          {{ date('d-m-Y', strtotime($data->delivery_date_estimation)) }} s/d <br>
+                          {{ date('d-m-Y', strtotime($data->arrival_date_estimation)) }}
+                        </td>
+                        <td>{{ $data->description ?? '-' }}</td>
+                        <td class="text-center align-middle">
                           @if ($data->status == 'MENUNGGU')
-                            <div class="badge badge-secondary">{{ $data->status }}</div>
+                            <div class="badge badge-secondary">{{ ucwords(strtolower($data->status)) }}</div>
                           @elseif ($data->status == 'DITOLAK')
-                            <div class="badge badge-danger">{{ $data->status }}</div>
+                            <div class="badge badge-danger">{{ ucwords(strtolower($data->status)) }}</div>
                           @elseif ($data->status == 'DITERIMA')
-                            <div class="badge badge-success">{{ $data->status }}</div>
+                            <div class="badge badge-success">{{ ucwords(strtolower($data->status)) }}</div>
                           @endif
                         </td>
                       </tr>
