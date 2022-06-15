@@ -30,8 +30,8 @@
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
                   <small>
                     <br>
-                    File surat permohonan anda yang terdahulu dapat dilihat <a href="{{ asset('letter_files/'.$order->letter_name) }}">disini</a>. (Kosongkan jika tidak ingin mengupdate surat permohonan)
-                </small>
+                    File surat permohonan anda yang terdahulu dapat dilihat <a href="{{ asset($order->letter_path) }}">disini</a>. (Kosongkan jika tidak ingin mengupdate surat permohonan)
+                  </small>
                 </div>
                 <div class="row">
                   <div class="form-group col">
