@@ -125,8 +125,59 @@
               <li class="{{ $menu == 'home' ? 'active' : '' }}"><a class="nav-link" href="{{ route('home-redirect') }}"><i class="fas fa-home"></i> <span>Beranda</span></a></li>
               
               <li class="menu-header">Pengajuan</li>
-              <li class="{{ $menu == 'internal' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order-internal-redirect') }}"><i class="fas fa-building"></i> <span>Internal</span></a></li>
-              <li class="{{ $menu == 'external' ? 'active' : '' }}"><a class="nav-link" href="{{ route('order-external-redirect') }}"><i class="fas fa-hospital"></i> <span>Eksternal</span></a></li>
+              @if (Auth::guard('web')->check())
+                <li class="{{ $menu == 'internal' ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('order-internal-redirect') }}">
+                    <i class="fas fa-building"></i> 
+                    <span>Internal</span>
+                  </a>
+                </li>
+              @else
+                @if (Auth::guard('admin')->user()->role == "PENYELIA")
+                  <li class="{{ $menu == 'internal' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('order-internal-redirect') }}">
+                      <i class="fas fa-building"></i> 
+                      <span>Internal</span>
+                    </a>
+                  </li>
+                @endif
+              @endif
+
+              @if (Auth::guard('admin')->check())
+                @if (Auth::guard('admin')->user()->role == "PETUGAS")
+                  <li class="nav-item dropdown @if ($menu == "internal") active @endif">
+                    <a href="#" class="nav-link has-dropdown">
+                      <i class="fas fa-building"></i> 
+                      <span>Internal</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="nav-link @if($menu == "internal") text-primary @endif" href="">Order</a>
+                      </li>
+                      <li>
+                        <a class="nav-link @if($menu == "worksheet") text-primary @endif" href="">Lembar Kerja</a>
+                      </li>
+                    </ul>
+                  </li>
+                @endif
+              @endif
+
+              <li class="{{ $menu == 'external' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('order-external-redirect') }}">
+                  <i class="fas fa-hospital"></i> 
+                  <span>
+                    @if (Auth::guard('admin')->check())
+                      @if(Auth::guard('admin')->user()->role == "YANTEK")
+                        Order
+                      @else
+                        Eksternal
+                      @endif
+                    @else
+                      Eksternal
+                    @endif
+                  </span>
+                </a>
+              </li>
             </ul>
         </aside>
       </div>
