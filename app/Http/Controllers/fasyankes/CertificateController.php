@@ -17,7 +17,8 @@ class CertificateController extends Controller
         $alkesOrders = $alkesOrders->filter(function($item){
             return $item->status == 1;
         });
-        
+
+        $alkesOrders = $alkesOrders->values();
         return view('fasyankes.order.certificate.index',[
             'title' => 'Halaman Lampiran Order',
             'menu' => 'external',
