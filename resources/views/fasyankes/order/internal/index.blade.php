@@ -52,43 +52,51 @@
                     <th class="text-center" style="width: 160px">Estimasi Sampai</th>
                     <th style="width: 100px" class="text-center">Status</th>
                   </tr>
-                  @foreach ($orders as $index => $data)
-                    <tr>
-                      <td class="text-center">{{ $index + 1 }}</td>
-                      <td class="text-center">
-                        <div class="btn-group dropright px-0 pr-2">
-                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-cog"></i>
-                          </button>
-                          <div class="dropdown-menu dropright">
-                            <a class="dropdown-item has-icon" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
-                              <i class="fas fa-info-circle"></i>
-                              Detail Order
-                            </a>
+                  @if (count($orders) > 1)
+                    @foreach ($orders as $index => $data)
+                      <tr>
+                        <td class="text-center">{{ $index + 1 }}</td>
+                        <td class="text-center">
+                          <div class="btn-group dropright px-0 pr-2">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu dropright">
+                              <a class="dropdown-item has-icon" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
+                                <i class="fas fa-info-circle"></i>
+                                Detail Order
+                              </a>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td>{{ $data->number ?? '-'}}</td>
-                      <td class="text-center">
-                        <a href="{{ asset($data->letter_path) }}" target="_blank">File</a>
-                      </td>
-                      <td class="text-center">
-                        {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }} <br>
-                        {{ date('H:m', strtotime($data->created_at)) }}
-                      </td>
-                      <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->delivery_date_estimation))) }}</td>
-                      <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->arrival_date_estimation))) }}</td>
-                      <td class="text-center">
-                        @if ($data->status == 'TERKIRIM')
-                          <div class="badge badge-secondary">{{ $data->status }}</div>
-                        @elseif ($data->status == 'DITOLAK')
-                          <div class="badge badge-danger">{{ $data->status }}</div>
-                        @elseif ($data->status == 'DITERIMA')
-                          <div class="badge badge-success">{{ $data->status }}</div>
-                        @endif
-                      </td>
-                    </tr>
-                  @endforeach
+                        </td>
+                        <td>{{ $data->number ?? '-'}}</td>
+                        <td class="text-center">
+                          <a href="{{ asset($data->letter_path) }}" target="_blank">File</a>
+                        </td>
+                        <td class="text-center">
+                          {{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->created_at))) }} <br>
+                          {{ date('H:m', strtotime($data->created_at)) }}
+                        </td>
+                        <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->delivery_date_estimation))) }}</td>
+                        <td class="text-center">{{ FormatHelper::toIndonesianDateFormat(date('d-m-Y', strtotime($data->arrival_date_estimation))) }}</td>
+                        <td class="text-center">
+                          @if ($data->status == 'TERKIRIM')
+                            <div class="badge badge-secondary">{{ $data->status }}</div>
+                          @elseif ($data->status == 'DITOLAK')
+                            <div class="badge badge-danger">{{ $data->status }}</div>
+                          @elseif ($data->status == 'DITERIMA')
+                            <div class="badge badge-success">{{ $data->status }}</div>
+                          @endif
+                        </td>
+                      </tr>
+                    @endforeach
+                  @else
+                      <tr>
+                        <td colspan="8" class="text-center text-secondary">
+                          Anda Belum Pernah Melakukan Order Internal
+                        </td>
+                      </tr>
+                  @endif
                 </table>
               </div>
             </div>
