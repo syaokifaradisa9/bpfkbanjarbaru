@@ -52,7 +52,7 @@
                     <th class="text-center" style="width: 160px">Estimasi Sampai</th>
                     <th style="width: 100px" class="text-center">Status</th>
                   </tr>
-                  @if (count($orders) > 1)
+                  @if (count($orders) > 0)
                     @foreach ($orders as $index => $data)
                       <tr>
                         <td class="text-center">{{ $index + 1 }}</td>

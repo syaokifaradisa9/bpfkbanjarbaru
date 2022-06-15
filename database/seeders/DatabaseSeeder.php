@@ -8,9 +8,11 @@ use Database\Seeders\AlkesSeeder;
 use Database\Seeders\AdminUserSeeder;
 use Database\Seeders\AlkesCategorySeeder;
 use Database\Seeders\ExternalOrderSeeder;
+use Database\Seeders\InternalOrderSeeder;
 use Database\Seeders\ExternalOfficerSeeder;
 use Database\Seeders\InstrumentGroupSeeder;
 use Database\Seeders\ExternalAlkesOrderSeeder;
+use Database\Seeders\InternalAlkesOrderSeeder;
 use Database\Seeders\MeasuringInstrumentSeeder;
 use Database\Seeders\InstrumentAlkesGroupSeeder;
 use Database\Seeders\AlkesOrderDescriptionSeeder;
@@ -32,13 +34,21 @@ class DatabaseSeeder extends Seeder
             AlkesSeeder::class,
             AdminUserSeeder::class,
             AlkesOrderDescriptionSeeder::class,
+
+            // External Order
             ExternalOrderSeeder::class,
             ExternalAlkesOrderSeeder::class,
             ExternalOfficerSeeder::class,
+
+            // Internal Order
+            InternalOrderSeeder::class,
+            InternalAlkesOrderSeeder::class,
+
             MeasuringInstrumentSeeder::class,
             InstrumentGroupSeeder::class,
             InstrumentGroupRelationSeeder::class,
             InstrumentAlkesGroupSeeder::class,
+
             ExternalOrderExcelValueSeeder::class
         ]);
     }
