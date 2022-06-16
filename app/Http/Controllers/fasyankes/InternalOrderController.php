@@ -47,6 +47,8 @@ class InternalOrderController extends Controller
             'delivery_option' => $request->delivery_option,
             'delivery_travel_name' => $request->delivery_travel_name,
             'arrival_date_estimation' => $request->arrival_date_estimation,
+            'contact_person_name' => $request->contact_person_name,
+            'contact_person_phone' => $request->contact_person_phone,
             'letter_name' => $fileName,
         ]);
 
@@ -96,6 +98,8 @@ class InternalOrderController extends Controller
         $order->delivery_option = $request->delivery_option;
         $order->delivery_travel_name = $request->delivery_travel_name;
         $order->arrival_date_estimation = $request->arrival_date_estimation;
+        $order->contact_person_name = $request->contact_person_name;
+        $order->contact_person_phone = $request->contact_person_phone;
         $order->save();
 
         // Menghapus Semua Data Order
