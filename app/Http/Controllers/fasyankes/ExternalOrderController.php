@@ -109,7 +109,7 @@ class ExternalOrderController extends Controller
         for($i = 0; $i < count($request->alkes); $i++){
             $description_id = 1;
             if($request->description[$i] != null){
-                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]]);
+                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
             }
 
             for($j = 0; $j < $request->ammount[$i]; $j++){
