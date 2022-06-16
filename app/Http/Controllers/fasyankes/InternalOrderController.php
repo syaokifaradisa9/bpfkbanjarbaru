@@ -100,6 +100,7 @@ class InternalOrderController extends Controller
         $order->arrival_date_estimation = $request->arrival_date_estimation;
         $order->contact_person_name = $request->contact_person_name;
         $order->contact_person_phone = $request->contact_person_phone;
+        $order->status = "MENUNGGU";
         $order->save();
 
         // Menghapus Semua Data Order

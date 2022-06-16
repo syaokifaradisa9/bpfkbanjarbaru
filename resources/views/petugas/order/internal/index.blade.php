@@ -43,7 +43,12 @@
                     @if(count($orders) > 0)
                       @foreach ($orders as $index => $data)
                         <tr>
-                          <td class="text-center">{{ $index + 1 }}</td>
+                          <td class="text-center">
+                            {{ $index + 1 }}
+                            <span id="order-id-{{ $index }}" class="d-none">
+                              {{ $data->id }}
+                            </span>
+                          </td>
                           <td class="text-center">
                             <div class="btn-group dropright px-0 pr-2">
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,19 +59,19 @@
                                     <i class="fas fa-info-circle"></i>
                                     Detail Order
                                   </a>
-                                  <a class="dropdown-item has-icon text-success" href="#">
+                                  <a class="dropdown-item has-icon text-success @if($data->status != "MENUNGGU") d-none @endif" data-toggle="modal" data-id="{{ $index }}1" data-target="#orderModal" href="#" id="accept-{{ $index }}">
                                     <i class="fas fa-check-circle"></i>
                                     Terima
                                   </a>
-                                  <a class="dropdown-item has-icon text-danger" href="#">
+                                  <a class="dropdown-item has-icon text-danger @if($data->status != "MENUNGGU") d-none @endif" data-toggle="modal" data-id="{{ $index }}2" data-target="#orderModal" href="#" id="refuse-{{ $index }}">
                                     <i class="fas fa-window-close"></i>
                                     Tolak
                                   </a>
                                 </div>
                               </div>
                           </td>
-                          <td class="text-center">{{ $data->number }}</td>
-                          <td>
+                          <td class="text-center">{{ $data->number ?? '-' }}</td>
+                          <td id="fasyankes-name-{{ $index }}">
                             {{ $data->user->fasyankes_name." ".$data->user->city." ".$data->user->province }} <br>
                           </td>
                           <td>
@@ -95,4 +100,46 @@
       </div>
     </div>
   </section>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="orderModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="modal-title"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="#" method="post" id="confirmation-form">
+            @csrf
+            @method('PUT')
+
+            <input type="hidden" name="status" id="status-input" class="d-none">
+
+            <p>
+              Isikan keterangan untuk ditampilkan ke pihak <span id="fasyankes-name-description"></span>
+            </p>
+            <div class="form-group">
+              <input type="text" class="form-control" name="description" id="description-input">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-close">
+            <i class="fas fa-times-circle"></i>
+            Tutup
+          </button>
+          <button type="button" class="btn btn-primary" id="btn-submit">
+            <i class="fas fa-paper-plane mr-1"></i>
+            Kirim
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('js-extends')
+  <script src="{{ asset('js/order-table/petugas-order-table.js') }}"></script>
 @endsection

@@ -24,6 +24,7 @@ class CreateInternalOrdersTable extends Migration
             $table->timestamp('arrival_date_estimation');
             $table->string('contact_person_name');
             $table->string('contact_person_phone');
+            $table->string('description')->nullable();
             $table->enum('status', ['MENUNGGU', 'DITERIMA','DITOLAK', 'DIPROSES', 'SELESAI'])->default('MENUNGGU');
             $table->timestamps();
         });

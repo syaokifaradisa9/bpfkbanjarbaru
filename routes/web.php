@@ -163,6 +163,9 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
         // Order Internal
         Route::prefix('internal')->name('internal.')->group(function(){
             Route::get('/', [PetugasInternalOrderController::class, 'index'])->name('index');
+            Route::prefix('/{id}')->group(function(){
+                Route::put('/update-status', [PetugasInternalOrderController::class, 'updateStatus']);
+            });
         });
 
         // Order External

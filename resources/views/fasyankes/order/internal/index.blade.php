@@ -67,7 +67,7 @@
                                 <i class="fas fa-info-circle"></i>
                                 Detail Order
                               </a>
-                              <a class="dropdown-item has-icon @if($data->status != "MENUNGGU") d-none @endif" href="{{ route('fasyankes.order.internal.edit', ['id' => $data->id]) }}" id="btn-edit-order-{{ $index }}">
+                              <a class="dropdown-item has-icon @if($data->status != "MENUNGGU" && $data->status != "DITOLAK") d-none @endif" href="{{ route('fasyankes.order.internal.edit', ['id' => $data->id]) }}" id="btn-edit-order-{{ $index }}">
                                 <i class="fas fa-edit"></i>
                                 Edit
                               </a>

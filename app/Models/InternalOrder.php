@@ -18,14 +18,13 @@ class InternalOrder extends Model
         'delivery_travel',
         'arrival_date_estimation',
         'contact_person_name',
-        'contact_person_phone'
+        'contact_person_phone',
+        'description'
     ];
 
     public function user(){
         return $this->belongsTo(User::class);
     }
-
-    
 
     // Atribut Tambahan
     protected $appends = [
