@@ -82,7 +82,7 @@ class ExternalOrder extends Model
 
     public function getAlkesOrderWithcategoryAttribute(){
         $orders = [];
-        $tempOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $this->id)->get();
+        $tempOrders = ExternalAlkesOrder::with('alkes', 'alkes_order_description')->where('external_order_id', $this->id)->get();
         foreach($tempOrders as $order){
             $categoryName = $order->alkes->alkes_category->name;
             if(isset($orders[$categoryName][$order->alkes->name])){
@@ -91,7 +91,7 @@ class ExternalOrder extends Model
                 $orders[$categoryName][$order->alkes->name] = [
                     'ammount' => 1,
                     'price' => $order->alkes->price,
-                    'description' => $order->description
+                    'description' => $order->alkes_order_description
                 ];
             }
         }

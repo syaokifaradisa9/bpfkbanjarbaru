@@ -67,6 +67,10 @@
                                     <i class="fas fa-window-close"></i>
                                     Tolak
                                   </a>
+                                  <a href="{{ route('petugas.order.internal.alkes-reception', ['id' => $data->id]) }}" class="dropdown-item has-icon @if($data->status != "ORDER DITERIMA") d-none @endif">
+                                    <i class="fas fa-hand-holding"></i>
+                                    Penerimaan Alat
+                                  </a>
                                 </div>
                               </div>
                           </td>

@@ -24,6 +24,10 @@ class ExternalAlkesOrder extends Model
         return $this->belongsTo(Alkes::class);
     }
 
+    public function alkes_order_description(){
+        return $this->belongsTo(AlkesOrderDescription::class);
+    }
+
     public function external_order(){
         return $this->belongsTo(ExternalOrder::class);
     }

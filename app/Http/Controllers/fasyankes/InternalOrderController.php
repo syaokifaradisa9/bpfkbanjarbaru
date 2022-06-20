@@ -54,14 +54,15 @@ class InternalOrderController extends Controller
 
         for($i = 0; $i < count($request->alkes); $i++){
             $description_id = 1;
-            if($request->description[$i] != null){
-                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
+            if($request->description[$i]){
+                $existDescription = AlkesOrderDescription::where('description', $request->description[$i])->get()->first();
+                $description_id = $existDescription->id ?? AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
             }
 
             for($j = 0; $j < $request->ammount[$i]; $j++){
                 InternalAlkesOrder::create([
                     'alkes_id' => $request->alkes[$i],
-                    'alkes_order_description_id' => $description_id,
+                    'client_description_id' => $description_id,
                     'internal_order_id' => $order->id,
                 ]);
             }
@@ -107,14 +108,15 @@ class InternalOrderController extends Controller
         InternalAlkesOrder::where('internal_order_id',$order_id)->delete();
         for($i = 0; $i < count($request->alkes); $i++){
             $description_id = 1;
-            if($request->description[$i] != null){
-                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]]);
+            if($request->description[$i]){
+                $existDescription = AlkesOrderDescription::where('description', $request->description[$i])->get()->first();
+                $description_id = $existDescription->id ?? AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
             }
 
             for($j = 0; $j < $request->ammount[$i]; $j++){
                 InternalAlkesOrder::create([
                     'alkes_id' => $request->alkes[$i],
-                    'alkes_order_description_id' => $description_id,
+                    'client_description_id' => $description_id,
                     'internal_order_id' => $order->id,
                 ]);
             }

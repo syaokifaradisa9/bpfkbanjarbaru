@@ -91,13 +91,7 @@
                         </td>
                         <td>{{ $data->description ?? '-' }}</td>
                         <td class="text-center align-middle">
-                          @if ($data->status == 'MENUNGGU')
-                            <div class="badge badge-secondary">{{ ucwords(strtolower($data->status)) }}</div>
-                          @elseif ($data->status == 'DITOLAK')
-                            <div class="badge badge-danger">{{ ucwords(strtolower($data->status)) }}</div>
-                          @elseif ($data->status == 'DITERIMA')
-                            <div class="badge badge-success">{{ ucwords(strtolower($data->status)) }}</div>
-                          @endif
+                          <div class="badge badge-secondary">{{ ucwords(strtolower($data->status)) }}</div>
                         </td>
                       </tr>
                     @endforeach

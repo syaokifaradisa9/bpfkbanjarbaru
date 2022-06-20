@@ -111,15 +111,14 @@ Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExterna
 
 Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
     Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');
-    Route::name('order.')->prefix('order')->group(function(){
 
+    Route::name('order.')->prefix('order')->group(function(){
         // Order Internal
         Route::name('internal.')->prefix('internal')->group(function(){
             Route::get('/', [YantekInternalOrderController::class, 'index'])->name('index');
             Route::put('/accept', [YantekInternalOrderController::class, 'accept'])->name('accept');
             Route::put('/reject', [YantekInternalOrderController::class, 'reject'])->name('reject');
         });
-
         // Order Eksternal
         Route::name('external.')->prefix('external')->group(function(){
             Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
@@ -165,6 +164,8 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
             Route::get('/', [PetugasInternalOrderController::class, 'index'])->name('index');
             Route::prefix('/{id}')->group(function(){
                 Route::put('/update-status', [PetugasInternalOrderController::class, 'updateStatus']);
+                Route::get('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionPage'])->name('alkes-reception');
+                Route::post('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionStore'])->name('alkes-reception-store');
             });
         });
 

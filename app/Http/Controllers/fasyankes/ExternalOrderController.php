@@ -65,8 +65,9 @@ class ExternalOrderController extends Controller
         // Store Data Alkes Order
         for($i = 0; $i < count($request->alkes); $i++){
             $description_id = 1;
-            if($request->description[$i] != null){
-                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
+            if($request->description[$i]){
+                $existDescription = AlkesOrderDescription::where('description', $request->description[$i])->get()->first();
+                $description_id = $existDescription->id ?? AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
             }
 
             for($j = 0; $j < $request->ammount[$i]; $j++){
@@ -108,8 +109,9 @@ class ExternalOrderController extends Controller
         ExternalAlkesOrder::where('external_order_id',$order_id)->delete();
         for($i = 0; $i < count($request->alkes); $i++){
             $description_id = 1;
-            if($request->description[$i] != null){
-                $description_id = AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
+            if($request->description[$i]){
+                $existDescription = AlkesOrderDescription::where('description', $request->description[$i])->get()->first();
+                $description_id = $existDescription->id ?? AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
             }
 
             for($j = 0; $j < $request->ammount[$i]; $j++){

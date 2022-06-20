@@ -165,7 +165,7 @@
                                   </td>
                                   <td class="text-center pt-3">
                                   <div class="form-group">
-                                      <textarea class="form-control" name="description[]" id="description_{{ $id }}" value="{{ $alkesValue['description'] }}"> </textarea>
+                                      <textarea class="form-control" name="description[]" id="description_{{ $id }}">{{ $alkesValue['description']['description'] }}</textarea>
                                   </div>
                                   </td>
                                   <td class="text-center">

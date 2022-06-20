@@ -15,7 +15,8 @@ class AlkesOrderDescriptionSeeder extends Seeder
     public function run()
     {
         AlkesOrderDescription::create([
-            'description' => '',
+            'id' => 1,
+            'description' => '-',
         ]);
     }
 }

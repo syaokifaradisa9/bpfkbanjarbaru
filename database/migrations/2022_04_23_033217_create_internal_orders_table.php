@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,16 +17,35 @@ class CreateInternalOrdersTable extends Migration
         Schema::create('internal_orders', function (Blueprint $table) {
             $table->id();
             $table->string('number')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignIdFor(User::class)->constrained();
             $table->string('letter_name');
+
+            // Estimasi Pengantaran dan Sampai
             $table->timestamp('delivery_date_estimation');
+            $table->timestamp('arrival_date_estimation');
+
+            // Pihak Pengantar Alat
             $table->string('delivery_option');
             $table->string('delivery_travel_name')->nullable();
-            $table->timestamp('arrival_date_estimation');
+
+            // Contact Person Pengantar Alat
             $table->string('contact_person_name');
             $table->string('contact_person_phone');
+
+            // Keterangan Oleh Admin
             $table->string('description')->nullable();
-            $table->enum('status', ['MENUNGGU', 'DITERIMA','DITOLAK', 'DIPROSES', 'SELESAI'])->default('MENUNGGU');
+
+            // Penerimaan Alat
+            $table->boolean('review_request')->default(true);
+            $table->boolean('calibration_ability')->default(true);
+            $table->boolean('officer_readiness')->default(true);
+            $table->boolean('workload')->default(true);
+            $table->boolean('equipment_condition')->default(true);
+            $table->boolean('calibration_method_compatibility')->default(true);
+            $table->boolean('accommodation_and_environment')->default(true);
+            $table->string('alkes_checker')->nullable();
+
+            $table->enum('status', ['MENUNGGU', 'ORDER DITERIMA','DITOLAK', 'ALAT DITERIMA','DIPROSES', 'SELESAI'])->default('MENUNGGU');
             $table->timestamps();
         });
     }
