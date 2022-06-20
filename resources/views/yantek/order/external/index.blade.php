@@ -41,8 +41,8 @@
                       <th class="text-center" style="width: 190px">Fasyankes</th>
                       <th class="text-center" style="width: 140px">Waktu Pengajuan</th>
                       <th class="text-center" style="width: 210px">Nomor Order</th>
-                      <th class="text-center" style="width: 160px">Akomodasi</th>
                       <th class="text-center" style="width: 135px">Estimasi</th>
+                      <th class="text-center" style="width: 160px">Akomodasi</th>
                       <th class="text-center" style="width: 130px">No. Surat keluar</th>
                       <th class="text-center" style="width: 50px">Status</th>
                     </tr>
@@ -98,14 +98,14 @@
                             </div>
                           </td>
                           <td class="text-center">
-                            <a id="accommodation_{{ $index }}" href="{{ route('yantek.order.external.edit_accommodation', ['id' => $data->id]) }}">
-                              Rp. {{ FormatHelper::toIndonesianCurrencyFormat($data->total_accommodation) }}
-                            </a>
-                          </td>
-                          <td class="text-center">
                             <a id="estimation_{{ $index }}" href="{{ route('yantek.order.external.edit_estimation', ['id' => $data->id]) }}">
                               {{ $data->estimation_day }} Hari / {{ $data->total_officer ?? 0 }} Petugas
                               <span id="selected-officer-{{ $index }}" class="d-none">{{ $data->total_officer_selected ?? 0 }}</span>
+                            </a>
+                          </td>
+                          <td class="text-center">
+                            <a id="accommodation_{{ $index }}" href="{{ route('yantek.order.external.edit_accommodation', ['id' => $data->id]) }}">
+                              Rp. {{ FormatHelper::toIndonesianCurrencyFormat($data->total_accommodation) }}
                             </a>
                           </td>
                           <td class="pt-3">
