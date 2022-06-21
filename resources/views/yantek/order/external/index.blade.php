@@ -63,7 +63,8 @@
                               <div class="dropdown-menu dropright">
                                 <a class="dropdown-item has-icon" href="#"><i class="fas fa-info-circle"></i> Detail</a>
                                 <a class="dropdown-item has-icon" href="{{ asset($data->letter_path) }}" target="_blank">
-                                  <i class="fas fa-envelope-open-text"></i> Surat Masuk
+                                  <i class="fas fa-envelope-open-text"></i> 
+                                  Surat Masuk
                                 </a>
                                 <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="{{ route('print-offering-letter', ['id' => $data->id]) }}" id="btn-show-offering-letter-{{ $index }}">
                                   <i class="fas fa-file-alt"></i> 
@@ -72,6 +73,10 @@
                                 <a class="dropdown-item has-icon @if(!$data->out_letter_number) d-none @endif" href="#" id="btn-send-offering-letter-{{ $index }}">
                                   <i class="fas fa-paper-plane"></i> 
                                   Kirim Penawaran
+                                </a>
+                                <a class="dropdown-item has-icon text-green @if($data->status != 'MENUNGGU PERSETUJUAN' && $data->approval_letter_name != null) d-none @endif" href="{{ asset($data->approval_letter_path) }}" target="_blank">
+                                  <i class="fas fa-envelope-open-text"></i>
+                                  Surat Persetujuan
                                 </a>
                                 <a class="dropdown-item has-icon text-green @if($data->status != 'MENUNGGU PERSETUJUAN') d-none @endif" href="#" id="confirm-agreement-{{ $index }}">
                                   <i class="fas fa-check-square"></i> 

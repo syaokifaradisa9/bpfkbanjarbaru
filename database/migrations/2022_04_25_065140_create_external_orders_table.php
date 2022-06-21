@@ -37,6 +37,8 @@ class CreateExternalOrdersTable extends Migration
             $table->integer('pp_minute')->nullable();
             $table->integer('total_officer')->nullable();
 
+            $table->string('approval_letter_name')->nullable();
+
             $table->integer('accommodation')->nullable();
             $table->string('accommodation_description')->nullable();
             $table->integer('daily_accommodation')->nullable();

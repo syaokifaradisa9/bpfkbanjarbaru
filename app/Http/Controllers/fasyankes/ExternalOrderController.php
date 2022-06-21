@@ -161,4 +161,18 @@ class ExternalOrderController extends Controller
             ]);
         }
     }
+
+    public function updateApprovalLetter(Request $request, $id){
+        $file = $request->file('letter');
+        $extension = explode('.', $file->getClientOriginalName())[1];
+
+        $fileName = date('Y-m-d-H-m').'.'.$extension;        
+        $file->move(public_path('order/'.Auth::user()->id.'/external/file'), $fileName);
+
+        $order = ExternalOrder::findOrFail($id);
+        $order->approval_letter_name = $fileName;
+        $order->save();
+
+        return redirect(route('fasyankes.order.external.index'))->with('success', 'Sukses Mengirim Surat Persetujuan');
+    }
 }

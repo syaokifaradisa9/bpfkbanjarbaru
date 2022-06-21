@@ -28,7 +28,8 @@ class ExternalOrder extends Model
         'daily_description',
         'rapid_test_accommodation',
         'rapid_test_description',
-        'finishing_date'
+        'finishing_date',
+        'approval_letter_name'
     ];
 
     // Atribut Tambahan
@@ -40,7 +41,8 @@ class ExternalOrder extends Model
         'done_alkes_order',
         'estimation_day',
         'total_officer_selected',
-        'letter_path'
+        'letter_path',
+        'approval_letter_path'
     ];
 
     public function getTotalAccommodationAttribute()
@@ -154,6 +156,11 @@ class ExternalOrder extends Model
     public function getletterPathAttribute()
     {
         return 'order/'.$this->user->id.'/external/file/'.$this->letter_name;
+    }
+
+    public function getApprovalLetterPathAttribute()
+    {
+        return 'order/'.$this->user->id.'/external/file/'.$this->approval_letter_name;
     }
 
     // Relasi Tabel
