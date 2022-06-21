@@ -21,8 +21,9 @@ class UserSeeder extends Seeder
                 'fasyankes_name' => "RS BJB",
                 'city' => 'Banjarbaru',
                 'province' => 'Kalimantan Selatan',
-                'hash' => "12345",
                 'phone' => '082149411670',
+                'fasyankes_class_id' => 1,
+                'fasyankes_category_id' => 1,
                 'address' => 'Komp. Galuh Marindu Jln. Persada XII No. 47'
             ]
         ];

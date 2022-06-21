@@ -23,7 +23,11 @@
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar float-right">
         <ul class="navbar-nav mr-3">
-          <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+          <li>
+            <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg">
+              <i class="fas fa-bars"></i>
+            </a>
+          </li>
         </ul>
         {{-- <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
@@ -122,7 +126,24 @@
           </div>
           <ul class="sidebar-menu mt-4">
               <li class="menu-header">Beranda</li>
-              <li class="{{ $menu == 'home' ? 'active' : '' }}"><a class="nav-link" href="{{ route('home-redirect') }}"><i class="fas fa-home"></i> <span>Beranda</span></a></li>
+              <li class="{{ $menu == 'home' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('home-redirect') }}">
+                  <i class="fas fa-home"></i> 
+                  <span>Beranda</span>
+                </a>
+              </li>
+
+              @if (Auth::guard('admin')->check())
+                @if(Auth::guard('admin')->user()->role == "YANTEK")
+                  <li class="menu-header">Data Master</li>
+                  <li class="{{ $menu == 'account' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('yantek.account.index') }}">
+                      <i class="fas fa-user"></i>
+                      <span>Akun Fasyankes</span>
+                    </a>
+                  </li>
+                @endif
+              @endif
               
               <li class="menu-header">Pengajuan</li>
               @if (Auth::guard('web')->check())

@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            FasyankesCategorySeeder::class,
+            FasyankesClassSeeder::class,
+
             UserSeeder::class,
             AlkesCategorySeeder::class,
             AlkesSeeder::class,

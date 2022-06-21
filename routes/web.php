@@ -8,7 +8,6 @@ use App\Http\Controllers\ReportController;
 // Auth
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
-use App\Http\Controllers\auth\RegisterController;
 
 // Fasyankes
 use App\Http\Controllers\GeneralRoutesController;
@@ -19,6 +18,7 @@ use App\Http\Controllers\fasyankes\PaymentController as FasyankesPaymentControll
 use App\Http\Controllers\fasyankes\CertificateController as FasyankesCertificateController;
 
 // Yantek
+use App\Http\Controllers\yantek\AccountController as YanteAccountController;
 use App\Http\Controllers\yantek\HomeController as YantekHomeController;
 use App\Http\Controllers\yantek\ExternalOrderController as YantekExternalOrderController;
 use App\Http\Controllers\yantek\InternalOrderController as YantekInternalOrderController;
@@ -54,14 +54,6 @@ Route::get('/order-internal-redirect', [GeneralRoutesController::class, 'interna
 Route::get('/order-external-redirect', [GeneralRoutesController::class, 'externalOrder'])->name('order-external-redirect');
 
 Route::middleware(['guest'])->group(function () {
-    // Register
-    Route::prefix('register')->name('register.')->group(function(){
-        Route::get('/', [RegisterController::class, 'index'])->name('index');
-        Route::get('/notify/{token}', [RegisterController::class, 'notify'])->name('notify');
-        Route::get('/verify/{token}', [RegisterController::class, 'verify'])->name('verify');
-        Route::post('/store', [RegisterController::class, 'store'])->name('store');
-    });
-
     // Login
     Route::get('/', [LoginController::class, 'index'])->name('login.index');
     Route::post('/login/verify', [LoginController::class, 'verify'])->name('login.verify');
@@ -111,6 +103,18 @@ Route::get('/order/{id}/offeringLetter', [ReportController::class, 'printExterna
 
 Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function(){
     Route::get('/home', [YantekHomeController::class, 'index'])->name('home.index');
+
+    Route::prefix('/account')->name('account.')->group(function(){
+        Route::get('/', [YanteAccountController::class, 'index'])->name('index');
+        Route::get('/create', [YanteAccountController::class, 'create'])->name('create');
+        Route::post('/store', [YanteAccountController::class, 'store'])->name('store');
+        Route::prefix('{id}')->group(function(){
+            Route::get('/edit', [YanteAccountController::class, 'edit'])->name('edit');
+            Route::put('/update', [YanteAccountController::class, 'update'])->name('update');
+            Route::get('/detail', [YanteAccountController::class, 'detail'])->name('detail');
+            Route::delete('/delete', [YanteAccountController::class, 'delete'])->name('delete');
+        });
+    });
 
     Route::name('order.')->prefix('order')->group(function(){
         // Order Internal

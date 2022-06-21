@@ -63,12 +63,12 @@
                     Login
                   </button>
                 </div>
-                <div class="mt-5 text-center">
+                {{-- <div class="mt-5 text-center">
                   Belum mempunyai akun? <a href="{{ route('register.index') }}">Daftar</a>
-                </div>
+                </div> --}}
             </form>
 
-            <div class="text-center mt-5 text-small">
+            <div class="text-center mt-5 pt-5 text-small">
               Copyright &copy; BPFK Banjarbaru 2022.
             </div>
           </div>
