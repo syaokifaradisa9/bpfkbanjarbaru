@@ -32,6 +32,27 @@ class ExternalOrder extends Model
         'approval_letter_name'
     ];
 
+    // Relasi Tabel
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function external_alkes_order(){
+        return $this->hasMany(ExternalAlkesOrder::class);
+    }
+
+    public function external_officer_order(){
+        return $this->hasMany(ExternalOfficerOrder::class);
+    }
+
+    public function external_payment(){
+        return $this->hasMany(ExternalPayment::class);
+    }
+
+    public function activity_date_order(){
+        return $this->hasMany(ActivityDateOrder::class);
+    }
+
     // Atribut Tambahan
     protected $appends = [
         'total_accommodation', 
@@ -161,23 +182,5 @@ class ExternalOrder extends Model
     public function getApprovalLetterPathAttribute()
     {
         return 'order/'.$this->user->id.'/external/file/'.$this->approval_letter_name;
-    }
-
-    // Relasi Tabel
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-    
-
-    public function external_alkes_order(){
-        return $this->hasMany(ExternalAlkesOrder::class);
-    }
-
-    public function external_officer_order(){
-        return $this->hasMany(ExternalOfficerOrder::class);
-    }
-
-    public function external_payment(){
-        return $this->hasMany(ExternalPayment::class);
     }
 }

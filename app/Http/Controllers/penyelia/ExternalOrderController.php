@@ -5,6 +5,7 @@ namespace App\Http\Controllers\penyelia;
 use App\Models\AdminUser;
 use Illuminate\Http\Request;
 use App\Models\ExternalOrder;
+use App\Models\ActivityDateOrder;
 use App\Http\Controllers\Controller;
 use App\Models\ExternalOfficerOrder;
 
@@ -100,9 +101,20 @@ class ExternalOrderController extends Controller
     }
 
     public function officeUpdate(Request $request, $id){
+        // Menambahkan Tanggal Kegiatan ke Database
+        for($i = 0; $i < count($request->start_date); $i++){
+            ActivityDateOrder::create([
+                'start_date' => $request->start_date[$i],
+                'end_date' => $request->end_date[$i],
+                'external_order_id' => $id
+            ]);
+        }
+
         // Mengambil Petugas yang dipilih
         $officerSelected = $request->all();
         unset($officerSelected['_token']);
+        unset($officerSelected['start_date']);
+        unset($officerSelected['end_date']);
 
         $order_id = $id;
 
@@ -159,7 +171,7 @@ class ExternalOrderController extends Controller
                                     ->delete();
             }
         }
-        
+
         return redirect(route('penyelia.order.external.index'))->with('success', 'Sukses Menetapkan Petugas');
     }
 }
