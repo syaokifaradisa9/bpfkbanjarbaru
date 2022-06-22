@@ -102,6 +102,7 @@ class ExternalOrderController extends Controller
 
     public function officeUpdate(Request $request, $id){
         // Menambahkan Tanggal Kegiatan ke Database
+        ActivityDateOrder::where('external_order_id', $id)->delete();
         for($i = 0; $i < count($request->start_date); $i++){
             ActivityDateOrder::create([
                 'start_date' => $request->start_date[$i],
