@@ -108,8 +108,8 @@ function refreshTable(){
         document.getElementById(`end-date-${i}`).addEventListener('change', onDateChange);
     }
 
-    console.log(totalDataRow);
-    if(totalDataRow > 1){
+    var totalDayInFirstRow = document.getElementById(`sub-total-0`).innerHTML.trim();
+    if(parseInt(totalDayInFirstRow) > 0){
         refreshTotalDays();
     }
 }
