@@ -26,6 +26,7 @@ use App\Http\Controllers\yantek\InternalOrderController as YantekInternalOrderCo
 // Penyelia
 use App\Http\Controllers\penyelia\HomeController as PenyeliaHomeController;
 use App\Http\Controllers\penyelia\ExternalOrderController as PenyeliaExternalOrderController;
+use App\Http\Controllers\penyelia\InternalOrderController as PenyeliaInternalOrderController;
 
 // Petugas
 use App\Http\Controllers\petugas\HomeController as PetugasHomeController;
@@ -145,7 +146,11 @@ Route::middleware(['penyelia'])->prefix('penyelia')->name('penyelia.')->group(fu
         
         // Order Internal
         Route::prefix('internal')->name('internal.')->group(function(){
-
+            Route::get('/', [PenyeliaInternalOrderController::class, 'index'])->name('index');
+            Route::prefix('{id}')->group(function(){
+                Route::get('officer', [PenyeliaInternalOrderController::class, 'officeEdit'])->name('officer-edit');
+                Route::put('officer', [PenyeliaInternalOrderController::class, 'officeUpdate'])->name('officer-update');
+            });
         });
 
         // Order Eksternal

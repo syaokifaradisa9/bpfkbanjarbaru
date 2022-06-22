@@ -31,6 +31,8 @@ class GeneralRoutesController extends Controller
             $role = Auth::guard('admin')->user()->role;
             if($role == "YANTEK"){
                 return redirect(route('yantek.order.internal.index'));
+            }else if($role == "PENYELIA"){
+                return redirect(route('penyelia.order.internal.index'));
             }
         }
 

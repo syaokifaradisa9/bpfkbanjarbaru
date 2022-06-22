@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\InternalAlkesOrder;
+use App\Models\InternalOfficerOrder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -51,10 +52,16 @@ class InternalOrder extends Model
         return $this->hasMany(InternalAlkesOrder::class);
     }
 
+    public function internal_officer_order(){
+        return $this->hasMany(InternalOfficerOrder::class);
+    }
+
     // Atribut Tambahan
     protected $appends = [
         'letter_path',
         'alkes_order_with_category',
+        'clean_alkes_orders',
+        'total_officer',
     ];
 
     public function getLetterPathAttribute()
@@ -80,5 +87,39 @@ class InternalOrder extends Model
         }
 
         return $orders;
+    }
+
+    public function getCleanAlkesOrdersAttribute(){
+        $alkesOrders = [];
+        $tempOrders = InternalAlkesOrder::with('alkes')->where('internal_order_id', $this->id)->get();
+        foreach($tempOrders as $order){
+            $alkes = $order->alkes->name . "|" . $order->merk. "|" . $order->model . "|" . $order->series_number;
+            if(isset($alkesOrders[$alkes])){
+                $alkesOrders[$alkes]['ammount']++;
+            }else{
+                $alkesOrders[$alkes] = [
+                    'ammount' => 1
+                ];
+            }
+        }
+
+        ksort($alkesOrders);
+
+        $orders = [];
+        foreach($alkesOrders as $alkes => $value){
+            $alkesAttribute = explode('|', $alkes);
+            array_push($orders, [
+                'alkes' => $alkesAttribute[0],
+                'merk' => $alkesAttribute[1],
+                'model' => $alkesAttribute[2],
+                'series_number' => $alkesAttribute[3],
+                'ammount' => $value['ammount']
+            ]);
+        }
+        return $orders;
+    }
+
+    public function getTotalOfficerAttribute(){
+        return count($this->internal_officer_order) ?? 0;
     }
 }
