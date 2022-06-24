@@ -19,6 +19,9 @@ class InternalAlkesOrderSeeder extends Seeder
         foreach($listAlkes as $alkes){
             InternalAlkesOrder::create([
                 'alkes_id' => $alkes->id,
+                'merk' => 'aaa',
+                'model' => 'bbb',
+                'series_number' => '123',
                 'internal_order_id' => 1
             ]);
         }

@@ -49,7 +49,7 @@ class GeneralRoutesController extends Controller
             }else if($role == 'PENYELIA'){
                 return redirect(route('penyelia.order.external.index'));
             }else if($role == 'PETUGAS'){
-                return redirect(route('petugas.order.external.index'));
+                return redirect(route('petugas.order.external.worksheet.index'));
             }else if($role == "BENDAHARA"){
                 return redirect(route('bendahara.order.external.index'));
             }

@@ -45,7 +45,17 @@ class CreateInternalOrdersTable extends Migration
             $table->boolean('accommodation_and_environment')->default(true);
             $table->string('alkes_checker')->nullable();
 
-            $table->enum('status', ['MENUNGGU', 'ORDER DITERIMA','DITOLAK', 'ALAT DITERIMA', 'DIPROSES', 'SELESAI'])->default('MENUNGGU');
+            $table->enum('status', [
+                'MENUNGGU', 
+                'ORDER DITERIMA',
+                'DITOLAK', 
+                'ALAT DITERIMA', 
+                'PROSES PENGERJAAN', 
+                'MENUNGGU PEMBAYARAN',
+                'SELESAI'
+                ])->default('MENUNGGU');
+
+            $table->timestamp('finishing_date')->nullable();
             $table->timestamps();
         });
     }

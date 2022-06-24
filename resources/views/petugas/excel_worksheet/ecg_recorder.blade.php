@@ -7,7 +7,7 @@
     </div>
 
     <div class="section-body">
-      <h2 class="section-title">Pengajuan Eksternal Pengujian dan Kalibrasi Alat Kesehatan</h2>
+      <h2 class="section-title">Pengajuan {{ $order_type }} Pengujian dan Kalibrasi Alat Kesehatan</h2>
       <p class="section-lead">Melakukan pengujian dan kalibrasi di Loka Pengamanan Fasilitas Kesehatan (LPFK) Banjarbaru</p>
 
       <div class="row">
@@ -20,9 +20,9 @@
             {{-- Informasi Sertifikat --}}
             <form action="
               @if (isset(explode('/', Route::getFacadeRoot()->current()->uri())[6]))
-                {{ route('petugas.order.external.worksheet.excel.update', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
+                {{ route('petugas.order.'. $order_type .'.worksheet.excel.update', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
               @else
-                {{ route('petugas.order.external.worksheet.excel.store', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
+                {{ route('petugas.order.'. $order_type .'.worksheet.excel.store', ['order_id' => $order_id, 'alkes_order_id' => $alkesOrder->id]) }}
               @endif" 
               method="post">
               
@@ -43,7 +43,7 @@
                   </div>
                   <div class="form-group ml-3">
                     <label><b>Nomor Order</b></label>
-                    <input type="text" class="form-control" value="{{ $alkesOrder->external_order->number }}" name="order_number" readonly>
+                    <input type="text" class="form-control" value="{{ $alkesOrder->external_order->number ?? $alkesOrder->internal_order->number }}" name="order_number" readonly>
                   </div>
                 </div>
   
@@ -51,15 +51,15 @@
                   <div class="row">
                     <div class="form-group col-3">
                       <label><b>Merek Alat</b></label>
-                      <input name="E4" type="text" placeholder="Merek" class="form-control" value="{{ $excel_value['E4'] ?? '' }}">
+                      <input name="E4" type="text" placeholder="Merek" class="form-control" value="{{ $excel_value['E4'] ?? $alkesOrder->merk ?? '' }}">
                     </div>
                     <div class="form-group col-3">
                       <label><b>Tipe/Model Alat</b></label>
-                      <input name="E5" type="text" placeholder="Tipe/Model" class="form-control" value="{{ $excel_value['E5'] ?? '' }}">
+                      <input name="E5" type="text" placeholder="Tipe/Model" class="form-control" value="{{ $excel_value['E5'] ?? $alkesOrder->model ?? '' }}">
                     </div>
                     <div class="form-group col-3">
                       <label><b>Nomor Seri Alat</b></label>
-                      <input name="E6" type="text" placeholder="Tipe/Model" class="form-control" value="{{ $excel_value['E6'] ?? '' }}">
+                      <input name="E6" type="text" placeholder="Tipe/Model" class="form-control" value="{{ $excel_value['E6'] ?? $alkesOrder->series_number ?? '' }}">
                     </div>
                   </div>
                   <div class="row">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group col-3">
                       <label><b>Tempat Kalibrasi</b></label>
-                      <input name="E9" type="text" class="form-control" value="{{ $excel_value['E9'] ?? $alkesOrder->external_order->user->fasyankes_name }}">
+                      <input name="E9" type="text" class="form-control" value="{{ $excel_value['E9'] ?? $alkesOrder->external_order->user->fasyankes_name ?? 'Lab LPFK Banjarbaru' }}">
                     </div>
                     <div class="form-group col-3">
                       <label><b>Nama Ruang</b></label>

@@ -16,7 +16,7 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('petugas.order.external.append', ['order_id' => $order_id]) }}" method="POST">
+            <form action="{{ route('petugas.order.'.$order_type.'.worksheet.alkes-append', ['order_id' => $order_id]) }}" method="POST">
               @csrf
 
               <div class="card-body py-0 px-4">

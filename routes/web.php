@@ -32,12 +32,13 @@ use App\Http\Controllers\penyelia\InternalOrderController as PenyeliaInternalOrd
 use App\Http\Controllers\petugas\HomeController as PetugasHomeController;
 use App\Http\Controllers\petugas\InternalOrderController as PetugasInternalOrderController;
 use App\Http\Controllers\petugas\ExternalOrderController as PetugasExternalOrderController;
-use App\Http\Controllers\petugas\ExternalWorksheetController;
+use App\Http\Controllers\petugas\WorksheetController;
 
 // Bendahara
 use App\Http\Controllers\bendahara\HomeController as BendaharaHomeController;
 use App\Http\Controllers\bendahara\ExternalOrderController as BendaharaExternalOrderController;
 use App\Http\Controllers\bendahara\InternalOrderController as BendaharaInternalOrderController;
+use App\Http\Controllers\petugas\InternalWorksheetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -177,24 +178,42 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
                 Route::get('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionPage'])->name('alkes-reception');
                 Route::post('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionStore'])->name('alkes-reception-store');
             });
+
+            Route::prefix('worksheet')->name('worksheet.')->group(function(){
+                Route::get('/', [PetugasInternalOrderController::class, 'worksheet'])->name('index');
+                Route::prefix('{order_id}')->group(function(){
+                    Route::get('/', [WorksheetController::class, 'index'])->name('alkes-order');
+                    Route::get('/alkes-insert', [WorksheetController::class, 'insert'])->name('alkes-insert');
+                    Route::post('/alkes-append', [WorksheetController::class, 'appendAlkes'])->name('alkes-append');
+                    Route::put('/finishing', [WorksheetController::class, 'finishing'])->name('finishing');
+                    Route::prefix('/{alkes_order_id}')->name('excel.')->group(function(){
+                        Route::get('/', [WorksheetController::class, 'excelWorksheet'])->name('index');
+                        Route::post('/', [WorksheetController::class, 'store'])->name('store');
+                        Route::get('/edit', [WorksheetController::class, 'edit'])->name('edit');
+                        Route::put('/update', [WorksheetController::class, 'update'])->name('update');
+                        Route::get('/result', [WorksheetController::class, 'result'])->name('result');
+                        Route::get('/certificate', [WorksheetController::class, 'certificate'])->name('certificate');
+                    });
+                });
+            });
         });
 
         // Order External
         Route::prefix('external')->name('external.')->group(function(){
-            Route::get('/', [PetugasExternalOrderController::class, 'index'])->name('index');
-            Route::prefix('{order_id}')->group(function(){
-                Route::get('/insert', [ExternalWorksheetController::class, 'insert'])->name('insert');
-                Route::post('/append', [ExternalWorksheetController::class, 'appendAlkes'])->name('append');
-                Route::put('/finishing', [ExternalWorksheetController::class, 'finishing'])->name('finishing');
-                Route::prefix('/worksheet')->name('worksheet.')->group(function(){
-                    Route::get('/', [ExternalWorksheetController::class, 'index'])->name('index');
+            Route::prefix('worksheet')->name('worksheet.')->group(function(){
+                Route::get('/', [PetugasExternalOrderController::class, 'index'])->name('index');
+                Route::prefix('{order_id}')->group(function(){
+                    Route::get('/', [WorksheetController::class, 'index'])->name('alkes-order');
+                    Route::get('/alkes-insert', [WorksheetController::class, 'insert'])->name('alkes-insert');
+                    Route::post('/alkes-append', [WorksheetController::class, 'appendAlkes'])->name('alkes-append');
+                    Route::put('/finishing', [WorksheetController::class, 'finishing'])->name('finishing');
                     Route::prefix('/{alkes_order_id}')->name('excel.')->group(function(){
-                        Route::get('/', [ExternalWorksheetController::class, 'excelWorksheet'])->name('index');
-                        Route::post('/store', [ExternalWorksheetController::class, 'store'])->name('store');
-                        Route::get('/edit', [ExternalWorksheetController::class, 'edit'])->name('edit');
-                        Route::put('/update', [ExternalWorksheetController::class, 'update'])->name('update');
-                        Route::get('/result', [ExternalWorksheetController::class, 'result'])->name('result');
-                        Route::get('/certificate', [ExternalWorksheetController::class, 'certificate'])->name('certificate');
+                        Route::get('/', [WorksheetController::class, 'excelWorksheet'])->name('index');
+                        Route::post('/', [WorksheetController::class, 'store'])->name('store');
+                        Route::get('/edit', [WorksheetController::class, 'edit'])->name('edit');
+                        Route::put('/update', [WorksheetController::class, 'update'])->name('update');
+                        Route::get('/result', [WorksheetController::class, 'result'])->name('result');
+                        Route::get('/certificate', [WorksheetController::class, 'certificate'])->name('certificate');
                     });
                 });
             });

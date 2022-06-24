@@ -36,4 +36,22 @@ class InternalAlkesOrder extends Model
     public function admin_desription(){
         return $this->belongsTo(AlkesOrderDescription::class, 'admin_description_id');
     }
+
+    public function internal_order(){
+        return $this->belongsTo(InternalOrder::class);
+    }
+
+    public function internal_order_excel_value(){
+        return $this->hasMany(InternalOrderExcelValue::class);
+    }
+
+    protected $appends = [
+        'status', 
+    ];
+
+    public function getStatusAttribute()
+    {
+        $excel = InternalOrderExcelValue::where('internal_alkes_order_id', $this->id)->first();
+        return $excel != null ? 1 : 0;
+    }
 }

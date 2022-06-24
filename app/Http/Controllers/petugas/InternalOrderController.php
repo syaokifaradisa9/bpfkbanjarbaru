@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\petugas;
 
-use App\Http\Controllers\Controller;
 use App\Models\AdminUser;
-use App\Models\AlkesOrderDescription;
-use App\Models\InternalAlkesOrder;
-use App\Models\InternalOrder;
 use Illuminate\Http\Request;
+use App\Models\InternalOrder;
+use App\Models\InternalAlkesOrder;
+use App\Http\Controllers\Controller;
+use App\Models\InternalOfficerOrder;
+use Illuminate\Support\Facades\Auth;
+use App\Models\AlkesOrderDescription;
 
 class InternalOrderController extends Controller
 {
@@ -17,6 +19,23 @@ class InternalOrderController extends Controller
         return view('petugas.order.internal.index', [
             'title' => 'Halaman Order Internal',
             'menu' => 'internal',
+            'orders' => $orders
+        ]);
+    }
+
+    public function worksheet(){
+        $officerOrders = InternalOfficerOrder::with('internal_order')
+                                ->where('admin_user_id', Auth::guard('admin')->user()->id)
+                                ->get();
+
+        $orders = [];
+        foreach($officerOrders as $order){
+            array_push($orders, $order->internal_order);
+        }
+        
+        return view('petugas.order.internal.worksheet-order', [
+            'title' => 'Halaman Order Internal',
+            'menu' => 'worksheet',
             'orders' => $orders
         ]);
     }

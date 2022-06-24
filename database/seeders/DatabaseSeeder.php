@@ -46,13 +46,15 @@ class DatabaseSeeder extends Seeder
             // Internal Order
             InternalOrderSeeder::class,
             InternalAlkesOrderSeeder::class,
+            InternalOfficerSeeder::class,
 
             MeasuringInstrumentSeeder::class,
             InstrumentGroupSeeder::class,
             InstrumentGroupRelationSeeder::class,
             InstrumentAlkesGroupSeeder::class,
 
-            ExternalOrderExcelValueSeeder::class
+            ExternalOrderExcelValueSeeder::class,
+            // InternalOrderExcelvalueSeeder::class
         ]);
     }
 }

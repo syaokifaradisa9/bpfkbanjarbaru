@@ -166,7 +166,7 @@
 
               @if (Auth::guard('admin')->check())
                 @if (Auth::guard('admin')->user()->role == "PETUGAS")
-                  <li class="nav-item dropdown @if ($menu == "internal") active @endif">
+                  <li class="nav-item dropdown @if ($menu == "internal" || $menu == "worksheet") active @endif">
                     <a href="#" class="nav-link has-dropdown">
                       <i class="fas fa-building"></i> 
                       <span>Internal</span>
@@ -176,7 +176,7 @@
                         <a class="nav-link @if($menu == "internal") text-primary @endif" href="{{ route('petugas.order.internal.index') }}">Order</a>
                       </li>
                       <li>
-                        <a class="nav-link @if($menu == "worksheet") text-primary @endif" href="">Lembar Kerja</a>
+                        <a class="nav-link @if($menu == "worksheet") text-primary @endif" href="{{ route('petugas.order.internal.worksheet.index') }}">Lembar Kerja</a>
                       </li>
                     </ul>
                   </li>

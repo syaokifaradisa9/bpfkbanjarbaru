@@ -31,7 +31,6 @@
                       <th class="text-center" style="width: 20px">No.</th>
                       <th class="text-center" style="width: 140px">Nomor Order</th>
                       <th class="text-center" style="width: 180px">Fasyankes</th>
-                      <th class="text-center" style="width: 180px">Alamat</th>
                       <th class="text-center" style="width: 180px">Aksi</th>
                     </tr>
                   </thead>
@@ -42,9 +41,10 @@
                           <td class="text-center">{{ $index + 1 }}</td>
                           <td class="text-center">{{ $data->number }}</td>
                           <td>{{ $data->user->fasyankes_name." ".$data->user->city." ".$data->user->province }}</td>
-                          <td>{{ $data->user->address }}</td>
                           <td class="text-center">
-                            <a href="{{ route('petugas.order.external.worksheet.alkes-order',['order_id' => $data->id]) }}" class="btn btn-primary">
+                            <a href="{{ route('petugas.order.internal.worksheet.alkes-order', [
+                                'order_id' => $data->id
+                                ]) }}" class="btn btn-primary">
                               <i class="fas fa-folder-open mr-1"></i>
                               Lembar Kerja
                             </a>
