@@ -3,17 +3,26 @@
 namespace App\Http\Controllers\fasyankes;
 
 use App\Models\ExternalOrder;
+use App\Models\InternalOrder;
 use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\ExternalAlkesOrder;
+use App\Models\InternalAlkesOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+use Illuminate\Support\Facades\Route;
 
 class CertificateController extends Controller
 {
     public function index($id){
-        $alkesOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $id)->get();
+        $orderType = explode('.', Route::current()->getName())[2];
+        if($orderType == "external"){
+            $alkesOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $id)->get();
+        }else{
+            $alkesOrders = InternalAlkesOrder::with('alkes')->where('internal_order_id', $id)->get();
+        }
+
         $alkesOrders = $alkesOrders->filter(function($item){
             return $item->status == 1;
         });
@@ -21,36 +30,50 @@ class CertificateController extends Controller
         $alkesOrders = $alkesOrders->values();
         return view('fasyankes.order.certificate.index',[
             'title' => 'Halaman Lampiran Order',
-            'menu' => 'external',
+            'menu' => $orderType,
             'orders' => $alkesOrders,
-            'order_id' => $id
+            'order_id' => $id,
+            'order_type' => $orderType
         ]);
     }
 
     public function printSertificate($order_id, $alkesOrderId){
-        $order = ExternalOrder::with('user')->findOrFail($order_id);
+        $orderType = explode('.', Route::current()->getName())[2];
+        if($orderType == "external"){
+            $order = ExternalOrder::with('user')->findOrFail($order_id);
+        }else{
+            $order = InternalOrder::with('user')->findOrFail($order_id);
+        }
 
         // Validasi Jika Ada Fasyankes Lain yang Mengakses
         if($order->user->id != Auth::guard('web')->user()->id){
-            return redirect(route('fasyankes.order.external.certificates.index', ['id' => $order])); 
+            return redirect(route('fasyankes.order.'.$orderType.'.certificates.index', ['id' => $order])); 
         }
 
         // Validasi Jika Order Belum Terbayar
         if($order->status != "SELESAI"){
-            return redirect(route('fasyankes.order.external.certificates.index', ['id' => $order])); 
+            return redirect(route('fasyankes.order.'.$orderType.'.certificates.index', ['id' => $order])); 
         }
 
         // [1] Pengambilan Data Excel dari Database
-        $alkes_order = ExternalAlkesOrder::with('external_order_excel_value','alkes')
+        if($orderType == "external"){
+            $alkes_order = ExternalAlkesOrder::with('external_order_excel_value','alkes')
                                             ->where('id', $alkesOrderId)
                                             ->get()
                                             ->first();
+            $input = $alkes_order->external_order_excel_value;
+        }else{
+            $alkes_order = InternalAlkesOrder::with('internal_order_excel_value','alkes')
+                                            ->where('id', $alkesOrderId)
+                                            ->get()
+                                            ->first();
+            $input = $alkes_order->internal_order_excel_value;
+        }
 
         // [2] Pengambilan Excel yang sesuai
         $excel = (new Xlsx())->load(public_path("alkes_excel_file\\" . $alkes_order->alkes->excel_name. '.xlsx'));
         
         // [3] Melakukan Input ke Excel
-        $input = $alkes_order->external_order_excel_value;
         $sheet = $excel->getSheetByName('ID');
         foreach($input as $value){
             $sheet->getCell($value->cell)->setValue($value->value);
@@ -78,7 +101,7 @@ class CertificateController extends Controller
         file_put_contents(
             $resultFilePath,
             Pdf::loadView('petugas.excel_report.'. $alkes_order->alkes->excel_name,[
-                'data' => $excel->getSheetByName('LH')
+                'data' => $excel->getSheetByName('LH'),
             ])->setPaper('a4','portrait')->output()
         );
 

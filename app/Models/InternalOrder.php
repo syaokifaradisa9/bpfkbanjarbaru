@@ -67,6 +67,7 @@ class InternalOrder extends Model
         'alkes_order_with_category',
         'clean_alkes_orders',
         'total_officer',
+        'done_alkes_order',
     ];
 
     public function getLetterPathAttribute()
@@ -126,5 +127,26 @@ class InternalOrder extends Model
 
     public function getTotalOfficerAttribute(){
         return count($this->internal_officer_order) ?? 0;
+    }
+
+    public function getDoneAlkesOrderAttribute(){
+        $orders = [];
+        $tempOrders = InternalAlkesOrder::with('alkes')->where('internal_order_id', $this->id)->get();
+        foreach($tempOrders as $order){
+            if($order->status == 1){
+                $categoryName = $order->alkes->alkes_category->name;
+                if(isset($orders[$categoryName][$order->alkes->name])){
+                    $orders[$categoryName][$order->alkes->name]['ammount']++;
+                }else{
+                    $orders[$categoryName][$order->alkes->name] = [
+                        'ammount' => 1,
+                        'price' => $order->alkes->price,
+                        'description' => $order->description
+                    ];
+                }
+            }
+        }
+
+        return $orders;
     }
 }

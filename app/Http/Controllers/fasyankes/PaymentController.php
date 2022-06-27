@@ -67,7 +67,12 @@ class PaymentController extends Controller
     }
 
     public function orderBilling($id){
-        $data = ExternalOrder::findOrFail($id);
+        $orderType = explode('.', Route::current()->getName())[2];
+        if($orderType == "external"){
+            $data = ExternalOrder::findOrFail($id);
+        }else{
+            $data = InternalOrder::findOrFail($id);
+        }
 
         $orders = [];
         foreach($data->done_alkes_order as $category => $alkesOrder){

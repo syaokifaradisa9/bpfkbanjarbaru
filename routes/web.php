@@ -77,7 +77,12 @@ Route::middleware(['fasyankes'])->name('fasyankes.')->group(function(){
                 Route::get('/edit', [FasyankesInternalOrderController::class, 'edit'])->name('edit');
                 Route::put('/update', [FasyankesInternalOrderController::class, 'update'])->name('update');
                 Route::get('/payment', [FasyankesPaymentController::class, 'index'])->name('payment');
+                Route::get('/order-billing', [FasyankesPaymentController::class, 'orderBilling'])->name('order-billing');
                 Route::post('/payment-store', [FasyankesPaymentController::class, 'payment_store'])->name('payment-store');
+                Route::prefix('/certificates')->name('certificates.')->group(function(){
+                    Route::get('/', [FasyankesCertificateController::class, 'index'])->name('index');
+                    Route::get('/{alkes_order_id}', [FasyankesCertificateController::class, 'printSertificate'])->name('print');
+                });
             });
         });
 
