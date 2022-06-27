@@ -21,7 +21,7 @@
             <div class="card-header">
               <h4>Pembayaran </h4>
             </div>
-            <form action="{{ route('fasyankes.order.external.payment-store', ['id' => $order_id]) }}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('fasyankes.order.'.$order_type.'.payment-store', ['id' => $order_id]) }}" method="POST" enctype='multipart/form-data'>
               @csrf
 
                 <div class="card-body py-0 px-4">
@@ -40,7 +40,7 @@
                           <tr>
                             <td id="number-{{ $index }}" class="align-middle text-center">{{ $index + 1 }}</td>
                             <td id="file-{{ $index }}" class="align-middle">
-                              <a href="{{ asset('file_order/external/'.str_replace(' ','', $order_number).'/payment/'.$file['file_name']) }}" target="_blank">
+                              <a href="{{ asset('file_order/'. $order_type .'/'.str_replace(' ','', $order_number).'/payment/'.$file['file_name']) }}" target="_blank">
                                 File Bukti Transfer
                               </a>
                             </td>

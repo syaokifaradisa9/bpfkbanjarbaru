@@ -2,52 +2,68 @@
 
 namespace App\Http\Controllers\fasyankes;
 
-use App\Http\Controllers\Controller;
-use App\Models\ExternalOrder;
-use App\Models\ExternalPayment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Models\ExternalOrder;
+use App\Models\InternalOrder;
+use App\Models\ExternalPayment;
+use App\Models\InternalPayment;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 
 class PaymentController extends Controller
 {
     public function index($id){
+        $orderType = explode('.', Route::current()->getName())[2];
         $order = '';
         $menu = '';
         if(str_contains(Route::current()->getName(), 'external')){
             $order = ExternalOrder::findOrFail($id);
             $menu = 'external';
+        }else{
+            $order = InternalOrder::findOrFail($id);
+            $menu = 'internal';
         }
         
         return view('fasyankes.payment.upload-form',[
             'total_payment' => $order->total_payment,
-            'files' => $order->external_payment,
+            'files' => $order->external_payment ?? $order->internal_payment,
             'order_number' => $order->number,
             'order_id' => $id,
             'title' => 'Pembayaran',
-            'menu' => $menu
+            'menu' => $menu,
+            'order_type' => $orderType
         ]);
     }
 
     public function payment_store(Request $request, $id){
+        $orderType = explode('.', Route::current()->getName())[2];
         $order = '';
-        if(str_contains(Route::current()->getName(), 'external')){
+
+        if($orderType == "external"){
             $order = ExternalOrder::findOrFail($id);
+        }else{
+            $order = InternalOrder::findOrFail($id);
         }
 
         foreach($request->file('payment_file') as $index => $file){
             $fileName = $index.".".$file->extension();
-            $file->move(public_path().'/file_order/external/'.str_replace(' ','', $order->number).'/payment', $fileName);
+            $file->move(public_path().'/file_order/'.$orderType.'/'.str_replace(' ','', $order->number).'/payment', $fileName);
 
             if(str_contains(Route::current()->getName(), 'external')){
                 ExternalPayment::create([
                     'file_name' => $fileName,
                     'external_order_id' => $id
                 ]);
+            }else{
+                InternalPayment::create([
+                    'file_name' => $fileName,
+                    'internal_order_id' => $id
+                ]);
             }
         }
 
-        return redirect(route('fasyankes.order.external.index'))->with('success','Sukses Mengirimkan File Bukti Pembayaran');
+        return redirect(route('fasyankes.order.'.$orderType.'.index'))->with('success','Sukses Mengirimkan File Bukti Pembayaran');
     }
 
     public function orderBilling($id){

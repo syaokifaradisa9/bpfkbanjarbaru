@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\InternalPayment;
 use App\Models\InternalAlkesOrder;
 use App\Models\InternalOfficerOrder;
 use Illuminate\Database\Eloquent\Model;
@@ -54,6 +55,10 @@ class InternalOrder extends Model
 
     public function internal_officer_order(){
         return $this->hasMany(InternalOfficerOrder::class);
+    }
+
+    public function internal_payment(){
+        return $this->hasMany(InternalPayment::class);
     }
 
     // Atribut Tambahan

@@ -71,6 +71,15 @@
                                 <i class="fas fa-edit"></i>
                                 Edit
                               </a>
+                              <a class="dropdown-item has-icon  @if($data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyankes.order.internal.payment', ['id' => $data->id]) }}" >
+                                @if (count($data->internal_payment) == 0)
+                                  <i class="fas fa-file-upload"></i>
+                                  Upload 
+                                @else
+                                  <i class="fas fa-file-alt"></i>
+                                @endif
+                                Bukti Bayar
+                              </a>
                             </div>
                           </div>
                         </td>

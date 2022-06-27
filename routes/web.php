@@ -76,6 +76,8 @@ Route::middleware(['fasyankes'])->name('fasyankes.')->group(function(){
             Route::prefix('/{id}')->group(function(){
                 Route::get('/edit', [FasyankesInternalOrderController::class, 'edit'])->name('edit');
                 Route::put('/update', [FasyankesInternalOrderController::class, 'update'])->name('update');
+                Route::get('/payment', [FasyankesPaymentController::class, 'index'])->name('payment');
+                Route::post('/payment-store', [FasyankesPaymentController::class, 'payment_store'])->name('payment-store');
             });
         });
 
