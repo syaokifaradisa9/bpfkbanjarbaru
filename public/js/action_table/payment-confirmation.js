@@ -21,8 +21,10 @@ function paymentConfirmation(event){
         reverseButtons: true
       }).then(async (result) => {
         if (result.isConfirmed) {
+          var orderType = window.location.href.split('/').pop()
+
           const response = await fetch(
-              `http://bpfkbanjarbaru.test/bendahara/order/external/${order_id}/confirm-payment`,
+              `http://bpfkbanjarbaru.test/bendahara/order/${orderType}/${order_id}/confirm-payment`,
               {
                 method: "GET",
                 headers: {'Content-Type': 'application/json'}

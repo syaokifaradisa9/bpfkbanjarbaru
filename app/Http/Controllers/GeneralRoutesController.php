@@ -33,6 +33,8 @@ class GeneralRoutesController extends Controller
                 return redirect(route('yantek.order.internal.index'));
             }else if($role == "PENYELIA"){
                 return redirect(route('penyelia.order.internal.index'));
+            }else if($role == "BENDAHARA"){
+                return redirect(route('bendahara.order.internal.index'));
             }
         }
 

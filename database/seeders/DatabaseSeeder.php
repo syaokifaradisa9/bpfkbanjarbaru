@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             InstrumentAlkesGroupSeeder::class,
 
             ExternalOrderExcelValueSeeder::class,
-            // InternalOrderExcelvalueSeeder::class
+            InternalOrderExcelvalueSeeder::class
         ]);
     }
 }

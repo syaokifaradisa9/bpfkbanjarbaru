@@ -154,7 +154,7 @@
                   </a>
                 </li>
               @else
-                @if (Auth::guard('admin')->user()->role == "PENYELIA")
+                @if (Auth::guard('admin')->user()->role == "PENYELIA" || Auth::guard('admin')->user()->role == "BENDAHARA")
                   <li class="{{ $menu == 'internal' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('order-internal-redirect') }}">
                       <i class="fas fa-building"></i> 

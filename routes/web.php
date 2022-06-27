@@ -226,7 +226,10 @@ Route::middleware(['bendahara'])->prefix('bendahara')->name('bendahara.')->group
 
     Route::prefix('/order')->name('order.')->group(function(){
         Route::prefix('internal')->name('internal.')->group(function(){
-
+            Route::get('/', [BendaharaInternalOrderController::class, 'index'])->name('index');
+            Route::prefix('{id}')->group(function(){
+                Route::get('confirm-payment', [BendaharaInternalOrderController::class, 'confirmPayment'])->name('confirm-payment');
+            });
         });
     
         Route::prefix('external')->name('external.')->group(function(){
