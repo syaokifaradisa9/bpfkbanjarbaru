@@ -328,7 +328,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="{{ asset('img/choirul_huda_DS.jpg') }}" alt="" style="width: 113px; height: 113px; margin-top:10px">
+                            <img src="{{ asset('digital_sign/Choirul_Huda_Digital_Sign.jpg') }}" alt="" style="width: 113px; height: 113px; margin-top:10px">
                         </td>
                     </tr>
                 </table>

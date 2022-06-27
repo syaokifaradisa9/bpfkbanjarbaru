@@ -238,14 +238,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                            <img src="{{ asset('digital_sign/Choirul_Huda_Digital_Sign.jpg') }}" alt="" style="width: 113px; height: 113px; margin-top:10px">
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="text-left"><b>Choirul Huda, S.Tr. Kes</b><br>NIP. 198008062010121001</td>
                     </tr>
                 </table>
             </div>
