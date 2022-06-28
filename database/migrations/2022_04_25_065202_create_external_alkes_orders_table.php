@@ -20,7 +20,7 @@ class CreateExternalAlkesOrdersTable extends Migration
             $table->foreignId('external_order_id')->constrained();
             $table->foreignId('alkes_order_description_id')->constrained();
             $table->string('officer')->nullable();
-            $table->boolean('is_success')->nullable();
+            $table->boolean('is_laik')->nullable();
             $table->timestamps();
         });
     }

@@ -33,6 +33,12 @@ class CreateInternalAlkesOrdersTable extends Migration
             $table->string('model')->nullable();
             $table->enum('function', ['Baik', 'Tidak Baik'])->default('Baik');
             $table->string('series_number')->nullable();
+
+            // Status Laik Pakai
+            $table->boolean('is_laik')->nullable();
+
+            // Dikerjakan Oleh
+            $table->string('officer')->nullable();
             
             $table->timestamps();
         });

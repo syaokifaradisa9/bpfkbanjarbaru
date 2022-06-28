@@ -25,9 +25,10 @@ class WorksheetController extends Controller
 
         if($orderType == "external"){
             $alkesOrder = ExternalAlkesOrder::with('alkes', 'external_order')
+                                            ->join('alkes', 'external_alkes_orders.alkes_id', '=', 'alkes.id')
                                             ->where('external_order_id', $order_id)
-                                            ->orderBy('alkes_id')
-                                            ->get();
+                                            ->orderBy('alkes.name')
+                                            ->get(['external_alkes_orders.*', 'alkes.name']);
 
             $status = $alkesOrder[0]->external_order->status;
         }else{
@@ -166,14 +167,29 @@ class WorksheetController extends Controller
         }else{
             $order = InternalOrder::findOrFail($orderId);
         }
-        
+
         if($order->status == "DISETUJUI"){
             $order->status = 'PENGERJAAN';
             $order->save();
         }
 
-        return redirect(route('petugas.order.'.$orderType.'.worksheet.index', [
-            'order_id' => $orderId
+        $result = $this->_getExcelResult($alkesOrderId, 'SERTIFIKAT');
+        $isLaik = (strtolower(explode(',', $result['SERTIFIKAT']->getCell('B60')->getFormattedValue())[0]) == "laik pakai");
+
+        if($orderType == "external"){
+            $alkesOrder = ExternalAlkesOrder::findOrFail($alkesOrderId);
+            $alkesOrder->is_laik = $isLaik;
+            $alkesOrder->officer = $result['SERTIFIKAT']->getCell('D20')->getFormattedValue();
+            $alkesOrder->save();
+        }else{
+            $alkesOrder = InternalAlkesOrder::findOrFail($alkesOrderId);
+            $alkesOrder->is_laik = $isLaik;
+            $alkesOrder->officer = $result['SERTIFIKAT']->getCell('D20')->getFormattedValue();
+            $alkesOrder->save();
+        }
+
+        return redirect(route('petugas.order.internal.worksheet.alkes-order', [
+            'order_id' => $order->id
         ]))->with('success','Berhasil Menyimpan Data');
     }
 
@@ -365,13 +381,52 @@ class WorksheetController extends Controller
     }
 
     public function result($order_id, $alkes_order_id){
+        $result = $this->_getExcelResult($alkes_order_id, 'LH');
+        // foreach(range('F','J') as $letter){
+        //     print($letter."18"." = ".$result->getCell($letter.'18')->getFormattedValue()."\n");
+        // }
+        // for($i = 155; $i <=160; $i++){
+        //     print("_____A".$i." = ". $result->getCell('A'.$i)->getFormattedValue());
+        //     print("_____F".$i." = ". $result->getCell('F'.$i)->getFormattedValue());
+        // }
+        // dd($result->getCell('C164')->getFormattedValue());
+            
+        $pdf = Pdf::loadView('petugas.excel_report.'. $result['excel_name'], ['data' => $result['LH']]);
+        return $pdf->stream('Hasil Kalibrasi '. $result['alkes_name'] .'.pdf');
+    }
+
+    public function certificate($order_id, $alkes_order_id){
         $orderType = explode('.', Route::current()->getName())[2];
 
         if($orderType == 'external'){
-            $order = ExternalAlkesOrder::with('alkes', 'external_order_excel_value')->findOrFail($alkes_order_id);
+            $order = ExternalOrder::with('user')->findOrFail($order_id);
+        }else{
+            $order = InternalOrder::with('user')->findOrFail($order_id);
+        }
+
+        $data = [
+            'fasyankes' => $order->user->fasyankes_name,
+            'fasyankes_type' => $order->user->type,
+            'fasyankes_address' => $order->user->address,
+        ];
+
+        $result = $this->_getExcelResult($alkes_order_id, 'SERTIFIKAT');
+        $pdf = Pdf::loadView('petugas.certificate.certificate',[
+            'general' => $data,
+            'excel' => $result['SERTIFIKAT']
+        ])->setPaper('a4','portrait');
+    
+        return $pdf->stream('Sertifikat Kalibrasi '.$result['alkes_name']);
+    }
+
+    public function _getExcelResult($id, $sheetName){
+        $orderType = explode('.', Route::current()->getName())[2];
+
+        if($orderType == 'external'){
+            $order = ExternalAlkesOrder::with('alkes', 'external_order_excel_value')->findOrFail($id);
             $input = $order->external_order_excel_value;
         }else{
-            $order = InternalAlkesOrder::with('alkes', 'internal_order_excel_value')->findOrFail($alkes_order_id);
+            $order = InternalAlkesOrder::with('alkes', 'internal_order_excel_value')->findOrFail($id);
             $input = $order->internal_order_excel_value;
         }
 
@@ -382,54 +437,10 @@ class WorksheetController extends Controller
             $sheet->getCell($value->cell)->setValue($value->value);
         }
 
-        $result = $excel->getSheetByName('LH');
-        // foreach(range('F','J') as $letter){
-        //     print($letter."18"." = ".$result->getCell($letter.'18')->getFormattedValue()."\n");
-        // }
-        // for($i = 155; $i <=160; $i++){
-        //     print("_____A".$i." = ". $result->getCell('A'.$i)->getFormattedValue());
-        //     print("_____F".$i." = ". $result->getCell('F'.$i)->getFormattedValue());
-        // }
-        // dd($result->getCell('C164')->getFormattedValue());
-            
-        $pdf = Pdf::loadView('petugas.excel_report.'. $order->alkes->excel_name,['data' => $result]);
-        return $pdf->stream('Hasil Kalibrasi '. $order->alkes->name .'.pdf');
-    }
-
-    public function certificate($order_id, $alkes_order_id){
-        $orderType = explode('.', Route::current()->getName())[2];
-
-        if($orderType == 'external'){
-            $order = ExternalAlkesOrder::with('alkes', 'external_order_excel_value')->findOrFail($alkes_order_id);
-            $input = $order->external_order_excel_value;
-            $data = [
-                'fasyankes' => $order->external_order->user->fasyankes_name,
-                'fasyankes_type' => $order->external_order->user->type,
-                'fasyankes_address' => $order->external_order->user->address,
-            ];
-        }else{
-            $order = InternalAlkesOrder::with('alkes', 'internal_order_excel_value')->findOrFail($alkes_order_id);
-            $input = $order->internal_order_excel_value;
-            $data = [
-                'fasyankes' => $order->internal_order->user->fasyankes_name,
-                'fasyankes_type' => $order->internal_order->user->type,
-                'fasyankes_address' => $order->internal_order->user->address,
-            ];
-        }
-
-        $excel = (new Xlsx())->load(public_path("alkes_excel_file\\" . $order->alkes->excel_name. '.xlsx'));
-        $sheet = $excel->getSheetByName('ID');
-
-        foreach($input as $value){
-            $sheet->getCell($value->cell)->setValue($value->value);
-        }
-
-        $result = $excel->getSheetByName('SERTIFIKAT');
-        $pdf = Pdf::loadView('petugas.certificate.certificate',[
-            'general' => $data,
-            'excel' => $result
-        ])->setPaper('a4','portrait');
-    
-        return $pdf->stream('Sertifikat Kalibrasi '.$order->alkes->name);
+        return [
+            'excel_name' => $order->alkes->excel_name,
+            'alkes_name' => $order->alkes->name,
+            $sheetName => $excel->getSheetByName($sheetName)
+        ];
     }
 }

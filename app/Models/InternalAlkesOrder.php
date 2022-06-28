@@ -22,7 +22,10 @@ class InternalAlkesOrder extends Model
         'merk',
         'model',
         'function',
-        'series_number'
+        'series_number',
+
+        'is_laik',
+        'officer'
     ];
 
     public function alkes(){
