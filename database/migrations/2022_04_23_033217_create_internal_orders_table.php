@@ -45,6 +45,14 @@ class CreateInternalOrdersTable extends Migration
             $table->boolean('accommodation_and_environment')->default(true);
             $table->string('alkes_checker')->nullable();
 
+            // Penyerahan Alat
+            $table->string('contact_person_receiver_name')->nullable();;
+            $table->string('contact_person_receiver_phone')->nullable();
+            $table->boolean('alkes_accordingly')->default(true);
+            $table->boolean('certificate_handedover')->default(true);
+            $table->boolean('cancel_test')->default(false);
+            $table->boolean('alkes_checked')->default(true);
+
             $table->enum('status', [
                 'MENUNGGU', 
                 'ORDER DITERIMA',

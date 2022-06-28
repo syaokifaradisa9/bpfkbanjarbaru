@@ -184,6 +184,8 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
                 Route::put('/update-status', [PetugasInternalOrderController::class, 'updateStatus']);
                 Route::get('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionPage'])->name('alkes-reception');
                 Route::post('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionStore'])->name('alkes-reception-store');
+                Route::get('/alkes-handover', [PetugasInternalOrderController::class, 'alkesHandOverPage'])->name('alkes-handover');
+                Route::put('/alkes-handover-store', [PetugasInternalOrderController::class, 'alkesHandOverStore'])->name('alkes-handover-store');
             });
 
             Route::prefix('worksheet')->name('worksheet.')->group(function(){

@@ -135,4 +135,38 @@ class InternalOrderController extends Controller
 
         return redirect(route('petugas.order.internal.index'))->with('success', 'Berhasil Mengonfirmasi Penerimaan Alat Datang');
     }
+
+    public function alkesHandOverPage($id){
+        $order = InternalOrder::findOrFail($id);
+        if($order->status != 'PEMBAYARAN LUNAS'){
+            return redirect(route('petugas.order.internal.index'));
+        }
+
+        return view('petugas.order.internal.alkes-handover',[
+            'title' => 'Penyerahan Alat',
+            'menu' => 'internal',
+            'order' => $order
+        ]);
+    }
+
+    public function alkesHandOverStore(Request $request, $id){
+        $order = InternalOrder::findOrFail($id);
+        if($order->status != 'PEMBAYARAN LUNAS'){
+            return redirect(route('petugas.order.internal.index'));
+        }
+
+        $order->contact_person_receiver_name = $request->contact_person_receiver_name;
+        $order->contact_person_receiver_phone = $request->contact_person_receiver_phone;
+
+        $order->alkes_accordingly = ($request->alkes_accordingly == "on");
+        $order->certificate_handedover = ($request->certificate_handedover == "on");
+        $order->cancel_test = ($request->certificate_handedover == "on");
+        $order->alkes_checked = ($request->alkes_checked == "on");
+
+        $order->status = "ALAT DAN SERTIFIKAT TELAH DISERAHKAN";
+        $order->finishing_date = now();
+        $order->save();
+
+        return redirect(route('petugas.order.internal.index'))->with('success', 'Berhasil Mengonfirmasi Penyerahan Alat');
+    }
 }
