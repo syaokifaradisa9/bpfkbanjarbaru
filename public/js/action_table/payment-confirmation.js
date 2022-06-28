@@ -33,7 +33,8 @@ function paymentConfirmation(event){
 
           var json = await response.json();
           if(json.status == 'success'){
-            document.getElementById(`status_${dataId}`).innerHTML = "SELESAI";
+            var orderStatus = orderType == "external" ? 'SELESAI' : 'PEMBAYARAN LUNAS';
+            document.getElementById(`status_${dataId}`).innerHTML = orderStatus;
             document.getElementById(`btn-confirm-payment-${dataId}`).classList.add('d-none');
 
             Swal.fire({

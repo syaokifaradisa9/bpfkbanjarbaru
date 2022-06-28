@@ -52,7 +52,8 @@ class CreateInternalOrdersTable extends Migration
                 'ALAT DITERIMA', 
                 'PROSES PENGERJAAN', 
                 'MENUNGGU PEMBAYARAN',
-                'SELESAI'
+                'PEMBAYARAN LUNAS',
+                'ALAT DAN SERTIFIKAT TELAH DISERAHKAN'
                 ])->default('MENUNGGU');
 
             $table->timestamp('finishing_date')->nullable();

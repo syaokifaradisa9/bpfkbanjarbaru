@@ -40,7 +40,6 @@
                       <th class="text-center">Aksi</th>
                       <th class="text-center">Nomor Order</th>
                       <th class="text-center">Fasyankes</th>
-                      <th class="text-center">Tanggal Selesai</th>
                       <th class="text-center">Status</th>
                     </tr>
                   </thead>
@@ -69,7 +68,7 @@
                                   Bukti Pembayaran
                                 </a>
                               @endif
-                              <a class="dropdown-item has-icon text-success @if($order->status == 'SELESAI') d-none @endif" href="#" id="btn-confirm-payment-{{ $index }}">
+                              <a class="dropdown-item has-icon text-success @if($order->status == 'PEMBAYARAN LUNAS') d-none @endif" href="#" id="btn-confirm-payment-{{ $index }}">
                                 <i class="fas fa-edit"></i>
                                 Konfirmasi Pembayaran
                               </a>
@@ -81,9 +80,6 @@
                         </td>
                         <td class="text-center align-middle">
                           {{ $order->user->category . ' '. $order->user->type .  ' ' . $order->user->fasyankes_name. ' '. $order->user->city . ' ' . $order->user->province }}
-                        </td>
-                        <td class="text-center align-middle">
-                          {{ FormatHelper::toIndonesianDateFormat($order->finishing_date) }}
                         </td>
                         <td class="text-center align-middle" id="status_{{ $index }}">
                           {{ $order->status }}

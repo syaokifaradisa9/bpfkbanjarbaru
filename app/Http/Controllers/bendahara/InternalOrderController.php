@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\bendahara;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use App\Models\InternalOrder;
+use App\Http\Controllers\Controller;
+
 class InternalOrderController extends Controller
 {
     public function index(){
         $orders = InternalOrder::where('status', 'MENUNGGU PEMBAYARAN')
-                                ->orWhere('status', 'SELESAI')
+                                ->orWhere('status', 'PEMBAYARAN LUNAS')
+                                ->orWhere('status', 'ALAT DAN SERTIFIKAT TELAH DISERAHKAN')
                                 ->get();
 
         return view('bendahara.order.internal.index', [
@@ -21,7 +24,7 @@ class InternalOrderController extends Controller
     public function confirmPayment($orderId){
         try{
             $order = InternalOrder::findOrFail($orderId);
-            $order->status = "SELESAI";
+            $order->status = "PEMBAYARAN LUNAS";
             $order->save();
 
             return response()->json([
