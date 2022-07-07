@@ -75,6 +75,10 @@
                                     <i class="fas fa-hand-holding"></i>
                                     Penyerahan Alat
                                   </a>
+                                  <a href="{{ route('petugas.order.internal.alkes-handover-print', ['id' => $data->id]) }}" class="dropdown-item has-icon @if($data->status != "ALAT DAN SERTIFIKAT TELAH DISERAHKAN") d-none @endif">
+                                    <i class="fas fa-hand-holding"></i>
+                                    Bukti Penyerahan Alat
+                                  </a>
                                 </div>
                               </div>
                           </td>

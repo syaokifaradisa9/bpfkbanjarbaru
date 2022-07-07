@@ -38,7 +38,6 @@ use App\Http\Controllers\petugas\WorksheetController;
 use App\Http\Controllers\bendahara\HomeController as BendaharaHomeController;
 use App\Http\Controllers\bendahara\ExternalOrderController as BendaharaExternalOrderController;
 use App\Http\Controllers\bendahara\InternalOrderController as BendaharaInternalOrderController;
-use App\Http\Controllers\petugas\InternalWorksheetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -186,6 +185,7 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
                 Route::post('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionStore'])->name('alkes-reception-store');
                 Route::get('/alkes-handover', [PetugasInternalOrderController::class, 'alkesHandOverPage'])->name('alkes-handover');
                 Route::put('/alkes-handover-store', [PetugasInternalOrderController::class, 'alkesHandOverStore'])->name('alkes-handover-store');
+                Route::get('/alkes-handover-print', [PetugasInternalOrderController::class, 'alkesHandOverPrint'])->name('alkes-handover-print');
             });
 
             Route::prefix('worksheet')->name('worksheet.')->group(function(){

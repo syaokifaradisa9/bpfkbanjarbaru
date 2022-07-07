@@ -43,6 +43,14 @@ class InternalOrder extends Model
         'calibration_method_compatibility',
         'accommodation_and_environment',
         'alkes_checker',
+
+        // Penyerahan Alat
+        'contact_person_receiver_name',
+        'contact_person_receiver_phone',
+        'alkes_accordingly',
+        'certificate_handedover',
+        'cancel_test',
+        'alkes_checked'
     ];
 
     public function user(){
@@ -66,6 +74,7 @@ class InternalOrder extends Model
         'letter_path',
         'alkes_order_with_category',
         'clean_alkes_orders',
+        'clean_result_alkes_orders',
         'total_officer',
         'done_alkes_order',
     ];
@@ -119,6 +128,37 @@ class InternalOrder extends Model
                 'merk' => $alkesAttribute[1],
                 'model' => $alkesAttribute[2],
                 'series_number' => $alkesAttribute[3],
+                'ammount' => $value['ammount']
+            ]);
+        }
+        return $orders;
+    }
+
+    public function getCleanResultAlkesOrdersAttribute(){
+        $alkesOrders = [];
+        $tempOrders = InternalAlkesOrder::with('alkes')->where('internal_order_id', $this->id)->get();
+        foreach($tempOrders as $order){
+            $alkes = $order->alkes->name . "|" . $order->merk. "|" . $order->model . "|" . $order->series_number . "|" . $order->is_laik;
+            if(isset($alkesOrders[$alkes])){
+                $alkesOrders[$alkes]['ammount']++;
+            }else{
+                $alkesOrders[$alkes] = [
+                    'ammount' => 1
+                ];
+            }
+        }
+
+        ksort($alkesOrders);
+
+        $orders = [];
+        foreach($alkesOrders as $alkes => $value){
+            $alkesAttribute = explode('|', $alkes);
+            array_push($orders, [
+                'alkes' => $alkesAttribute[0],
+                'merk' => $alkesAttribute[1],
+                'model' => $alkesAttribute[2],
+                'series_number' => $alkesAttribute[3],
+                'status_laik' => $alkesAttribute[4] == 1 ? "Laik Pakai" : "Tidak Laik Pakai",
                 'ammount' => $value['ammount']
             ]);
         }

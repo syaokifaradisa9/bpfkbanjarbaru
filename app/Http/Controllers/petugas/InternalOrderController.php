@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\InternalOfficerOrder;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InternalOrderController extends Controller
 {
@@ -168,5 +169,25 @@ class InternalOrderController extends Controller
         $order->save();
 
         return redirect(route('petugas.order.internal.index'))->with('success', 'Berhasil Mengonfirmasi Penyerahan Alat');
+    }
+
+    public function alkesHandOverPrint($id){
+        if(!Auth::guard('admin')->check()){
+            return redirect(route('petugas.order.internal.index'));
+        }
+        
+        if(Auth::guard('admin')->user()->role != "PETUGAS"){
+            return redirect(route('petugas.order.internal.index'));
+        }
+
+        $order = InternalOrder::findOrFail($id);
+        if($order->status != 'ALAT DAN SERTIFIKAT TELAH DISERAHKAN'){
+            return redirect(route('petugas.order.internal.index'));
+        }
+
+        $pdf = Pdf::loadView('report\alkes-handover', [
+            'order' => $order
+        ]);
+        return $pdf->stream('Bukti Penyerahan Alat Order '. $order->number .'.pdf');
     }
 }

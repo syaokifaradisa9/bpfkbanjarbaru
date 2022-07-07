@@ -232,7 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'FormatHelper' => App\Helpers\FormatHelper::class,
-        Webklex\PDFMerger\Providers\PDFMergerServiceProvider::class
+        'PDFMerger' => Webklex\PDFMerger\Providers\PDFMergerServiceProvider::class
     ],
 
 ];
