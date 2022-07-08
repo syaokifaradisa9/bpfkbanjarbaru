@@ -22,6 +22,25 @@ class InternalAlkesOrderSeeder extends Seeder
                 'merk' => 'aaa',
                 'model' => 'bbb',
                 'series_number' => '123',
+                'is_laik' => true,
+                'internal_order_id' => 1
+            ]);
+
+            InternalAlkesOrder::create([
+                'alkes_id' => $alkes->id,
+                'merk' => 'aaa',
+                'model' => 'bbb',
+                'series_number' => '123',
+                'is_laik' => true,
+                'internal_order_id' => 1
+            ]);
+
+            InternalAlkesOrder::create([
+                'alkes_id' => $alkes->id,
+                'merk' => 'aaa',
+                'model' => 'bbb',
+                'series_number' => '123',
+                'is_laik' => false,
                 'internal_order_id' => 1
             ]);
         }

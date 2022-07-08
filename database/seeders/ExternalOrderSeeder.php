@@ -20,7 +20,7 @@ class ExternalOrderSeeder extends Seeder
             'number' => 'E - ' . 22 . '.' . '23 DL',
             'letter_number' => 1234,
             'letter_date' => date('Y-m-d H:i:s'),
-            'status' => 'DALAM PERJALANAN',
+            'status' => 'SELESAI',
             'pp_hour' => 24,
             'pp_minute' => 33,
             'total_officer' => 4,
