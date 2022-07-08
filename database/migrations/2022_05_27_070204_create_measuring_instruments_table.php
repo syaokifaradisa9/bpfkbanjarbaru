@@ -17,7 +17,8 @@ class CreateMeasuringInstrumentsTable extends Migration
             $table->string('id')->primary()->index();
             $table->string('name');
             $table->string('merk');
-            $table->string('model');
+            $table->string('type_model');
+            $table->enum('type_model_category', ['Model', 'Tipe'])->default('Model');
             $table->string('serial_number');
             $table->timestamps();
         });

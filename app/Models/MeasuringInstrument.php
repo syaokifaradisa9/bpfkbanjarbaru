@@ -11,5 +11,5 @@ class MeasuringInstrument extends Model
 
     public $incrementing = false;
     public $keyType = 'string'; 
-    protected $fillable = ['name', 'merk', 'model', 'serial_number'];
+    protected $fillable = ['name', 'merk', 'type_model', 'type_model_category', 'serial_number'];
 }

@@ -108,8 +108,8 @@ class WorksheetController extends Controller
                 array_push(
                     $measuringInstrument['instruments'],
                     $measuring_instrument->name.', Merek : '
-                        .$measuring_instrument->merk.', Model : '
-                        .$measuring_instrument->model.', SN : '
+                        .$measuring_instrument->merk.', ' . $measuring_instrument->type_model_category. ' : '
+                        .$measuring_instrument->type_model.', SN : '
                         .$measuring_instrument->serial_number
                 );
             }
@@ -297,13 +297,13 @@ class WorksheetController extends Controller
                 array_push(
                     $measuringInstrument['instruments'],
                     $measuring_instrument->name.', Merek : '
-                        .$measuring_instrument->merk.', Model : '
-                        .$measuring_instrument->model.', SN : '
+                        .$measuring_instrument->merk.', ' . $measuring_instrument->type_model_category. ' : '
+                        .$measuring_instrument->type_model.', SN : '
                         .$measuring_instrument->serial_number
                 );
             }
 
-            // sort($measuringInstrument['instruments']);
+            sort($measuringInstrument['instruments']);
             array_push($measuringInstruments, $measuringInstrument);
         }
         
@@ -381,17 +381,29 @@ class WorksheetController extends Controller
     }
 
     public function result($order_id, $alkes_order_id){
-        $result = $this->_getExcelResult($alkes_order_id, 'LH');
-        // foreach(range('F','J') as $letter){
-        //     print($letter."18"." = ".$result->getCell($letter.'18')->getFormattedValue()."\n");
+        $sheetName = "LH";
+        $result = $this->_getExcelResult($alkes_order_id, $sheetName);
+        // foreach(range('J','K') as $letter){
+        //     print($letter."65"." = ".$result[$sheetName]->getCell($letter.'65')->getFormattedValue()."\n");
         // }
-        // for($i = 155; $i <=160; $i++){
-        //     print("_____A".$i." = ". $result->getCell('A'.$i)->getFormattedValue());
-        //     print("_____F".$i." = ". $result->getCell('F'.$i)->getFormattedValue());
+        // foreach(['A','B', 'C', 'D', 'E'] as $letter){
+        //     foreach([59, 60, 61, 62, 63, 64, 65] as $number){
+        //         print($letter.$number." = ".$result[$sheetName]->getCell($letter.$number)->getFormattedValue()."\n");
+        //     }
         // }
-        // dd($result->getCell('C164')->getFormattedValue());
+        // foreach([59, 62] as $i){
+        //     print("_____D".$i." = ". $result[$sheetName]->getCell('D'.$i)->getFormattedValue());
+        //     print("_____E".$i." = ". $result[$sheetName]->getCell('E'.$i)->getFormattedValue());
+        //     print("_____F".$i." = ". $result[$sheetName]->getCell('F'.$i)->getFormattedValue());
+        //     print("_____G".$i." = ". $result[$sheetName]->getCell('G'.$i)->getFormattedValue());
+        //     print("_____H".$i." = ". $result[$sheetName]->getCell('H'.$i)->getFormattedValue());
+        //     print("_____I".$i." = ". $result[$sheetName]->getCell('I'.$i)->getFormattedValue());
+        //     print("_____J".$i." = ". $result[$sheetName]->getCell('J'.$i)->getFormattedValue());
+        //     print("_____K".$i." = ". $result[$sheetName]->getCell('K'.$i)->getFormattedValue());
+        // }
+        // dd($result[$sheetName]->getCell('E85')->getFormattedValue());
             
-        $pdf = Pdf::loadView('petugas.excel_report.'. $result['excel_name'], ['data' => $result['LH']]);
+        $pdf = Pdf::loadView('petugas.excel_report.'. $result['excel_name'], ['data' => $result[$sheetName]]);
         return $pdf->stream('Hasil Kalibrasi '. $result['alkes_name'] .'.pdf');
     }
 
