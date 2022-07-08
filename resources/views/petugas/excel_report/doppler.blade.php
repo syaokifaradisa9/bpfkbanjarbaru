@@ -271,7 +271,7 @@
                     <th class="text-left" rowspan="2" style="width: 25px">VII.</th>
                     <th class="text-left">Petugas Kalibrasi</th>
                 </tr>
-                <tr><td class="full-width">{{ $data->getCell('B57')->getFormattedValue() }}</td></tr>
+                <tr><td class="full-width">{{ $data->getCell('B58')->getFormattedValue() }}</td></tr>
             </table>
     
             <div style="width: 100%;">

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\FormatHelper;
 use App\Models\ExternalOrderExcelValue;
 use Illuminate\Database\Seeder;
 
@@ -543,6 +544,7 @@ class ExternalOrderExcelValueSeeder extends Seeder
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'E9', 'value' => '2022-04-03'],
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'E10', 'value' => 'IGD'],
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'E11', 'value' => 'IGD'],
+            ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'E12', 'value' => 'MK 024 - 18'],
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'E16', 'value' => 24],
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'F16', 'value' => 25],
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'E17', 'value' => 79],
@@ -594,6 +596,7 @@ class ExternalOrderExcelValueSeeder extends Seeder
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'B51', 'value' => 'Electrical Safety Analyzer, Merek : Fluke, Model : ESA 615, SN : 3699030'],
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'B52', 'value' => 'Digital Thermohygrobarometer, Merek : EXTECH, Model : SD700, SN : A.100586'],
             ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'B59', 'value' => 'Septia Khairunnisa'],
+            ['external_alkes_order_id' => $fetal_doppler_order_id, 'cell' => 'B63', 'value' => FormatHelper::toIndonesianDateFormat(now())],
         ];
 
         $ecg_recorder_order_id = 9;
