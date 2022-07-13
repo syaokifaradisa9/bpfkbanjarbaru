@@ -16,27 +16,45 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('fasyankes.order.external.store') }}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('fasyankes.order.external.store') }}" method="POST" enctype='multipart/form-data' id="form-external-order">
               @csrf
 
               <div class="card-body py-0 px-4">
                 <div class="form-group">
                   <label><b>Surat Permohonan</b></label>
                   <div class="custom-file">
-                      <input type="file" name="letter" class="custom-file-input" id="uploaded-file-form" required>
+                      <input type="file" name="letter" class="custom-file-input @error('letter') is-invalid @enderror" id="uploaded-file-form">
                       <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
                   </div>
+                  <small id="upload-error-message" class="text-danger d-none"></small> <br>
                   <small>Jika anda tidak memiliki format suratnya maka bisa didownload <a href="https://bpfk-banjarbaru.org/wp-content/uploads/2021/02/MOU-PENGUJIAN-dan-KALIBRASI-LPFK-BJB-Rev.6.docx">disini</a></small>
+                  @error('letter')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label><b>Nomor Surat</b></label>
-                    <input type="number" class="form-control" name="letter_number" placeholder="Masukkan nomor surat yang telah diupload di atas">
+                    <input type="number" class="form-control @error('letter_number') is-invalid @enderror" name="letter_number" placeholder="Masukkan nomor surat yang telah diupload di atas" value="{{ old('letter_number') }}" id="letter_number">
+                    <small id="letter-number-error-message" class="text-danger d-none"></small>
                     <small>Contoh input nomor surat bisa dilhat <a href="{{ asset('img/contoh_nomor_surat.jpg') }}" target="_blank">disini</a></small>
+                    @error('letter_number')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
                   <div class="form-group col">
                     <label><b>Tanggal Surat</b></label>
-                    <input type="date" class="form-control" name="letter_date">
+                    <input type="date" class="form-control @error('letter_date') is-invalid @enderror" name="letter_date" value="{{ old('letter_date') }}" id="letter_date">
+                    <small id="letter-date-error-message" class="text-danger d-none"></small>
+                    @error('letter_date')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
                 </div>
                 <div class="form-group">
@@ -100,6 +118,9 @@
                       </tr>
                     </table>
                   </div>
+
+                  <small class="text-danger" id="category-error-message"></small>
+                  <small class="text-danger" id="alkes-error-message"></small>
                 </div> 
               </div>
               <div class="card-footer text-right">
@@ -118,6 +139,7 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/form-table/form-order-table-fasyankes.js') }}"></script>
+  <script src="{{ asset('js/order/table/order-table-fasyankes.js') }}"></script>
   <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
+  <script src="{{ asset('js/order/external/fasyankes/form-submit-validation.js') }}"></script>
 @endsection

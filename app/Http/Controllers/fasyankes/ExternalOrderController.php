@@ -7,6 +7,7 @@ use App\Models\AlkesCategory;
 use App\Models\ExternalOrder;
 use App\Models\ExternalAlkesOrder;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ExternalOrderRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
 use Exception;
@@ -33,7 +34,7 @@ class ExternalOrderController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(ExternalOrderRequest $request){
         // Upload File
         $fileName = '';
         if($request->file('letter')){
