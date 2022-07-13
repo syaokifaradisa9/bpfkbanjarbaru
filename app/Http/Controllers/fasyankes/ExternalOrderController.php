@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\fasyankes;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\AlkesCategory;
 use App\Models\ExternalOrder;
 use App\Models\ExternalAlkesOrder;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExternalOrderRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
-use Exception;
 
 class ExternalOrderController extends Controller
 {
@@ -34,7 +34,7 @@ class ExternalOrderController extends Controller
         ]);
     }
 
-    public function store(ExternalOrderRequest $request){
+    public function store(Request $request){
         // Upload File
         $fileName = '';
         if($request->file('letter')){
@@ -54,30 +54,40 @@ class ExternalOrderController extends Controller
             $new_order_pos = '0'. ($new_order_pos + 1);
         }
 
-        // Store Data Order
-        $order = ExternalOrder::create([
-            'user_id' => Auth::user()->id,
-            'letter_name' => $fileName,
-            'number' => 'E - ' . $new_order_pos . '.' . ' DL',
-            'letter_number' => $request->letter_number,
-            'letter_date' => $request->letter_date,
-        ]);
+        try{
+            DB::beginTransaction();
+        
+            // Store Data Order
+            $order = ExternalOrder::create([
+                'user_id' => Auth::user()->id,
+                'letter_name' => $fileName,
+                'number' => 'E - ' . $new_order_pos . '.' . ' DL',
+                'letter_number' => $request->letter_number,
+                'letter_date' => $request->letter_date,
+            ]);
 
-        // Store Data Alkes Order
-        for($i = 0; $i < count($request->alkes); $i++){
-            $description_id = 1;
-            if($request->description[$i]){
-                $existDescription = AlkesOrderDescription::where('description', $request->description[$i])->get()->first();
-                $description_id = $existDescription->id ?? AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
-            }
+            // Store Data Alkes Order
+            for($i = 0; $i < count($request->alkes); $i++){
+                $description_id = 1;
+                if($request->description[$i]){
+                    $existDescription = AlkesOrderDescription::where('description', $request->description[$i])->get()->first();
+                    $description_id = $existDescription->id ?? AlkesOrderDescription::create(['description' => $request->description[$i]])->id;
+                }
 
-            for($j = 0; $j < $request->ammount[$i]; $j++){
-                ExternalAlkesOrder::create([
-                    'alkes_id' => $request->alkes[$i],
-                    'alkes_order_description_id' => $description_id,
-                    'external_order_id' => $order->id,
-                ]);
+                for($j = 0; $j < $request->ammount[$i]; $j++){
+                    ExternalAlkesOrder::create([
+                        'alkes_id' => $request->alkes[$i],
+                        'alkes_order_description_id' => $description_id,
+                        'external_order_id' => $order->id,
+                    ]);
+                }
             }
+        
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollback();
+            unlink(public_path('order/'.Auth::user()->id.'/external/file/'.$fileName));
+            return redirect(route('fasyankes.order.external.create'))->with('error', 'Terjadi Kesalahan, Silahkan Coba Lagi!');
         }
 
         return redirect(route('fasyankes.order.external.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
