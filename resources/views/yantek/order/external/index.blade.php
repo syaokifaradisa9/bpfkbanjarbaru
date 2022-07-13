@@ -74,7 +74,7 @@
                                   <i class="fas fa-paper-plane"></i> 
                                   Kirim Penawaran
                                 </a>
-                                <a class="dropdown-item has-icon text-green @if($data->status != 'MENUNGGU PERSETUJUAN' && $data->approval_letter_name != null) d-none @endif" href="{{ asset($data->approval_letter_path) }}" target="_blank">
+                                <a class="dropdown-item has-icon text-green @if(!$data->approval_letter_name) d-none @endif" href="{{ asset($data->approval_letter_path) }}" target="_blank">
                                   <i class="fas fa-envelope-open-text"></i>
                                   Surat Persetujuan
                                 </a>

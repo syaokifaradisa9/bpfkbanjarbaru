@@ -31,7 +31,7 @@
                       <input type="text" class="form-control" id="rapid_cost" name="rapid_cost" value="Rp. {{ $order->rapid_test_accommodation ?? '0' }}">
                     </div>
                     <div class="form-group col">
-                        <label><b>Uang Harian</b></label>
+                        <label><b>Biaya Petugas</b></label>
                         <input type="text" class="form-control" id="daily_cost" name="daily_cost" value="Rp. {{ $order->daily_accommodation ?? '0' }}">
                     </div>
                   </div>
@@ -45,8 +45,8 @@
                       <input type="text" class="form-control" name="rapid_cost_description" placeholder="Keterangan Penggunaan Akomodasi Rapid Test" value='{{ $order->rapid_test_description ?? '' }}'>
                     </div>
                     <div class="form-group col-6">
-                        <label><b>Keterangan Uang Harian</b></label>
-                        <input type="text" class="form-control" name="daily_cost_description" placeholder="Keterangan Penggunaan Akomodasi Uang Harian Petugas" value='{{ $order->daily_description ?? '' }}'>
+                        <label><b>Keterangan Biaya Petugas</b></label>
+                        <input type="text" class="form-control" name="daily_cost_description" placeholder="Keterangan Penggunaan Akomodasi Biaya Petugas" value='{{ $order->daily_description ?? '' }}'>
                     </div>
                   </div>
                 </div>
