@@ -57,6 +57,13 @@
                           <span id="order-id-{{ $index }}" class="d-none">
                             {{ $data->id }}
                           </span>
+
+                          {{-- Status Apakah Fasyankes Sudah Mengirimkan Surat Persetujuan --}}
+                          <span id="approval-letter-path-{{ $index }}" class="d-none">
+                            @if ($data->approval_letter_name)
+                              {{ $data->approval_letter_path }}
+                            @endif
+                          </span>
                         </td>
                         <td class="text-center">
                           <div class="btn-group dropright px-0 pr-2">
@@ -154,6 +161,12 @@
                   <input type="file" name="letter" class="custom-file-input" id="uploaded-file-form" required>
                   <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
               </div>
+              <small class="d-none" id="approval-letter-description-modal">
+                File Surat Persetujuan Anda Sebelumnya Dapat didownload 
+                <a href="{{ asset('') }}" id="approval-letter-path-modal" target="_blank">
+                  disini
+                </a>.
+              </small>
             </div>
           </div>
           <div class="modal-footer bg-whitesmoke br">
@@ -175,5 +188,5 @@
 @section('js-extends')
   <script src="{{ asset('js/action_table/external-order-cancel-event.js') }}"></script>
   <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
-  <script src="{{ asset('js/action_table/external-order-approval-upload.js') }}"></script>
+  <script src="{{ asset('js/order/external/fasyankes/form-upload-approval-letter.js') }}"></script>
 @endsection
