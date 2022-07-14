@@ -7,6 +7,7 @@ use App\Models\AlkesCategory;
 use App\Models\InternalOrder;
 use App\Models\InternalAlkesOrder;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InternalOrderRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
 
@@ -31,7 +32,7 @@ class InternalOrderController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(InternalOrderRequest $request){
         $fileName = '';
         if($request->file('letter')){
             $file = $request->file('letter');

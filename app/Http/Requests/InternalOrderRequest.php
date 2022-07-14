@@ -27,7 +27,7 @@ class InternalOrderRequest extends FormRequest
             'delivery_date_estimation' => 'required|date|after_or_equal:today',
             'arrival_date_estimation' => 'required|date|after_or_equal:today',
             'delivery_option' => 'required',
-            'delivery_travel_name' => 'nullable|required_if:delivery_option,!=,Diantar oleh pihak pertama',
+            'delivery_travel_name' => 'nullable|required_if:delivery_option, !=, Diantar oleh pihak pertama',
             'contact_person_name' => 'required',
             'contact_person_phone' => 'required',
             'letter' => 'mimes:pdf,doc,docx|max:10000'

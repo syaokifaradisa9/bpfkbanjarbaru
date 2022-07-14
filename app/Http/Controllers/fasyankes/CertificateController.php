@@ -41,17 +41,18 @@ class CertificateController extends Controller
         $orderType = explode('.', Route::current()->getName())[2];
         if($orderType == "insitu"){
             $order = ExternalOrder::with('user')->findOrFail($order_id);
+            if($order->status != "SELESAI"){
+                return redirect(route('fasyankes.order.'.$orderType.'.certificates.index', ['id' => $order])); 
+            }
         }else{
             $order = InternalOrder::with('user')->findOrFail($order_id);
+            if($order->status != "ALAT DAN SERTIFIKAT TELAH DISERAHKAN" && $order->status != "PEMBAYARAN LUNAS"){
+                return redirect(route('fasyankes.order.'.$orderType.'.certificates.index', ['id' => $order])); 
+            }
         }
 
         // Validasi Jika Ada Fasyankes Lain yang Mengakses
         if($order->user->id != Auth::guard('web')->user()->id){
-            return redirect(route('fasyankes.order.'.$orderType.'.certificates.index', ['id' => $order])); 
-        }
-
-        // Validasi Jika Order Belum Terbayar
-        if($order->status != "SELESAI"){
             return redirect(route('fasyankes.order.'.$orderType.'.certificates.index', ['id' => $order])); 
         }
 
@@ -84,6 +85,7 @@ class CertificateController extends Controller
 
         // [5] Pembuatan Sertifikat
         $certificateFilePath = 'temp_files/'.$order->id. $alkesOrderId.'_certificate.pdf';
+
         file_put_contents(
             $certificateFilePath,
             Pdf::loadView('petugas.certificate.certificate', [

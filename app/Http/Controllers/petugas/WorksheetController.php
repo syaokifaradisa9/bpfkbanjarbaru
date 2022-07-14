@@ -126,7 +126,8 @@ class WorksheetController extends Controller
             'measuringInstruments' => $measuringInstruments,
             'order_id' => $order_id,
             'officers' => $officers,
-            'order_type' => $orderType
+            'order_type' => $orderType,
+            'page_title' => 'Lembar Kerja ' . $alkesOrder->alkes->name
         ]);
     }
 
@@ -320,7 +321,8 @@ class WorksheetController extends Controller
             'measuringInstruments' => $measuringInstruments,
             'order_id' => $order_id,
             'officers' => $officers,
-            'order_type' => $orderType
+            'order_type' => $orderType,
+            'page_title' => 'Lembar Kerja ' . $alkesOrder->alkes->name
         ]);
     }
 

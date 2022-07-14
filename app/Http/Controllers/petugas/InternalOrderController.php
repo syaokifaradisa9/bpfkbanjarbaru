@@ -116,11 +116,15 @@ class InternalOrderController extends Controller
         InternalAlkesOrder::where('internal_order_id', $id)->delete();
         foreach($request->ammount as $index => $loop){
             for($i = 0; $i < $loop; $i++){
-                $description = AlkesOrderDescription::where('description', $request->description[$index])->get()->first();
-                $description_id = $description->id ?? AlkesOrderDescription::create([
-                    'description' => $request->description[$index]
-                ])->id;
-
+                if($request->description[$index]){
+                    $description = AlkesOrderDescription::where('description', $request->description[$index])->get()->first();
+                    $description_id = $description->id ?? AlkesOrderDescription::create([
+                        'description' => $request->description[$index]
+                    ])->id;
+                }else{
+                    $description_id = 1;
+                }
+                
                 InternalAlkesOrder::Create([
                     'alkes_id' => $request->alkes[$index],
                     'internal_order_id' => $id,

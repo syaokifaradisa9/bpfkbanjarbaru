@@ -135,10 +135,12 @@
                 <tr>
                     <td style="width: 109px">3. Tegangan Jala - jala</td>
                     <td>
-                        : {{ $data->getCell('E16')->getFormattedValue()
-                        ." ".$data->getCell('F16')->getFormattedValue()
-                        ." ".$data->getCell('G16')->getFormattedValue()
-                        ." ".$data->getCell('H16')->getFormattedValue() }}
+                        : {{ $data->getCell('E16')->getFormattedValue() }}
+                        @if ($data->getCell('E16')->getFormattedValue() != "-")
+                            {{ " ".$data->getCell('F16')->getFormattedValue()
+                            ." ".$data->getCell('G16')->getFormattedValue()
+                            ." ".$data->getCell('H16')->getFormattedValue() }}
+                        @endif
                     </td>
                 </tr>
             </table>

@@ -286,10 +286,6 @@
                     </tr>
                 </table>
             </div>
-            {{-- <p class="text-center" style="font-size: 7px; width: 100%">
-                Dilarang keras mengutip dan atau mempublikasikan sebagian isi sertifikat ini tanpa seijin LPFK Banjarbaru <br>
-                Sertifikat ini sah apabila dibubuhi cap LPFK Banjarbaru dan ditandatangani oleh pejabat yang berwenang
-            </p> --}}
         </div>
     </body>
 </html>
