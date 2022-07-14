@@ -20,6 +20,7 @@ class CreateAlkesTable extends Migration
             $table->integer('minute_estimation')->nullable();
             $table->foreignId('alkes_category_id')->constrained();
             $table->string('excel_name')->nullable();
+            $table->string('image_name')->nullable();
             $table->timestamps();
         });
     }

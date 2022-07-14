@@ -14,7 +14,8 @@ class Alkes extends Model
         'id',
         'name',
         'price',
-        'minute_estimation'
+        'minute_estimation',
+        'image_name'
     ];
 
     public function alkes_category(){
