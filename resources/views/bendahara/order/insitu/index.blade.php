@@ -1,4 +1,4 @@
-@extends('templates.external_page_layout')
+@extends('templates.insitu_page_layout')
 
 {{-- Component Utama --}}
 @section('sub-content')
