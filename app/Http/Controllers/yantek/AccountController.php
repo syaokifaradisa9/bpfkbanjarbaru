@@ -45,7 +45,7 @@ class AccountController extends Controller
                 'address' => $request->address,
                 'phone' => $request->phone,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => bcrypt($request->password),
                 'fasyankes_category_id' => $request->category,
                 'fasyankes_class_id' => $request->class
             ]);
