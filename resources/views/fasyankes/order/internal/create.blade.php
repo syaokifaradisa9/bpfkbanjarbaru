@@ -16,64 +16,125 @@
             <div class="card-header">
               <h4>Form Tambah Order</h4>
             </div>
-            <form action="{{ route('fasyankes.order.internal.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('fasyankes.order.internal.store') }}" method="POST" enctype="multipart/form-data" id="form-internal-order">
               @csrf
 
               <div class="card-body py-0 px-4">
                 <div class="form-group">
                   <label><b>Surat Pengantar (Optional)</b></label>
                   <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="uploaded-file-form" name="letter">
+                      <input type="file" class="custom-file-input @error('letter') is-invalid @enderror" id="uploaded-file-form" name="letter" id="letter">
                       <label class="custom-file-label" for="uploaded-file-form" id="uploaded-file-label">Choose file</label>
                   </div>
+                  <small id="upload-error-message" class="text-danger d-none"></small> <br>
+                  @error('letter')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                  @enderror
                 </div>
                 <div class="row mt-4">
                     <div class="form-group col">
                         <label><b>Estimasi Pengiriman Alat</b></label>
-                        <input type="date" class="form-control" name="delivery_date_estimation">
+                        <input type="date" class="form-control @error('delivery_date_estimation') is-invalid @enderror" name="delivery_date_estimation" value="{{ old('delivery_date_estimation') }}" id="delivery_date_estimation">
+                        <small id="delivery-date-estimation-error-message" class="text-danger d-none"></small>
+                        @error('delivery_date_estimation')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                     </div>
                     <div class="form-group col">
                         <label><b>Estimasi Alat Sampai di LPFK Banjarbaru</b></label>
-                        <input type="date" class="form-control" name="arrival_date_estimation">
+                        <input type="date" class="form-control @error('arrival_date_estimation') is-invalid @enderror" name="arrival_date_estimation" value="{{ old('arrival_date_estimation') }}" id="arrival_date_estimation">
+                        <small id="arrival-date-estimation-error-message" class="text-danger d-none"></small>
+                        @error('arrival_date_estimation')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label><b>Nama Lengkap Pengantar</b></label>
-                    <input type="text" class="form-control" name="contact_person_name">
+                    <input type="text" class="form-control @error('contact_person_name') is-invalid @enderror" name="contact_person_name" value="{{ old('contact_person_name') }}" id="contact_person_name">
+                    <small id="contact-person-name-error-message" class="text-danger d-none"></small>
+                    @error('contact_person_name')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
                   <div class="form-group col">
                     <label><b>Nomor Telepon Pengantar</b></label>
-                    <input type="text" class="form-control" name="contact_person_phone">
+                    <input type="text" class="form-control @error('contact_person_phone') is-invalid @enderror" name="contact_person_phone" value="{{ old('contact_person_phone') }}" id="contact_person_phone">
+                    <small id="contact-person-phone-error-message" class="text-danger d-none"></small>
+                    @error('contact_person_phone')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label><b>Opsi Pengiriman</b></label>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="option1" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak pertama">
+                        <input type="radio" id="option1" name="delivery_option" class="custom-control-input sender-form" value="Diantar oleh pihak pertama" 
+                        @if (old('delivery_option') == 'Diantar oleh pihak pertama')
+                          checked
+                        @endif>
                         <label class="custom-control-label" for="option1">Diantar oleh pihak pertama</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="option2" name="delivery_option" class="custom-control-input" value="Diantar oleh pihak ketiga (Mitra/Perusahaan)">
+                        <input type="radio" id="option2" name="delivery_option" class="custom-control-input sender-form" value="Diantar oleh pihak ketiga (Mitra/Perusahaan)"
+                        @if (old('delivery_option') == 'Diantar oleh pihak ketiga (Mitra/Perusahaan)')
+                          checked
+                        @endif>
                         <label class="custom-control-label" for="option2">Diantar oleh pihak ketiga (Mitra/Perusahaan)</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="option3" name="delivery_option" class="custom-control-input" value="Via Travel">
+                        <input type="radio" id="option3" name="delivery_option" class="custom-control-input sender-form" value="Via Travel"
+                        @if (old('delivery_option') == 'Via Travel')
+                          checked
+                        @endif>
                         <label class="custom-control-label" for="option3">Via Travel</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="option4" name="delivery_option" class="custom-control-input" value="Via Ekspedisi">
+                        <input type="radio" id="option4" name="delivery_option" class="custom-control-input sender-form" value="Via Ekspedisi"
+                        @if (old('delivery_option') == 'Via Ekspedisi')
+                          checked
+                        @endif>
                         <label class="custom-control-label" for="option4">Via Ekspedisi</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="option5" name="delivery_option" class="custom-control-input" value="Menyerahkan melalui petugas">
+                        <input type="radio" id="option5" name="delivery_option" class="custom-control-input sender-form" value="Menyerahkan melalui petugas"
+                        @if (old('delivery_option') == 'Menyerahkan melalui petugas')
+                          checked
+                        @endif>
                         <label class="custom-control-label" for="option5">Menyerahkan melalui petugas</label>
                     </div>
+                    
+                    <small id="delivery-option-error-message" class="text-danger d-none"></small>
+                    @error('delivery_option')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
-                  <div class="form-group col">
+                  <div class="form-group col 
+                    @if (old('delivery_option') == 'Diantar oleh pihak pertama' || !old('delivery_option'))
+                      d-none
+                    @endif" id="delivery_travel_name_form">
                       <label><b>Nama Travel/Ekspedisi/Pihak Ketiga (Wajib diisi jika ada)</b></label>
-                      <input type="text" class="form-control" name="delivery_travel_name">
+                      <input type="text" class="form-control @error('delivery_travel_name') is-invalid @enderror" name="delivery_travel_name" value="{{ old('delivery_travel_name') }}" id="delivery_travel_name">
+                      <small id="delivery-travel-name-error-message" class="text-danger d-none"></small>
+                      @error('delivery_travel_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
                   </div>
                 </div>
                 <div class="form-group">
@@ -137,6 +198,9 @@
                       </tr>
                     </table>
                   </div>
+
+                  <small class="text-danger" id="category-error-message"></small>
+                  <small class="text-danger" id="alkes-error-message"></small>
                 </div> 
               </div>
               <div class="card-footer text-right">
@@ -154,6 +218,8 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/form-table/form-order-table-fasyankes.js') }}"></script>
-  <script src="{{ asset('js/forms/file-upload-form.js') }}"></script>
+  <script src="{{ asset('js/order/internal/fasyankes/form-submit-validation.js') }}"></script>
+  <script src="{{ asset('js/order/internal/fasyankes/sender-radio-button.js') }}"></script>
+  <script src="{{ asset('js/order/table/order-table-fasyankes.js') }}"></script>
+  <script src="{{ asset('js/general/upload-form.js') }}"></script>
 @endsection

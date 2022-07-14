@@ -80,11 +80,11 @@
                                 @endif
                                 Bukti Bayar
                               </a>
-                              <a class="dropdown-item has-icon @if($data->status != "SELESAI") d-none @endif" href="{{ route('fasyankes.order.internal.certificates.index', ['id' => $data->id]) }}">
+                              <a class="dropdown-item has-icon @if($data->status != "ALAT DAN SERTIFIKAT TELAH DISERAHKAN") d-none @endif" href="{{ route('fasyankes.order.internal.certificates.index', ['id' => $data->id]) }}">
                                 <i class="fas fa-folder-open"></i>
                                 Lampiran
                               </a>
-                              <a class="dropdown-item has-icon @if($data->status != "SELESAI" && $data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyankes.order.internal.order-billing', ['id' => $data->id]) }}">
+                              <a class="dropdown-item has-icon @if($data->status != "ALAT DAN SERTIFIKAT TELAH DISERAHKAN" && $data->status != "MENUNGGU PEMBAYARAN") d-none @endif" href="{{ route('fasyankes.order.internal.order-billing', ['id' => $data->id]) }}">
                                 <i class="fas fa-file-invoice-dollar"></i>
                                 Tagihan
                               </a>
