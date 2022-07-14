@@ -97,5 +97,5 @@
 @endsection
 
 @section('js-extends')
-  <script src="{{ asset('js/form-table/form-order-table-fasyankes.js') }}"></script>
+  <script src="{{ asset('js/order/table/order-table-fasyankes.js') }}"></script>
 @endsection
