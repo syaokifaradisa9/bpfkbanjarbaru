@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\ExternalOrder;
 use App\Http\Controllers\Controller;
 
-class ExternalOrderController extends Controller
+class InsituOrderController extends Controller
 {
     public function index(){
         $orders = ExternalOrder::with('user')->get();
-        return view('yantek.order.external.index', [
-            'title' => "Order External",
-            'menu' => 'external',
+        return view('yantek.order.insitu.index', [
+            'title' => "Order Insitu",
+            'menu' => 'insitu',
             'orders' => $orders,
         ]);
     }
@@ -24,9 +24,9 @@ class ExternalOrderController extends Controller
             $order->status = "DITOLAK";
             $order->save();
 
-            return redirect(route('yantek.order.external.index'))->with('success', 'Menolak Order Sukses');
+            return redirect(route('yantek.order.insitu.index'))->with('success', 'Menolak Order Sukses');
         }catch(Exception $error){
-            return redirect(route('yantek.order.external.index'))->with('error', 'Terjadi Kesalahan, Silahkan Coba Lagi!');
+            return redirect(route('yantek.order.insitu.index'))->with('error', 'Terjadi Kesalahan, Silahkan Coba Lagi!');
         }
     }
 
@@ -36,17 +36,17 @@ class ExternalOrderController extends Controller
             $order->status = "DITERIMA";
             $order->save();
 
-            return redirect(route('yantek.order.external.index'))->with('success', 'Menerima Orderan Sukses');
+            return redirect(route('yantek.order.insitu.index'))->with('success', 'Menerima Orderan Sukses');
         }catch(Exception $error) {
-            return redirect(route('yantek.order.external.index'))->with('error', 'Terjadi Kesalahan, Silahkan Coba Lagi!');
+            return redirect(route('yantek.order.insitu.index'))->with('error', 'Terjadi Kesalahan, Silahkan Coba Lagi!');
         }
     }
 
     public function editAccommodation($id){
         $order = ExternalOrder::with('external_alkes_order')->findOrFail($id);
-        return view('yantek.order.external.accommodation-edit',[
-            'title' => 'Edit Akomodasi',
-            'menu' => 'external',
+        return view('yantek.order.insitu.accommodation-edit',[
+            'title' => 'Edit Insitu',
+            'menu' => 'insitu',
             'order' => $order,
         ]);
     }
@@ -65,7 +65,7 @@ class ExternalOrderController extends Controller
 
         $order->save();
 
-        return redirect()->route('yantek.order.external.index')->with('success', 'Berhasil Menetapkan Akomodasi');
+        return redirect()->route('yantek.order.insitu.index')->with('success', 'Berhasil Menetapkan Akomodasi');
     }
 
     public function editEstimation($id){
@@ -94,9 +94,9 @@ class ExternalOrderController extends Controller
 
 
         ksort($estimations, 2);
-        return view('yantek.order.external.estimation-edit',[
+        return view('yantek.order.insitu.estimation-edit',[
             'title' => 'Edit Estimasi',
-            'menu' => 'external',
+            'menu' => 'insitu',
             'estimations' => $estimations,
             'order' => $order
         ]);
@@ -110,6 +110,6 @@ class ExternalOrderController extends Controller
         $order->total_officer = filter_var($request->officer,FILTER_SANITIZE_NUMBER_INT);
         $order->save();
 
-        return redirect()->route('yantek.order.external.index')->with('success', 'Berhasil Menetapkan Estimasi');
+        return redirect()->route('yantek.order.insitu.index')->with('success', 'Berhasil Menetapkan Estimasi');
     }
 }

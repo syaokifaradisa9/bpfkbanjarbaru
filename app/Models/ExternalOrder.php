@@ -176,11 +176,11 @@ class ExternalOrder extends Model
 
     public function getletterPathAttribute()
     {
-        return 'order/'.$this->user->id.'/external/file/'.$this->letter_name;
+        return 'order/'.$this->user->id.'/insitu/file/'.$this->letter_name;
     }
 
     public function getApprovalLetterPathAttribute()
     {
-        return 'order/'.$this->user->id.'/external/file/'.$this->approval_letter_name;
+        return 'order/'.$this->user->id.'/insitu/file/'.$this->approval_letter_name;
     }
 }

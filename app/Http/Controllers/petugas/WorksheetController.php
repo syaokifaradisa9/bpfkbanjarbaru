@@ -23,7 +23,7 @@ class WorksheetController extends Controller
     public function index($order_id){
         $orderType = explode('.', Route::current()->getName())[2];
 
-        if($orderType == "external"){
+        if($orderType == "insitu"){
             $alkesOrder = ExternalAlkesOrder::with('alkes', 'external_order')
                                             ->join('alkes', 'external_alkes_orders.alkes_id', '=', 'alkes.id')
                                             ->where('external_order_id', $order_id)
@@ -43,7 +43,7 @@ class WorksheetController extends Controller
         
         return view('petugas.order.worksheet.index', [
             'title' => 'Lembar Kerja Pengujian dan Kalibrasi',
-            'menu' => $orderType == 'external' ? 'external' : 'worksheet',
+            'menu' => $orderType == 'insitu' ? 'insitu' : 'worksheet',
             'alkes_orders' => $alkesOrder,
             'order_id' => $order_id,
             'order_status' => $status,
@@ -56,7 +56,7 @@ class WorksheetController extends Controller
         $officers = [];
         $orderByAlkes = [];
 
-        if($orderType == "external"){
+        if($orderType == "insitu"){
             $alkesOrder = ExternalAlkesOrder::with('alkes', 'external_order')->findOrFail($alkes_order_id);
 
             // Pengambilan Petugas Sesuai Order
@@ -121,7 +121,7 @@ class WorksheetController extends Controller
         return view('petugas.excel_worksheet.'.strtolower($alkesOrder->alkes->excel_name),[
             'alkesOrder' => $alkesOrder,
             'title' => 'Lembar Kerja '. $alkesOrder->alkes->name,
-            'menu' => $orderType == 'external' ? 'external' : 'worksheet',
+            'menu' => $orderType == 'insitu' ? 'insitu' : 'worksheet',
             'certificate_number' => $certificate_number,
             'measuringInstruments' => $measuringInstruments,
             'order_id' => $order_id,
@@ -147,7 +147,7 @@ class WorksheetController extends Controller
         
         $input['I2'] = $certificate_number;
         foreach($input as $key => $value){
-            if($orderType == "external"){
+            if($orderType == "insitu"){
                 ExternalOrderExcelValue::create([
                     'external_alkes_order_id' => $alkesOrderId,
                     'cell' => $key,
@@ -162,7 +162,7 @@ class WorksheetController extends Controller
             }
         }
 
-        if($orderType == "external"){
+        if($orderType == "insitu"){
             $order = ExternalOrder::findOrFail($orderId);
         }else{
             $order = InternalOrder::findOrFail($orderId);
@@ -176,7 +176,7 @@ class WorksheetController extends Controller
         $result = $this->_getExcelResult($alkesOrderId, 'SERTIFIKAT');
         $isLaik = (strtolower(explode(',', $result['SERTIFIKAT']->getCell('B60')->getFormattedValue())[0]) == "laik pakai");
 
-        if($orderType == "external"){
+        if($orderType == "insitu"){
             $alkesOrder = ExternalAlkesOrder::findOrFail($alkesOrderId);
             $alkesOrder->is_laik = $isLaik;
             $alkesOrder->officer = $result['SERTIFIKAT']->getCell('D20')->getFormattedValue();
@@ -188,7 +188,7 @@ class WorksheetController extends Controller
             $alkesOrder->save();
         }
 
-        return redirect(route('petugas.order.internal.worksheet.alkes-order', [
+        return redirect(route('petugas.order.'.$orderType.'.worksheet.alkes-order', [
             'order_id' => $order->id
         ]))->with('success','Berhasil Menyimpan Data');
     }
@@ -199,7 +199,7 @@ class WorksheetController extends Controller
         $category = AlkesCategory::all();
         return view('petugas.order.worksheet.alkes-insert',[
             'title' => 'Lembar Kerja Pengujian dan Kalibrasi',
-            'menu' => $orderType == 'external' ? 'external' : 'worksheet',
+            'menu' => $orderType == 'insitu' ? 'insitu' : 'worksheet',
             'categories' => $category,
             'order_id' => $order_id,
             'order_type' => $orderType
@@ -216,7 +216,7 @@ class WorksheetController extends Controller
             }
 
             for($j = 0; $j < $request->ammount[$i]; $j++){
-                if($orderType == "external"){
+                if($orderType == "insitu"){
                     ExternalAlkesOrder::create([
                         'alkes_id' => $request->alkes[$i],
                         'alkes_order_description_id' => $description_id,
@@ -239,7 +239,7 @@ class WorksheetController extends Controller
 
     public function edit($order_id, $alkes_order_id){
         $orderType = explode('.', Route::current()->getName())[2];
-        if($orderType == 'external'){
+        if($orderType == 'insitu'){
             $alkesOrder = ExternalAlkesOrder::with('alkes', 'external_order', 'external_order_excel_value')->findOrFail($alkes_order_id);
             $orderOfficer = $alkesOrder->external_order->external_officer_order;
 
@@ -314,7 +314,7 @@ class WorksheetController extends Controller
             'alkesOrder' => $alkesOrder,
             'excel_value' => $excel_values,
             'title' => 'Lembar Kerja '. $alkesOrder->alkes->excel_name,
-            'menu' => $orderType == 'external' ? 'external' : 'worksheet',
+            'menu' => $orderType == 'insitu' ? 'insitu' : 'worksheet',
             'certificate_number' => trim(explode('/', $excel_values['I2'])[0]),
             'certificate_month' => $certificate_month,
             'measuringInstruments' => $measuringInstruments,
@@ -343,7 +343,10 @@ class WorksheetController extends Controller
         $input['I2'] = $certificate_number;
 
         foreach($input as $cell => $value){
-            if($orderType == 'external'){
+            // print($cell . " : ");
+            // print($value . "    |    \n");
+
+            if($orderType == 'insitu'){
                 $excel_value = ExternalOrderExcelValue::where('external_alkes_order_id', $alkes_order_id)
                                                 ->where('cell', $cell)
                                                 ->get()->first();
@@ -353,6 +356,8 @@ class WorksheetController extends Controller
                                                 ->get()->first();
             }
 
+            // print($excel_value->cell . " : ");
+            // print($excel_value->value . "    |    \n");
             $excel_value->value = $value;
             $excel_value->save();
         }
@@ -365,7 +370,7 @@ class WorksheetController extends Controller
     public function finishing($order_id){
         $orderType = explode('.', Route::current()->getName())[2];
 
-        if($orderType == 'external'){
+        if($orderType == 'insitu'){
             $order = ExternalOrder::findOrFail($order_id);
         }else{
             $order = InternalOrder::findOrFail($order_id);
@@ -410,7 +415,7 @@ class WorksheetController extends Controller
     public function certificate($order_id, $alkes_order_id){
         $orderType = explode('.', Route::current()->getName())[2];
 
-        if($orderType == 'external'){
+        if($orderType == 'insitu'){
             $order = ExternalOrder::with('user')->findOrFail($order_id);
         }else{
             $order = InternalOrder::with('user')->findOrFail($order_id);
@@ -434,7 +439,7 @@ class WorksheetController extends Controller
     public function _getExcelResult($id, $sheetName){
         $orderType = explode('.', Route::current()->getName())[2];
 
-        if($orderType == 'external'){
+        if($orderType == 'insitu'){
             $order = ExternalAlkesOrder::with('alkes', 'external_order_excel_value')->findOrFail($id);
             $input = $order->external_order_excel_value;
         }else{

@@ -82,7 +82,7 @@
                 <li class="{{ $menu == 'internal' ? 'active' : '' }}">
                   <a class="nav-link" href="{{ route('order-internal-redirect') }}">
                     <i class="fas fa-building"></i> 
-                    <span>Internal</span>
+                    <span>Layanan Alat Datang</span>
                   </a>
                 </li>
               @else
@@ -90,7 +90,7 @@
                   <li class="{{ $menu == 'internal' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('order-internal-redirect') }}">
                       <i class="fas fa-building"></i> 
-                      <span>Internal</span>
+                      <span>Layanan Alat Datang</span>
                     </a>
                   </li>
                 @endif
@@ -101,7 +101,7 @@
                   <li class="nav-item dropdown @if ($menu == "internal" || $menu == "worksheet") active @endif">
                     <a href="#" class="nav-link has-dropdown">
                       <i class="fas fa-building"></i> 
-                      <span>Internal</span>
+                      <span>Layanan Alat Datang</span>
                     </a>
                     <ul class="dropdown-menu">
                       <li>
@@ -115,19 +115,11 @@
                 @endif
               @endif
 
-              <li class="{{ $menu == 'external' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('order-external-redirect') }}">
+              <li class="{{ $menu == 'insitu' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('order-insitu-redirect') }}">
                   <i class="fas fa-hospital"></i> 
                   <span>
-                    @if (Auth::guard('admin')->check())
-                      @if(Auth::guard('admin')->user()->role == "YANTEK")
-                        Order
-                      @else
-                        Eksternal
-                      @endif
-                    @else
-                      Eksternal
-                    @endif
+                    Layanan Insitu
                   </span>
                 </a>
               </li>
@@ -159,13 +151,7 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{ asset('vendor/stisla/js/stisla.js') }}"></script>
 
-  <!-- JS Libraies -->
-
-  <!-- Template JS File -->
   <script src="{{ asset('vendor/stisla/js/scripts.js') }}"></script>
-  {{-- <script src="../assets/js/custom.js"></script> --}}
   @yield('js-extends')
-
-  <!-- Page Specific JS File -->
 </body>
 </html>

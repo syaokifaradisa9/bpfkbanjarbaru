@@ -1,7 +1,6 @@
-async function cancelExternalOrder(event){
+function paymentConfirmation(event){
     event.preventDefault();
-
-    var dataId = event.target.id.split('-')[2];
+    var dataId = event.target.id.split('-')[3];
     var order_id = document.getElementById(`order-id-${dataId}`).innerHTML.trim();
 
     const swalWithBootstrapButtons = Swal.mixin({
@@ -13,8 +12,8 @@ async function cancelExternalOrder(event){
       })
       
       swalWithBootstrapButtons.fire({
-        title: 'Konfirmasi Pembatalan Order External?',
-        text: "Yakin ingin Membatalkan Order External ini?",
+        title: 'Konfirmasi Penerimaan Pembayaran Fasyankes?',
+        text: "Yakin ingin mengonfirmasi pembayaran fasyankes?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Ya',
@@ -22,8 +21,10 @@ async function cancelExternalOrder(event){
         reverseButtons: true
       }).then(async (result) => {
         if (result.isConfirmed) {
+          var orderType = window.location.href.split('/').pop()
+
           const response = await fetch(
-              `http://bpfkbanjarbaru.test/order/external/${order_id}/cancel`,
+              `http://bpfkbanjarbaru.test/bendahara/order/${orderType}/${order_id}/confirm-payment`,
               {
                 method: "GET",
                 headers: {'Content-Type': 'application/json'}
@@ -32,20 +33,20 @@ async function cancelExternalOrder(event){
 
           var json = await response.json();
           if(json.status == 'success'){
-            document.getElementById(`status_${dataId}`).innerHTML = "DIBATALKAN";
-            document.getElementById(`btn-cancel-${dataId}`).classList.add('d-none');
-            document.getElementById(`btn-edit-order-${dataId}`).classList.add('d-none');
+            var orderStatus = orderType == "insitu" ? 'SELESAI' : 'PEMBAYARAN LUNAS';
+            document.getElementById(`status_${dataId}`).innerHTML = orderStatus;
+            document.getElementById(`btn-confirm-payment-${dataId}`).classList.add('d-none');
 
             Swal.fire({
               icon: 'success',
               title: 'Sukses',
-              text: 'Sukses Membatalkan Order External'
+              text: 'Sukses Mengonfirmasi Pembayaran Fasyankes'
             });
           }else{
             Swal.fire({
               icon: 'error',
               title: 'Gagal!',
-              text: 'Gagal Membatalkan Order External, Silahkan Coba Lagi!'
+              text: 'Gagal Mengonfirmasi Pembayaran Fasyankes, Silahkan Coba Lagi!'
             });
           }
         }
@@ -53,11 +54,11 @@ async function cancelExternalOrder(event){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    const orderTable = document.getElementById('external-order-table');
+    const orderTable = document.getElementById('order-table');
     const totalDataRow = orderTable.rows.length - 1;
 
     for(var i=0; i<totalDataRow; i++){
-        var cancelButton = document.getElementById(`btn-cancel-${i}`);
-        cancelButton.addEventListener('click', cancelExternalOrder);
+        var confirmButton = document.getElementById(`btn-confirm-payment-${i}`);
+        confirmButton.addEventListener('click', paymentConfirmation);
     }
 });

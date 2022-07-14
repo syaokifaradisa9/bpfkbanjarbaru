@@ -17,7 +17,7 @@ class CertificateController extends Controller
 {
     public function index($id){
         $orderType = explode('.', Route::current()->getName())[2];
-        if($orderType == "external"){
+        if($orderType == "insitu"){
             $alkesOrders = ExternalAlkesOrder::with('alkes')->where('external_order_id', $id)->get();
         }else{
             $alkesOrders = InternalAlkesOrder::with('alkes')->where('internal_order_id', $id)->get();
@@ -39,7 +39,7 @@ class CertificateController extends Controller
 
     public function printSertificate($order_id, $alkesOrderId){
         $orderType = explode('.', Route::current()->getName())[2];
-        if($orderType == "external"){
+        if($orderType == "insitu"){
             $order = ExternalOrder::with('user')->findOrFail($order_id);
         }else{
             $order = InternalOrder::with('user')->findOrFail($order_id);
@@ -56,7 +56,7 @@ class CertificateController extends Controller
         }
 
         // [1] Pengambilan Data Excel dari Database
-        if($orderType == "external"){
+        if($orderType == "insitu"){
             $alkes_order = ExternalAlkesOrder::with('external_order_excel_value','alkes')
                                             ->where('id', $alkesOrderId)
                                             ->get()

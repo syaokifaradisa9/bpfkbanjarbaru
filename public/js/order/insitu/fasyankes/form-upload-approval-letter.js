@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
-    const orderTable = document.getElementById('external-order-table');
+    const orderTable = document.getElementById('insitu-order-table');
     const totalDataRow = orderTable.rows.length - 1;
 
     for(var i=0; i<totalDataRow; i++){
@@ -23,5 +23,5 @@ function setOrderIdToModalUpload(event){
     }
 
     var uploadForm = document.getElementById('approval-upload-form');
-    uploadForm.action = `http://bpfkbanjarbaru.test/order/external/${orderId}/update-approval-letter`;
+    uploadForm.action = `http://bpfkbanjarbaru.test/order/insitu/${orderId}/update-approval-letter`;
 }

@@ -9,7 +9,7 @@ use App\Models\ActivityDateOrder;
 use App\Http\Controllers\Controller;
 use App\Models\ExternalOfficerOrder;
 
-class ExternalOrderController extends Controller
+class InsituOrderController extends Controller
 {
     public function index(){
         $orders = ExternalOrder::with('external_alkes_order')
@@ -21,9 +21,9 @@ class ExternalOrderController extends Controller
                                 ->orWhere('status','SELESAI')
                                 ->get();
 
-        return view('penyelia.order.external.index', [
-            'title' => 'Halaman Order',
-            'menu' => 'external',
+        return view('penyelia.order.insitu.index', [
+            'title' => 'Halaman Order Insitu',
+            'menu' => 'insitu',
             'orders' => $orders
         ]);
     }
@@ -44,9 +44,9 @@ class ExternalOrderController extends Controller
             }
         }
 
-        return view('penyelia.order.external.officer-edit', [
+        return view('penyelia.order.insitu.officer-edit', [
             'title' => 'Halaman Edit Petugas',
-            'menu' => 'external',
+            'menu' => 'insitu',
             'officers' => $officers,
             'order' => $order,
             'chiefOfficer' => $chiefOfficer,
@@ -81,9 +81,9 @@ class ExternalOrderController extends Controller
         }
 
         ksort($estimations, 2);
-        return view('penyelia.order.external.estimation-edit',[
+        return view('penyelia.order.insitu.estimation-edit',[
             'title' => 'Edit Estimasi',
-            'menu' => 'external',
+            'menu' => 'insitu',
             'estimations' => $estimations,
             'order' => $order
         ]);
@@ -97,7 +97,7 @@ class ExternalOrderController extends Controller
         $order->total_officer = filter_var($request->officer,FILTER_SANITIZE_NUMBER_INT);
         $order->save();
 
-        return redirect()->route('penyelia.order.external.index')->with('success', 'Berhasil Menetapkan Estimasi');
+        return redirect()->route('penyelia.order.insitu.index')->with('success', 'Berhasil Menetapkan Estimasi');
     }
 
     public function officeUpdate(Request $request, $id){
@@ -173,6 +173,6 @@ class ExternalOrderController extends Controller
             }
         }
 
-        return redirect(route('penyelia.order.external.index'))->with('success', 'Sukses Menetapkan Petugas');
+        return redirect(route('penyelia.order.insitu.index'))->with('success', 'Sukses Menetapkan Petugas');
     }
 }

@@ -84,6 +84,34 @@ function letterDateValidation(){
     return true;
 }
 
+// Validasi Tanggal Surat
+function letterDateValidation(){
+    var dateForm = document.getElementById('letter_date');
+    var formValue = dateForm.value;
+
+    var errorMessageComponentId = 'letter-date-error-message';
+
+    // Validasi Nilai kosong
+    if(!formValue){
+        setErrormessage(dateForm, errorMessageComponentId, 'Mohon Pilih Tanggal Surat!');
+        return false;
+    }
+
+    // Validasi Tanggal
+    var dateEntered = new Date(formValue);
+    const today = new Date();
+    if(dateEntered > today){
+        setErrormessage(dateForm, errorMessageComponentId, 'Tanggal Tidak Bisa Lebih Dari Hari Ini!');
+        return false;
+    }
+
+    removeErrormessage(dateForm, errorMessageComponentId);
+    return true;
+}
+
+
+/* ==================== Awal Validasi Tabel Order ==================== */
+
 // Menampilkan Pesan Error Tabel
 function showTableError(componentId, message){
     document.getElementById(componentId).classList.remove('d-none');
@@ -95,11 +123,6 @@ function hideTableError(componentId){
     document.getElementById(componentId).classList.add('d-none');
     document.getElementById(componentId).innerHTML = '';
 }
-
-
-
-
-/* ==================== Awal Validasi Tabel Order ==================== */
 
 // [1] Validasi Kategori Layanan
 function categoriesValidation(totalRow){
@@ -171,7 +194,7 @@ function orderTableValidation(){
 
 /* ==================== Program Validasi Utama ==================== */
 document.addEventListener("DOMContentLoaded", function(){
-    var orderForm = document.getElementById('form-external-order');
+    var orderForm = document.getElementById('form-insitu-order');
     orderForm.addEventListener('submit', function(event){
         event.preventDefault();
 

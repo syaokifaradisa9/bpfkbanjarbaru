@@ -12,24 +12,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
 
-class ExternalOrderController extends Controller
+class InsituOrderController extends Controller
 {
     public function index(){
         $orders = ExternalOrder::where('user_id', Auth::guard('web')->user()->id)
                                 ->orderBy('created_at', 'DESC')->get();
                                 
-        return view('fasyankes.order.external.index', [
-            'title' => 'Pengajuan External',
-            'menu' => 'external',
+        return view('fasyankes.order.insitu.index', [
+            'title' => 'Pengajuan Insitu',
+            'menu' => 'insitu',
             'orders' => $orders,
         ]);
     }
 
     public function create(){
         $category = AlkesCategory::all();
-        return view('fasyankes.order.external.create',[
-            'title' => 'Tambah Pengajuan External',
-            'menu' => 'external',
+        return view('fasyankes.order.insitu.create',[
+            'title' => 'Tambah Pengajuan Insitu',
+            'menu' => 'insitu',
             'categories' => $category,
         ]);
     }
@@ -86,18 +86,18 @@ class ExternalOrderController extends Controller
             DB::commit();
         }catch(\Exception $e){
             DB::rollback();
-            unlink(public_path('order/'.Auth::user()->id.'/external/file/'.$fileName));
-            return redirect(route('fasyankes.order.external.create'))->with('error', 'Terjadi Kesalahan, Silahkan Coba Lagi!');
+            unlink(public_path('order/'.Auth::user()->id.'/insitu/file/'.$fileName));
+            return redirect(route('fasyankes.order.insitu.create'))->with('error', 'Terjadi Kesalahan, Silahkan Coba Lagi!');
         }
 
-        return redirect(route('fasyankes.order.external.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
+        return redirect(route('fasyankes.order.insitu.index'))->with('success', 'Pengajuan Order Berhasil, Silahkan Tunggu Kami Konfirmasi Terlebih Dahulu!');
     }
 
     public function edit($id){
         $order = ExternalOrder::findOrFail($id);
-        return view('fasyankes.order.external.edit',[
-            'title' => 'Edit Pengajuan External',
-            'menu' => 'external',
+        return view('fasyankes.order.insitu.edit',[
+            'title' => 'Edit Pengajuan Insitu',
+            'menu' => 'insitu',
             'order' => $order,
             'categories' => AlkesCategory::with('alkes')->get()
         ]);
@@ -134,7 +134,7 @@ class ExternalOrderController extends Controller
             }
         }
 
-        return redirect(route('fasyankes.order.external.index'))->with('success', 'Edit Pengajuan Order Berhasil');
+        return redirect(route('fasyankes.order.insitu.index'))->with('success', 'Edit Pengajuan Order Berhasil');
     }
 
     public function cancel($order_id){
@@ -178,12 +178,12 @@ class ExternalOrderController extends Controller
         $extension = explode('.', $file->getClientOriginalName())[1];
 
         $fileName = date('Y-m-d-H-m').'.'.$extension;        
-        $file->move(public_path('order/'.Auth::user()->id.'/external/file'), $fileName);
+        $file->move(public_path('order/'.Auth::user()->id.'/insitu/file'), $fileName);
 
         $order = ExternalOrder::findOrFail($id);
         $order->approval_letter_name = $fileName;
         $order->save();
 
-        return redirect(route('fasyankes.order.external.index'))->with('success', 'Sukses Mengirim Surat Persetujuan');
+        return redirect(route('fasyankes.order.insitu.index'))->with('success', 'Sukses Mengirim Surat Persetujuan');
     }
 }

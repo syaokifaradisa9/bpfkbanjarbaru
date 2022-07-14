@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ExternalOfficerOrder;
 use Illuminate\Support\Facades\Auth;
 
-class ExternalOrderController extends Controller
+class InsituOrderController extends Controller
 {
     public function index(){
         $officerOrders = ExternalOfficerOrder::with('external_order')
@@ -27,9 +27,9 @@ class ExternalOrderController extends Controller
             }
         }
         
-        return view('petugas.order.external.index', [
-            'title' => 'Halaman Order External',
-            'menu' => 'external',
+        return view('petugas.order.insitu.index', [
+            'title' => 'Halaman Order Insitu',
+            'menu' => 'insitu',
             'orders' => $orders
         ]);
     }

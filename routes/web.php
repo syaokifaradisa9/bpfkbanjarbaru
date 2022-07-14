@@ -12,7 +12,7 @@ use App\Http\Controllers\auth\LogoutController;
 // Fasyankes
 use App\Http\Controllers\GeneralRoutesController;
 use App\Http\Controllers\fasyankes\HomeController as FasyankesHomeController;
-use App\Http\Controllers\fasyankes\ExternalOrderController as FasyankesExternalOrderController;
+use App\Http\Controllers\fasyankes\InsituOrderController as FasyankesInsituOrderController;
 use App\Http\Controllers\fasyankes\InternalOrderController as FasyankesInternalOrderController;
 use App\Http\Controllers\fasyankes\PaymentController as FasyankesPaymentController;
 use App\Http\Controllers\fasyankes\CertificateController as FasyankesCertificateController;
@@ -20,23 +20,23 @@ use App\Http\Controllers\fasyankes\CertificateController as FasyankesCertificate
 // Yantek
 use App\Http\Controllers\yantek\AccountController as YanteAccountController;
 use App\Http\Controllers\yantek\HomeController as YantekHomeController;
-use App\Http\Controllers\yantek\ExternalOrderController as YantekExternalOrderController;
+use App\Http\Controllers\yantek\InsituOrderController as YantekInsituOrderController;
 use App\Http\Controllers\yantek\InternalOrderController as YantekInternalOrderController;
 
 // Penyelia
 use App\Http\Controllers\penyelia\HomeController as PenyeliaHomeController;
-use App\Http\Controllers\penyelia\ExternalOrderController as PenyeliaExternalOrderController;
+use App\Http\Controllers\penyelia\InsituOrderController as PenyeliaInsituOrderController;
 use App\Http\Controllers\penyelia\InternalOrderController as PenyeliaInternalOrderController;
 
 // Petugas
 use App\Http\Controllers\petugas\HomeController as PetugasHomeController;
 use App\Http\Controllers\petugas\InternalOrderController as PetugasInternalOrderController;
-use App\Http\Controllers\petugas\ExternalOrderController as PetugasExternalOrderController;
+use App\Http\Controllers\petugas\InsituOrderController as PetugasInsituOrderController;
 use App\Http\Controllers\petugas\WorksheetController;
 
 // Bendahara
 use App\Http\Controllers\bendahara\HomeController as BendaharaHomeController;
-use App\Http\Controllers\bendahara\ExternalOrderController as BendaharaExternalOrderController;
+use App\Http\Controllers\bendahara\InsituOrderController as BendaharaInsituOrderController;
 use App\Http\Controllers\bendahara\InternalOrderController as BendaharaInternalOrderController;
 
 /*
@@ -52,7 +52,7 @@ use App\Http\Controllers\bendahara\InternalOrderController as BendaharaInternalO
 
 Route::get('/home-redirect', [GeneralRoutesController::class, 'home'])->name('home-redirect');
 Route::get('/order-internal-redirect', [GeneralRoutesController::class, 'internalOrder'])->name('order-internal-redirect');
-Route::get('/order-external-redirect', [GeneralRoutesController::class, 'externalOrder'])->name('order-external-redirect');
+Route::get('/order-insitu-redirect', [GeneralRoutesController::class, 'externalOrder'])->name('order-insitu-redirect');
 
 Route::middleware(['guest'])->group(function () {
     // Login
@@ -86,18 +86,18 @@ Route::middleware(['fasyankes'])->name('fasyankes.')->group(function(){
         });
 
         // Order Eksternal
-        Route::name('external.')->prefix('external')->group(function(){
-            Route::get('/', [FasyankesExternalOrderController::class, 'index'])->name('index');
-            Route::get('/create', [FasyankesExternalOrderController::class, 'create'])->name('create');
-            Route::post('/store', [FasyankesExternalOrderController::class, 'store'])->name('store');
+        Route::name('insitu.')->prefix('insitu')->group(function(){
+            Route::get('/', [FasyankesInsituOrderController::class, 'index'])->name('index');
+            Route::get('/create', [FasyankesInsituOrderController::class, 'create'])->name('create');
+            Route::post('/store', [FasyankesInsituOrderController::class, 'store'])->name('store');
             Route::prefix('/{id}')->group(function(){
-                Route::get('/cancel', [FasyankesExternalOrderController::class, 'cancel'])->name('cancel');
+                Route::get('/cancel', [FasyankesInsituOrderController::class, 'cancel'])->name('cancel');
                 Route::get('/order-billing', [FasyankesPaymentController::class, 'orderBilling'])->name('order-billing');
                 Route::get('/payment', [FasyankesPaymentController::class, 'index'])->name('payment');
                 Route::post('/payment-store', [FasyankesPaymentController::class, 'payment_store'])->name('payment-store');
-                Route::get('/edit', [FasyankesExternalOrderController::class, 'edit'])->name('edit');
-                Route::put('/update', [FasyankesExternalOrderController::class, 'update'])->name('update');
-                Route::put('/update-approval-letter', [FasyankesExternalOrderController::class, 'updateApprovalLetter'])->name('update-approval-letter');
+                Route::get('/edit', [FasyankesInsituOrderController::class, 'edit'])->name('edit');
+                Route::put('/update', [FasyankesInsituOrderController::class, 'update'])->name('update');
+                Route::put('/update-approval-letter', [FasyankesInsituOrderController::class, 'updateApprovalLetter'])->name('update-approval-letter');
                 Route::prefix('/certificates')->name('certificates.')->group(function(){
                     Route::get('/', [FasyankesCertificateController::class, 'index'])->name('index');
                     Route::get('/{alkes_order_id}', [FasyankesCertificateController::class, 'printSertificate'])->name('print');
@@ -133,16 +133,16 @@ Route::middleware('yantek')->prefix('yantek')->name('yantek.')->group(function()
             Route::put('/reject', [YantekInternalOrderController::class, 'reject'])->name('reject');
         });
         // Order Eksternal
-        Route::name('external.')->prefix('external')->group(function(){
-            Route::get('/', [YantekExternalOrderController::class, 'index'])->name('index');
-            Route::put('/accept', [YantekExternalOrderController::class, 'accept'])->name('accept');
-            Route::put('/reject', [YantekExternalOrderController::class, 'reject'])->name('reject');
+        Route::name('insitu.')->prefix('insitu')->group(function(){
+            Route::get('/', [YantekInsituOrderController::class, 'index'])->name('index');
+            Route::put('/accept', [YantekInsituOrderController::class, 'accept'])->name('accept');
+            Route::put('/reject', [YantekInsituOrderController::class, 'reject'])->name('reject');
 
-            Route::get('/edit/{id}/accommodation', [YantekExternalOrderController::class, 'editAccommodation'])->name('edit_accommodation');
-            Route::put('/update/{id}/accommodation', [YantekExternalOrderController::class, 'updateAccommodation'])->name('update_accommodation');
+            Route::get('/edit/{id}/accommodation', [YantekInsituOrderController::class, 'editAccommodation'])->name('edit_accommodation');
+            Route::put('/update/{id}/accommodation', [YantekInsituOrderController::class, 'updateAccommodation'])->name('update_accommodation');
 
-            Route::get('/edit/{id}/estimation', [YantekExternalOrderController::class, 'editEstimation'])->name('edit_estimation');
-            Route::put('/update/{id}/estimation', [YantekExternalOrderController::class, 'updateEstimation'])->name('update_estimation');
+            Route::get('/edit/{id}/estimation', [YantekInsituOrderController::class, 'editEstimation'])->name('edit_estimation');
+            Route::put('/update/{id}/estimation', [YantekInsituOrderController::class, 'updateEstimation'])->name('update_estimation');
         });
     });
 });
@@ -161,13 +161,13 @@ Route::middleware(['penyelia'])->prefix('penyelia')->name('penyelia.')->group(fu
         });
 
         // Order Eksternal
-        Route::prefix('external')->name('external.')->group(function(){
-            Route::get('/', [PenyeliaExternalOrderController::class, 'index'])->name('index');
-            Route::get('/{id}/officer', [PenyeliaExternalOrderController::class, 'officeEdit'])->name('officer-edit');
-            Route::post('/{id}/update', [PenyeliaExternalOrderController::class, 'officeUpdate'])->name('officer-update');
+        Route::prefix('insitu')->name('insitu.')->group(function(){
+            Route::get('/', [PenyeliaInsituOrderController::class, 'index'])->name('index');
+            Route::get('/{id}/officer', [PenyeliaInsituOrderController::class, 'officeEdit'])->name('officer-edit');
+            Route::post('/{id}/update', [PenyeliaInsituOrderController::class, 'officeUpdate'])->name('officer-update');
 
-            Route::get('/edit/{id}/estimation', [PenyeliaExternalOrderController::class, 'editEstimation'])->name('edit_estimation');
-            Route::put('/update/{id}/estimation', [PenyeliaExternalOrderController::class, 'updateEstimation'])->name('update_estimation');
+            Route::get('/edit/{id}/estimation', [PenyeliaInsituOrderController::class, 'editEstimation'])->name('edit_estimation');
+            Route::put('/update/{id}/estimation', [PenyeliaInsituOrderController::class, 'updateEstimation'])->name('update_estimation');
         });
     });
 });
@@ -208,9 +208,9 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
         });
 
         // Order External
-        Route::prefix('external')->name('external.')->group(function(){
+        Route::prefix('insitu')->name('insitu.')->group(function(){
             Route::prefix('worksheet')->name('worksheet.')->group(function(){
-                Route::get('/', [PetugasExternalOrderController::class, 'index'])->name('index');
+                Route::get('/', [PetugasInsituOrderController::class, 'index'])->name('index');
                 Route::prefix('{order_id}')->group(function(){
                     Route::get('/', [WorksheetController::class, 'index'])->name('alkes-order');
                     Route::get('/alkes-insert', [WorksheetController::class, 'insert'])->name('alkes-insert');
@@ -241,10 +241,10 @@ Route::middleware(['bendahara'])->prefix('bendahara')->name('bendahara.')->group
             });
         });
     
-        Route::prefix('external')->name('external.')->group(function(){
-            Route::get('/', [BendaharaExternalOrderController::class, 'index'])->name('index');
+        Route::prefix('insitu')->name('insitu.')->group(function(){
+            Route::get('/', [BendaharaInsituOrderController::class, 'index'])->name('index');
             Route::prefix('{id}')->group(function(){
-                Route::get('confirm-payment', [BendaharaExternalOrderController::class, 'confirmPayment'])->name('confirm-payment');
+                Route::get('confirm-payment', [BendaharaInsituOrderController::class, 'confirmPayment'])->name('confirm-payment');
             });
         });
     });

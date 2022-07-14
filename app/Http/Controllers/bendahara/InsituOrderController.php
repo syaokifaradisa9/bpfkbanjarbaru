@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\bendahara;
 
-use App\Http\Controllers\Controller;
-use App\Models\ExternalOrder;
 use Exception;
+use App\Models\ExternalOrder;
+use App\Http\Controllers\Controller;
 
-class ExternalOrderController extends Controller
+class InsituOrderController extends Controller
 {
     public function index(){
         $orders = ExternalOrder::with('user')->where('status', 'MENUNGGU PEMBAYARAN')
                                               ->orWhere('status','SELESAI')
                                               ->get();
 
-        return view('bendahara.order.external.index',[
-            'title' => 'Halaman External Order',
-            'menu' => 'external',
+        return view('bendahara.order.insitu.index',[
+            'title' => 'Halaman Order Insitu',
+            'menu' => 'insitu',
             'orders' => $orders
         ]);
     }

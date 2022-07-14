@@ -43,17 +43,17 @@ class GeneralRoutesController extends Controller
 
     public function externalOrder(){
         if(Auth::guard('web')->check()){
-            return redirect(route('fasyankes.order.external.index'));
+            return redirect(route('fasyankes.order.insitu.index'));
         }else if(Auth::guard('admin')->check()){
             $role = Auth::guard('admin')->user()->role;
             if($role == "YANTEK"){
-                return redirect(route('yantek.order.external.index'));
+                return redirect(route('yantek.order.insitu.index'));
             }else if($role == 'PENYELIA'){
-                return redirect(route('penyelia.order.external.index'));
+                return redirect(route('penyelia.order.insitu.index'));
             }else if($role == 'PETUGAS'){
-                return redirect(route('petugas.order.external.worksheet.index'));
+                return redirect(route('petugas.order.insitu.worksheet.index'));
             }else if($role == "BENDAHARA"){
-                return redirect(route('bendahara.order.external.index'));
+                return redirect(route('bendahara.order.insitu.index'));
             }
         }
 
