@@ -46,7 +46,7 @@ class CertificateController extends Controller
             }
         }else{
             $order = InternalOrder::with('user')->findOrFail($order_id);
-            if($order->status != "ALAT DAN SERTIFIKAT TELAH DISERAHKAN" && $order->status != "PEMBAYARAN LUNAS"){
+            if($order->status != "ALAT DAN SERTIFIKAT TELAH DISERAHKAN" && $order->status != "PEMBAYARAN LUNAS" && $order->status != "MENUNGGU PEMBAYARAN"){
                 return redirect(route('fasyankes.order.'.$orderType.'.certificates.index', ['id' => $order])); 
             }
         }
