@@ -16,8 +16,6 @@ function updateModalInformation(event){
     var orderId = document.getElementById(`order-id-${dataId}`).innerText.trim();
     var buttonText = event.target.innerText.trim();
 
-    console.log('Update Modal', dataId, orderId);
-
     // Inisialisasi data modal
     var modalTitle = (buttonText === "Terima") ? "Konfirmasi Penerimaan Order" : "Konfirmasi Penolakan Order";
     var modalSubmitButton = document.getElementById('btn-submit');
@@ -35,7 +33,6 @@ function updateModalInformation(event){
     fasyankesNameTextElement.innerHTML = fasyankesNameOrder;
     statusFormInputElement.value = (buttonText === "Terima") ? 'DITERIMA' : 'DITOLAK';
     
-
     // Binding event
     modalSubmitButton.addEventListener('click', function(){
         form.submit();

@@ -52,9 +52,11 @@ class InternalOrderController extends Controller
 
                 $order_number = str_pad($orderCount, 3, "0", STR_PAD_LEFT);
                 $order->number = 'E - '. $order_number . ' DT';
+                $order->status = 'ORDER DITERIMA';
+            }else{
+                $order->status = 'DITOLAK';
             }
 
-            $order->status = 'ORDER DITERIMA';
             $order->description = $request->description;
             $order->save();
 
