@@ -22,12 +22,6 @@ class ExternalOrder extends Model
         'pp_hour',
         'pp_minute',
         'total_officer',
-        'accommodation',
-        'accommodation_description',
-        'daily_accommodation',
-        'daily_description',
-        'rapid_test_accommodation',
-        'rapid_test_description',
         'finishing_date',
         'approval_letter_name'
     ];
@@ -53,6 +47,10 @@ class ExternalOrder extends Model
         return $this->hasMany(ActivityDateOrder::class);
     }
 
+    public function external_order_price(){
+        return $this->hasMany(ExternalOrderPrice::class);
+    }
+
     // Atribut Tambahan
     protected $appends = [
         'total_accommodation', 
@@ -68,11 +66,15 @@ class ExternalOrder extends Model
 
     public function getTotalAccommodationAttribute()
     {
-        if(isset($this->accommodation)){
-            return $this->accommodation + $this->rapid_test_accommodation + $this->daily_accommodation;
-        }else{
-            return 0;
+        $prices = $this->external_order_price;
+
+
+        $totalAccommodation = 0;
+        foreach($prices as $price){
+             $totalAccommodation += $price->price;
         }
+
+        return $totalAccommodation;
     }
 
     public function getTotalAlkesPriceAttribute()

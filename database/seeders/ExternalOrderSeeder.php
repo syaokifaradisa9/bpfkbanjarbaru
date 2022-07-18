@@ -24,12 +24,6 @@ class ExternalOrderSeeder extends Seeder
             'pp_hour' => 24,
             'pp_minute' => 33,
             'total_officer' => 4,
-            'accommodation' => 12000000,
-            'accommodation_description' => '-',
-            'daily_accommodation' => 500000,
-            'daily_description' => 150000,
-            'rapid_test_accommodation' => 150000,
-            'rapid_test_description' => '-',
             'created_at' => time()
         ]);
     }

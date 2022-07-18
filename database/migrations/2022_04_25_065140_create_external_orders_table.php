@@ -39,13 +39,6 @@ class CreateExternalOrdersTable extends Migration
 
             $table->string('approval_letter_name')->nullable();
 
-            $table->integer('accommodation')->nullable();
-            $table->string('accommodation_description')->nullable();
-            $table->integer('daily_accommodation')->nullable();
-            $table->string('daily_description')->nullable();
-            $table->integer('rapid_test_accommodation')->nullable();
-            $table->string('rapid_test_description')->nullable();
-
             $table->timestamp('finishing_date')->nullable();
 
             $table->timestamps();

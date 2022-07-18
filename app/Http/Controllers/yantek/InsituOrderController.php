@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Models\ExternalOrder;
 use App\Http\Controllers\Controller;
+use App\Models\ExternalOrderPrice;
 
 class InsituOrderController extends Controller
 {
@@ -43,27 +44,25 @@ class InsituOrderController extends Controller
     }
 
     public function editAccommodation($id){
-        $order = ExternalOrder::with('external_alkes_order')->findOrFail($id);
+        $prices = ExternalOrderPrice::where('external_order_id', $id)->get();
         return view('yantek.order.insitu.accommodation-edit',[
             'title' => 'Edit Insitu',
             'menu' => 'insitu',
-            'order' => $order,
+            'prices' => $prices,
+            'order_id' => $id
         ]);
     }
 
     public function updateAccommodation(Request $request, $id){
-        $order = ExternalOrder::findOrFail($id);
-
-        $order->accommodation = filter_var($request->accommodation_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->accommodation_description = $request->accommodation_cost_description ?? '-';
-
-        $order->daily_accommodation = filter_var($request->daily_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->daily_description = $request->daily_cost_description ?? '-';
-
-        $order->rapid_test_accommodation = filter_var($request->rapid_cost,FILTER_SANITIZE_NUMBER_INT);
-        $order->rapid_test_description = $request->rapid_cost_description ?? '-';
-
-        $order->save();
+        ExternalOrderPrice::where('external_order_id', $id)->delete();
+        for($i = 0; $i < count($request->get('cost-breakdown')); $i++){
+            ExternalOrderPrice::create([
+                'external_order_id' => $id,
+                'cost_breakdown' => $request->get('cost-breakdown')[$i],
+                'price' => filter_var($request->get('price')[$i],FILTER_SANITIZE_NUMBER_INT),
+                'description' => $request->get('description')[$i] ?? '-',
+            ]);
+        }
 
         return redirect()->route('yantek.order.insitu.index')->with('success', 'Berhasil Menetapkan Akomodasi');
     }
