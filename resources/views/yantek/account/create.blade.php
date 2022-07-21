@@ -131,13 +131,33 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="address">Alamat</label>
+                        <label for="address">Alamat Fasyankes</label>
                         <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') ?? '' }}" placeholder="Alamat Lengkap Fasyankes">
                         @error('address')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="pic">PIC</label>
+                            <input type="text" class="form-control @error('pic') is-invalid @enderror" name="pic" id="pic" value="{{ old('pic') ?? '' }}" placeholder="Nama Lengkap PIC">
+                            @error('pic')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col">
+                            <label for="pic_phone">Telepon PIC</label>
+                            <input id="pic_phone" type="text" class="form-control @error('pic_phone') is-invalid @enderror" name="pic_phone" value="{{ old('pic_phone') ?? '' }}" placeholder="Nomor Telepon PIC">
+                            @error('pic_phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col">

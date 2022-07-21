@@ -25,6 +25,8 @@ class User extends Authenticatable
         'type',
         'province',
         'city',
+        'pic',
+        'pic_phone',
         'address',
         'phone',
         'email',

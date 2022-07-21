@@ -23,6 +23,8 @@ class UserSeeder extends Seeder
                 'province' => 'Kalimantan Selatan',
                 'phone' => '082149411670',
                 'fasyankes_class_id' => 1,
+                'pic' => '',
+                'pic_phone' => '',
                 'fasyankes_category_id' => 1,
                 'address' => 'Komp. Galuh Marindu Jln. Persada XII No. 47'
             ]

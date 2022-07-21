@@ -15,6 +15,7 @@ class FasyankesClassSeeder extends Seeder
     public function run()
     {
         $classNames = [
+            '-',
             'A',
             'B',
             'C',
