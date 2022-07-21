@@ -20,6 +20,7 @@ use App\Http\Controllers\fasyankes\CertificateController as FasyankesCertificate
 // Yantek
 use App\Http\Controllers\yantek\AccountController as YanteAccountController;
 use App\Http\Controllers\yantek\HomeController as YantekHomeController;
+use App\Http\Controllers\yantek\AlkesController as YantekAlkesController;
 use App\Http\Controllers\yantek\InsituOrderController as YantekInsituOrderController;
 use App\Http\Controllers\yantek\InternalOrderController as YantekInternalOrderController;
 
@@ -183,6 +184,7 @@ Route::middleware(['petugas'])->prefix('petugas')->name('petugas.')->group(funct
                 Route::put('/update-status', [PetugasInternalOrderController::class, 'updateStatus']);
                 Route::get('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionPage'])->name('alkes-reception');
                 Route::post('/alkes-reception', [PetugasInternalOrderController::class, 'alkesReceptionStore'])->name('alkes-reception-store');
+                Route::get('/alkes-reception-print', [PetugasInternalOrderController::class, 'alkesReceptionPrint'])->name('alkes-reception-print');
                 Route::get('/alkes-handover', [PetugasInternalOrderController::class, 'alkesHandOverPage'])->name('alkes-handover');
                 Route::put('/alkes-handover-store', [PetugasInternalOrderController::class, 'alkesHandOverStore'])->name('alkes-handover-store');
                 Route::get('/alkes-handover-print', [PetugasInternalOrderController::class, 'alkesHandOverPrint'])->name('alkes-handover-print');

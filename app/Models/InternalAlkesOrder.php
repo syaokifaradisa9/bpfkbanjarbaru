@@ -18,6 +18,9 @@ class InternalAlkesOrder extends Model
         // Keterangan Oleh Petugas
         'admin_description_id',
 
+        // Aksesoris
+        'alkes_accessories_id',
+
         // Informasi Alat
         'merk',
         'model',
@@ -27,6 +30,10 @@ class InternalAlkesOrder extends Model
         'is_laik',
         'officer'
     ];
+
+    public function alkes_accessories(){
+        return $this->belongsTo(AlkesAccessories::class);
+    }
 
     public function alkes(){
         return $this->belongsTo(Alkes::class);

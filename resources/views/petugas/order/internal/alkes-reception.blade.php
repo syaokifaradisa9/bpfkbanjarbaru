@@ -30,10 +30,23 @@
                 <select name="checker" class="form-control">
                     <option value="" selected hidden>Pilih Petugas Pengecekan Barang</option>
                     @foreach ($officers as $officer)
+                      @if ($officer->name != Auth::guard('admin')->user()->name)
                         <option value="{{ $officer->name }}">{{ $officer->name }}</option>
+                      @endif
                     @endforeach
                 </select>
             </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col">
+            <label><b>Tanggal Penerimaan</b></label>
+            <input type="date" class="form-control" name="receive_date" value="{{ date('Y-m-d', strtotime(now())) }}">
+          </div>
+          <div class="form-group col">
+            <label><b>Estimasi Tanggal Selesai</b></label>
+            <input type="date" class="form-control" name="done_estimation_date">
+          </div>
         </div>
 
         <div class="form-group">
@@ -144,6 +157,7 @@
                 <th class="text-center">No. Seri</th>
                 <th class="text-center" style="width: 120px">Jumlah</th>
                 <th class="text-center">Fungsi</th>
+                <th class="text-center">Aksesoris</th>
                 <th class="text-center">Keterangan</th>
                 <th class="text-center" style="width: 15px">Aksi</th>
               </tr>
@@ -171,6 +185,7 @@
                     <label class="custom-control-label" for="function_0_b">Rusak</label>
                   </div>
                 </td>
+                <td><input type="text" class="form-control text-center" name="accessories[]" id="accessories_0"></td>
                 <td><input type="text" class="form-control text-center" name="description[]" id="description_0"></td>
                 <td class="text-center">
                   <button class="btn btn-sm btn-danger btn_delete" id="btnDelete_0"><i class="fas fa-trash-alt"></i></button>
@@ -179,13 +194,18 @@
               <tr>
                 <td colspan="4"><b>Total</b></td>
                 <td class="text-center" id="total_ammount">1</td>
-                <td colspan="2"></td>
+                <td colspan="3"></td>
                 <td class="text-center">
                   <button class="btn btn-primary" id="btnAddRow">+</button>
                 </td>
               </tr>
             </table>
           </div>
+        </div>
+        
+        <div class="form-group">
+          <label><b>Catatan</b></label>
+          <textarea class="form-control" name="receiver_description" id="receiver_description"></textarea>
         </div>
       </div>
       <div class="card-footer text-right">

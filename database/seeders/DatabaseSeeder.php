@@ -11,6 +11,7 @@ use Database\Seeders\ExternalOrderSeeder;
 use Database\Seeders\InternalOrderSeeder;
 use Database\Seeders\ExternalOfficerSeeder;
 use Database\Seeders\InstrumentGroupSeeder;
+use Database\Seeders\AlkesAccessoriesSeeder;
 use Database\Seeders\ExternalAlkesOrderSeeder;
 use Database\Seeders\InternalAlkesOrderSeeder;
 use Database\Seeders\MeasuringInstrumentSeeder;
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
             AlkesSeeder::class,
             AdminUserSeeder::class,
             AlkesOrderDescriptionSeeder::class,
+            AlkesAccessoriesSeeder::class,
 
             // External Order
             ExternalOrderSeeder::class,

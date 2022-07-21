@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Alkes;
+use App\Models\AlkesAccessories;
 use App\Models\InternalOrder;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -27,6 +28,9 @@ class CreateInternalAlkesOrdersTable extends Migration
             // Keterangan Oleh Petugas
             $table->unsignedBigInteger('admin_description_id')->index()->default(1);
             $table->foreign('admin_description_id')->references('id')->on('alkes_order_descriptions');
+
+            // Aksesoris
+            $table->foreignIdFor(AlkesAccessories::class)->default(1)->constrained();
 
             // Informasi Alkes
             $table->string('merk')->nullable();

@@ -44,6 +44,12 @@ class CreateInternalOrdersTable extends Migration
             $table->boolean('calibration_method_compatibility')->default(true);
             $table->boolean('accommodation_and_environment')->default(true);
             $table->string('alkes_checker')->nullable();
+            $table->string('alkes_receiver')->nullable();
+            $table->string('receiver_description')->nullable();
+
+            // Tanggal
+            $table->date('receive_date')->nullable();
+            $table->date('done_estimation_date')->nullable();
 
             // Penyerahan Alat
             $table->string('contact_person_receiver_name')->nullable();;

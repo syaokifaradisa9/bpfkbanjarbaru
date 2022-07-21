@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\InternalOrder;
 use App\Models\InternalAlkesOrder;
 use App\Http\Controllers\Controller;
+use App\Models\AlkesAccessories;
 use App\Models\InternalOfficerOrder;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AlkesOrderDescription;
@@ -98,7 +99,9 @@ class InternalOrderController extends Controller
         $order = InternalOrder::findOrFail($id);
 
         // Pemeriksa Alat
+        $order->receiver_description = $request->receiver_description;
         $order->alkes_checker = $request->checker;
+        $order->alkes_receiver = Auth::guard('admin')->user()->name;
 
         // Status Penerimaan Alat
         $order->review_request = $request->review_request == "on";
@@ -108,6 +111,8 @@ class InternalOrderController extends Controller
         $order->equipment_condition = $request->equipment_condition == "on";
         $order->calibration_method_compatibility = $request->calibration_method_compatibility == "on";
         $order->accommodation_and_environment = $request->accommodation_and_environment == "on";
+        $order->receive_date = $request->receive_date;
+        $order->done_estimation_date = $request->done_estimation_date;
 
         // Update Status Order
         $order->status = "ALAT DITERIMA";
@@ -127,11 +132,21 @@ class InternalOrderController extends Controller
                     $description_id = 1;
                 }
                 
+                if($request->accessories[$index]){
+                    $accessories = AlkesAccessories::where('accessories', $request->accessories[$index])->get()->first();
+                    $accessories_id = $accessories->id ?? AlkesAccessories::create([
+                        'accessories' => $request->accessories[$index]
+                    ])->id;
+                }else{
+                    $accessories_id = 1;
+                }
+
                 InternalAlkesOrder::Create([
                     'alkes_id' => $request->alkes[$index],
                     'internal_order_id' => $id,
                     'client_description_id' => $request->description_client_id[$index],
                     'admin_description_id' => $description_id,
+                    'alkes_accessories_id' => $accessories_id,
                     'merk' => $request->merk[$index],
                     'model' => $request->model[$index],
                     'series_number' => $request->series_number[$index],
@@ -141,6 +156,26 @@ class InternalOrderController extends Controller
         }
 
         return redirect(route('petugas.order.internal.index'))->with('success', 'Berhasil Mengonfirmasi Penerimaan Alat Datang');
+    }
+
+    public function alkesReceptionPrint($id){
+        if(!Auth::guard('admin')->check()){
+            return redirect(route('petugas.order.internal.index'));
+        }
+        
+        if(Auth::guard('admin')->user()->role != "PETUGAS"){
+            return redirect(route('petugas.order.internal.index'));
+        }
+
+        $order = InternalOrder::with('user', 'internal_alkes_order')->findOrFail($id);
+        if($order->status != 'ALAT DITERIMA'){
+            return redirect(route('petugas.order.internal.index'));
+        }
+
+        $pdf = Pdf::loadView('report\alkes-reception', [
+            'order' => $order
+        ])->setPaper('a4', 'landscape');
+        return $pdf->download('Bukti Penerimaan Alat Order '. $order->number .'.pdf');
     }
 
     public function alkesHandOverPage($id){

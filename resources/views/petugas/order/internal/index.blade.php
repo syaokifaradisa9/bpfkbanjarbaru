@@ -60,6 +60,10 @@
                             <i class="fas fa-hand-holding"></i>
                             Penerimaan Alat
                           </a>
+                          <a href="{{ route('petugas.order.internal.alkes-reception-print', ['id' => $data->id]) }}" class="dropdown-item has-icon @if($data->status != "ALAT DITERIMA") d-none @endif">
+                            <i class="fas fa-hand-holding"></i>
+                            Bukti Penerimaan Alat
+                          </a>
                           <a href="{{ route('petugas.order.internal.alkes-handover', ['id' => $data->id]) }}" class="dropdown-item has-icon @if($data->status != "PEMBAYARAN LUNAS") d-none @endif">
                             <i class="fas fa-hand-holding"></i>
                             Penyerahan Alat

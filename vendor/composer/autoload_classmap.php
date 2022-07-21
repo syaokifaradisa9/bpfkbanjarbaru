@@ -62,6 +62,7 @@ return array(
     'App\\Models\\ActivityDateOrder' => $baseDir . '/app/Models/ActivityDateOrder.php',
     'App\\Models\\AdminUser' => $baseDir . '/app/Models/AdminUser.php',
     'App\\Models\\Alkes' => $baseDir . '/app/Models/Alkes.php',
+    'App\\Models\\AlkesAccessories' => $baseDir . '/app/Models/AlkesAccessories.php',
     'App\\Models\\AlkesCategory' => $baseDir . '/app/Models/AlkesCategory.php',
     'App\\Models\\AlkesOrderDescription' => $baseDir . '/app/Models/AlkesOrderDescription.php',
     'App\\Models\\ExternalAlkesOrder' => $baseDir . '/app/Models/ExternalAlkesOrder.php',

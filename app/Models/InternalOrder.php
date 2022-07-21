@@ -34,7 +34,6 @@ class InternalOrder extends Model
         'description',
 
         // Informasi Penerimaan Alat
-        'alkes_checker',
         'review_request',
         'calibration_ability',
         'officer_readiness',
@@ -43,6 +42,12 @@ class InternalOrder extends Model
         'calibration_method_compatibility',
         'accommodation_and_environment',
         'alkes_checker',
+        'alkes_receiver',
+        'receiver_description',
+
+        // Tanggal
+        'receive_date',
+        'done_estimation_date',
 
         // Penyerahan Alat
         'contact_person_receiver_name',
@@ -108,7 +113,7 @@ class InternalOrder extends Model
         $alkesOrders = [];
         $tempOrders = InternalAlkesOrder::with('alkes')->where('internal_order_id', $this->id)->get();
         foreach($tempOrders as $order){
-            $alkes = $order->alkes->name . "|" . $order->merk. "|" . $order->model . "|" . $order->series_number;
+            $alkes = $order->alkes->name . "|" . $order->merk. "|" . $order->model . "|" . $order->series_number . "|" . $order->alkes->price . "|" . $order->function . "|" . $order->alkes_accessories->accessories. "|" . $order->admin_desription->description;
             if(isset($alkesOrders[$alkes])){
                 $alkesOrders[$alkes]['ammount']++;
             }else{
@@ -128,6 +133,10 @@ class InternalOrder extends Model
                 'merk' => $alkesAttribute[1],
                 'model' => $alkesAttribute[2],
                 'series_number' => $alkesAttribute[3],
+                'price' => $alkesAttribute[4],
+                'function' => $alkesAttribute[5],
+                'accessories' => $alkesAttribute[6],
+                'admin_description' => $alkesAttribute[7],
                 'ammount' => $value['ammount']
             ]);
         }

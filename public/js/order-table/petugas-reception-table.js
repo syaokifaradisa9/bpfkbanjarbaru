@@ -107,6 +107,7 @@ function addRowTable(event){
                 <label class="custom-control-label" for="function_${newRowId}_b">Rusak</label>
             </div>
         </td>
+        <td><input type="text" class="form-control text-center" name="accessories[]" id="accessories_${newRowId}"></td>
         <td><input type="text" class="form-control text-center" name="description[]" id="description_${newRowId}"></td>
         <td class="text-center">
             <button class="btn btn-sm btn-danger btn_delete" id="btnDelete_${newRowId}"><i class="fas fa-trash-alt"></i></button>

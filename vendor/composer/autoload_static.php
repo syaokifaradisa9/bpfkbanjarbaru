@@ -708,6 +708,7 @@ class ComposerStaticInit563751b83e64b49f258800a2c3803bea
         'App\\Models\\ActivityDateOrder' => __DIR__ . '/../..' . '/app/Models/ActivityDateOrder.php',
         'App\\Models\\AdminUser' => __DIR__ . '/../..' . '/app/Models/AdminUser.php',
         'App\\Models\\Alkes' => __DIR__ . '/../..' . '/app/Models/Alkes.php',
+        'App\\Models\\AlkesAccessories' => __DIR__ . '/../..' . '/app/Models/AlkesAccessories.php',
         'App\\Models\\AlkesCategory' => __DIR__ . '/../..' . '/app/Models/AlkesCategory.php',
         'App\\Models\\AlkesOrderDescription' => __DIR__ . '/../..' . '/app/Models/AlkesOrderDescription.php',
         'App\\Models\\ExternalAlkesOrder' => __DIR__ . '/../..' . '/app/Models/ExternalAlkesOrder.php',
