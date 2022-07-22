@@ -54,19 +54,19 @@
           <div class="row">
             <div class="form-group col-3">
               <label><b>Tanggal Penerimaan Alat</b></label>
-              <input name="D8" type="date" class="form-control" value="{{ $excel_value['D8'] ?? date('Y-m-d', time()) }}">
+              <input name="E7" type="date" class="form-control" value="{{ $excel_value['E7'] ?? date('Y-m-d', time()) }}">
             </div>
             <div class="form-group col-3">
               <label><b>Tanggal Kalibrasi</b></label>
-              <input name="D9" type="date" class="form-control" value="{{ $excel_value['D9'] ?? date('Y-m-d', time()) }}">
+              <input name="E8" type="date" class="form-control" value="{{ $excel_value['E8'] ?? date('Y-m-d', time()) }}">
             </div>
             <div class="form-group col-3">
               <label><b>Tempat Kalibrasi</b></label>
-              <input name="D10" type="text" class="form-control" value="{{ $excel_value['D10'] ?? $alkesOrder->external_order->user->fasyankes_name ?? 'Lab LPFK Banjarbaru' }}">
+              <input name="E9" type="text" class="form-control" value="{{ $excel_value['E9'] ?? $alkesOrder->external_order->user->fasyankes_name ?? 'Lab LPFK Banjarbaru' }}">
             </div>
             <div class="form-group col-3">
               <label><b>Nama Ruang</b></label>
-              <input name="D11" type="text" class="form-control" value="{{ $excel_value['D11'] ?? '' }}">
+              <input name="E10" type="text" class="form-control" value="{{ $excel_value['E10'] ?? '' }}">
             </div>
           </div>
         </div>

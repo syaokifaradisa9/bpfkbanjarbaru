@@ -399,7 +399,7 @@
         
         <div class="form-group">
           <label><b>Petugas Kalibrasi</b></label>
-          <select name="B49" class="form-control">
+          <select name="B103" class="form-control">
             @foreach ($officers as $officer)
               <option value="{{ $officer }}" @if ($officer == Auth::guard('admin')->user()->name) selected @endif>
                 {{$officer}}
