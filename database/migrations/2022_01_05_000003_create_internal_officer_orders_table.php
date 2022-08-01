@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AdminUser;
+use App\Models\InternalAlkesOrder;
 use App\Models\InternalOrder;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +19,7 @@ class CreateInternalOfficerOrdersTable extends Migration
         Schema::create('internal_officer_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(AdminUser::class)->constrained();
-            $table->foreignIdFor(InternalOrder::class)->constrained();
+            $table->foreignIdFor(InternalAlkesOrder::class)->constrained();
             $table->timestamps();
         });
     }

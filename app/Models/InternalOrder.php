@@ -66,10 +66,6 @@ class InternalOrder extends Model
         return $this->hasMany(InternalAlkesOrder::class);
     }
 
-    public function internal_officer_order(){
-        return $this->hasMany(InternalOfficerOrder::class);
-    }
-
     public function internal_payment(){
         return $this->hasMany(InternalPayment::class);
     }
@@ -118,7 +114,8 @@ class InternalOrder extends Model
                 $alkesOrders[$alkes]['ammount']++;
             }else{
                 $alkesOrders[$alkes] = [
-                    'ammount' => 1
+                    'ammount' => 1,
+                    'id' => $order->id
                 ];
             }
         }
@@ -129,6 +126,7 @@ class InternalOrder extends Model
         foreach($alkesOrders as $alkes => $value){
             $alkesAttribute = explode('|', $alkes);
             array_push($orders, [
+                'id' => $value['id'],
                 'alkes' => $alkesAttribute[0],
                 'merk' => $alkesAttribute[1],
                 'model' => $alkesAttribute[2],
@@ -175,7 +173,14 @@ class InternalOrder extends Model
     }
 
     public function getTotalOfficerAttribute(){
-        return count($this->internal_officer_order) ?? 0;
+        $alkesOrders = $this->internal_alkes_order;
+
+        $total = 0;
+        foreach($alkesOrders as $alkesOrder){
+            $total += $alkesOrder->internal_officer_order->groupBy('admin_user_id')->count();
+        }
+       
+        return $total;
     }
 
     public function getDoneAlkesOrderAttribute(){

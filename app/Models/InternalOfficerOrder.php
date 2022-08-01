@@ -10,14 +10,16 @@ class InternalOfficerOrder extends Model
     use HasFactory;
     protected $fillable = [
         'admin_user_id',
-        'internal_order_id'
+        'internal_alkes_order_id'
     ];
 
-    public function internal_order(){
-        return $this->belongsTo(InternalOrder::class);
+    public function internal_alkes_order(){
+        return $this->belongsTo(InternalAlkesOrder::class);
     }
 
     public function admin_user(){
         return $this->belongsTo(AdminUser::class);
     }
+
+
 }

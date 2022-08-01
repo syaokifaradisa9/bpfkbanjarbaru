@@ -6,6 +6,7 @@ use App\Models\AdminUser;
 use Illuminate\Http\Request;
 use App\Models\InternalOrder;
 use App\Http\Controllers\Controller;
+use App\Models\InternalAlkesOrder;
 use App\Models\InternalOfficerOrder;
 
 class InternalOrderController extends Controller
@@ -25,56 +26,24 @@ class InternalOrderController extends Controller
 
     public function officeEdit($id){
         $order = InternalOrder::with('internal_alkes_order')->findOrFail($id);
-        $officers = AdminUser::where('role', 'PETUGAS')->get();
-
-        $existOfficers = InternalOfficerOrder::where('internal_order_id', $id)->get();
-
-        $existOfficerIds = [];
-        foreach($existOfficers as $officer){
-            array_push($existOfficerIds, $officer->admin_user_id);
-        }
+        $officers = AdminUser::where('role', 'PETUGAS')->orderBy('name')->get();
 
         return view('penyelia.order.internal.officer-edit', [
             'title' => 'Halaman Edit Petugas',
             'menu' => 'internal',
             'order' => $order,
-            'officers' => $officers,
-            'officerExists' => $existOfficerIds,
+            'officers' => $officers
         ]);
     }
 
     public function officeUpdate(Request $request, $id){
-        // Mengambil Petugas yang dipilih
-        $officerSelected = $request->all();
-        unset($officerSelected['_token']);
-        unset($officerSelected['_method']);
-
-        // Pengambilan List Petugas dari Database
-        $officerIds = [];
-        $officers = InternalOfficerOrder::select('admin_user_id')->where('internal_order_id', $id)->get();
-        foreach($officers as $officer){
-            array_push($officerIds, $officer->admin_user_id);
-        }
-
-        // Menambahkan database jika pada database blm ada id petugas
-        $clean_officer_selected = [];
-        foreach($officerSelected as $key => $value){
-            $user_id = explode('_', $key)[1];
-            array_push($clean_officer_selected, $user_id);
-            if(!in_array($user_id, $officerIds)){
+        $alkesOrders = $request->alkes_order;
+        foreach($alkesOrders as $index => $alkesOrderId){
+            for($i = 0; $i < $request->ammount[$index]; $i++){
                 InternalOfficerOrder::create([
-                    'admin_user_id' => $user_id,
-                    'internal_order_id' => $id
+                    'admin_user_id' => $request->officers[$index],
+                    'internal_alkes_order_id' => $alkesOrderId
                 ]);
-            }
-        }
-
-        // Menghapus data database jika data database tidak ada dalam data terbaru
-        foreach($officerIds as $existId){
-            if(!in_array($existId, $clean_officer_selected)){
-                InternalOfficerOrder::where('admin_user_id', $existId)
-                                    ->where('internal_order_id', $id)
-                                    ->delete();
             }
         }
 

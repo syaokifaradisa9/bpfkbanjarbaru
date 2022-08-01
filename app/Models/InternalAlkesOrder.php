@@ -28,7 +28,7 @@ class InternalAlkesOrder extends Model
         'series_number',
 
         'is_laik',
-        'officer'
+        'officer',
     ];
 
     public function alkes_accessories(){
@@ -53,6 +53,10 @@ class InternalAlkesOrder extends Model
 
     public function internal_order_excel_value(){
         return $this->hasMany(InternalOrderExcelValue::class);
+    }
+
+    public function internal_officer_order(){
+        return $this->hasMany(InternalOfficerOrder::class);
     }
 
     protected $appends = [

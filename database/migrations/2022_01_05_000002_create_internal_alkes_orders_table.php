@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AdminUser;
 use App\Models\Alkes;
 use App\Models\AlkesAccessories;
 use App\Models\InternalOrder;
