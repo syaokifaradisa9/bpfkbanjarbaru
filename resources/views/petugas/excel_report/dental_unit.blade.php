@@ -45,6 +45,7 @@
             .result-table{
                 border: 1px solid black;
                 border-collapse: collapse;
+                width: 100%;
             }
             .result-table td, .result-table th {
                 border: 1px solid black;
@@ -176,12 +177,12 @@
                             </tr>
                             @for ($i = 1; $i <= 3; $i++)
                                 <tr>
-                                    <td>{{ $i }}</td>
+                                    <td class="text-center">{{ $i }}</td>
                                     <td>{{ $data->getCell('C'.($i + 23))->getFormattedValue() }}</td>
                                     <td class="text-center">
                                         {{ $data->getCell('G'.($i + 23))->getFormattedValue() }} <span class="symbol">{{ $data->getCell('H'.($i + 23))->getFormattedValue() }}</span>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center symbol">
                                         {{ $data->getCell('I'.($i + 23))->getFormattedValue() }} <span class="symbol">{{ $data->getCell('J'.($i + 23))->getFormattedValue() }}</span>
                                     </td>
                                 </tr>
@@ -191,7 +192,7 @@
                 </tr>
             </table>
     
-            <table class="top-margin-spacer">
+            <table class="top-margin-spacer" style="width: 100%">
                 <tr>
                     <th class="text-left" rowspan="2" style="width: 25px">IV.</th>
                     <th class="text-left" colspan="2">Pengujian Kinerja</th>
@@ -228,7 +229,7 @@
                                         <td class="text-center">{{ $data->getCell('D'.$col_num)->getFormattedValue() }}</td>
                                         <td class="text-center">{{ $data->getCell('F'.$col_num)->getFormattedValue() }}</td>
                                         <td class="text-center symbol">{{ $data->getCell('G'.$col_num)->getFormattedValue() }}</td>
-                                        <td class="text-center">{{ $data->getCell('I'.$col_num)->getFormattedValue(). " ". $data->getCell('J'.($i + 32))->getFormattedValue() }}</td>
+                                        <td class="text-center">{{ $data->getCell('I'.$col_num)->getFormattedValue(). " ". $data->getCell('J'.($i + 33))->getFormattedValue() }}</td>
                                     </tr>
                                     <?php $col_num++; ?>
                                 @endfor
@@ -280,16 +281,24 @@
                     <th class="text-left">Kesimpulan</th>
                 </tr>
 
-                <tr><td>{{ $data->getCell('B57')->getFormattedValue() }}</td></tr>
+                <tr>
+                    <td>
+                        {{ $data->getCell('B57')->getFormattedValue() }}
+                    </td>
+                </tr>
             </table>
 
-            <table class="top-margin-spacer">
+            <table>
                 <tr>
                     <th class="text-left" rowspan="5" style="width: 25px">VIII.</th>
                     <th class="text-left">Petugas Pengujian</th>
                 </tr>
 
-                <tr><td>{{ $data->getCell('B60')->getFormattedValue() }}</td></tr>
+                <tr>
+                    <td>
+                        {{ $data->getCell('B60')->getFormattedValue() }}
+                    </td>
+                </tr>
             </table>
 
             <div style="width: 100%;">
